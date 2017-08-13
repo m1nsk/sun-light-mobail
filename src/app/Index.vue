@@ -1,83 +1,74 @@
 <template>
-  <div class="page">
-    <page-footer>
-      <footer-item v-bind:class="{ 'active' : currentView === 'home' }" @click.native="changeView('home')">
-        <span class="icon demo-icon-home"></span>
-        <label>Home</label>
-      </footer-item>
-      <footer-item v-bind:class="{ 'active' : currentView === 'search' }" @click.native="changeView('search')">
-        <span class="icon demo-icon-search"></span>
-        <label>Search</label>
-      </footer-item>
-      <footer-item v-bind:class="{ 'active' : currentView === 'noti' }" @click.native="changeView('noti')">
-        <span class="icon demo-icon-noti"></span>
-        <span class="badge">2</span>
-        <label>Noti</label>
-      </footer-item>
-      <footer-item v-bind:class="{ 'active' : currentView === 'about' }" @click.native="changeView('about')">
-        <span class="icon demo-icon-me"></span>
-        <label>About</label>
-      </footer-item>
-    </page-footer>
-    <keep-alive>
-      <component :is="currentView"></component>
-    </keep-alive>
+  <div class="my-page">
+    <menu-footer @view="changeView" :menuItemData="menuItemData"></menu-footer>
+    <component :is="currentView"></component>
   </div>
 </template>
 
 <script>
-import Page from '../components/page'
-import { Footer, Item } from '../components/footer'
-import Home from './Home'
-import Search from './Search'
-import Noti from './Noti'
-import About from './About'
+  import Page from '~/components/page'
+  import CatalogPage from '~/app/catalog/CatalogPage.vue'
+  import FavoritesPage from '~/app/favorites/FavoritesPage.vue'
+  import ProfilePage from '~/app/profile/ProfilePage.vue'
+  import StockPage from '~/app/stock/StockPage.vue'
+  import CategoryPage from '~/app/category/CategoryPage.vue'
+  import ProductPage from '~/app/product/ProductPage.vue'
+  import Home from '~/app/Home.vue'
+  import MenuFooter from 'appComponents/menu/MenuFooter.vue'
 
-export default {
-  components: {
-    Page,
-    'page-footer': Footer,
-    'footer-item': Item,
-    'home': Home,
-    'search': Search,
-    'noti': Noti,
-    'about': About
-  },
-  data () {
-    return {
-      currentView: 'home'
-    }
-  },
-  methods: {
-    changeView (view) {
-      this.currentView = view
+  export default {
+    components: {
+      Page,
+      Home,
+      MenuFooter,
+      'product': ProductPage,
+      'category': CategoryPage,
+      'catalog': CatalogPage,
+      'favorites': FavoritesPage,
+      'profile': ProfilePage,
+      'stock': StockPage
+    },
+    data () {
+      return {
+        currentView: 'home',
+        menuItemData: [
+          {
+            name: 'stock',
+            title: 'Акции'
+          },
+          {
+            name: 'catalog',
+            title: 'Каталог'
+          },
+          {
+            name: 'favorites',
+            title: 'Избранное'
+          },
+          {
+            name: 'profile',
+            title: 'Профиль'
+          }
+        ]
+      }
+    },
+    methods: {
+      changeView (view) {
+        this.currentView = view['view']
+      }
     }
   }
-}
 </script>
 
 <style lang="less">
-.my-page {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  bottom: 2.8rem;
-}
-.demo-icon-home {
-  background-image: url("../assets/images/home/home.png");
-  background-size: 100%;
-}
-.demo-icon-search {
-  background-image: url("../assets/images/home/search.png");
-  background-size: 100%;
-}
-.demo-icon-noti {
-  background-image: url("../assets/images/home/button.png");
-  background-size: 100%;
-}
-.demo-icon-me {
-  background-image: url("../assets/images/home/person.png");
-  background-size: 100%;
-}
+  .my-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  body, input, select, textarea {
+    font-family: 'futurabookcregular',Arial,Helvetica,sans-serif;
+  }
 </style>

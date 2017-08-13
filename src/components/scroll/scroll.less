@@ -2,15 +2,15 @@
 @import '../variables.less';
 @import '../mixins.less';
 
-@layerHeight:  2.2rem;
+@layerHeight:  1rem;
 .pull-to-refresh-layer {
     position: relative;
-    left:0; 
-    top:0; 
-    width:100%; 
-    height:@layerHeight; 
+    left:0;
+    top:0;
+    width:100%;
+    height:@layerHeight;
     color: @color-text-gray;
-    
+
     .preloader {
         visibility: hidden;
         .preloader;
@@ -25,7 +25,7 @@
         transform: rotate(0deg) translate3d(0,0,0);
         transition-duration: 300ms;
     }
-    
+
 }
 .scroll {
     position: absolute;
@@ -55,14 +55,14 @@
         }
         .preloader {
             visibility: visible;
-        }   
+        }
     }
     &.pull-up {
         .pull-to-refresh-arrow {
             transform: rotate(180deg) translate3d(0,0,0);
         }
     }
-    
+
 }
 .scroll-inner {
   position: absolute;

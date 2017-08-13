@@ -1,9 +1,5 @@
 <template>
-  <div class="my-page">
-    <page-header>
-      <header-link>Потдержка</header-link>
-      <header-title>SunLight</header-title>
-    </page-header>
+  <div class="page">
     <page-content>
       <header class='demos-header'>
         <h1 class="demos-title">CSS</h1>
