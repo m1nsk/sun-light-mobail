@@ -1,10 +1,10 @@
 <template>
   <div class="productWrapper">
     <img :src="bannerData.img" class="banner"/>
-    <div class="productFooter" @click="onMarkClick">
+    <div class="productFooter" >
       <div class="frame">
         <span class="helper"></span>
-        <img :src="markIcon" class="icon">
+        <img :src="markIcon" class="icon" @click.stop="onMarkClick">
       </div>
       <div class="price">
         <div>
@@ -62,6 +62,7 @@
     display: inline-block;
     float: left;
     position: relative;
+    margin: 5px auto;
   }
 
   .productFooter
