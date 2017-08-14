@@ -17,7 +17,7 @@
           <div class="prodPrice">
             <span>до 1000000 р.</span>
           </div>
-          <router-link tag="div" to="reserve" class="reservBtn" :class="{reserveActive: reserveBtnActive}" @mousedown.native="reserveMouseDown" @mouseup.native="reserveMouseUp">
+          <router-link tag="div" to="reserve" class="reservBtn" :class="{reserveActive: reserveBtnActive}" @mouseover.native="reserveMouseDown" @mouseleave.native="reserveMouseUp">
             <span>Оформить резерв</span>
           </router-link>
           <div class="prodQty">
