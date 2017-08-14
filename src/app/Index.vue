@@ -1,7 +1,8 @@
 <template>
   <div class="my-page">
+    <!-- <component :is="currentView"></component> -->
+    <router-view></router-view>
     <menu-footer @view="changeView" :menuItemData="menuItemData"></menu-footer>
-    <component :is="currentView"></component>
   </div>
 </template>
 
@@ -33,19 +34,19 @@
         currentView: 'home',
         menuItemData: [
           {
-            name: 'stock',
+            name: '/stock',
             title: 'Акции'
           },
           {
-            name: 'catalog',
+            name: '/catalog',
             title: 'Каталог'
           },
           {
-            name: 'favorites',
+            name: '/favorites',
             title: 'Избранное'
           },
           {
-            name: 'profile',
+            name: '/profile',
             title: 'Профиль'
           }
         ]
@@ -53,7 +54,7 @@
     },
     methods: {
       changeView (view) {
-        this.currentView = view['view']
+        this.$router.push(view['view'])
       }
     }
   }

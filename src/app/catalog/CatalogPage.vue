@@ -4,7 +4,7 @@
     <page-content style="background-color: #ff0000">
       <scroll :enableInfinite="false" class="scroll">
         <div class='contentWrapper'>
-          <router-link tag="li" :to="item.link" v-for="item in catalogItems" :key="item.id" class="listItem">
+          <router-link tag="li" :to="{name: 'category', params: { category: item.link }}" v-for="item in catalogItems" :key="item.id" class="listItem">
             <div class="itemTitle">
               <span>{{ item.title }}</span>
             </div>

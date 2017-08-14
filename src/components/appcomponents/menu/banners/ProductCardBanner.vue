@@ -1,6 +1,15 @@
 <template>
-  <div class="productWrapper">
-    <img :src="bannerData.img" class="banner"/>
+  <div class="wrapper">
+    <div class="bannerWrapper">
+      <img :src="bannerData.img" class="banner"/>
+      <div class="productHeader" v-show="bannerData.isHit">
+        <div class="hit">
+          <div class="hitClass">
+            <span>Хит</span>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="productFooter" >
       <div class="frame">
         <span class="helper"></span>
@@ -9,13 +18,6 @@
       <div class="price">
         <div>
           {{ bannerData.price }}
-        </div>
-      </div>
-    </div>
-    <div class="productHeader" v-show="bannerData.isHit">
-      <div class="hit">
-        <div class="hitClass">
-          <span>Хит</span>
         </div>
       </div>
     </div>
@@ -49,27 +51,33 @@
 <style lang="less" scoped>
   .banner
   {
-    width: 112px;
-    height: 150px;
-    display: inline-block;
+    width: 100%;
+    height: 100%;
     position: absolute;
   }
 
-  .productWrapper
+  .wrapper
   {
-    width: 112px;
-    height: 150px;
+    width: 50%;
+    height: 120px;
+    cursor: pointer;
     display: inline-block;
     float: left;
+    border: 2px solid #ffffff;
+    background-color: #fbf6ef;
+  }
+
+  .bannerWrapper
+  {
+    width: 100%;
+    height: 88px;
     position: relative;
-    margin: 5px auto;
+    display: inline-block;
+    float: left;
   }
 
   .productFooter
   {
-    position: absolute;
-    bottom: 0;
-    left: 0;
     width: 100%;
     height: 32px;
   }
