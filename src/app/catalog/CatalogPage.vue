@@ -2,7 +2,7 @@
   <div class="page">
     <main-menu></main-menu>
     <page-content style="background-color: #ff0000">
-      <scroll :enableInfinite="false" class="scroll">
+      <scroll :on-refresh="onRefresh" :enableInfinite="false" class="scroll">
         <div class='contentWrapper'>
           <router-link tag="li" :to="item.link" v-for="item in catalogItems" :key="item.id" class="listItem">
             <div class="itemTitle">
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+  import Page from '~/components/page'
   import { List, ListItem } from '~/components/list'
   import scroll from '~/components/scroll'
   import MainMenu from 'appComponents/menu/MainMenu.vue'
@@ -28,6 +29,7 @@
   import Content from '~/components/content'
   export default {
     components: {
+      Page,
       List,
       ListItem,
       scroll,
@@ -84,6 +86,19 @@
             link: 'moto'
           }
         ]
+      }
+    },
+    methods: {
+      onRefresh (done) {
+        /*
+          Здесь может быть запрос на обновления данных
+         */
+
+        let self = this
+        setTimeout(function () {
+          self.time = new Date()
+          done()  // call done
+        }, 200)
       }
     }
   }

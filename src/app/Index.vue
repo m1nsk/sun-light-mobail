@@ -6,20 +6,20 @@
 </template>
 
 <script>
-  import Page from '~/components/page'
+  // import Page from '~/components/page'
   import CatalogPage from '~/app/catalog/CatalogPage.vue'
   import FavoritesPage from '~/app/favorites/FavoritesPage.vue'
   import ProfilePage from '~/app/profile/ProfilePage.vue'
   import StockPage from '~/app/stock/StockPage.vue'
   import CategoryPage from '~/app/category/CategoryPage.vue'
   import ProductPage from '~/app/product/ProductPage.vue'
-  import Home from '~/app/Home.vue'
+  // import Home from '~/app/Home.vue'
   import MenuFooter from 'appComponents/menu/MenuFooter.vue'
 
   export default {
     components: {
-      Page,
-      Home,
+      // Page,
+      // Home,
       MenuFooter,
       'product': ProductPage,
       'category': CategoryPage,
@@ -30,7 +30,7 @@
     },
     data () {
       return {
-        currentView: 'home',
+        currentView: 'stock',
         menuItemData: [
           {
             name: 'stock',

@@ -1,4 +1,4 @@
-r<template>
+<template>
   <div class="page">
     <page-footer>
       <footer-item v-bind:class="{ 'active' : currentView === 'home' }" @click.native="changeView('home')">
