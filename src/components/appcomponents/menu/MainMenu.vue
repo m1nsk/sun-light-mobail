@@ -23,7 +23,6 @@
 
   export default {
     components: {
-      Header,
       HeaderLink,
       HeaderTitle,
       'page-header': Header,

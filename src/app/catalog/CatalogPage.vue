@@ -4,7 +4,7 @@
     <page-content style="background-color: #ff0000">
       <scroll :enableInfinite="false" :enableRefresh="true" class="scroll">
         <div class='contentWrapper'>
-          <router-link tag="li" :to="{name: 'category', params: { category: item.link }}" v-for="item in catalogItems" :key="item.id" class="listItem">
+          <router-link tag="li" :to="item.link" v-for="item in catalogItems" :key="item.id" class="listItem">
             <div class="itemTitle">
               <span>{{ item.title }}</span>
             </div>
@@ -85,20 +85,33 @@
           }
         ]
       }
+    },
+    methods: {
+      onRefresh (done) {
+        /*
+          Здесь может быть запрос на обновления данных
+         */
+
+        let self = this
+        setTimeout(function () {
+          self.time = new Date()
+          done()  // call done
+        }, 200)
+      }
     }
   }
 </script>
 
 <style lang="less" scoped>
   .contentWrapper{
-    max-width: 500px;
+    width: 230px;
     margin: 20px auto;
   }
 
   .banner
   {
     vertical-align: middle;
-    max-width: 500px;
+    width: 230px;
     height: 87px;
   }
 
@@ -131,7 +144,7 @@
 
   .listItem
   {
-    max-width: 500px;
+    width: 230px;
     cursor: pointer;
     margin: 5px auto;
     list-style-type: none;

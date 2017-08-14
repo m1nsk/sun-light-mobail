@@ -2,7 +2,7 @@
   <div class="stockPage">
     <main-menu></main-menu>
     <page-content>
-      <scroll :enableInfinite="false" class="scroll">
+      <scroll :on-refresh="onRefresh" :enableInfinite="false" class="scroll">
         <list class="list">
           <list-item v-for="item in bannerItems" :key="item.id" class="listItem">
             <img src='/static/logo.png' class="banner"/>
@@ -30,6 +30,19 @@
       return {
         bannerItems: [1, 2, 3, 4, 5, 6, 7, 8]
       }
+    },
+    methods: {
+      onRefresh (done) {
+        /*
+          Здесь может быть запрос на обновления данных
+         */
+
+        let self = this
+        setTimeout(function () {
+          self.time = new Date()
+          done()  // call done
+        }, 200)
+      }
     }
   }
 </script>
@@ -46,6 +59,7 @@
   {
     height: 100%;
     border-width: 0;
+    margin-top: 0px;
   }
 
   .listItem
