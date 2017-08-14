@@ -2,7 +2,7 @@
   <div class="page">
     <catalog-page-header :pageData="pageData.pageInfo"></catalog-page-header>
     <page-content>
-      <scroll :enableInfinite="false" class="scroll">
+      <scroll :enableInfinite="false" :enableRefresh="true" class="scroll">
         <div class="contentWrapper">
           <div class="filterWrapper" style="background-color: #4cd964">
           </div>
@@ -112,12 +112,13 @@
   .contentWrapper
   {
     margin: 30px auto;
-    width: 230px;
+    max-width: 500px;
   }
 
   .productGridWrapper
   {
-    width: 230px;
+    max-width: 500px;
+    margin: auto;
   }
 
   .page {

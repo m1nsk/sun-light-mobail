@@ -1,5 +1,5 @@
 <template>
-  <div class="my-page">
+  <div class="page">
     <!-- <component :is="currentView"></component> -->
     <router-view></router-view>
     <menu-footer @view="changeView" :menuItemData="menuItemData"></menu-footer>
@@ -61,7 +61,7 @@
 </script>
 
 <style lang="less">
-  .my-page {
+  .page {
     position: absolute;
     top: 0;
     left: 0;

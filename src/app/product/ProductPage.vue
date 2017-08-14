@@ -2,7 +2,7 @@
   <div class="page">
     <product-page-menu></product-page-menu>
     <page-content>
-      <scroll :enableInfinite="false" class="scroll">
+      <scroll :enableInfinite="false" :enableRefresh="true" class="scroll">
         <div class="contentWrapper">
           <div class="prodName">
             <span>Кольцо золотое</span>
@@ -17,7 +17,7 @@
           <div class="prodPrice">
             <span>до 1000000 р.</span>
           </div>
-          <router-link tag="div" to="reserve" class="reservBtn" :class="{reserveActive: reserveBtnActive}" @mouseover.native="reserveMouseDown" @mouseleave.native="reserveMouseUp">
+          <router-link tag="div" to="reserve" class="reservBtn" :class="{reserveActive: reserveBtnActive}" @mousedown.native="reserveMouseDown" @mouseup.native="reserveMouseUp">
             <span>Оформить резерв</span>
           </router-link>
           <div class="prodQty">
@@ -116,9 +116,9 @@
   .reservBtn
   {
     height: 39px;
-    width: 100%;
+    max-width: 80%;
     text-align: center;
-    margin: 5px 0;
+    margin: 5px auto;
     background-color: #fff0e9;
     border: 1px solid #fff0e9;
     cursor: pointer;
@@ -155,8 +155,8 @@
   .contentWrapper
   {
     margin: auto;
-    width: 230px;
-    padding: 0 5px;
+    width: 100%;
+    margin-top: 25px;
   }
 
   img
@@ -167,6 +167,8 @@
 
   .prodDescription
   {
-    text-align: left;
+    margin: 5px auto;
+    width: 80%;
+    text-align: center;
   }
 </style>

@@ -2,7 +2,7 @@
   <div class="page">
     <main-menu></main-menu>
     <page-content style="background-color: #ff0000">
-      <scroll :enableInfinite="false" class="scroll">
+      <scroll :enableInfinite="false" :enableRefresh="true" class="scroll">
         <div class='contentWrapper'>
           <router-link tag="li" :to="{name: 'category', params: { category: item.link }}" v-for="item in catalogItems" :key="item.id" class="listItem">
             <div class="itemTitle">
@@ -91,14 +91,14 @@
 
 <style lang="less" scoped>
   .contentWrapper{
-    width: 230px;
+    max-width: 500px;
     margin: 20px auto;
   }
 
   .banner
   {
     vertical-align: middle;
-    width: 230px;
+    max-width: 500px;
     height: 87px;
   }
 
@@ -131,7 +131,7 @@
 
   .listItem
   {
-    width: 230px;
+    max-width: 500px;
     cursor: pointer;
     margin: 5px auto;
     list-style-type: none;
