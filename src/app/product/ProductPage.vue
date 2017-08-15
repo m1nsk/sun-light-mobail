@@ -2,9 +2,9 @@
   <div class="page">
     <product-page-menu></product-page-menu>
     <page-content>
-      <scroll :enableInfinite="false" :enableRefresh="true" class="scroll">
+      <scroll :enableInfinite="false" :enableRefresh="false" class="scroll">
         <div class="contentWrapper">
-          <div class="prodName">
+          <div class="prodName max-width">
             <span>Кольцо золотое</span>
             <div class="hitClass">
               <span>Хит</span>
@@ -14,20 +14,20 @@
             <slide><img src="/static/example/demo1.jpg"/></slide>
             <slide><img src="/static/example/demo2.jpg"/></slide>
           </slide-wrapper>
-          <div class="prodPrice">
+          <div class="prodPrice max-width">
             <span>до 1000000 р.</span>
           </div>
-          <router-link tag="div" to="reserve" class="reservBtn" :class="{reserveActive: reserveBtnActive}" @mouseover.native="reserveMouseDown" @mouseleave.native="reserveMouseUp">
+          <router-link tag="div" to="reserve" class="reservBtn max-width" :class="{reserveActive: reserveBtnActive}" @mouseover.native="reserveMouseDown" @mouseleave.native="reserveMouseUp">
             <span>Оформить резерв</span>
           </router-link>
-          <div class="prodQty">
+          <div class="prodQty max-width">
             <span>В наличии в магазинах 10 </span>
           </div>
-          <hr align="center" width="80%" color="gray" size="1px"/>
-          <div class="prodDescription">
+          <hr class="max-width hr" color="gray" size="1px"/>
+          <div class="prodDescription max-width">
             ed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam
           </div>
-          <hr align="center" width="80%" color="gray" size="1px"/>
+          <hr class="max-width hr" color="gray" size="1px"/>
         </div>
       </scroll>
     </page-content>
@@ -67,6 +67,12 @@
 </script>
 
 <style lang="less" scoped>
+
+  .hr {
+    width: 80%;
+    text-align: center;
+  }
+
   .slider
   {
     width: 230px;
@@ -82,13 +88,14 @@
   {
     height: 24px;
     text-align: center;
-    width: 100%;
+    width: 80%;
     position: relative;
+    margin: auto;
   }
 
   .prodName > span
   {
-    font-size: 12px;
+    font-size: 16px;
   }
 
   .prodPrice
@@ -97,6 +104,7 @@
     text-align: center;
     width: 100%;
     margin: 5px 0;
+    padding-bottom: 35px;
   }
 
   .prodQty
@@ -105,6 +113,7 @@
     text-align: center;
     width: 100%;
     margin: 5px 0;
+    padding-bottom: 35px;
   }
 
   .prodQty > span
@@ -116,7 +125,7 @@
   .reservBtn
   {
     height: 39px;
-    max-width: 80%;
+    width: 80%;
     text-align: center;
     margin: 5px auto;
     background-color: #fff0e9;
@@ -154,9 +163,9 @@
 
   .contentWrapper
   {
-    margin: auto;
     width: 100%;
     margin-top: 25px;
+    margin-bottom: 90px;
   }
 
   img
@@ -171,4 +180,11 @@
     width: 80%;
     text-align: center;
   }
+
+  .max-width
+  {
+    max-width: 500px;
+    margin: auto;
+  }
+
 </style>
