@@ -1,44 +1,41 @@
 <template>
-  <div class="page">
-    <product-page-menu></product-page-menu>
-    <page-content>
-      <scroll :enableInfinite="false" :enableRefresh="false" class="scroll">
-        <div class="contentWrapper">
-          <div class="prodName max-width">
-            <span>Кольцо золотое</span>
-            <div class="hitClass">
-              <span>Хит</span>
-            </div>
-          </div>
-          <slide-wrapper class="slider">
-            <slide><img src="/static/example/demo1.jpg"/></slide>
-            <slide><img src="/static/example/demo2.jpg"/></slide>
-          </slide-wrapper>
-          <div class="prodPrice max-width">
-            <span>до 1000000 р.</span>
-          </div>
-          <router-link tag="div" to="reserve" class="reservBtn max-width" :class="{reserveActive: reserveBtnActive}" @mouseover.native="reserveMouseDown" @mouseleave.native="reserveMouseUp">
-            <span>Оформить резерв</span>
-          </router-link>
-          <div class="prodQty max-width">
-            <span>В наличии в магазинах 10 </span>
-          </div>
-          <hr class="max-width hr" color="gray" size="1px"/>
-          <div class="prodDescription max-width">
-            ed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam
-          </div>
-          <hr class="max-width hr" color="gray" size="1px"/>
+  <content-wrapper>
+    <product-page-menu slot="header"></product-page-menu>
+    <div slot="slider">
+      <div class="prodName max-width">
+        <span>Кольцо золотое</span>
+        <div class="hitClass">
+          <span>Хит</span>
         </div>
-      </scroll>
-    </page-content>
-  </div>
+      </div>
+      <slide-wrapper class="slider">
+        <slide><img src="/static/example/demo1.jpg"/></slide>
+        <slide><img src="/static/example/demo2.jpg"/></slide>
+      </slide-wrapper>
+    </div>
+    <div class="prodPrice max-width">
+      <span>до 1000000 р.</span>
+    </div>
+    <router-link tag="div" to="reserve" class="reservBtn max-width" :class="{reserveActive: reserveBtnActive}" @mouseover.native="reserveMouseDown" @mouseleave.native="reserveMouseUp">
+      <span>Оформить резерв</span>
+    </router-link>
+    <div class="prodQty max-width">
+      <span>В наличии в магазинах 10 </span>
+    </div>
+    <hr class="max-width hr" color="gray" size="1px"/>
+    <div class="prodDescription max-width">
+      ed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam
+    </div>
+    <hr class="max-width hr" color="gray" size="1px"/>
+  </content-wrapper>
 </template>
 
 <script>
   import { List, ListItem } from '~/components/list'
   import { SlideWrapper, Slide } from '~/components/slide'
   import scroll from '~/components/scroll'
-  import ProductPageMenu from 'appComponents/menu/ProductPageMenu.vue'
+  import ProductPageMenu from 'appComponents/menu/ProductMenu.vue'
+  import ContentWrapper from 'appComponents/menu/helpers/ContentWrapper.vue'
   import Content from '~/components/content'
   export default {
     components: {
@@ -46,6 +43,7 @@
       ListItem,
       scroll,
       ProductPageMenu,
+      ContentWrapper,
       SlideWrapper,
       Slide,
       'page-content': Content
@@ -76,12 +74,6 @@
   .slider
   {
     width: 230px;
-  }
-
-  .scroll
-  {
-    height: 100%;
-    width: 100%;
   }
 
   .prodName
@@ -161,13 +153,6 @@
     font-size: 12px;
   }
 
-  .contentWrapper
-  {
-    width: 100%;
-    margin-top: 25px;
-    margin-bottom: 90px;
-  }
-
   img
   {
     width: 200px;
@@ -186,5 +171,4 @@
     max-width: 500px;
     margin: auto;
   }
-
 </style>

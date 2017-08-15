@@ -12,7 +12,7 @@
 
 <script>
   import scroll from '~/components/scroll'
-  import CatalogPageHeader from 'appComponents/menu/CatalogPageHeader.vue'
+  import CatalogPageHeader from 'appComponents/menu/CatalogMenu.vue'
   import BannerItem from 'appComponents/menu/banners/BannerItem.vue'
   import ProductCardBanner from 'appComponents/menu/banners/ProductCardBanner.vue'
   import ContentWrapper from 'appComponents/menu/helpers/ContentWrapper.vue'
@@ -80,13 +80,6 @@
 </script>
 
 <style lang="less" scoped>
-  .scroll
-  {
-    height: 100%;
-    width: 100%;
-    margin: auto;
-  }
-
   .banner
   {
     display: block;
@@ -102,26 +95,9 @@
     margin: 5px auto;
   }
 
-  .contentWrapper
-  {
-    margin: 30px auto;
-    max-width: 500px;
-  }
-
   .productGridWrapper
   {
     max-width: 500px;
     margin: auto;
-  }
-
-  .page {
-    box-sizing: border-box;
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
   }
 </style>

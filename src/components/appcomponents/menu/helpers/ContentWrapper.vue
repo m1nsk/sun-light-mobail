@@ -3,6 +3,7 @@
     <slot name="header"></slot>
     <page-content>
       <scroll :on-refresh="onRefresh" :enableInfinite="false" :enableRefresh="true" class="scroll">
+        <slot name="slider"></slot>
         <div class='contentWrapper'>
           <slot></slot>
         </div>
@@ -40,5 +41,21 @@
   .contentWrapper{
     max-width: 500px;
     margin: 20px auto;
+  }
+  .scroll
+  {
+    height: 100%;
+    width: 100%;
+    margin: auto;
+  }
+  .page {
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
   }
 </style>

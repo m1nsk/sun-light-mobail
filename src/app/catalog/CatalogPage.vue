@@ -17,7 +17,7 @@
 <script>
   import scroll from '~/components/scroll'
   import MainMenu from 'appComponents/menu/MainMenu.vue'
-  import BannerItem from 'appComponents/menu/BannerItem.vue'
+  import BannerItem from 'appComponents/menu/banners/BannerItem.vue'
   import ContentWrapper from 'appComponents/menu/helpers/ContentWrapper.vue'
   import Content from '~/components/content'
   export default {
@@ -96,23 +96,11 @@
 </script>
 
 <style lang="less" scoped>
-  .contentWrapper{
-    max-width: 500px;
-    margin: 20px auto;
-  }
-
   .banner
   {
     vertical-align: middle;
     max-width: 500px;
     height: 87px;
-  }
-
-  .scroll
-  {
-    height: 100%;
-    width: 100%;
-    margin: auto;
   }
 
   .list
