@@ -57,12 +57,12 @@ let router = new Router({
           component: FavoritesPage
         },
         {
-          path: 'catalog/category/:category',
+          path: 'catalog/:category',
           name: 'category',
           component: CategoryPage
         },
         {
-          path: 'catalog/category/:category/:product',
+          path: 'catalog/:category/:product',
           name: 'product',
           component: ProductPage
         }
