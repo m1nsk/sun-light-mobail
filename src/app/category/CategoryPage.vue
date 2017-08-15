@@ -1,36 +1,29 @@
 <template>
-  <div class="page">
-    <catalog-page-header :pageData="pageData.pageInfo"></catalog-page-header>
-    <page-content>
-      <scroll :enableInfinite="false" :enableRefresh="true" class="scroll">
-        <div class="contentWrapper">
-          <div class="filterWrapper" style="background-color: #4cd964">
-          </div>
-          <bannerItem :bannerImg="pageData.bannerImage"></bannerItem>
-          <div class="productGridWrapper">
-            <product-card-banner v-for="item in pageData.bannerData" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)"></product-card-banner>
-          </div>
-        </div>
-      </scroll>
-    </page-content>
-  </div>
+  <content-wrapper>
+    <catalog-page-header :pageData="pageData.pageInfo" slot="header"></catalog-page-header>
+    <div class="filterWrapper" style="background-color: #4cd964">
+    </div>
+    <bannerItem :bannerImg="pageData.bannerImage"></bannerItem>
+    <div class="productGridWrapper">
+      <product-card-banner v-for="item in pageData.bannerData" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)"></product-card-banner>
+    </div>
+  </content-wrapper>
 </template>
 
 <script>
-  import { List, ListItem } from '~/components/list'
   import scroll from '~/components/scroll'
   import CatalogPageHeader from 'appComponents/menu/CatalogPageHeader.vue'
   import BannerItem from 'appComponents/menu/banners/BannerItem.vue'
   import ProductCardBanner from 'appComponents/menu/banners/ProductCardBanner.vue'
+  import ContentWrapper from 'appComponents/menu/helpers/ContentWrapper.vue'
   import Content from '~/components/content'
   export default {
     components: {
-      List,
-      ListItem,
       scroll,
       BannerItem,
       CatalogPageHeader,
       ProductCardBanner,
+      ContentWrapper,
       'page-content': Content
     },
     data () {

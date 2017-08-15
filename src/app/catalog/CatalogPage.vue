@@ -1,38 +1,31 @@
 <template>
-  <div class="page">
-    <main-menu></main-menu>
-    <page-content style="background-color: #ff0000">
-      <scroll :on-refresh="onRefresh" :enableInfinite="false" :enableRefresh="true" class="scroll">
-        <div class='contentWrapper'>
-          <router-link tag="li" :to="{name: 'category', params: { category: item.link }}" v-for="item in catalogItems" :key="item.id" class="listItem">
-            <div class="itemTitle">
-              <span>{{ item.title }}</span>
-            </div>
-            <div v-if="item.banner !== null" class=frame>
-              <span class="helper"></span>
-              <img :src="item.banner" class="banner">
-            </div>
-            <hr align="center" width="80%" color="white" size="1px"/>
-          </router-link>
-        </div>
-      </scroll>
-    </page-content>
-  </div>
+  <content-wrapper style="background-color:#ff0000">
+    <main-menu slot="header"></main-menu>
+    <router-link tag="li" :to="{name: 'category', params: { category: item.link }}" v-for="item in catalogItems" :key="item.id" class="listItem">
+      <div class="itemTitle">
+        <span>{{ item.title }}</span>
+      </div>
+      <div v-if="item.banner !== null" class=frame>
+        <span class="helper"></span>
+        <img :src="item.banner" class="banner">
+      </div>
+      <hr align="center" width="80%" color="white" size="1px"/>
+    </router-link>
+  </content-wrapper>
 </template>
 
 <script>
-  import { List, ListItem } from '~/components/list'
   import scroll from '~/components/scroll'
   import MainMenu from 'appComponents/menu/MainMenu.vue'
   import BannerItem from 'appComponents/menu/BannerItem.vue'
+  import ContentWrapper from 'appComponents/menu/helpers/ContentWrapper.vue'
   import Content from '~/components/content'
   export default {
     components: {
-      List,
-      ListItem,
       scroll,
       MainMenu,
       BannerItem,
+      ContentWrapper,
       'page-content': Content
     },
     data () {
@@ -89,7 +82,7 @@
     methods: {
       onRefresh (done) {
         /*
-          Здесь может быть запрос на обновления данных
+         Здесь может быть запрос на обновления данных
          */
 
         let self = this
