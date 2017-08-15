@@ -16,9 +16,7 @@
     <div class="prodPrice max-width">
       <span>до 1000000 р.</span>
     </div>
-    <router-link tag="div" to="reserve" class="reservBtn max-width" :class="{reserveActive: reserveBtnActive}" @mouseover.native="reserveMouseDown" @mouseleave.native="reserveMouseUp">
-      <span>Оформить резерв</span>
-    </router-link>
+    <shop-button @click="onReserveClicked" caption="Оформить резерв" class="reservBtn max-width" ></shop-button>
     <div class="prodQty max-width">
       <span>В наличии в магазинах 10 </span>
     </div>
@@ -27,6 +25,14 @@
       ed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam
     </div>
     <hr class="max-width hr" color="gray" size="1px"/>
+    <div class="btnArea max-width">
+      <shop-button-small @click="onReserveClicked" caption="Может понравиться" class="markedBtn" ></shop-button-small>
+      <div class="divider"></div>
+      <shop-button-small @click="onReserveClicked" caption="Просмотренные" class="seenBtn" ></shop-button-small>
+    </div>
+    <div class="productGridWrapper">
+      <product-card-banner v-for="item in pageData.bannerData" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)"></product-card-banner>
+    </div>
   </content-wrapper>
 </template>
 
@@ -36,6 +42,9 @@
   import scroll from '~/components/scroll'
   import ProductPageMenu from 'appComponents/menu/ProductMenu.vue'
   import ContentWrapper from 'appComponents/menu/helpers/ContentWrapper.vue'
+  import ShopButton from 'appComponents/menu/helpers/ShopButton.vue'
+  import ShopButtonSmall from 'appComponents/menu/helpers/ShopButtonSmall.vue'
+  import ProductCardBanner from 'appComponents/menu/banners/ProductCardBanner.vue'
   import Content from '~/components/content'
   export default {
     components: {
@@ -44,21 +53,64 @@
       scroll,
       ProductPageMenu,
       ContentWrapper,
+      ShopButton,
+      ShopButtonSmall,
+      ProductCardBanner,
       SlideWrapper,
       Slide,
       'page-content': Content
     },
     data () {
       return {
-        reserveBtnActive: false
+        pageData: {
+          bannerImage: '/static/logo.png',
+          pageInfo: {
+            num: '1',
+            total: '7',
+            category: 'Часы наручные'
+          },
+          bannerData: [
+            {
+              img: '/static/logo.png',
+              price: 1000,
+              isHit: true,
+              id: 0
+            },
+            {
+              img: '/static/logo.png',
+              price: 2000,
+              isHit: false,
+              id: 1
+            },
+            {
+              img: '/static/logo.png',
+              price: 3000,
+              isHit: true,
+              id: 2
+            },
+            {
+              img: '/static/logo.png',
+              price: 4000,
+              isHit: false,
+              id: 3
+            },
+            {
+              img: '/static/logo.png',
+              price: 5000,
+              isHit: false,
+              id: 4
+            }
+          ]
+        }
       }
     },
     methods: {
-      reserveMouseUp () {
-        this.reserveBtnActive = false
+      onReserveClicked () {
+        console.log('clicked')
       },
-      reserveMouseDown () {
-        this.reserveBtnActive = true
+      onProductClicked (item) {
+        console.log(item.id)
+        this.$router.push('/catalog/product/' + item.id)
       }
     }
   }
@@ -114,28 +166,6 @@
     line-height: 24px;
   }
 
-  .reservBtn
-  {
-    height: 39px;
-    width: 80%;
-    text-align: center;
-    margin: 5px auto;
-    background-color: #fff0e9;
-    border: 1px solid #fff0e9;
-    cursor: pointer;
-  }
-
-  .reserveActive
-  {
-    border: 1px solid #403C39;
-  }
-
-  .reservBtn > span
-  {
-    font-size: 15px;
-    line-height: 39px;
-  }
-
   .hitClass
   {
     width: 48px;
@@ -167,6 +197,63 @@
   }
 
   .max-width
+  {
+    max-width: 500px;
+    margin: auto;
+  }
+
+  .reservBtn
+  {
+    height: 39px;
+    width: 80%;
+    text-align: center;
+    margin: 5px auto;
+    background-color: #fff0e9;
+    border: 1px solid #fff0e9;
+    cursor: pointer;
+  }
+
+  .btnArea
+  {
+    width: 80%;
+    height: 39px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .divider
+  {
+    height: 100%;
+    width: 4%;
+    display: inline-block;
+    float: left;
+  }
+
+  .seenBtn
+  {
+    height: 100%;
+    width: 48%;
+    text-align: center;
+    background-color: #fff0e9;
+    border: 1px solid #fff0e9;
+    display: inline-block;
+    float: left;
+    cursor: pointer;
+  }
+
+  .markedBtn
+  {
+    height: 100%;
+    width: 48%;
+    text-align: center;
+    background-color: #fff0e9;
+    border: 1px solid #fff0e9;
+    display: inline-block;
+    float: left;
+    cursor: pointer;
+  }
+
+  .productGridWrapper
   {
     max-width: 500px;
     margin: auto;

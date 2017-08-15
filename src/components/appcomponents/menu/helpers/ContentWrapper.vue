@@ -41,6 +41,7 @@
   .contentWrapper{
     max-width: 500px;
     margin: 20px auto;
+    padding-bottom: 100px;
   }
   .scroll
   {
