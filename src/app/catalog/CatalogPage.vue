@@ -2,7 +2,7 @@
   <div class="page">
     <main-menu></main-menu>
     <page-content style="background-color: #ff0000">
-      <scroll :enableInfinite="false" :enableRefresh="true" class="scroll">
+      <scroll :on-refresh="onRefresh" :enableInfinite="false" :enableRefresh="true" class="scroll">
         <div class='contentWrapper'>
           <router-link tag="li" :to="{name: 'category', params: { category: item.link }}" v-for="item in catalogItems" :key="item.id" class="listItem">
             <div class="itemTitle">
@@ -84,6 +84,19 @@
             link: 'moto'
           }
         ]
+      }
+    },
+    methods: {
+      onRefresh (done) {
+        /*
+          Здесь может быть запрос на обновления данных
+         */
+
+        let self = this
+        setTimeout(function () {
+          self.time = new Date()
+          done()  // call done
+        }, 200)
       }
     }
   }
