@@ -1,23 +1,28 @@
 <template>
-  <div class="shopWrapper">
-    <div class="bannerMini">
-      <span class="helper"></span>
-      <img src="/static/logo.png" class="banner">
-    </div>
-    <div class="shopInfo">
-      <div><b>{{shopData.title}}</b></div>
-      <div>{{shopData.price}}</div>
-    </div>
-    <div class=arrowArea>
-      <span class="helper"></span>
-      <img src="/static/myIcons/right-arrow.svg" class="icon">
-    </div>
-  </div>
+  <list>
+    <list-item>
+      <div class="item-media"><img class="bannerMini" src="static/logo.png"></div>
+      <div class="item-content">
+        <div class="item-title-row">
+          <div class="item-title">
+              <div><b>{{shopData.title}}</b></div>
+              <div>{{shopData.price}}</div>
+          </div>
+          <div class="item-after">
+            <img src="/static/myIcons/right-arrow.svg" class="icon">
+          </div>
+        </div>
+      </div>
+    </list-item>
+  </list>
 </template>
 
 <script>
+  import { List, ListItem } from '~/components/list'
   export default {
     components: {
+      List,
+      ListItem
     },
     data () {
       return {
@@ -31,31 +36,12 @@
 </script>
 
 <style lang="less" scoped>
-  .shopInfo
-  {
-    height: 100%;
-    width: 60%;
-    display: inline-block;
-    float: left;
-  }
-
-  .shopWrapper
-  {
-    width: 100%;
-    height: 80px;
-    position: relative;
-    font-size: 16px;
-    line-height: 18px;
-    padding: 0 10px;
-  }
 
   .bannerMini
   {
-    width: 20%;
-    height: 100%;
-    white-space: nowrap; /* this is required unless you put the helper span closely near the img */
-    display: inline-block;
-    float: left;
+    width: 64px;
+    height: 64px;
+    margin-left: 10px;
   }
 
   .icon
@@ -65,25 +51,4 @@
     height: 18px;
   }
 
-  .banner
-  {
-    vertical-align: middle;
-    width: 40px;
-    height: 30px;
-  }
-
-  .arrowArea {
-    height: 100%;    /* equals max image height */
-    width: 20%;
-    white-space: nowrap; /* this is required unless you put the helper span closely near the img */
-    text-align: center;
-    display: inline-block;
-    float: right;
-  }
-
-  .helper {
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-  }
 </style>

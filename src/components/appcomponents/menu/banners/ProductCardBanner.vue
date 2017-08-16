@@ -64,7 +64,7 @@
     display: inline-block;
     float: left;
     border: 2px solid #ffffff;
-    background-color: #fbf6ef;
+    background-color: #f8f8f8;
   }
 
   .bannerWrapper

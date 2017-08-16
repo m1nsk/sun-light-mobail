@@ -1,19 +1,16 @@
 <template>
   <content-wrapper>
-    <reserve-menu slot="header"></reserve-menu>
-    <hr>
+    <reserve-menu title="Где забрать?" slot="header"></reserve-menu>
     <product-view-mini></product-view-mini>
-    <hr>
     <div class="shopCount">
       <span>Найдено {{ shopCount }} магазина</span>
     </div>
-    <shop-component v-for="item in shopsList" :shopData="item" :key="item.id"></shop-component>
-    <hr>
+    <shop-component v-for="item in shopsList" :shopData="item" :key="item.id" @click.native="onShopClicked"></shop-component>
   </content-wrapper>
 </template>
 
 <script>
-  import ReserveMenu from 'appComponents/menu/ReserveMenu.vue'
+  import ReserveMenu from 'appComponents/menu/TitleMenu.vue'
   import ContentWrapper from 'appComponents/menu/helpers/ContentWrapper.vue'
   import ShopComponent from 'appComponents/menu/components/ShopComponent.vue'
   import ProductViewMini from 'appComponents/menu/components/ProductViewMini.vue'
@@ -52,6 +49,12 @@
           }
         ],
         shopCount: 3
+      }
+    },
+    methods: {
+      onShopClicked () {
+        console.log('clicked')
+        this.$router.push(this.$route.path + 'form/')
       }
     }
   }

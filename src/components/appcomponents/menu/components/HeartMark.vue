@@ -1,8 +1,8 @@
 <template>
-    <div class="markArea">
-      <span class="helper"></span>
-      <img :src="markIcon" class="icon" @click.stop="onMarkClick">
-    </div>
+  <div class="markArea">
+    <span class="helper"></span>
+    <img :src="markIcon" class="icon" @click.stop="onMarkClick">
+  </div>
 </template>
 
 <script>
@@ -43,14 +43,10 @@
     width: 32px;
     white-space: nowrap; /* this is required unless you put the helper span closely near the img */
     text-align: center;
-    position: absolute;
-    right: 0;
-    top: 0;
     cursor: pointer;
   }
 
   .helper {
-    display: inline-block;
     height: 100%;
     vertical-align: middle;
   }

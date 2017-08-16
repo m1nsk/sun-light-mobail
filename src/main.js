@@ -12,7 +12,8 @@ import ProductPage from '~/app/product/ProductPage.vue'
 import ProfilePage from '~/app/profile/ProfilePage.vue'
 import StockPage from '~/app/stock/StockPage.vue'
 import CategoryPage from '~/app/category/CategoryPage.vue'
-import ReservePage from '~/app/reserve/ReservePage.vue'
+import ReserveShopPage from '~/app/reserve/ReserveShopPage.vue'
+import ReserveFormPage from '~/app/reserve/ReserveFormPage.vue'
 
 Vue.use(Router)
 Vue.use(Vum)
@@ -54,7 +55,12 @@ let router = new Router({
         {
           path: 'catalog/:category/:product/reserve',
           name: 'reserve',
-          component: ReservePage
+          component: ReserveShopPage
+        },
+        {
+          path: 'catalog/:category/:product/reserve/form',
+          name: 'form',
+          component: ReserveFormPage
         }
       ]
     }

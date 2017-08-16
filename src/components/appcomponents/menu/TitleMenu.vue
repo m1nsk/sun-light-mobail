@@ -6,7 +6,7 @@
         <img src="/static/myIcons/left-arrow.svg" class="icon">
       </div>
     </header-link>
-    <header-title>Где забрать?</header-title>
+    <header-title>{{ title }}</header-title>
   </page-header>
 </template>
 
@@ -22,7 +22,8 @@
       'page-header': Header,
       'page-content': Content,
       Icon
-    }
+    },
+    props: ['title']
   }
 </script>
 
