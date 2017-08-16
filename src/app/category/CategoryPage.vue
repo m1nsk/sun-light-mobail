@@ -73,7 +73,7 @@
     methods: {
       onProductClicked (item) {
         console.log(item.id)
-        this.$router.push('product/' + item.id)
+        this.$router.push(this.$route.path + '/' + item.id)
       }
     }
   }

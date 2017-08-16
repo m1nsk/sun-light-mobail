@@ -16,7 +16,7 @@
     <div class="prodPrice max-width">
       <span>до 1000000 р.</span>
     </div>
-    <shop-button @click="onReserveClicked" caption="Оформить резерв" class="reservBtn max-width" ></shop-button>
+    <shop-button @click.native="onReserveClicked" caption="Оформить резерв" class="reservBtn max-width" ></shop-button>
     <div class="prodQty max-width">
       <span>В наличии в магазинах 10 </span>
     </div>
@@ -26,9 +26,9 @@
     </div>
     <hr class="max-width hr" color="gray" size="1px"/>
     <div class="btnArea max-width">
-      <shop-button-small @click="onReserveClicked" caption="Может понравиться" class="markedBtn" ></shop-button-small>
+      <shop-button-small @click="onMarkedClicked" caption="Может понравиться" class="markedBtn" ></shop-button-small>
       <div class="divider"></div>
-      <shop-button-small @click="onReserveClicked" caption="Просмотренные" class="seenBtn" ></shop-button-small>
+      <shop-button-small @click="onSeenClicked" caption="Просмотренные" class="seenBtn" ></shop-button-small>
     </div>
     <div class="productGridWrapper">
       <product-card-banner v-for="item in pageData.bannerData" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)"></product-card-banner>
@@ -107,10 +107,16 @@
     methods: {
       onReserveClicked () {
         console.log('clicked')
+        this.$router.push(this.$route.path + '/reserve/')
+      },
+      onMarkedClicked () {
+        console.log('clicked')
+      },
+      onSeenClicked () {
+        console.log('clicked')
       },
       onProductClicked (item) {
         console.log(item.id)
-        this.$router.push('/catalog/product/' + item.id)
       }
     }
   }

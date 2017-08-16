@@ -15,14 +15,12 @@
 </template>
 
 <script>
-  import scroll from '~/components/scroll'
   import MainMenu from 'appComponents/menu/MainMenu.vue'
   import BannerItem from 'appComponents/menu/banners/BannerItem.vue'
   import ContentWrapper from 'appComponents/menu/helpers/ContentWrapper.vue'
   import Content from '~/components/content'
   export default {
     components: {
-      scroll,
       MainMenu,
       BannerItem,
       ContentWrapper,

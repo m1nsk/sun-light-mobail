@@ -12,6 +12,7 @@ import ProductPage from '~/app/product/ProductPage.vue'
 import ProfilePage from '~/app/profile/ProfilePage.vue'
 import StockPage from '~/app/stock/StockPage.vue'
 import CategoryPage from '~/app/category/CategoryPage.vue'
+import ReservePage from '~/app/reserve/ReservePage.vue'
 
 Vue.use(Router)
 Vue.use(Vum)
@@ -27,22 +28,6 @@ let router = new Router({
           path: 'catalog',
           name: 'catalog',
           component: CatalogPage
-          /*,
-          children: [
-            {
-              path: ':category',
-              name: 'category',
-              component: CategoryPage,
-              children: [
-                {
-                  path: ':id',
-                  name: 'product',
-                  component: ProductPage
-                }
-              ]
-            }
-          ]
-          */
         },
         {
           path: 'stock',
@@ -65,6 +50,11 @@ let router = new Router({
           path: 'catalog/:category/:product',
           name: 'product',
           component: ProductPage
+        },
+        {
+          path: 'catalog/:category/:product/reserve',
+          name: 'reserve',
+          component: ReservePage
         }
       ]
     }
