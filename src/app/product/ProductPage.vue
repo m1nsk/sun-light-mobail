@@ -26,9 +26,9 @@
     </div>
     <hr class="max-width hr" color="gray" size="1px"/>
     <div class="btnArea max-width">
-      <shop-button-small @click="onMarkedClicked" caption="Может понравиться" class="markedBtn" ></shop-button-small>
+      <shop-button-small @click.native="onMarkedClicked" caption="Может понравиться" class="markedBtn" ></shop-button-small>
       <div class="divider"></div>
-      <shop-button-small @click="onSeenClicked" caption="Просмотренные" class="seenBtn" ></shop-button-small>
+      <shop-button-small @click.native="onSeenClicked" caption="Просмотренные" class="seenBtn" ></shop-button-small>
     </div>
     <div class="productGridWrapper">
       <product-card-banner v-for="item in pageData.bannerData" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)"></product-card-banner>
@@ -230,15 +230,15 @@
   .divider
   {
     height: 100%;
-    width: 4%;
+    width: 2%;
     display: inline-block;
     float: left;
   }
 
-  .ContinueBtn
+  .markedBtn
   {
     height: 100%;
-    width: 48%;
+    width: 49%;
     text-align: center;
     background-color: #fff0e9;
     border: 1px solid #fff0e9;
@@ -247,10 +247,10 @@
     cursor: pointer;
   }
 
-  .cancelBtn
+  .seenBtn
   {
     height: 100%;
-    width: 48%;
+    width: 49%;
     text-align: center;
     background-color: #fff0e9;
     border: 1px solid #fff0e9;
