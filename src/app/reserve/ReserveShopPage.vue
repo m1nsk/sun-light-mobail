@@ -13,7 +13,7 @@
   import ReserveMenu from 'appComponents/menu/TitleMenu.vue'
   import ContentWrapper from 'appComponents/menu/helpers/ContentWrapper.vue'
   import ShopComponent from 'appComponents/menu/components/ShopComponent.vue'
-  import ProductViewMini from 'appComponents/menu/components/ProductViewMini.vue'
+  import ProductViewMini from 'appComponents/menu/components/ShopComponentMini.vue'
   import Content from '~/components/content'
   import { List, ListItem } from '~/components/list'
   export default {

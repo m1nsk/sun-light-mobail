@@ -1,5 +1,5 @@
 <template>
-  <div :class="{btnActive: reserveBtnActive}" @mousedown="reserveMouseDown" @mouseup="reserveMouseUp">
+  <div :class="{btnActive: reserveBtnActive}" @mousedown="reserveMouseDown" @mouseup="reserveMouseUp" class="btn">
     <span class="caption">{{ caption }}</span>
   </div>
 </template>
@@ -35,5 +35,13 @@
   {
     font-size: 15px;
     line-height: 39px;
+    display: table-cell;
+    vertical-align: middle;
   }
+
+  .btn
+  {
+    display: table;
+  }
+
 </style>

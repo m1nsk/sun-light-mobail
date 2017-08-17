@@ -1,11 +1,10 @@
 <template>
   <content-wrapper class="formWrapper">
-    <reserve-menu title="Оформление резерва" slot="header"></reserve-menu>
+    <reserve-menu title="Подтверждение" slot="header"></reserve-menu>
     <div>
       <shop-form-component></shop-form-component>
-      <form-component placeholder="Имя"></form-component>
       <form-component placeholder="Почта"></form-component>
-      <form-component placeholder="Телефон"></form-component>
+      <form-component placeholder="Код подтверждения"></form-component>
     </div>
     <accept-form-component class="accept"></accept-form-component>
     <div class="btnArea max-width" slot="buttons">
@@ -37,7 +36,6 @@
     },
     methods: {
       onContinueClicked () {
-        console.log('clicked')
         this.$router.push(this.$route.path + 'accept/')
       }
     }
@@ -49,7 +47,7 @@
   {
     width: 100%;
     height: 40px;
-    padding-top: 100px;
+    padding-top: 154px;
   }
 
   .formWrapper

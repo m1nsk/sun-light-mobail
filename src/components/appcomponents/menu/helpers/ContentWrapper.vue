@@ -1,12 +1,13 @@
 <template>
   <div class="page">
     <slot name="header"></slot>
-    <page-content>
+    <page-content class="content">
       <scroll :on-refresh="onRefresh" :enableInfinite="false" :enableRefresh="true" class="scroll">
         <slot name="slider"></slot>
         <div class='contentWrapper'>
           <slot></slot>
         </div>
+        <slot name="buttons"></slot>
       </scroll>
     </page-content>
   </div>
@@ -40,8 +41,7 @@
 <style lang="less" scoped>
   .contentWrapper{
     max-width: 500px;
-    margin: 20px auto;
-    padding-bottom: 100px;
+    margin: 0 auto;
   }
   .scroll
   {
@@ -49,6 +49,12 @@
     width: 100%;
     margin: auto;
   }
+
+  .contentWrapper
+  {
+    width: 90%
+  }
+
   .page {
     box-sizing: border-box;
     position: absolute;

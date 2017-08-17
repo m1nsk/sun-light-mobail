@@ -14,6 +14,7 @@ import StockPage from '~/app/stock/StockPage.vue'
 import CategoryPage from '~/app/category/CategoryPage.vue'
 import ReserveShopPage from '~/app/reserve/ReserveShopPage.vue'
 import ReserveFormPage from '~/app/reserve/ReserveFormPage.vue'
+import AcceptFormPage from '~/app/reserve/AcceptFormPage.vue'
 
 Vue.use(Router)
 Vue.use(Vum)
@@ -61,6 +62,11 @@ let router = new Router({
           path: 'catalog/:category/:product/reserve/form',
           name: 'form',
           component: ReserveFormPage
+        },
+        {
+          path: 'catalog/:category/:product/reserve/form/accept',
+          name: 'accept',
+          component: AcceptFormPage
         }
       ]
     }

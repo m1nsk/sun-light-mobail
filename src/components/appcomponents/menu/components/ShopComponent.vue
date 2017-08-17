@@ -17,19 +17,19 @@
           </div>
         </div>
       </list-item>
-      <heart-mark class="heartItem"></heart-mark>
+      <heart-mark-component class="heartItem"></heart-mark-component>
     </list>
   </div>
 </template>
 
 <script>
-  import HeartMark from 'appComponents/menu/components/HeartMark.vue'
+  import HeartMarkComponent from 'appComponents/menu/components/HeartMarkComponent.vue'
   import { List, ListItem } from '~/components/list'
   export default {
     components: {
       List,
       ListItem,
-      HeartMark
+      HeartMarkComponent
     },
     props: ['shopData'],
     data () {

@@ -235,7 +235,7 @@
     float: left;
   }
 
-  .seenBtn
+  .ContinueBtn
   {
     height: 100%;
     width: 48%;
@@ -247,7 +247,7 @@
     cursor: pointer;
   }
 
-  .markedBtn
+  .cancelBtn
   {
     height: 100%;
     width: 48%;
