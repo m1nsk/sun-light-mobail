@@ -5,6 +5,8 @@ import Vum from './vum.js'
 import RouteConfig from './route.js'
 import App from '~/app/App'
 
+import 'animate.css/animate.min.css'
+
 Vue.use(VueRouter)
 Vue.use(Vum)
 

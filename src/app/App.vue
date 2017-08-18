@@ -63,5 +63,4 @@
     font-family: 'futurabookcregular',Arial,Helvetica,sans-serif;
   }
 
-@import './animate.min.less';
 </style>
