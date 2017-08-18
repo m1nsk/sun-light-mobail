@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import FastClick from 'fastclick'
 import Vum from './vum.js'
 import RouteConfig from './route.js'
+import App from '~/app/App'
 
 Vue.use(VueRouter)
 Vue.use(Vum)
@@ -10,9 +11,10 @@ Vue.use(Vum)
 const router = new VueRouter(RouteConfig)
 
 new Vue({
-  router
+  router,
+  render: h => h(App)
 }).$mount('#app')
 
-Vum.router(router)
+// Vum.router(router)
 
 FastClick.attach(document.body)

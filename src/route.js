@@ -7,7 +7,7 @@ import CategoryPage from '~/app/category/CategoryPage.vue'
 import ReserveShopPage from '~/app/reserve/ReserveShopPage.vue'
 import ReserveFormPage from '~/app/reserve/ReserveFormPage.vue'
 import AcceptFormPage from '~/app/reserve/AcceptFormPage.vue'
-import Index from '~/app/Index'
+import App from '~/app/App'
 
 export default {
   // mode: 'history',
@@ -16,7 +16,7 @@ export default {
     {
       path: '/',
       name: 'index',
-      component: Index,
+      component: App,
       children: [
         { path: 'catalog', name: 'catalog', component: CatalogPage },
         { path: 'stock', component: StockPage },

@@ -1,33 +1,18 @@
 <template>
   <div class="page">
-    <!-- <component :is="currentView"></component> -->
-    <router-view></router-view>
+    <transition name="slide">
+      <router-view></router-view>
+    </transition>
     <menu-footer @view="changeView" :menuItemData="menuItemData"></menu-footer>
   </div>
 </template>
 
 <script>
-  import Page from '~/components/page'
-  import CatalogPage from '~/app/catalog/CatalogPage.vue'
-  import FavoritesPage from '~/app/favorites/FavoritesPage.vue'
-  import ProfilePage from '~/app/profile/ProfilePage.vue'
-  import StockPage from '~/app/stock/StockPage.vue'
-  import CategoryPage from '~/app/category/CategoryPage.vue'
-  import ProductPage from '~/app/product/ProductPage.vue'
-  // import Home from '~/app/Home.vue'
   import MenuFooter from 'appComponents/menu/MenuFooter.vue'
 
   export default {
     components: {
-      Page,
-      // Home,
-      MenuFooter,
-      'product': ProductPage,
-      'category': CategoryPage,
-      'catalog': CatalogPage,
-      'favorites': FavoritesPage,
-      'profile': ProfilePage,
-      'stock': StockPage
+      MenuFooter
     },
     data () {
       return {
@@ -71,5 +56,19 @@
 
   body, input, select, textarea {
     font-family: 'futurabookcregular',Arial,Helvetica,sans-serif;
+  }
+
+  .slide-enter-active {
+    transition: all .3s ease;
+  }
+  /*
+  .slide-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  */
+  .slide-enter, .slide-leave-to
+  /* .slide-fade-leave-active до версии 2.1.8 */ {
+    transform: translateX(300px);
+    opacity: 0.5;
   }
 </style>
