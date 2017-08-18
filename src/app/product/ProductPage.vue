@@ -1,14 +1,14 @@
 <template>
   <content-wrapper>
     <product-page-menu slot="header"></product-page-menu>
-    <div slot="slider">
+    <div slot="slider" class="slider">
       <div class="prodName max-width">
         <span>Кольцо золотое</span>
         <div class="hitClass">
           <span>Хит</span>
         </div>
       </div>
-      <slide-wrapper class="slider">
+      <slide-wrapper class="sliderWrapper">
         <slide><img src="/static/example/demo1.jpg"/></slide>
         <slide><img src="/static/example/demo2.jpg"/></slide>
       </slide-wrapper>
@@ -27,11 +27,10 @@
     <hr class="max-width hr" color="gray" size="1px"/>
     <div class="btnArea max-width">
       <shop-button-small @click.native="onMarkedClicked" caption="Может понравиться" class="markedBtn" ></shop-button-small>
-      <div class="divider"></div>
       <shop-button-small @click.native="onSeenClicked" caption="Просмотренные" class="seenBtn" ></shop-button-small>
     </div>
     <div class="productGridWrapper">
-      <product-card-banner v-for="item in pageData.bannerData" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)"></product-card-banner>
+      <product-card-banner v-for="item in pageData.bannerData" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)" class="cell"></product-card-banner>
     </div>
   </content-wrapper>
 </template>
@@ -124,12 +123,17 @@
 
 <style lang="less" scoped>
 
+  .slider
+  {
+    padding-top: 50px;
+  }
+
   .hr {
     width: 80%;
     text-align: center;
   }
 
-  .slider
+  .sliderWrapper
   {
     width: 230px;
   }
@@ -227,21 +231,11 @@
     margin-bottom: 5px;
   }
 
-  .divider
-  {
-    height: 100%;
-    width: 2%;
-    display: inline-block;
-    float: left;
-  }
-
   .markedBtn
   {
     height: 100%;
-    width: 49%;
+    width: 50%;
     text-align: center;
-    background-color: #fff0e9;
-    border: 1px solid #fff0e9;
     display: inline-block;
     float: left;
     cursor: pointer;
@@ -250,10 +244,8 @@
   .seenBtn
   {
     height: 100%;
-    width: 49%;
+    width: 50%;
     text-align: center;
-    background-color: #fff0e9;
-    border: 1px solid #fff0e9;
     display: inline-block;
     float: left;
     cursor: pointer;
@@ -261,7 +253,14 @@
 
   .productGridWrapper
   {
+    width: 80%;
     max-width: 500px;
     margin: auto;
+  }
+
+  .cell
+  {
+    display: inline-block;
+    float: left;
   }
 </style>

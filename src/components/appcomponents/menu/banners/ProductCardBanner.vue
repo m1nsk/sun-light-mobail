@@ -61,19 +61,14 @@
     width: 50%;
     height: 120px;
     cursor: pointer;
-    display: inline-block;
-    float: left;
-    border: 2px solid #ffffff;
-    background-color: #f8f8f8;
   }
 
   .bannerWrapper
   {
-    width: 100%;
     height: 88px;
     position: relative;
-    display: inline-block;
-    float: left;
+    border: 2px solid #ffffff;
+    background-color: #f8f8f8;
   }
 
   .productFooter

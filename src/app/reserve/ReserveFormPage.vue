@@ -77,8 +77,6 @@
     height: 100%;
     width: 50%;
     text-align: center;
-    background-color: #f4f4f4;
-    border: 1px solid #f4f4f4;
     float: left;
     cursor: pointer;
   }
@@ -88,8 +86,6 @@
     height: 100%;
     width: 50%;
     text-align: center;
-    background-color: #f4f4f4;
-    border: 1px solid #f4f4f4;
     float: left;
     cursor: pointer;
   }

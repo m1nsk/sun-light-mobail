@@ -39,20 +39,18 @@
 </script>
 
 <style lang="less" scoped>
-  .contentWrapper{
-    max-width: 500px;
-    margin: 0 auto;
-  }
   .scroll
   {
-    height: 100%;
-    width: 100%;
     margin: auto;
+    padding-top: 150px;
   }
 
   .contentWrapper
   {
-    width: 90%
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding-top: 50px;
   }
 
   .page {

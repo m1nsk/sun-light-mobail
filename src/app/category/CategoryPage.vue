@@ -5,7 +5,7 @@
     </div>
     <bannerItem :bannerImg="pageData.bannerImage"></bannerItem>
     <div class="productGridWrapper">
-      <product-card-banner v-for="item in pageData.bannerData" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)"></product-card-banner>
+      <product-card-banner v-for="item in pageData.bannerData" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)" class="cell"></product-card-banner>
     </div>
   </content-wrapper>
 </template>
@@ -100,4 +100,11 @@
     max-width: 500px;
     margin: auto;
   }
+
+  .cell
+  {
+    display: inline-block;
+    float: left;
+  }
+
 </style>

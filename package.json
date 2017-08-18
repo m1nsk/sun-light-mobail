@@ -10,6 +10,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "animate.css": "^3.5.2",
     "babel-runtime": "^6.23.0",
     "css-loader": "^0.26.4",
     "vue": "^2.2.2",
