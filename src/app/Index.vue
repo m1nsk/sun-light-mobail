@@ -14,13 +14,13 @@
   import StockPage from '~/app/stock/StockPage.vue'
   import CategoryPage from '~/app/category/CategoryPage.vue'
   import ProductPage from '~/app/product/ProductPage.vue'
-  import Home from '~/app/Home.vue'
+  // import Home from '~/app/Home.vue'
   import MenuFooter from 'appComponents/menu/MenuFooter.vue'
 
   export default {
     components: {
       Page,
-      Home,
+      // Home,
       MenuFooter,
       'product': ProductPage,
       'category': CategoryPage,
