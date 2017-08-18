@@ -2,8 +2,8 @@
   <div class="page">
     <transition
     name="custom-classes-transition"
-    enter-active-class="animated bounceInRight"
-    leave-active-class="animated bounceOutRight"
+    enter-active-class="animated slideInRight"
+    leave-active-class="animated slideOutRight"
   >
       <router-view></router-view>
     </transition>
@@ -56,6 +56,7 @@
     left: 0;
     width: 100%;
     height: 100%;
+    background: #fff;
   }
 
   body, input, select, textarea {
