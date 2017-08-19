@@ -31,7 +31,7 @@
             title: 'Каталог'
           },
           {
-            name: '/favorites',
+            name: '/common',
             title: 'Избранное'
           },
           {

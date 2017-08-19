@@ -4,8 +4,8 @@
       <title-header title="Подтверждение" slot="header"></title-header>
       <div class="contentWrapper">
         <shop-form-card></shop-form-card>
-        <form-component placeholder="Почта"></form-component>
-        <form-component placeholder="Код подтверждения"></form-component>
+        <form-card placeholder="Почта"></form-card>
+        <form-card placeholder="Код подтверждения"></form-card>
       </div>
     </div>
     <div class="btnArea">

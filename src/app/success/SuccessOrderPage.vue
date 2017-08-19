@@ -63,9 +63,7 @@
   .successWrapper
   {
     width: 100%;
-    max-width: 500px;
     height: 100%;
-    position: relative;
   }
 
   .successMessage

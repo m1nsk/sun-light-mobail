@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="formWrapper">
-      <title-menu title="Оформление резерва" ></title-menu>
+      <title-header title="Оформление резерва" slot="header"></title-header>
       <div class="contentWrapper">
         <div>
           <shop-form-component></shop-form-component>
