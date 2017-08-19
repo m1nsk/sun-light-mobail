@@ -16,15 +16,14 @@
   import BannerItem from 'appComponents/menu/banners/BannerItem.vue'
   import ProductCardBanner from 'appComponents/menu/banners/ProductCardBanner.vue'
   import ContentWrapper from 'appComponents/menu/helpers/ContentWrapper.vue'
-  import Content from '~/components/content'
+
   export default {
     components: {
       scroll,
       BannerItem,
       CatalogPageHeader,
       ProductCardBanner,
-      ContentWrapper,
-      'page-content': Content
+      ContentWrapper
     },
     data () {
       return {

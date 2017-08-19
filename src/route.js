@@ -8,6 +8,7 @@ import ReserveShopPage from '~/app/reserve/ReserveShopPage.vue'
 import ReserveFormPage from '~/app/reserve/ReserveFormPage.vue'
 import AcceptFormPage from '~/app/reserve/AcceptFormPage.vue'
 import SuccessOrderPage from '~/app/success/SuccessOrderPage.vue'
+import CommonPage from '~/app/common/CommonPage.vue'
 import App from '~/app/App'
 
 export default {
@@ -23,6 +24,7 @@ export default {
         { path: 'stock', component: StockPage },
         { path: 'profile', component: ProfilePage },
         { path: 'favorites', component: FavoritesPage },
+        { path: 'common', component: CommonPage },
         { path: 'catalog/:category', name: 'category', component: CategoryPage },
         { path: 'catalog/:category/:product', name: 'product', component: ProductPage },
         { path: 'catalog/:category/:product/reserve', name: 'reserve', component: ReserveShopPage },

@@ -7,7 +7,6 @@
         <form-component placeholder="Почта"></form-component>
         <form-component placeholder="Код подтверждения"></form-component>
       </div>
-      <accept-form-component class="accept"></accept-form-component>
     </div>
     <div class="btnArea">
       <menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer>
@@ -64,13 +63,6 @@
   {
     width: 100%;
     height: 100%;
-  }
-
-  .accept
-  {
-    width: 100%;
-    height: 40px;
-    padding-top: 100px;
   }
 
   .formWrapper
