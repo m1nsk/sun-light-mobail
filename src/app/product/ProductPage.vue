@@ -1,6 +1,6 @@
 <template>
   <content-wrapper>
-    <product-page-menu slot="header"></product-page-menu>
+    <product-header slot="header"></product-header>
     <div slot="slider" class="slider">
       <div class="prodName max-width">
         <span>Кольцо золотое</span>

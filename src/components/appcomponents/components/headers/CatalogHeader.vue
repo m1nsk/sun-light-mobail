@@ -1,5 +1,5 @@
 <template>
-  <page-header class="categoryHeader">
+  <page-header>
     <header-link :left="true" :edge="false">
       <div class=frame>
         <span class="helper"></span>
