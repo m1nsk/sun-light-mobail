@@ -9,7 +9,7 @@
         </div>
       </div>
       <slide-wrapper class="sliderWrapper">
-        <slide><img src="/static/example/demo1.jpg"/></slide>
+        <slide><img class="sliderImg" src="/static/example/demo1.jpg"/></slide>
         <slide><img src="/static/example/demo2.jpg"/></slide>
       </slide-wrapper>
     </div>
@@ -186,7 +186,7 @@
     font-size: 12px;
   }
 
-  img
+  .sliderImg
   {
     width: 200px;
     height: auto;

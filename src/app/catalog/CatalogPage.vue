@@ -90,19 +90,6 @@
 </script>
 
 <style lang="less" scoped>
-  .banner
-  {
-    vertical-align: middle;
-    max-width: 500px;
-    height: 87px;
-  }
-
-  .list
-  {
-    height: 100%;
-    border-width: 0;
-  }
-
   .itemTitle
   {
     text-align: center;
@@ -123,18 +110,5 @@
     cursor: pointer;
     margin: 5px auto;
     list-style-type: none;
-  }
-
-  .frame {
-    height: 87px;      /* equals max image height */
-    width: 100%;
-    white-space: nowrap; /* this is required unless you put the helper span closely near the img */
-    text-align: center;
-  }
-
-  .helper {
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
   }
 </style>

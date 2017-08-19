@@ -77,14 +77,6 @@
 </script>
 
 <style lang="less" scoped>
-  .banner
-  {
-    display: block;
-    margin: 0 auto;
-    width: 230px;
-    height: 87px;
-  }
-
   .filterWrapper
   {
     width: 100%;

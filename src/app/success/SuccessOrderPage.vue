@@ -60,17 +60,6 @@
     margin: auto;
   }
 
-  .reservBtn
-  {
-    height: 39px;
-    width: 100%;
-    text-align: center;
-    margin: 5px auto;
-    background-color: #fff0e9;
-    border: 1px solid #fff0e9;
-    cursor: pointer;
-  }
-
   .successWrapper
   {
     width: 100%;
