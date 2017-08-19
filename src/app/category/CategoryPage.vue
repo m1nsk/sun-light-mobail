@@ -1,11 +1,14 @@
 <template>
   <content-wrapper>
     <catalog-header :pageData="pageData.pageInfo" slot="header"></catalog-header>
-    <div class="filterWrapper" style="background-color: #4cd964">
-    </div>
-    <bannerItem :bannerImg="pageData.bannerImage"></bannerItem>
-    <div class="productGridWrapper">
-      <product-card-banner v-for="item in pageData.bannerData" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)" class="cell"></product-card-banner>
+    <div>
+      <div class="filterWrapper">
+        <filter-button v-for="item in pageData.filterList" :key="item.id" :data="item" @exclude="onFilterExclude(item)"></filter-button>
+      </div>
+      <bannerItem :bannerImg="pageData.bannerImage"></bannerItem>
+      <div class="productGridWrapper">
+        <product-card-banner v-for="item in pageData.bannerData" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)" class="cell"></product-card-banner>
+      </div>
     </div>
   </content-wrapper>
 </template>
@@ -15,17 +18,25 @@
   import BannerItem from 'appComponents/components/banners/BannerItem.vue'
   import ProductCardBanner from 'appComponents/components/banners/ProductCardBanner.vue'
   import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
+  import FilterButton from 'appComponents/components/buttons/FilterButton.vue'
 
   export default {
     components: {
       BannerItem,
       CatalogHeader,
       ProductCardBanner,
-      ContentWrapper
+      ContentWrapper,
+      FilterButton
     },
     data () {
       return {
         pageData: {
+          filterList: [
+            {title: 'Сначала Новые'},
+            {title: 'По Городу'},
+            {title: 'Сначала Дешевые'},
+            {title: 'Сначала Дорогие'}
+          ],
           bannerImage: '/static/logo.png',
           pageInfo: {
             num: '1',
@@ -71,6 +82,9 @@
       onProductClicked (item) {
         console.log(item.id)
         this.$router.push(this.$route.path + '/' + item.id)
+      },
+      onFilterExclude (item) {
+        console.log(item.title)
       }
     }
   }
@@ -80,7 +94,7 @@
   .filterWrapper
   {
     width: 100%;
-    height: 25px;
+    display: inline-block;
     margin: 5px auto;
   }
 
