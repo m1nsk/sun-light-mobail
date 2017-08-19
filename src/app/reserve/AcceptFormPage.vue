@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import TitleMenu from 'appComponents/menu/TitleMenu.vue'
+  import TitleMenu from 'appComponents/menu/TitleHeader.vue'
   import ContentWrapper from 'appComponents/menu/helpers/ContentWrapper.vue'
   import ShopFormComponent from 'appComponents/menu/components/ShopFormComponent.vue'
   import FormComponent from 'appComponents/menu/components/FormComponent.vue'

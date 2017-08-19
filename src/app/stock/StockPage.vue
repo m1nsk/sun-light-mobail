@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import MainMenu from 'appComponents/menu/MainMenu.vue'
+  import MainMenu from 'appComponents/menu/MainHeader.vue'
   import ContentWrapper from 'appComponents/menu/helpers/ContentWrapper.vue'
   export default {
     components: {

@@ -23,7 +23,7 @@
 </template>
 
 <script>
-  import TitleMenu from 'appComponents/menu/TitleMenu.vue'
+  import TitleMenu from 'appComponents/menu/TitleHeader.vue'
   import ContentWrapper from 'appComponents/menu/helpers/ContentWrapper.vue'
   import ShopButton from 'appComponents/menu/helpers/ShopButton.vue'
   import MenuFooter from 'appComponents/menu/MenuFooter.vue'

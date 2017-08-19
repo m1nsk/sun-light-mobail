@@ -39,7 +39,7 @@
   import { List, ListItem } from '~/components/list'
   import { SlideWrapper, Slide } from '~/components/slide'
   import scroll from '~/components/scroll'
-  import ProductPageMenu from 'appComponents/menu/ProductMenu.vue'
+  import ProductPageMenu from 'appComponents/menu/ProductHeader.vue'
   import ContentWrapper from 'appComponents/menu/helpers/ContentWrapper.vue'
   import ShopButton from 'appComponents/menu/helpers/ShopButton.vue'
   import ShopButtonSmall from 'appComponents/menu/helpers/ShopButtonSmall.vue'
