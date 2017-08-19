@@ -21,9 +21,9 @@
 </template>
 
 <script>
-  import ContentWrapper from 'appComponents/menu/helpers/ContentWrapper.vue'
-  import PersonCard from 'appComponents/menu/components/PersonCard.vue'
-  import TitleHeader from 'appComponents/menu/TitleHeader.vue'
+  import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
+  import PersonCard from 'appComponents/components/cards/PersonCard.vue'
+  import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
   import { List, ListItem } from '~/components/list'
 
   export default {

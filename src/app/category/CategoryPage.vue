@@ -12,10 +12,10 @@
 
 <script>
   import scroll from '~/components/scroll'
-  import CatalogPageHeader from 'appComponents/menu/CatalogMenu.vue'
-  import BannerItem from 'appComponents/menu/banners/BannerItem.vue'
-  import ProductCardBanner from 'appComponents/menu/banners/ProductCardBanner.vue'
-  import ContentWrapper from 'appComponents/menu/helpers/ContentWrapper.vue'
+  import CatalogPageHeader from 'appComponents/components/headers/CatalogHeader.vue'
+  import BannerItem from 'appComponents/components/banners/BannerItem.vue'
+  import ProductCardBanner from 'appComponents/components/banners/ProductCardBanner.vue'
+  import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
 
   export default {
     components: {

@@ -15,9 +15,9 @@
 </template>
 
 <script>
-  import MainMenu from 'appComponents/menu/MainHeader.vue'
-  import BannerItem from 'appComponents/menu/banners/BannerItem.vue'
-  import ContentWrapper from 'appComponents/menu/helpers/ContentWrapper.vue'
+  import MainMenu from 'appComponents/components/headers/MainHeader.vue'
+  import BannerItem from 'appComponents/components/banners/BannerItem.vue'
+  import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
   import Content from '~/components/content'
   export default {
     components: {

@@ -23,10 +23,10 @@
 </template>
 
 <script>
-  import TitleMenu from 'appComponents/menu/TitleHeader.vue'
-  import ContentWrapper from 'appComponents/menu/helpers/ContentWrapper.vue'
-  import ShopButton from 'appComponents/menu/helpers/ShopButton.vue'
-  import MenuFooter from 'appComponents/menu/MenuFooter.vue'
+  import TitleMenu from 'appComponents/components/headers/TitleHeader.vue'
+  import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
+  import ShopButton from 'appComponents/components/buttons/Button.vue'
+  import MenuFooter from 'appComponents/components/footers/MenuFooter.vue'
   export default {
     components: {
       TitleMenu,

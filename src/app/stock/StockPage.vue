@@ -1,15 +1,15 @@
 <template>
   <content-wrapper>
     <main-menu slot="header"></main-menu>
-    <div v-for="item in bannerItems" :key="item.id" class="listItem">
+    <div v-for="item in 10" :key="item.id" class="listItem">
       <img src='/static/logo.png' class="banner"/>
     </div>
   </content-wrapper>
 </template>
 
 <script>
-  import MainMenu from 'appComponents/menu/MainHeader.vue'
-  import ContentWrapper from 'appComponents/menu/helpers/ContentWrapper.vue'
+  import MainMenu from 'appComponents/components/headers/MainHeader.vue'
+  import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
   export default {
     components: {
       ContentWrapper,
@@ -17,7 +17,6 @@
     },
     data () {
       return {
-        bannerItems: [1, 2, 3, 4, 5, 6, 7, 8]
       }
     }
   }

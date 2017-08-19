@@ -20,9 +20,9 @@
 </template>
 
 <script>
-  import ProfileHeader from 'appComponents/menu/ProfileHeader.vue'
-  import FormComponent from 'appComponents/menu/components/FormComponent.vue'
-  import DatePicker from 'appComponents/menu/components/DatePicker.vue'
+  import ProfileHeader from 'appComponents/components/headers/ProfileHeader.vue'
+  import FormComponent from 'appComponents/components/cards/FormCard.vue'
+  import DatePicker from 'appComponents/components/DatePicker.vue'
   import { Button, ButtonGroup } from '~/components/buttons'
   export default {
     components: {

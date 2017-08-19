@@ -61,8 +61,8 @@
   .banner
   {
     display: table-cell;
-    width: 100%;
-    height: auto;
+    width: 48px;
+    height: 48px;
   }
 
 

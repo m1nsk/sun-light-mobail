@@ -10,10 +10,10 @@
 </template>
 
 <script>
-  import ReserveMenu from 'appComponents/menu/TitleHeader.vue'
-  import ContentWrapper from 'appComponents/menu/helpers/ContentWrapper.vue'
-  import ShopComponent from 'appComponents/menu/components/ShopComponent.vue'
-  import ProductViewMini from 'appComponents/menu/components/ShopComponentMini.vue'
+  import ReserveMenu from 'appComponents/components/headers/TitleHeader.vue'
+  import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
+  import ShopComponent from 'appComponents/components/cards/ShopCard.vue'
+  import ProductViewMini from 'appComponents/components/cards/ShopCardMini.vue'
   import Content from '~/components/content'
   import { List, ListItem } from '~/components/list'
   export default {

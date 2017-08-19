@@ -23,7 +23,7 @@
 </template>
 
 <script>
-  import HeartMarkComponent from 'appComponents/menu/components/HeartMarkComponent.vue'
+  import HeartMarkComponent from 'appComponents/components/buttons/HeartMarkButton.vue'
   import { List, ListItem } from '~/components/list'
   export default {
     components: {

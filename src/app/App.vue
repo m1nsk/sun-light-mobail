@@ -12,7 +12,7 @@
 </template>
 
 <script>
-  import MenuFooter from 'appComponents/menu/MenuFooter.vue'
+  import MenuFooter from 'appComponents/components/footers/MenuFooter.vue'
 
   export default {
     components: {
@@ -60,7 +60,7 @@
   }
 
   body, input, select, textarea {
-    font-family: 'futurabookcregular',Arial,Helvetica,sans-serif;
+    font-family: 'Montserrat', sans-serif;
   }
 
 </style>

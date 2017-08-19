@@ -15,13 +15,13 @@
 </template>
 
 <script>
-  import TitleMenu from 'appComponents/menu/TitleHeader.vue'
-  import ContentWrapper from 'appComponents/menu/helpers/ContentWrapper.vue'
-  import ShopFormComponent from 'appComponents/menu/components/ShopFormComponent.vue'
-  import FormComponent from 'appComponents/menu/components/FormComponent.vue'
-  import AcceptFormComponent from 'appComponents/menu/components/AcceptFormComponent.vue'
-  import ShopButtonSmall from 'appComponents/menu/helpers/ShopButtonSmall.vue'
-  import MenuFooter from 'appComponents/menu/MenuFooter.vue'
+  import TitleMenu from 'appComponents/components/headers/TitleHeader.vue'
+  import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
+  import ShopFormComponent from 'appComponents/components/cards/ShopFormCard.vue'
+  import FormComponent from 'appComponents/components/cards/FormCard.vue'
+  import AcceptFormComponent from 'appComponents/components/cards/AcceptFormCard.vue'
+  import ShopButtonSmall from 'appComponents/components/buttons/ButtonSmall.vue'
+  import MenuFooter from 'appComponents/components/footers/MenuFooter.vue'
   export default {
     components: {
       TitleMenu,

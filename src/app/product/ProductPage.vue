@@ -39,11 +39,11 @@
   import { List, ListItem } from '~/components/list'
   import { SlideWrapper, Slide } from '~/components/slide'
   import scroll from '~/components/scroll'
-  import ProductPageMenu from 'appComponents/menu/ProductHeader.vue'
-  import ContentWrapper from 'appComponents/menu/helpers/ContentWrapper.vue'
-  import ShopButton from 'appComponents/menu/helpers/ShopButton.vue'
-  import ShopButtonSmall from 'appComponents/menu/helpers/ShopButtonSmall.vue'
-  import ProductCardBanner from 'appComponents/menu/banners/ProductCardBanner.vue'
+  import ProductPageMenu from 'appComponents/components/headers/ProductHeader.vue'
+  import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
+  import ShopButton from 'appComponents/components/buttons/Button.vue'
+  import ShopButtonSmall from 'appComponents/components/buttons/ButtonSmall.vue'
+  import ProductCardBanner from 'appComponents/components/banners/ProductCardBanner.vue'
   import Content from '~/components/content'
   export default {
     components: {
