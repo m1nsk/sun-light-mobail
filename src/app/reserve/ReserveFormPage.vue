@@ -12,12 +12,8 @@
         <accept-form-component class="accept"></accept-form-component>
       </div>
     </div>
-    <div class="btnArea" slot="buttons">
-      <action-footer leftTitle="Отменить" rightTitle="Продолжить"></action-footer>
-      <!--
-      <shop-button-small @click.native="onContinueClicked" caption="Отменить" class="cancelBtn" ></shop-button-small>
-      <shop-button-small @click.native="onContinueClicked" caption="Продолжить" class="ContinueBtn" ></shop-button-small>
-      -->
+    <div class="btnArea">
+      <menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer>
     </div>
   </div>
 </template>
@@ -29,7 +25,7 @@
   import FormComponent from 'appComponents/menu/components/FormComponent.vue'
   import AcceptFormComponent from 'appComponents/menu/components/AcceptFormComponent.vue'
   import ShopButtonSmall from 'appComponents/menu/helpers/ShopButtonSmall.vue'
-  import ActionFooter from 'appComponents/menu/ActionFooter.vue'
+  import MenuFooter from 'appComponents/menu/MenuFooter.vue'
   export default {
     components: {
       TitleMenu,
@@ -38,16 +34,29 @@
       AcceptFormComponent,
       FormComponent,
       ShopButtonSmall,
-      ActionFooter
+      MenuFooter
     },
     data () {
       return {
+        footerActionData: [
+          {
+            name: 'left',
+            title: 'Отмена'
+          },
+          {
+            name: 'right',
+            title: 'Продолжить'
+          }
+        ]
       }
     },
     methods: {
-      onContinueClicked () {
-        console.log('clicked')
-        this.$router.push(this.$route.path + 'accept/')
+      onActionClicked (data) {
+        if (data['view'] === 'right') {
+          this.$router.push(this.$route.path + 'accept/')
+        } else if (data['view'] === 'left') {
+          console.log('cancel')
+        }
       }
     }
   }

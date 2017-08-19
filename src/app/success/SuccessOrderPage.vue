@@ -1,6 +1,6 @@
 <template>
   <div class="successWrapper">
-    <title-menu slot="header" title="Успех"></title-menu>
+    <title-menu title="Успех"></title-menu>
     <div class="successMessage">
       <div class="reserve">
         <span><b>Резерв №{{ successData.id }} создан</b></span>
@@ -15,8 +15,10 @@
       <div class="prePay">
         <span><b>Сумма предоплаты {{ successData.prePay }}</b></span>
       </div>
-      <shop-button @click.native="onReserveClicked" caption="Оплатить" class="reservBtn max-width" ></shop-button>
     </div>
+    <div class="btnArea">
+    <menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer>
+  </div>
   </div>
 </template>
 
@@ -24,11 +26,13 @@
   import TitleMenu from 'appComponents/menu/TitleMenu.vue'
   import ContentWrapper from 'appComponents/menu/helpers/ContentWrapper.vue'
   import ShopButton from 'appComponents/menu/helpers/ShopButton.vue'
+  import MenuFooter from 'appComponents/menu/MenuFooter.vue'
   export default {
     components: {
       TitleMenu,
       ContentWrapper,
-      ShopButton
+      ShopButton,
+      MenuFooter
     },
     data () {
       return {
@@ -37,7 +41,13 @@
           price: '9 379',
           info: 'ed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam ed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam',
           prePay: '100р'
-        }
+        },
+        footerActionData: [
+          {
+            name: 'pay',
+            title: 'Оплатить'
+          }
+        ]
       }
     }
   }
@@ -72,11 +82,11 @@
   .successMessage
   {
     width: 80%;
-    height: 75%;
+    height: 70%;
     vertical-align: middle;
     position: absolute;
     left: 10%;
-    bottom: 0;
+    bottom: 5.6rem;
   }
 
   .reserve
@@ -140,5 +150,17 @@
     display: table-cell;
     vertical-align: top;
     line-height: 18px;
+  }
+
+  .btnArea
+  {
+    width: 100%;
+    height: 39px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 2.8rem;
   }
 </style>
