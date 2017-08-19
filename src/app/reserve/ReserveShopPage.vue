@@ -1,30 +1,25 @@
 <template>
   <content-wrapper>
-    <reserve-menu title="Где забрать?" slot="header"></reserve-menu>
-    <product-view-mini></product-view-mini>
+    <title-header title="Где забрать?" slot="header"></title-header>
+    <shop-card-mini></shop-card-mini>
     <div class="shopCount">
       <span>Найдено {{ shopCount }} магазина</span>
     </div>
-    <shop-component v-for="item in shopsList" :shopData="item" :key="item.id" @click.native="onShopClicked"></shop-component>
+    <shop-card v-for="item in shopsList" :shopData="item" :key="item.id" @click.native="onShopClicked"></shop-card>
   </content-wrapper>
 </template>
 
 <script>
-  import ReserveMenu from 'appComponents/components/headers/TitleHeader.vue'
+  import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
   import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
-  import ShopComponent from 'appComponents/components/cards/ShopCard.vue'
-  import ProductViewMini from 'appComponents/components/cards/ShopCardMini.vue'
-  import Content from '~/components/content'
-  import { List, ListItem } from '~/components/list'
+  import ShopCard from 'appComponents/components/cards/ShopCard.vue'
+  import ShopCardMini from 'appComponents/components/cards/ShopCardMini.vue'
   export default {
     components: {
-      ListItem,
-      List,
       ContentWrapper,
-      ProductViewMini,
-      ShopComponent,
-      ReserveMenu,
-      'page-content': Content
+      ShopCardMini,
+      ShopCard,
+      TitleHeader
     },
     data () {
       return {

@@ -1,5 +1,7 @@
 <template>
-  <img :src="bannerImg" class="banner"/>
+  <div class="banner">
+    <img :src="bannerImg"/>
+  </div>
 </template>
 
 <script>
@@ -11,9 +13,14 @@
 <style lang="less">
   .banner
   {
-    margin: auto;
-    display: inline-block;
+    margin: 0 auto;
     width: 230px;
     height: 87px;
+  }
+
+  .banner > img
+  {
+    width: 100%;
+    height: 100%;
   }
 </style>

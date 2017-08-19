@@ -1,6 +1,6 @@
 <template>
   <div class="successWrapper">
-    <title-menu title="Успех"></title-menu>
+    <title-header title="Успех"></title-header>
     <div class="successMessage">
       <div class="reserve">
         <span><b>Резерв №{{ successData.id }} создан</b></span>
@@ -23,15 +23,15 @@
 </template>
 
 <script>
-  import TitleMenu from 'appComponents/components/headers/TitleHeader.vue'
+  import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
   import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
-  import ShopButton from 'appComponents/components/buttons/Button.vue'
+  import Button from 'appComponents/components/buttons/Button.vue'
   import MenuFooter from 'appComponents/components/footers/MenuFooter.vue'
   export default {
     components: {
-      TitleMenu,
+      TitleHeader,
       ContentWrapper,
-      ShopButton,
+      'shop-button': Button,
       MenuFooter
     },
     data () {

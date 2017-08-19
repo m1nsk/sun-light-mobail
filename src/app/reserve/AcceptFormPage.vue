@@ -1,9 +1,9 @@
 <template>
   <div class="wrapper">
     <div class="formWrapper">
-      <title-menu title="Подтверждение" slot="header"></title-menu>
+      <title-header title="Подтверждение" slot="header"></title-header>
       <div class="contentWrapper">
-        <shop-form-component></shop-form-component>
+        <shop-form-card></shop-form-card>
         <form-component placeholder="Почта"></form-component>
         <form-component placeholder="Код подтверждения"></form-component>
       </div>
@@ -15,21 +15,15 @@
 </template>
 
 <script>
-  import TitleMenu from 'appComponents/components/headers/TitleHeader.vue'
-  import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
-  import ShopFormComponent from 'appComponents/components/cards/ShopFormCard.vue'
-  import FormComponent from 'appComponents/components/cards/FormCard.vue'
-  import AcceptFormComponent from 'appComponents/components/cards/AcceptFormCard.vue'
-  import ShopButtonSmall from 'appComponents/components/buttons/ButtonSmall.vue'
+  import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
+  import ShopFormCard from 'appComponents/components/cards/ShopFormCard.vue'
+  import FormCard from 'appComponents/components/cards/FormCard.vue'
   import MenuFooter from 'appComponents/components/footers/MenuFooter.vue'
   export default {
     components: {
-      TitleMenu,
-      ContentWrapper,
-      ShopFormComponent,
-      AcceptFormComponent,
-      FormComponent,
-      ShopButtonSmall,
+      TitleHeader,
+      ShopFormCard,
+      FormCard,
       MenuFooter
     },
     data () {

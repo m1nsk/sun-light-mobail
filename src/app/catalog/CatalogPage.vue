@@ -1,30 +1,26 @@
 <template>
   <content-wrapper style="background-color:#ff0000">
-    <main-menu slot="header"></main-menu>
+    <main-header slot="header"></main-header>
     <router-link tag="li" :to="{name: 'category', params: { category: item.link }}" v-for="item in catalogItems" :key="item.id" class="listItem">
       <div class="itemTitle">
         <span>{{ item.title }}</span>
       </div>
-      <div v-if="item.banner !== null" class=frame>
-        <span class="helper"></span>
-        <img :src="item.banner" class="banner">
-      </div>
+      <banner-item :bannerImg="item.banner" v-if="item.banner !== null">
+      </banner-item>
       <hr align="center" width="80%" color="white" size="1px"/>
     </router-link>
   </content-wrapper>
 </template>
 
 <script>
-  import MainMenu from 'appComponents/components/headers/MainHeader.vue'
+  import MainHeader from 'appComponents/components/headers/MainHeader.vue'
   import BannerItem from 'appComponents/components/banners/BannerItem.vue'
   import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
-  import Content from '~/components/content'
   export default {
     components: {
-      MainMenu,
+      MainHeader,
       BannerItem,
-      ContentWrapper,
-      'page-content': Content
+      ContentWrapper
     },
     data () {
       return {

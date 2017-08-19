@@ -1,6 +1,6 @@
 <template>
   <content-wrapper>
-    <main-menu slot="header"></main-menu>
+    <main-header slot="header"></main-header>
     <div v-for="item in 10" :key="item.id" class="listItem">
       <img src='/static/logo.png' class="banner"/>
     </div>
@@ -8,12 +8,12 @@
 </template>
 
 <script>
-  import MainMenu from 'appComponents/components/headers/MainHeader.vue'
+  import MainHeader from 'appComponents/components/headers/MainHeader.vue'
   import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
   export default {
     components: {
       ContentWrapper,
-      MainMenu
+      MainHeader
     },
     data () {
       return {

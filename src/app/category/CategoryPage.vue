@@ -1,6 +1,6 @@
 <template>
   <content-wrapper>
-    <catalog-page-header :pageData="pageData.pageInfo" slot="header"></catalog-page-header>
+    <catalog-header :pageData="pageData.pageInfo" slot="header"></catalog-header>
     <div class="filterWrapper" style="background-color: #4cd964">
     </div>
     <bannerItem :bannerImg="pageData.bannerImage"></bannerItem>
@@ -11,17 +11,15 @@
 </template>
 
 <script>
-  import scroll from '~/components/scroll'
-  import CatalogPageHeader from 'appComponents/components/headers/CatalogHeader.vue'
+  import CatalogHeader from 'appComponents/components/headers/CatalogHeader.vue'
   import BannerItem from 'appComponents/components/banners/BannerItem.vue'
   import ProductCardBanner from 'appComponents/components/banners/ProductCardBanner.vue'
   import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
 
   export default {
     components: {
-      scroll,
       BannerItem,
-      CatalogPageHeader,
+      CatalogHeader,
       ProductCardBanner,
       ContentWrapper
     },

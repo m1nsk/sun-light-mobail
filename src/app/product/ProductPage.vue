@@ -26,8 +26,8 @@
     </div>
     <hr class="max-width hr" color="gray" size="1px"/>
     <div class="btnArea max-width">
-      <shop-button-small @click.native="onMarkedClicked" caption="Может понравиться" class="markedBtn" ></shop-button-small>
-      <shop-button-small @click.native="onSeenClicked" caption="Просмотренные" class="seenBtn" ></shop-button-small>
+      <button-small @click.native="onMarkedClicked" caption="Может понравиться" class="markedBtn" ></button-small>
+      <button-small @click.native="onSeenClicked" caption="Просмотренные" class="seenBtn" ></button-small>
     </div>
     <div class="productGridWrapper">
       <product-card-banner v-for="item in pageData.bannerData" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)" class="cell"></product-card-banner>
@@ -36,28 +36,21 @@
 </template>
 
 <script>
-  import { List, ListItem } from '~/components/list'
   import { SlideWrapper, Slide } from '~/components/slide'
-  import scroll from '~/components/scroll'
-  import ProductPageMenu from 'appComponents/components/headers/ProductHeader.vue'
+  import ProductHeader from 'appComponents/components/headers/ProductHeader.vue'
   import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
-  import ShopButton from 'appComponents/components/buttons/Button.vue'
-  import ShopButtonSmall from 'appComponents/components/buttons/ButtonSmall.vue'
+  import Button from 'appComponents/components/buttons/Button.vue'
+  import ButtonSmall from 'appComponents/components/buttons/ButtonSmall.vue'
   import ProductCardBanner from 'appComponents/components/banners/ProductCardBanner.vue'
-  import Content from '~/components/content'
   export default {
     components: {
-      List,
-      ListItem,
-      scroll,
-      ProductPageMenu,
+      ProductHeader,
       ContentWrapper,
-      ShopButton,
-      ShopButtonSmall,
+      'shop-button': Button,
+      ButtonSmall,
       ProductCardBanner,
       SlideWrapper,
-      Slide,
-      'page-content': Content
+      Slide
     },
     data () {
       return {

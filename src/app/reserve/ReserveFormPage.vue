@@ -9,7 +9,7 @@
           <form-component placeholder="Почта"></form-component>
           <form-component placeholder="Телефон"></form-component>
         </div>
-        <accept-form-component class="accept"></accept-form-component>
+        <accept-form-card class="accept"></accept-form-card>
       </div>
     </div>
     <div class="btnArea">
@@ -19,21 +19,15 @@
 </template>
 
 <script>
-  import TitleMenu from 'appComponents/components/headers/TitleHeader.vue'
-  import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
-  import ShopFormComponent from 'appComponents/components/cards/ShopFormCard.vue'
+  import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
   import FormComponent from 'appComponents/components/cards/FormCard.vue'
-  import AcceptFormComponent from 'appComponents/components/cards/AcceptFormCard.vue'
-  import ShopButtonSmall from 'appComponents/components/buttons/ButtonSmall.vue'
+  import AcceptFormCard from 'appComponents/components/cards/AcceptFormCard.vue'
   import MenuFooter from 'appComponents/components/footers/MenuFooter.vue'
   export default {
     components: {
-      TitleMenu,
-      ContentWrapper,
-      ShopFormComponent,
-      AcceptFormComponent,
+      TitleHeader,
+      AcceptFormCard,
       FormComponent,
-      ShopButtonSmall,
       MenuFooter
     },
     data () {
