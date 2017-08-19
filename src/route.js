@@ -7,6 +7,7 @@ import CategoryPage from '~/app/category/CategoryPage.vue'
 import ReserveShopPage from '~/app/reserve/ReserveShopPage.vue'
 import ReserveFormPage from '~/app/reserve/ReserveFormPage.vue'
 import AcceptFormPage from '~/app/reserve/AcceptFormPage.vue'
+import SuccessOrderPage from '~/app/success/SuccessOrderPage.vue'
 import App from '~/app/App'
 
 export default {
@@ -26,7 +27,8 @@ export default {
         { path: 'catalog/:category/:product', name: 'product', component: ProductPage },
         { path: 'catalog/:category/:product/reserve', name: 'reserve', component: ReserveShopPage },
         { path: 'catalog/:category/:product/reserve/form', name: 'form', component: ReserveFormPage },
-        { path: 'catalog/:category/:product/reserve/form/accept', name: 'accept', component: AcceptFormPage }
+        { path: 'catalog/:category/:product/reserve/form/accept', name: 'accept', component: AcceptFormPage },
+        { path: 'catalog/:category/:product/reserve/form/accept/success', name: 'success', component: SuccessOrderPage }
       ]
     }
   ]

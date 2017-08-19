@@ -8,16 +8,12 @@
 </template>
 
 <script>
-  import scroll from '~/components/scroll'
   import MainMenu from 'appComponents/menu/MainMenu.vue'
   import ContentWrapper from 'appComponents/menu/helpers/ContentWrapper.vue'
-  import Content from '~/components/content'
   export default {
     components: {
-      scroll,
       ContentWrapper,
-      MainMenu,
-      'page-content': Content
+      MainMenu
     },
     data () {
       return {

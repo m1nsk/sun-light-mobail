@@ -7,7 +7,6 @@
         <div class='contentWrapper'>
           <slot></slot>
         </div>
-        <slot name="buttons"></slot>
       </scroll>
     </page-content>
   </div>
@@ -21,7 +20,7 @@
       scroll,
       'page-content': Content
     },
-    props: ['backgroundColor'],
+    props: ['backgroundColor', 'isScroll'],
     methods: {
       onRefresh (done) {
         /*

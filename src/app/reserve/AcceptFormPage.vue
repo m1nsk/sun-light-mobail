@@ -36,7 +36,7 @@
     },
     methods: {
       onContinueClicked () {
-        this.$router.push(this.$route.path + 'accept/')
+        this.$router.push(this.$route.path + 'success/')
       }
     }
   }
