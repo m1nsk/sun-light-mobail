@@ -1,5 +1,5 @@
 <template>
-  <page-header>
+  <page-header class="shadow">
     <header-link :left="true" :edge="false">
       <div class=frame>
         <span class="helper"></span>
