@@ -9,6 +9,7 @@ import ReserveFormPage from '~/app/reserve/ReserveFormPage.vue'
 import AcceptFormPage from '~/app/reserve/AcceptFormPage.vue'
 import SuccessOrderPage from '~/app/success/SuccessOrderPage.vue'
 import CommonPage from '~/app/common/CommonPage.vue'
+import FilterPage from '~/app/filter/FilterPage.vue'
 import App from '~/app/App'
 
 export default {
@@ -21,9 +22,10 @@ export default {
       component: App,
       children: [
         { path: 'catalog', name: 'catalog', component: CatalogPage },
-        { path: 'stock', component: StockPage },
-        { path: 'profile', component: ProfilePage },
-        { path: 'favorites', component: FavoritesPage },
+        { path: 'stock', name: 'stock', component: StockPage },
+        { path: 'profile', name: 'profile', component: ProfilePage },
+        { path: 'favorites', name: 'favorites', component: FavoritesPage },
+        { path: 'filter', name: 'filter', component: FilterPage },
         { path: 'common', component: CommonPage },
         { path: 'catalog/:category', name: 'category', component: CategoryPage },
         { path: 'catalog/:category/:product', name: 'product', component: ProductPage },

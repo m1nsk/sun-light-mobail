@@ -12,8 +12,8 @@
         <img src="/static/myIcons/filter.svg" class="icon">
       </div>
     </header-link>
-    <header-link :left="false" :edge="false" >
-      <div class=frame>
+    <header-link :left="false" :edge="false" @click.native="onSearchClicked">
+      <div class=frame >
         <span class="helper"></span>
         <img src="/static/myIcons/search.svg" class="icon">
       </div>
@@ -39,11 +39,16 @@
       'page-content': Content,
       Icon
     },
+    props: ['pageData'],
     data () {
       return {
       }
     },
-    props: ['pageData']
+    methods: {
+      onSearchClicked () {
+        this.$router.push('/filter')
+      }
+    }
   }
 </script>
 

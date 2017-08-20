@@ -103,20 +103,4 @@
     right: 0;
     bottom: 2.8rem;
   }
-
-  .ContinueBtn
-  {
-    height: 100%;
-    width: 50%;
-    text-align: center;
-    cursor: pointer;
-  }
-
-  .cancelBtn
-  {
-    height: 100%;
-    width: 50%;
-    text-align: center;
-    cursor: pointer;
-  }
 </style>
