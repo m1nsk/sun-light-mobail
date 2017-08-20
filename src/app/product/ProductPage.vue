@@ -29,9 +29,7 @@
       <button-small @click.native="onMarkedClicked" caption="Может понравиться" class="markedBtn" ></button-small>
       <button-small @click.native="onSeenClicked" caption="Просмотренные" class="seenBtn" ></button-small>
     </div>
-    <div class="productGridWrapper">
-      <product-card-banner v-for="item in pageData.bannerData" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)" class="cell"></product-card-banner>
-    </div>
+    <product-banner-grid style="width: 80%;"></product-banner-grid>
   </content-wrapper>
 </template>
 
@@ -41,14 +39,14 @@
   import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
   import Button from 'appComponents/components/buttons/Button.vue'
   import ButtonSmall from 'appComponents/components/buttons/ButtonSmall.vue'
-  import ProductCardBanner from 'appComponents/components/banners/ProductCardBanner.vue'
+  import ProductBannerGrid from 'appComponents/components/banners/ProductBannerGrid.vue'
   export default {
     components: {
       ProductHeader,
       ContentWrapper,
+      ProductBannerGrid,
       'shop-button': Button,
       ButtonSmall,
-      ProductCardBanner,
       SlideWrapper,
       Slide
     },
@@ -60,39 +58,7 @@
             num: '1',
             total: '7',
             category: 'Часы наручные'
-          },
-          bannerData: [
-            {
-              img: '/static/logo.png',
-              price: 1000,
-              isHit: true,
-              id: 0
-            },
-            {
-              img: '/static/logo.png',
-              price: 2000,
-              isHit: false,
-              id: 1
-            },
-            {
-              img: '/static/logo.png',
-              price: 3000,
-              isHit: true,
-              id: 2
-            },
-            {
-              img: '/static/logo.png',
-              price: 4000,
-              isHit: false,
-              id: 3
-            },
-            {
-              img: '/static/logo.png',
-              price: 5000,
-              isHit: false,
-              id: 4
-            }
-          ]
+          }
         }
       }
     },
@@ -242,18 +208,5 @@
     display: inline-block;
     float: left;
     cursor: pointer;
-  }
-
-  .productGridWrapper
-  {
-    width: 80%;
-    max-width: 500px;
-    margin: auto;
-  }
-
-  .cell
-  {
-    display: inline-block;
-    float: left;
   }
 </style>

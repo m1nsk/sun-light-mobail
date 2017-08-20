@@ -83,17 +83,17 @@
 
   .category
   {
-    height: 24px;
+    height: 22px;
     width: 230px;
     text-align: center;
-    font-size: 22px;
+    font-size: 18px;
   }
 
   .pages
   {
-    height: 24px;
+    height: 22px;
     width: 230px;
     text-align: center;
-    font-size: 16px;
+    font-size: 12px;
   }
 </style>

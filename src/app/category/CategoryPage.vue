@@ -1,14 +1,12 @@
 <template>
   <content-wrapper>
     <catalog-header :pageData="pageData.pageInfo" slot="header"></catalog-header>
-    <div>
+    <div class="contentWrapper">
       <div class="filterWrapper">
         <filter-button v-for="item in pageData.filterList" :key="item.id" :data="item" @exclude="onFilterExclude(item)"></filter-button>
       </div>
       <bannerItem :bannerImg="pageData.bannerImage"></bannerItem>
-      <div class="productGridWrapper">
-        <product-card-banner v-for="item in pageData.bannerData" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)" class="cell"></product-card-banner>
-      </div>
+      <product-banner-grid></product-banner-grid>
     </div>
   </content-wrapper>
 </template>
@@ -19,6 +17,7 @@
   import ProductCardBanner from 'appComponents/components/banners/ProductCardBanner.vue'
   import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
   import FilterButton from 'appComponents/components/buttons/FilterButton.vue'
+  import ProductBannerGrid from 'appComponents/components/banners/ProductBannerGrid.vue'
 
   export default {
     components: {
@@ -26,7 +25,8 @@
       CatalogHeader,
       ProductCardBanner,
       ContentWrapper,
-      FilterButton
+      FilterButton,
+      ProductBannerGrid
     },
     data () {
       return {
@@ -95,19 +95,13 @@
   {
     width: 100%;
     display: inline-block;
-    margin: 5px auto;
+    margin: 0 auto;
   }
 
-  .productGridWrapper
+  .contentWrapper
   {
+    width: 80%;
+    margin: 0 auto;
     max-width: 500px;
-    margin: auto;
   }
-
-  .cell
-  {
-    display: inline-block;
-    float: left;
-  }
-
 </style>
