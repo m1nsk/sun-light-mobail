@@ -1,11 +1,12 @@
 <template>
   <div class="productGridWrapper">
-    <product-card-banner v-for="item in bannerData" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)" class="cell"></product-card-banner>
+    <product-card-banner v-for="item in productList" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)" class="cell"></product-card-banner>
   </div>
 </template>
 
 <script>
   import ProductCardBanner from 'appComponents/components/banners/ProductCardBanner.vue'
+  import { mapGetters } from 'vuex'
   export default {
     props: ['bannerImg'],
     components: {
@@ -13,7 +14,7 @@
     },
     data () {
       return {
-        bannerData: [
+        productsList: [
           {
             img: '/static/logo.png',
             price: 1000,
@@ -51,6 +52,15 @@
       onProductClicked (item) {
         console.log(item.id)
         this.$router.push(this.$route.path + '/' + item.id)
+      }
+    },
+    computed: {
+      ...mapGetters([
+        // Mounts the "safelyStoredNumber" getter to the scope of your component.
+        'allProducts'
+      ]),
+      productList () {
+        return this.allProducts
       }
     }
   }
