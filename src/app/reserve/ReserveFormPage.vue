@@ -4,10 +4,10 @@
       <title-header title="Оформление резерва" slot="header"></title-header>
       <div class="contentWrapper">
         <div>
-          <shop-form-component></shop-form-component>
-          <form-component placeholder="Имя"></form-component>
-          <form-component placeholder="Почта"></form-component>
-          <form-component placeholder="Телефон"></form-component>
+          <shop-form-card></shop-form-card>
+          <form-card placeholder="Имя"></form-card>
+          <form-card placeholder="Почта"></form-card>
+          <form-card placeholder="Телефон"></form-card>
         </div>
         <accept-form-card class="accept"></accept-form-card>
       </div>
@@ -20,15 +20,17 @@
 
 <script>
   import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
-  import FormComponent from 'appComponents/components/cards/FormCard.vue'
+  import FormCard from 'appComponents/components/cards/FormCard.vue'
   import AcceptFormCard from 'appComponents/components/cards/AcceptFormCard.vue'
+  import ShopFormCard from 'appComponents/components/cards/ShopFormCard.vue'
   import MenuFooter from 'appComponents/components/footers/MenuFooter.vue'
   export default {
     components: {
       TitleHeader,
       AcceptFormCard,
-      FormComponent,
-      MenuFooter
+      FormCard,
+      MenuFooter,
+      ShopFormCard
     },
     data () {
       return {
