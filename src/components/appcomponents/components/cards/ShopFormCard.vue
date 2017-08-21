@@ -1,15 +1,15 @@
 <template>
-  <div class="shopWrapper">
-    <div class="bannerMini">
-      <span class="helper"></span>
-      <img src="/static/logo.png" class="banner">
+  <div class="shop-card">
+    <div class="shop-card__banner-wrapper">
+      <span class="shop-card__helper"></span>
+      <img src="/static/logo.png" class="shop-card__banner">
     </div>
-    <div class="shopInfo">
-      <div class="helper">
-          <div class="title"><span>{{shopData.title}}</span></div>
-          <div class="price"><span>{{shopData.price}}</span></div>
-          <div class="shop"><span>{{shopData.shop}}</span></div>
-          <div class="status"><span>{{shopData.status}}</span></div>
+    <div class="shop-card__info">
+      <div class="shop-card__helper">
+          <div class="shop-card__title"><span>{{shopData.title}}</span></div>
+          <div class="shop-card__price"><span>{{shopData.price}}</span></div>
+          <div class="shop-card__shop"><span>{{shopData.shop}}</span></div>
+          <div class="shop-card__status"><span>{{shopData.status}}</span></div>
       </div>
     </div>
   </div>
@@ -33,7 +33,7 @@
 </script>
 
 <style lang="less" scoped>
-  .shopInfo
+  .shop-card__info
   {
     height: 100%;
     width: 70%;
@@ -41,7 +41,7 @@
     float: left;
   }
 
-  .shopWrapper
+  .shop-card
   {
     width: 100%;
     height: 80px;
@@ -51,7 +51,7 @@
     padding: 0 10px;
   }
 
-  .bannerMini
+  .shop-card__banner-wrapper
   {
     width: 30%;
     height: 100%;
@@ -60,69 +60,69 @@
     float: left;
   }
 
-  .banner
-  {
-    vertical-align: middle;
-    width: auto;
-    height: 90%;
-  }
-
-  .helper {
+  .shop-card__helper {
     display: inline-block;
     height: 100%;
     vertical-align: middle;
   }
 
-  .title
+  .shop-card__title
   {
     height: 12px;
     display: table;
   }
 
-  .title > span
+  .shop-card__title > span
   {
     font-size: 12px;
     display: table-cell;
     vertical-align: top;
   }
 
-  .price
+  .shop-card__price
   {
     height: 32px;
     display: table;
     font-weight: bold;
   }
 
-  .price > span
+  .shop-card__price > span
   {
     font-size: 18px;
     display: table-cell;
     vertical-align: middle;
   }
 
-  .shop
+  .shop-card__shop
   {
     height: 24px;
     display: table;
   }
 
-  .shop > span
+  .shop-card__shop > span
   {
     font-size: 14px;
     display: table-cell;
     vertical-align: middle;
   }
 
-  .status
+  .shop-card__status
   {
     height: 14px;
     display: table;
   }
 
-  .status > span
+  .shop-card__status > span
   {
     font-size: 10px;
     display: table-cell;
     vertical-align: middle;
+  }
+
+  .shop-card__banner
+  {
+    vertical-align: middle;
+    width: auto;
+    height: 90%;
   }
 </style>

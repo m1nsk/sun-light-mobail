@@ -1,8 +1,8 @@
 <template>
   <content-wrapper>
     <catalog-header :pageData="pageData.pageInfo" slot="header"></catalog-header>
-    <div class="contentWrapper">
-      <div class="filterWrapper">
+    <div class="catalog__wrapper">
+      <div class="catalog__filter">
         <filter-button v-for="item in pageData.filterList" :key="item.id" :data="item" @exclude="onFilterExclude(item)"></filter-button>
       </div>
       <bannerItem :bannerImg="pageData.bannerImage"></bannerItem>
@@ -91,14 +91,14 @@
 </script>
 
 <style lang="less" scoped>
-  .filterWrapper
+  .catalog__filter
   {
     width: 100%;
     display: inline-block;
     margin: 0 auto;
   }
 
-  .contentWrapper
+  .catalog__wrapper
   {
     width: 80%;
     margin: 0 auto;

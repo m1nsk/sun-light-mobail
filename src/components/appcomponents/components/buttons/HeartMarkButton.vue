@@ -1,7 +1,7 @@
 <template>
-  <div class="markArea">
-    <span class="helper"></span>
-    <img :src="markIcon" class="icon" @click.stop="onMarkClick">
+  <div class="heart-mark">
+    <span class="heart-mark__helper"></span>
+    <img :src="markIcon" class="heart-mark__icon" @click.stop="onMarkClick">
   </div>
 </template>
 
@@ -31,14 +31,14 @@
 </script>
 
 <style lang="less" scoped>
-  .icon
+  .heart-mark__icon
   {
     vertical-align: middle;
     width: 18px;
     height: 18px;
   }
 
-  .markArea {
+  .heart-mark {
     height: 32px;      /* equals max image height */
     width: 32px;
     white-space: nowrap; /* this is required unless you put the helper span closely near the img */
@@ -46,7 +46,7 @@
     cursor: pointer;
   }
 
-  .helper {
+  .heart-mark__helper {
     height: 100%;
     vertical-align: middle;
   }

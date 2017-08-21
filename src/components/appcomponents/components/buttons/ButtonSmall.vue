@@ -1,8 +1,8 @@
 <template>
-  <div class="outerWrapper">
-    <div class="wrapper">
-      <div :class="{btnActive: reserveBtnActive}" @mousedown="reserveMouseDown" @mouseup="reserveMouseUp" class="btn">
-        <span class="caption">{{ caption }}</span>
+  <div class="button-small">
+    <div class="button-small_wrapper">
+      <div :class="{buttonActive: reserveBtnActive}" @mousedown="reserveMouseDown" @mouseup="reserveMouseUp" class="button-small__button">
+        <span class="button-small__caption">{{ caption }}</span>
       </div>
     </div>
   </div>
@@ -30,24 +30,24 @@
 </script>
 
 <style lang="less" scoped>
-  .outerWrapper
+  .button-small
   {
     width: 50%;
     height: 40px;
   }
 
-  .wrapper
+  .button-small_wrapper
   {
     height: 100%;
     border: 2px solid white;
   }
 
-  .btnActive
+  .buttonActive
   {
     border: 1px solid #4A4A4A;
   }
 
-  .caption
+  .button-small__caption
   {
     font-size: 10px;
     line-height: 18px;
@@ -56,7 +56,7 @@
     vertical-align: middle;
   }
 
-  .btn
+  .button-small__button
   {
     display: table;
     width: 100%;

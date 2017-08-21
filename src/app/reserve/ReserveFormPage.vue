@@ -1,18 +1,18 @@
 <template>
-  <div class="wrapper">
-    <div class="formWrapper">
+  <div class="reserve-form">
+    <div class="reserve-form__wrapper">
       <title-header title="Оформление резерва" slot="header"></title-header>
-      <div class="contentWrapper">
+      <div class="reserve-form__person">
         <div>
           <shop-form-card></shop-form-card>
           <form-card placeholder="Имя"></form-card>
           <form-card placeholder="Почта"></form-card>
           <form-card placeholder="Телефон"></form-card>
         </div>
-        <accept-form-card class="accept"></accept-form-card>
+        <accept-form-card class="reserve-form__accept"></accept-form-card>
       </div>
     </div>
-    <div class="btnArea">
+    <div class="reserve-form__button-area">
       <menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer>
     </div>
   </div>
@@ -59,20 +59,20 @@
 </script>
 
 <style lang="less" scoped>
-  .wrapper
+  .reserve-form
   {
     width: 100%;
     height: 100%;
   }
 
-  .accept
+  .reserve-form__accept
   {
     width: 100%;
     height: 40px;
     padding-top: 100px;
   }
 
-  .formWrapper
+  .reserve-form__wrapper
   {
     width: 100%;
     max-width: 500px;
@@ -80,7 +80,7 @@
     margin: 0 auto;
   }
 
-  .contentWrapper
+  .reserve-form__person
   {
     height: 70%;
     width: 80%;
@@ -88,13 +88,7 @@
     padding-top: 50px;
   }
 
-  .max-width
-  {
-    max-width: 500px;
-    margin: auto;
-  }
-
-  .btnArea
+  .reserve-form__button-area
   {
     width: 100%;
     height: 39px;

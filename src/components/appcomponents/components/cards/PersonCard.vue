@@ -1,14 +1,14 @@
 <template>
-  <div class="shopWrapper">
-    <div class="shopInfo">
-      <div class="helper">
-        <div class="fio"><span>{{ fio }}</span></div>
-        <div class="phone"><span>{{ personData.phone }}</span></div>
-        <div class="bonuses"><span>{{personData.bonuses}} бонусов</span></div>
+  <div class="person">
+    <div class="person__info">
+      <div class="person__helper">
+        <div class="person__fio"><span>{{ fio }}</span></div>
+        <div class="person__phone"><span>{{ personData.phone }}</span></div>
+        <div class="person__bonuses"><span>{{personData.bonuses}} бонусов</span></div>
       </div>
     </div>
-    <div class="bannerMini">
-      <img src="/static/logo.png" class="banner">
+    <div class="person__banner-wrapper">
+      <img src="/static/logo.png" class="person__banner">
     </div>
   </div>
 </template>
@@ -31,7 +31,7 @@
 </script>
 
 <style lang="less" scoped>
-  .shopInfo
+  .person__info
   {
     height: 100%;
     width: 70%;
@@ -39,7 +39,7 @@
     float: left;
   }
 
-  .shopWrapper
+  .person
   {
     width: 100%;
     height: 80px;
@@ -49,7 +49,7 @@
     padding: 0 10px;
   }
 
-  .bannerMini
+  .person__banner-wrapper
   {
     width: 30%;
     height: 100%;
@@ -58,7 +58,7 @@
     text-align: center;
   }
 
-  .banner
+  .person__banner
   {
     display: table-cell;
     width: 48px;
@@ -66,13 +66,13 @@
   }
 
 
-  .fio
+  .person__fio
   {
     height: 22px;
     display: table;
   }
 
-  .fio > span
+  .person__fio > span
   {
     font-size: 14px;
     font-weight: bold;
@@ -80,26 +80,26 @@
     vertical-align: top;
   }
 
-  .phone
+  .person__phone
   {
     height: 22px;
     display: table;
   }
 
-  .phone > span
+  .person__phone > span
   {
     font-size: 12px;
     display: table-cell;
     vertical-align: middle;
   }
 
-  .bonuses
+  .person__bonuses
   {
     height: 22px;
     display: table;
   }
 
-  .bonuses > span
+  .person__bonuses > span
   {
     font-size: 12px;
     display: table-cell;

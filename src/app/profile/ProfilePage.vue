@@ -1,12 +1,12 @@
 <template>
-  <div class="wrapper">
+  <div class="profile">
     <profile-header title="Информация"></profile-header>
-    <div class="profileOuterWrapper">
-      <div class="profileInnerWrapper">
+    <div class="profile__wrapper-outer">
+      <div class="profile__wrapper-inner">
         <form-component placeholder="Фамилия"></form-component>
         <form-component placeholder="Отчество"></form-component>
         <form-component placeholder="E-mail"></form-component>
-        <div class="birthDataLabel">
+        <div class="profile__label-birth-date">
           <span>Дата рождения</span>
         </div>
         <date-picker></date-picker>
@@ -49,20 +49,20 @@
 </script>
 
 <style lang="less" scoped>
-  .birthDataLabel
+  .profile__label-birth-date
   {
     height: 12px;
     display: table;
   }
 
-  .birthDataLabel > span
+  .profile__label-birth-date > span
   {
     font-size: 12px;
     display: table-cell;
     vertical-align: top;
   }
 
-  .profileOuterWrapper
+  .profile__wrapper-outer
   {
     width: 100%;
     height: 70%;
@@ -72,7 +72,7 @@
     bottom: 5.6rem;
   }
 
-  .profileInnerWrapper
+  .profile__wrapper-inner
   {
     height: 100%;
     width: 80%;
@@ -80,7 +80,7 @@
     margin: 0 auto;
   }
 
-  .wrapper
+  .profile
   {
     width: 100%;
     height: 100%;

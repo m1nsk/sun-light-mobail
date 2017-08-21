@@ -1,26 +1,26 @@
 <template>
-  <page-header class="shadow">
+  <page-header class="header header-shadow">
     <header-link :left="true" :edge="false">
-      <div class=frame>
-        <span class="helper"></span>
-        <img src="/static/myIcons/left-arrow.svg" class="icon">
+      <div class="header__frame">
+        <span class="header__helper"></span>
+        <img src="/static/myIcons/left-arrow.svg" class="header__icon">
       </div>
     </header-link>
     <header-link :left="false" :edge="false" >
-      <div class=frame>
-        <span class="helper"></span>
-        <img src="/static/myIcons/filter.svg" class="icon">
+      <div class="header__frame">
+        <span class="header__helper"></span>
+        <img src="/static/myIcons/filter.svg" class="header__icon">
       </div>
     </header-link>
     <header-link :left="false" :edge="false" @click.native="onSearchClicked">
-      <div class=frame >
-        <span class="helper"></span>
-        <img src="/static/myIcons/search.svg" class="icon">
+      <div class="header__frame" >
+        <span class="header__helper"></span>
+        <img src="/static/myIcons/search.svg" class="header__icon">
       </div>
     </header-link>
-    <div class="title">
-      <div class="category"><b>{{pageData.category}}</b></div>
-      <div class="pages">{{pageData.num}} страница из {{pageData.total}}</div>
+    <div class="header__title">
+      <div class="header__category"><b>{{pageData.category}}</b></div>
+      <div class="header__pages">{{pageData.num}} страница из {{pageData.total}}</div>
     </div>
   </page-header>
 </template>
@@ -53,40 +53,40 @@
 </script>
 
 <style lang="less" scoped>
-  .icon
+  .header__icon
   {
     vertical-align: middle;
     width: 18px;
     height: 18px;
   }
 
-  .frame {
+  .header__frame {
     height: 100%;      /* equals max image height */
     width: 32px;
     white-space: nowrap; /* this is required unless you put the helper span closely near the img */
     text-align: center;
   }
 
-  .helper {
+  .header__helper {
     display: inline-block;
     height: 100%;
     vertical-align: middle;
   }
 
-  .categoryHeader
+  .header
   {
     width: 100%;
     height: 48px;
   }
 
-  .title
+  .header__title
   {
     height: 48px;
     width: 230px;
     margin: auto;
   }
 
-  .category
+  .header__category
   {
     height: 22px;
     width: 230px;
@@ -94,7 +94,7 @@
     font-size: 18px;
   }
 
-  .pages
+  .header__pages
   {
     height: 22px;
     width: 230px;

@@ -1,8 +1,8 @@
 <template>
   <content-wrapper style="background-color:#ff0000">
     <main-header slot="header"></main-header>
-    <router-link tag="li" :to="{name: 'category', params: { category: item.link }}" v-for="item in catalogItems" :key="item.id" class="listItem">
-      <div class="itemTitle">
+    <router-link tag="li" :to="{name: 'category', params: { category: item.link }}" v-for="item in catalogItems" :key="item.id" class="catalog__item">
+      <div class="catalog__title">
         <span>{{ item.title }}</span>
       </div>
       <banner-item :bannerImg="item.banner" v-if="item.banner !== null">
@@ -90,7 +90,7 @@
 </script>
 
 <style lang="less" scoped>
-  .itemTitle
+  .catalog__title
   {
     text-align: center;
     height: 33px;
@@ -98,13 +98,13 @@
     color: white;
   }
 
-  .itemTitle > span
+  .catalog__title > span
   {
     line-height: 33px;
     font-size: 22px;
   }
 
-  .listItem
+  .catalog__item
   {
     max-width: 500px;
     cursor: pointer;

@@ -1,15 +1,15 @@
 <template>
-  <page-header class="shadow">
+  <page-header class="header header-shadow">
     <header-link :left="true" :edge="false">
-      <div class=frame>
-        <span class="helper"></span>
-        <img src="/static/logo.png" class="logo">
+      <div class="header__frame">
+        <span class="header__helper"></span>
+        <img src="/static/logo.png" class="header__logo">
       </div>
     </header-link>
     <header-link :left="false" :edge="false">
-      <div class=frame>
-        <span class="helper"></span>
-        <img src="/static/myIcons/search.svg" class="icon">
+      <div class="header__frame">
+        <span class="header__helper"></span>
+        <img src="/static/myIcons/search.svg" class="header__icon">
       </div>
     </header-link>
     <header-title>ShopName</header-title>
@@ -33,21 +33,21 @@
 </script>
 
 <style lang="less" scoped>
-  .logo
+  .header__logo
   {
     vertical-align: middle;
     width: 48px;
     height: 22px;
   }
 
-  .icon
+  .header__icon
   {
     vertical-align: middle;
     width: 18px;
     height: 18px;
   }
 
-  .frame
+  .header__frame
   {
     height: 100%;      /* equals max image height */
     width: 48px;
@@ -55,7 +55,7 @@
     text-align: center;
   }
 
-  .helper
+  .header__helper
   {
     display: inline-block;
     height: 100%;

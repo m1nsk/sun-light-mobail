@@ -1,22 +1,22 @@
 <template>
-  <div class="wrapper">
-    <div class="bannerWrapper">
-      <img :src="bannerData.img" class="banner"/>
-      <div class="productHeader" v-show="bannerData.isHit">
-        <div class="hit">
-          <div class="hitClass">
-            <span>Хит</span>
+  <div class="product-card">
+    <div class="product-card__banner-wrapper">
+      <img :src="bannerData.img" class="product-card__banner"/>
+      <div class="product-card__hit-wrapper-outer" v-show="bannerData.isHit">
+        <div class="product-card__hit-wrapper-outer-inner">
+          <div class="product-card__hit">
+            <span class="product-card__hit-text">Хит</span>
           </div>
         </div>
       </div>
     </div>
-    <div class="productFooter" >
-      <div class="frame">
-        <span class="helper"></span>
-        <img :src="markIcon" class="icon" @click.stop="onMarkClick">
+    <div class="product-card__footer" >
+      <div class="product-card__heart-frame">
+        <span class="product-card__heart-helper"></span>
+        <img :src="markIcon" class="product-card__heart-icon" @click.stop="onMarkClick">
       </div>
-      <div class="price">
-        <div>
+      <div class="product-card__price-wrapper">
+        <div class="product-card__price">
           {{ bannerData.price }}
         </div>
       </div>
@@ -49,21 +49,21 @@
 </script>
 
 <style lang="less" scoped>
-  .banner
+  .product-card__banner
   {
     width: 100%;
     height: 100%;
     position: absolute;
   }
 
-  .wrapper
+  .product-card
   {
     width: 50%;
     height: 120px;
     cursor: pointer;
   }
 
-  .bannerWrapper
+  .product-card__banner-wrapper
   {
     height: 88px;
     position: relative;
@@ -71,13 +71,13 @@
     background-color: #f8f8f8;
   }
 
-  .productFooter
+  .product-card__footer
   {
     width: 100%;
     height: 32px;
   }
 
-  .productHeader
+  .product-card__hit-wrapper-outer
   {
     position: absolute;
     top: 0;
@@ -86,14 +86,14 @@
     height: 32px;
   }
 
-  .icon
+  .product-card__heart-icon
   {
     vertical-align: middle;
     width: 18px;
     height: 18px;
   }
 
-  .frame
+  .product-card__heart-frame
   {
     height: 100%;      /* equals max image height */
     width: 48px;
@@ -104,7 +104,7 @@
     vertical-align: middle;
   }
 
-  .price
+  .product-card__price-wrapper
   {
     height: 100%;
     font-size: 12px;
@@ -112,14 +112,14 @@
     display: table;
   }
 
-  .price > div
+  .product-card__price
   {
     display: table-cell;
     vertical-align: middle;
     text-align: center;
   }
 
-  .hit
+  .product-card__hit-wrapper-inner
   {
     height: 100%;
     font-size: 12px;
@@ -127,20 +127,13 @@
     display: table;
   }
 
-  .hit > div
-  {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-  }
-
-  .helper {
+  .product-card__heart-helper {
     display: inline-block;
     height: 100%;
     vertical-align: middle;
   }
 
-  .hitClass
+  .product-card__hit
   {
     width: 48px;
     height: 22px;
@@ -151,7 +144,7 @@
     background-color: antiquewhite;
   }
 
-  .hitClass > span
+  .product-card__hit-text
   {
     line-height: 22px;
     font-size: 12px;

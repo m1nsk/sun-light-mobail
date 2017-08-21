@@ -1,14 +1,14 @@
 <template>
-  <div class="wrapper">
-    <div class="formWrapper">
+  <div class="accept-form">
+    <div class="accept-form__wrapper">
       <title-header title="Подтверждение" slot="header"></title-header>
-      <div class="contentWrapper">
+      <div class="accept-form__mail-code">
         <shop-form-card></shop-form-card>
         <form-card placeholder="Почта"></form-card>
         <form-card placeholder="Код подтверждения"></form-card>
       </div>
     </div>
-    <div class="btnArea">
+    <div class="accept-form__button-area">
       <menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer>
     </div>
   </div>
@@ -53,13 +53,13 @@
 </script>
 
 <style lang="less" scoped>
-  .wrapper
+  .accept-form
   {
     width: 100%;
     height: 100%;
   }
 
-  .formWrapper
+  .accept-form__wrapper
   {
     width: 100%;
     max-width: 500px;
@@ -67,7 +67,7 @@
     margin: 0 auto;
   }
 
-  .contentWrapper
+  .accept-form__mail-code
   {
     height: 70%;
     width: 80%;
@@ -75,13 +75,7 @@
     padding-top: 50px;
   }
 
-  .max-width
-  {
-    max-width: 500px;
-    margin: auto;
-  }
-
-  .btnArea
+  .accept-form__button-area
   {
     width: 100%;
     height: 39px;
@@ -91,23 +85,5 @@
     left: 0;
     right: 0;
     bottom: 2.8rem;
-  }
-
-  .ContinueBtn
-  {
-    height: 100%;
-    width: 50%;
-    text-align: center;
-    float: left;
-    cursor: pointer;
-  }
-
-  .cancelBtn
-  {
-    height: 100%;
-    width: 50%;
-    text-align: center;
-    float: left;
-    cursor: pointer;
   }
 </style>

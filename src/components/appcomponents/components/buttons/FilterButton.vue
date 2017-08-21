@@ -1,8 +1,8 @@
 <template>
   <div class="filter">
-    <div class="filterTable">
-      <span >{{ data.title }}</span>
-      <img src="/static/myIcons/cancel.svg" class="cancelBtn" @click="onExcludeClicked">
+    <div class="filter__wrapper">
+      <span class="filter__title">{{ data.title }}</span>
+      <img src="/static/myIcons/cancel.svg" class="filter_icon-cancel" @click="onExcludeClicked">
     </div>
   </div>
 </template>
@@ -29,13 +29,13 @@
     margin-right: 4px;
   }
 
-  .filterTable
+  .filter__wrapper
   {
     height: 100%;
     display: table;
   }
 
-  .filterTable > span
+  .filter__title
   {
     line-height: 16px;
     font-size: 12px;
@@ -45,7 +45,7 @@
     margin-right: 2px;
   }
 
-  .filterTable > img
+  .filter_icon-cancel
   {
     height: 100%;
     width: 12px;

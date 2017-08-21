@@ -1,6 +1,6 @@
 <template>
   <div class="banner">
-    <img :src="bannerImg"/>
+    <img :src="bannerImg" class="banner__img"/>
   </div>
 </template>
 
@@ -18,7 +18,7 @@
     height: 87px;
   }
 
-  .banner > img
+  .banner__img
   {
     width: 100%;
     height: 100%;

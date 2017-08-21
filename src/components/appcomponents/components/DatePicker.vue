@@ -1,7 +1,5 @@
 <template>
-  <div class="example-page">
     <smooth-picker ref="smoothPicker" :data="data" :change="dataChange" />
-  </div>
 </template>
 
 <script>

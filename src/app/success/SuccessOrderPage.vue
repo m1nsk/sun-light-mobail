@@ -1,22 +1,22 @@
 <template>
-  <div class="successWrapper">
+  <div class="success">
     <title-header title="Успех"></title-header>
-    <div class="successMessage">
-      <div class="reserve">
+    <div class="success__detail">
+      <div class="success__reserve">
         <span><b>Резерв №{{ successData.id }} создан</b></span>
       </div>
-      <div class="price">
+      <div class="success__price">
         <span>Общая стоимость {{ successData.price }}</span>
       </div>
       <hr class="max-width hr" color="gray" size="1px"/>
-      <div class="info">
+      <div class="success__info">
         <span>{{ successData.info }}</span>
       </div>
-      <div class="prePay">
+      <div class="success__prePay">
         <span><b>Сумма предоплаты {{ successData.prePay }}</b></span>
       </div>
     </div>
-    <div class="btnArea">
+    <div class="success__button-area">
     <menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer>
   </div>
   </div>
@@ -49,6 +49,10 @@
           }
         ]
       }
+    },
+    methods: {
+      onActionClicked () {
+      }
     }
   }
 </script>
@@ -60,13 +64,13 @@
     margin: auto;
   }
 
-  .successWrapper
+  .success
   {
     width: 100%;
     height: 100%;
   }
 
-  .successMessage
+  .success__detail
   {
     width: 80%;
     height: 70%;
@@ -76,7 +80,7 @@
     bottom: 5.6rem;
   }
 
-  .reserve
+  .success__reserve
   {
     height: 24px;
     display: table;
@@ -84,14 +88,14 @@
     width: 100%;
   }
 
-  .reserve > span
+  .success__reserve > span
   {
     font-size: 18px;
     display: table-cell;
     vertical-align: top;
   }
 
-  .price
+  .success__price
   {
     height: 16px;
     display: table;
@@ -99,14 +103,14 @@
     width: 100%;
   }
 
-  .price > span
+  .success__price > span
   {
     font-size: 12px;
     display: table-cell;
     vertical-align: top;
   }
 
-  .info
+  .success__info
    {
      height: 80px;
      display: table;
@@ -114,7 +118,7 @@
      width: 100%;
    }
 
-  .info > span
+  .success__info > span
   {
     font-size: 16px;
     display: table-cell;
@@ -122,7 +126,7 @@
     line-height: 32px;
   }
 
-  .prePay
+  .success__prePay
   {
     padding-top: 25px;
     height: 20px;
@@ -131,7 +135,7 @@
     width: 100%;
   }
 
-  .prePay > span
+  .success__prePay > span
   {
     font-size: 14px;
     display: table-cell;
@@ -139,7 +143,7 @@
     line-height: 18px;
   }
 
-  .btnArea
+  .success__button-area
   {
     width: 100%;
     height: 39px;

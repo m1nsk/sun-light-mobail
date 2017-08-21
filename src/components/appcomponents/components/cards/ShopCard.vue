@@ -1,8 +1,7 @@
 <template>
-  <div>
     <list>
       <list-item>
-        <div class="item-media"><img class="bannerMini" src="static/logo.png"></div>
+        <div class="item-media"><img class="shop__banner" src="static/logo.png"></div>
         <div class="item-content">
           <div class="item-title-row">
             <div class="item-title">
@@ -12,14 +11,13 @@
               <div>{{ shopData.status }}</div>
             </div>
             <div class="item-after">
-              <img src="/static/myIcons/right-arrow.svg" class="icon">
+              <img src="/static/myIcons/right-arrow.svg" class="shop__icon">
             </div>
           </div>
         </div>
       </list-item>
-      <heart-mark-component class="heartItem"></heart-mark-component>
+      <heart-mark-component class="shop__heart-mark"></heart-mark-component>
     </list>
-  </div>
 </template>
 
 <script>
@@ -40,14 +38,14 @@
 </script>
 
 <style lang="less" scoped>
-  .bannerMini
+  .shop__banner
   {
     width: 64px;
     height: 64px;
     margin-left: 10px;
   }
 
-  .icon
+  .shop__icon
   {
     height: 18px;
     width: 18px;
@@ -55,67 +53,10 @@
     float: right;
   }
 
-  .iconWrapper
-  {
-    width: 40px;
-    height: 100px;
-    display: inline-block;
-    float: right;
-  }
-
-  .heartItem
+  .shop__heart-mark
   {
     position: absolute;
     top: 0;
     right: 9px;
   }
-
-  .heartWrapper
-  {
-    width: 40px;
-    height: 100%;
-    position: relative;
-  }
-
-  /*
-  .shopWrapper
-  {
-    width: 100%;
-    height: 80px;
-    position: relative;
-    font-size: 16px;
-    line-height: 18px;
-  }
-
-  .icon
-  {
-    vertical-align: middle;
-    width: 18px;
-    height: 18px;
-  }
-
-  .arrowArea {
-    height: 32px;
-    width: 32px;
-    white-space: nowrap;
-    text-align: center;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    cursor: pointer;
-  }
-
-  .helper {
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-  }
-
-  .stockInfo
-  {
-    height: 100%;
-    width: 100%;
-    padding: 0 10px;
-  }
-  */
 </style>

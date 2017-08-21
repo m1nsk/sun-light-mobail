@@ -2,7 +2,7 @@
   <content-wrapper>
     <title-header title="Где забрать?" slot="header"></title-header>
     <shop-card-mini></shop-card-mini>
-    <div class="shopCount">
+    <div class="shop__count">
       <span>Найдено {{ shopCount }} магазина</span>
     </div>
     <shop-card v-for="item in shopsList" :shopData="item" :key="item.id" @click.native="onShopClicked"></shop-card>
@@ -56,7 +56,7 @@
 </script>
 
 <style lang="less" scoped>
-  .shopCount
+  .shop__count
   {
     text-align: center;
   }

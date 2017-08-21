@@ -1,7 +1,7 @@
 <template>
   <list>
     <list-item>
-      <div class="item-media"><img class="bannerMini" src="static/logo.png"></div>
+      <div class="item-media"><img class="shop__banner" src="static/logo.png"></div>
       <div class="item-content">
         <div class="item-title-row">
           <div class="item-title">
@@ -9,7 +9,7 @@
               <div>{{shopData.price}}</div>
           </div>
           <div class="item-after">
-            <img src="/static/myIcons/right-arrow.svg" class="icon">
+            <img src="/static/myIcons/right-arrow.svg" class="shop__icon">
           </div>
         </div>
       </div>
@@ -37,14 +37,14 @@
 
 <style lang="less" scoped>
 
-  .bannerMini
+  .shop__banner
   {
     width: 64px;
     height: 64px;
     margin-left: 10px;
   }
 
-  .icon
+  .shop__icon
   {
     vertical-align: middle;
     width: 18px;

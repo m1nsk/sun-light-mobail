@@ -30,6 +30,24 @@ const state = {
       price: 5000,
       isHit: false,
       id: 4
+    },
+    {
+      img: '/static/logo.png',
+      price: 3000,
+      isHit: true,
+      id: 2
+    },
+    {
+      img: '/static/logo.png',
+      price: 4000,
+      isHit: false,
+      id: 3
+    },
+    {
+      img: '/static/logo.png',
+      price: 5000,
+      isHit: false,
+      id: 4
     }
   ]
 }

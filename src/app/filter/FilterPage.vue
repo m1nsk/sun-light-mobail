@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="filter">
     <content-wrapper>
       <TitleHeader title="Название категории" slot="header"></TitleHeader>
       <list>
@@ -17,7 +17,7 @@
         </list-item>
       </list>
     </content-wrapper>
-    <div class="btnArea">
+    <div class="filter__button-area">
       <menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer>
     </div>
   </div>
@@ -82,13 +82,13 @@
 </script>
 
 <style lang="less" scoped>
-  .wrapper
+  .filter
   {
     width: 100%;
     height: 100%;
   }
 
-  .btnArea
+  .filter__button-area
   {
     width: 100%;
     height: 39px;
