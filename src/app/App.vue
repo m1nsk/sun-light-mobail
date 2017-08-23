@@ -1,10 +1,6 @@
 <template>
   <div class="page">
-    <transition
-    name="custom-classes-transition"
-    enter-active-class="animated slideInRight"
-    leave-active-class="animated slideOutRight"
-  >
+    <transition name="slide">
       <router-view></router-view>
     </transition>
     <menu-footer @view="changeView" :menuItemData="menuItemData"></menu-footer>
@@ -73,6 +69,39 @@
   @font-face {
     font-family: 'MyWebFont';
     src:  url('/assets/fontsfuturabookc-webfont') format('woff2')
+  }
+
+  //page transition
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .3s;
+  }
+  .fade-enter, .fade-leave-active {
+    opacity: 0;
+  }
+
+  .slide-enter-active, .slide-leave-active {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition: all .3s;
+  }
+  .slide-enter {
+    opacity: 0;
+    transform: translate3d(70%, 0, 0);
+  }
+  .slide-leave-active {
+    opacity: 0;
+    transform: translate3d(-70%, 0, 0);
+  }
+
+  .transition-reverse {
+    .slide-enter {
+      opacity: 0;
+      transform: translate3d(-70%, 0, 0);
+    }
+    .slide-leave-active {
+      opacity: 0;
+      transform: translate3d(70%, 0, 0);
+    }
   }
 
 </style>
