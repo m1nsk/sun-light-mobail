@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "animate.css": "^3.5.2",
+    "babel": "^6.23.0",
     "babel-runtime": "^6.23.0",
     "css-loader": "^0.26.4",
     "vue": "^2.2.2",
+    "vue-lazyload": "^1.0.6",
     "vue-router": "^2.2.0",
     "vue-smooth-picker": "^0.2.6",
     "vuex": "^2.3.1"
@@ -61,7 +63,7 @@
     "vue-loader": "^11.1.4",
     "vue-style-loader": "^2.0.4",
     "vue-template-compiler": "^2.2.1",
-    "webpack": "^2.2.1",
+    "webpack": "^2.7.0",
     "webpack-bundle-analyzer": "^2.2.1",
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.16.1",

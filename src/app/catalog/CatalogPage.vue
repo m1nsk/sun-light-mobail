@@ -1,6 +1,6 @@
 <template>
   <content-wrapper style="background-color:#ff0000">
-    <main-header slot="header"></main-header>
+    <main-header slot="header-menu"></main-header>
     <router-link tag="li" :to="{name: 'category', params: { category: item.link }}" v-for="item in catalogItems" :key="item.id" class="catalog__item">
       <div class="catalog__title">
         <span>{{ item.title }}</span>

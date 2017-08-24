@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <slot name="header"></slot>
+    <slot name="header-menu"></slot>
     <page-content class="content">
       <scroll :on-refresh="onRefresh" :enableInfinite="false" :enableRefresh="true" class="scroll">
         <slot name="slider"></slot>

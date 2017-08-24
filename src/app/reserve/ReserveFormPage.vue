@@ -1,7 +1,7 @@
 <template>
   <div class="reserve-form">
     <div class="reserve-form__wrapper">
-      <title-header title="Оформление резерва" slot="header"></title-header>
+      <title-header title="Оформление резерва" slot="header-menu"></title-header>
       <div class="reserve-form__person">
         <div>
           <shop-form-card></shop-form-card>

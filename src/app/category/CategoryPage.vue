@@ -1,6 +1,6 @@
 <template>
   <content-wrapper>
-    <catalog-header :pageData="pageData.pageInfo" slot="header"></catalog-header>
+    <catalog-header :pageData="pageData.pageInfo" slot="header-menu"></catalog-header>
     <div class="catalog__wrapper">
       <div class="catalog__filter">
         <filter-button v-for="item in pageData.filterList" :key="item.id" :data="item" @exclude="onFilterExclude(item)"></filter-button>

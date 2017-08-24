@@ -1,6 +1,6 @@
 <template>
   <content-wrapper>
-    <main-header slot="header"></main-header>
+    <main-header slot="header-menu"></main-header>
     <banner-item bannerImg="/static/logo.png" v-for="item in 10" :key="item.id">
     </banner-item>
   </content-wrapper>

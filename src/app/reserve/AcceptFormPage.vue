@@ -1,7 +1,7 @@
 <template>
   <div class="accept-form">
     <div class="accept-form__wrapper">
-      <title-header title="Подтверждение" slot="header"></title-header>
+      <title-header title="Подтверждение" slot="header-menu"></title-header>
       <div class="accept-form__mail-code">
         <shop-form-card></shop-form-card>
         <form-card placeholder="Почта"></form-card>

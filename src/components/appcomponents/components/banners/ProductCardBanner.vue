@@ -1,7 +1,25 @@
 <template>
   <div class="product-card">
     <div class="product-card__banner-wrapper">
-      <img :src="bannerData.img" class="product-card__banner"/>
+      <!--
+      <progressive-img
+        :src="bannerData.img"
+        placeholder="https://unsplash.it/1920/1080?image=10"
+        :blur="30"
+        class="product-card__banner"
+      />
+      <img lazy="https://im0-tub-ru.yandex.net/i?id=a3e47fcfca8fd1217b6b154d48a4829e&n=22"/>
+      -->
+      <!--
+      <lazy-image
+        :src="bannerData.img"
+        placeholder="/static/loading.gif"
+        events="scroll"
+        class="product-card__banner"
+      />
+      -->
+
+      <img v-lazy="bannerData.img" class="product-card__banner"/>
       <div class="product-card__hit-wrapper-outer" v-show="bannerData.isHit">
         <div class="product-card__hit-wrapper-outer-inner">
           <div class="product-card__hit">

@@ -8,10 +8,16 @@ import 'vue-smooth-picker/dist/css/style.css'
 import SmoothPicker from 'vue-smooth-picker'
 import 'animate.css/animate.min.css'
 import store from './store'
+import VueLazyload from 'vue-lazyload'
 
 Vue.use(VueRouter)
 Vue.use(Vum)
 Vue.use(SmoothPicker)
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  loading: '/static/loading.gif',
+  attempt: 1
+})
 
 const router = new VueRouter(RouteConfig)
 

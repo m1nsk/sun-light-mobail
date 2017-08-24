@@ -1,6 +1,6 @@
 <template>
   <content-wrapper>
-    <title-header title="Где забрать?" slot="header"></title-header>
+    <title-header title="Где забрать?" slot="header-menu"></title-header>
     <shop-card-mini></shop-card-mini>
     <div class="shop__count">
       <span>Найдено {{ shopCount }} магазина</span>

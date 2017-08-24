@@ -1,7 +1,7 @@
 <template>
   <div class="filter">
     <content-wrapper>
-      <TitleHeader title="Название категории" slot="header"></TitleHeader>
+      <TitleHeader title="Название категории" slot="header-menu"></TitleHeader>
       <list>
         <list-item v-for="item in filterData" :key="item.id">
           <div class="item-content">

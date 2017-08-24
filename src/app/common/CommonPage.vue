@@ -1,6 +1,6 @@
 <template>
   <content-wrapper>
-    <TitleHeader title="Личный профиль" slot="header"></TitleHeader>
+    <TitleHeader title="Личный профиль" slot="header-menu"></TitleHeader>
     <person-card :personData="personData"></person-card>
     <list>
       <list-item v-for="item in menuData" :key="item.id">
