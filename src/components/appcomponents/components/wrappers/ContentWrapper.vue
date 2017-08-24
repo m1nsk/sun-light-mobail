@@ -44,17 +44,17 @@
     bottom: 2.3rem;
     left: 0;
     right: 0;
-    top: 50px;
+    top: 0;
   }
   .scroll
   {
-    margin: auto;
-
+    margin: 50px 0 auto;
   }
 
   .contentWrapper
   {
     width: 90%;
+    height: 100%;
     max-width: 500px;
     margin: 0 auto;
   }

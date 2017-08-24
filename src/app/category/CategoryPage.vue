@@ -34,8 +34,7 @@
           filterList: [
             {title: 'Сначала Новые'},
             {title: 'По Городу'},
-            {title: 'Сначала Дешевые'},
-            {title: 'Сначала Дорогие'}
+            {title: 'Сначала Дешевые'}
           ],
           bannerImage: '/static/logo.png',
           pageInfo: {
@@ -96,11 +95,13 @@
     width: 100%;
     display: inline-block;
     margin: 0 auto;
+    padding-top: 10px;
   }
 
   .catalog__wrapper
   {
     width: 80%;
+    padding-top: 5px;
     margin: 0 auto;
     max-width: 500px;
   }
