@@ -3,9 +3,9 @@
     <profile-header title="Информация"></profile-header>
     <div class="profile__wrapper-outer">
       <div class="profile__wrapper-inner">
-        <form-component placeholder="Фамилия"></form-component>
-        <form-component placeholder="Отчество"></form-component>
-        <form-component placeholder="E-mail"></form-component>
+        <form-card placeholder="Фамилия"></form-card>
+        <form-card placeholder="Отчество"></form-card>
+        <form-card placeholder="E-mail"></form-card>
         <div class="profile__label-birth-date">
           <span>Дата рождения</span>
         </div>
@@ -21,12 +21,12 @@
 
 <script>
   import ProfileHeader from 'appComponents/components/headers/ProfileHeader.vue'
-  import FormComponent from 'appComponents/components/cards/FormCard.vue'
+  import FormCard from 'appComponents/components/cards/FormCard.vue'
   import DatePicker from 'appComponents/components/DatePicker.vue'
   import { Button, ButtonGroup } from '~/components/buttons'
   export default {
     components: {
-      FormComponent,
+      FormCard,
       ProfileHeader,
       DatePicker,
       'm-button': Button,

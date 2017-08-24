@@ -3,13 +3,13 @@
     <header-link :left="true" :edge="false">
       <back-button></back-button>
     </header-link>
-    <header-link :left="false" :edge="false" >
+    <header-link :left="false" :edge="false" @click.native="onFilterClicked">
       <div class="header__frame">
         <span class="header__helper"></span>
         <img src="/static/myIcons/filter.svg" class="header__icon">
       </div>
     </header-link>
-    <header-link :left="false" :edge="false" @click.native="onSearchClicked">
+    <header-link :left="false" :edge="false">
       <div class="header__frame" >
         <span class="header__helper"></span>
         <img src="/static/myIcons/search.svg" class="header__icon">
@@ -43,7 +43,7 @@
       }
     },
     methods: {
-      onSearchClicked () {
+      onFilterClicked () {
         this.$router.push('/filter')
       }
     }

@@ -10,7 +10,7 @@
       </div>
       <slide-wrapper class="sliderWrapper">
         <slide><img class="sliderImg" src="/static/example/demo1.jpg"/></slide>
-        <slide><img src="/static/example/demo2.jpg"/></slide>
+        <slide><img class="sliderImg" src="/static/example/demo2.jpg"/></slide>
       </slide-wrapper>
     </div>
     <div class="prodPrice max-width">
@@ -84,7 +84,7 @@
 
   .slider
   {
-    padding-top: 50px;
+    padding-top: 10px;
   }
 
   .hr {

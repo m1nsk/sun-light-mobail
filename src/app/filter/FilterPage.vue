@@ -3,7 +3,7 @@
     <content-wrapper>
       <TitleHeader title="Название категории" slot="header-menu"></TitleHeader>
       <list>
-        <list-item v-for="item in filterData" :key="item.id">
+        <list-item v-for="item in filterData" :key="item.id" @click.native="onFilterCliked">
           <div class="item-content">
             <div class="item-title-row">
               <div class="item-title">{{ item.title }}</div>
@@ -20,6 +20,11 @@
     <div class="filter__button-area">
       <menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer>
     </div>
+    <pop-up ref="s" class="filter-settings-dialog" :isActive="true" width="50" height="50">
+      <div class="filter-settings">
+        <range-filter class="range-filter"></range-filter>
+      </div>
+    </pop-up>
   </div>
 </template>
 
@@ -28,9 +33,15 @@
   import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
   import { List, ListItem } from '~/components/list'
   import MenuFooter from 'appComponents/components/footers/MenuFooter.vue'
+  import RangeFilter from 'appComponents/components/filterType/RangeFilter.vue'
+  import PopUp from 'appComponents/components/PopUp.vue'
+  import PopWindow from '~/components/popwindow'
 
   export default {
     components: {
+      PopUp,
+      PopWindow,
+      RangeFilter,
       ContentWrapper,
       TitleHeader,
       List,
@@ -39,6 +50,7 @@
     },
     data () {
       return {
+        show: false,
         filterData: [
           {
             included: true,
@@ -76,12 +88,38 @@
         } else if (data['view'] === 'left') {
           console.log('cancel')
         }
+      },
+      onFilterCliked () {
+        this.$refs.s.open()
       }
     }
   }
 </script>
 
 <style lang="less" scoped>
+  .filter-settings-dialog
+  {
+    width: 50%;
+    height: 60%;
+  }
+
+  .filter-settings
+  {
+    display: table;
+    width: 50%;
+    height: 50%;
+    margin: 0 auto;
+
+  }
+
+  .range-filter
+  {
+    vertical-align: middle;
+    display: table-cell;
+    height: 60%;
+    width: 50%;
+  }
+
   .filter
   {
     width: 100%;
@@ -97,6 +135,6 @@
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 2.8rem;
+    bottom: 2.4rem;
   }
 </style>
