@@ -6,7 +6,7 @@
       <list-item v-for="item in menuData" :key="item.id">
         <div class="item-content">
           <div class="item-title-row">
-            <div class="item-title">{{ item.title }}</div>
+            <div class="item-title" style="height: 40px; line-height: 40px">{{ item.title }}</div>
             <div class="item-after">
               <div v-if="item.value.add" style="display: inline-block; float: left">{{ item.value.value }}</div>
               <div style="display: inline-block; float: right; padding-left: 5px">
@@ -132,3 +132,11 @@
     }
   }
 </script>
+
+<style lang="less" scoped>
+.content
+{
+  height: 40px;
+  background-color: #0BB20C;
+}
+</style>

@@ -2,7 +2,7 @@
   <div class="page">
     <slot name="header-menu"></slot>
     <page-content class="content">
-      <scroll :on-refresh="onRefresh" :enableInfinite="false" :enableRefresh="true" class="scroll">
+      <scroll :enableInfinite="false" :enableRefresh="false" class="scroll">
         <slot name="slider"></slot>
         <div class='contentWrapper'>
           <slot></slot>
@@ -38,10 +38,18 @@
 </script>
 
 <style lang="less" scoped>
+  .content
+  {
+    position: absolute;
+    bottom: 2.3rem;
+    left: 0;
+    right: 0;
+    top: 50px;
+  }
   .scroll
   {
     margin: auto;
-    padding-top: 150px;
+
   }
 
   .contentWrapper
@@ -49,7 +57,6 @@
     width: 90%;
     max-width: 500px;
     margin: 0 auto;
-    padding-top: 50px;
   }
 
   .page {
