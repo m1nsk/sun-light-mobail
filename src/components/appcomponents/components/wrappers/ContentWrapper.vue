@@ -48,13 +48,14 @@
   }
   .scroll
   {
-    margin: 50px 0 auto;
+    margin: 2.2rem 0 auto;
   }
 
   .contentWrapper
   {
     width: 90%;
     height: 100%;
+    padding-top: 30px;
     max-width: 500px;
     margin: 0 auto;
   }

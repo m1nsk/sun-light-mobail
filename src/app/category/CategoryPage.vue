@@ -95,7 +95,6 @@
     width: 100%;
     display: inline-block;
     margin: 0 auto;
-    padding-top: 10px;
   }
 
   .catalog__wrapper

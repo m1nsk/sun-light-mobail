@@ -1,9 +1,10 @@
 <template>
-  <div class="modal-overlay" :class="{ active: isActive}">
-    <div class="modal" :class="{ active: isActive}" :style="{'width': width + '%', 'height': height + '%'}">
+  <div class="modal-overlay" :class="{ active: isActive}" @click="closePopUp">
+    <div class="modal" :class="{ active: isActive}" :style="{'width': width + '%', 'height': height + '%', 'max-height': maxHeight + '%', 'max-width': maxWidth + '%'}" @click.stop>
       <div class="modal-content">
+        <slot name="header"></slot>
         <slot name="content"></slot>
-        <slot name="button-area"></slot>
+        <slot name="footer"></slot>
       </div><!-- content -->
     </div><!-- modal -->
   </div><!-- overlay -->
@@ -11,7 +12,33 @@
 
 <script>
   export default {
-    props: ['isActive', 'width', 'max-width', 'height', 'max-height']
+    props: {
+      isActive: {
+        type: Boolean,
+        default: false
+      },
+      width: {
+        default: 80
+      },
+      height: {
+        default: 40
+      },
+      maxWidth: {
+        default: 500
+      },
+      maxHeight: {
+        default: 200
+      }
+    },
+    data () {
+      return {
+      }
+    },
+    methods: {
+      closePopUp () {
+        this.$emit('close')
+      }
+    }
   }
 </script>
 

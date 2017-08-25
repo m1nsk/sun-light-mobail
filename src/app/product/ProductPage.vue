@@ -84,7 +84,7 @@
 
   .slider
   {
-    padding-top: 10px;
+    padding-top: 20px;
   }
 
   .hr {
