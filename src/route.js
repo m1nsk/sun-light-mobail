@@ -10,7 +10,7 @@ import AcceptFormPage from '~/app/reserve/AcceptFormPage.vue'
 import SuccessOrderPage from '~/app/success/SuccessOrderPage.vue'
 import CommonPage from '~/app/common/CommonPage.vue'
 import FilterPage from '~/app/filter/FilterPage.vue'
-import App from '~/app/App'
+import Index from '~/demos/Index'
 
 export default {
   // mode: 'history',
@@ -19,7 +19,7 @@ export default {
     {
       path: '/',
       name: 'index',
-      component: App,
+      component: Index,
       children: [
         { path: 'catalog', name: 'catalog', component: CatalogPage },
         { path: 'stock', name: 'stock', component: StockPage },

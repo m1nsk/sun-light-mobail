@@ -1,16 +1,14 @@
 <template>
-  <div class="accept-form">
-    <div class="accept-form__wrapper">
-      <title-header title="Подтверждение" slot="header-menu"></title-header>
-      <div class="accept-form__mail-code">
+  <div>
+    <title-header title="Подтверждение"></title-header>
+    <second-footer><menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer></second-footer>
+    <page-content class="content-padding-bottom">
+      <div class="content-layout">
         <shop-form-card></shop-form-card>
         <form-card placeholder="Почта"></form-card>
         <form-card placeholder="Код подтверждения"></form-card>
       </div>
-    </div>
-    <div class="accept-form__button-area">
-      <menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer>
-    </div>
+    </page-content>
   </div>
 </template>
 
@@ -19,12 +17,16 @@
   import ShopFormCard from 'appComponents/components/cards/ShopFormCard.vue'
   import FormCard from 'appComponents/components/cards/FormCard.vue'
   import MenuFooter from 'appComponents/components/footers/MenuFooter.vue'
+  import { SecondFooter } from '~/components/footer'
+  import Content from '~/components/content'
   export default {
     components: {
       TitleHeader,
       ShopFormCard,
       FormCard,
-      MenuFooter
+      MenuFooter,
+      SecondFooter,
+      'page-content': Content
     },
     data () {
       return {
@@ -53,12 +55,6 @@
 </script>
 
 <style lang="less" scoped>
-  .accept-form
-  {
-    width: 100%;
-    height: 100%;
-  }
-
   .accept-form__wrapper
   {
     width: 100%;
@@ -72,18 +68,5 @@
     height: 70%;
     width: 80%;
     margin: 0 auto;
-    padding-top: 50px;
-  }
-
-  .accept-form__button-area
-  {
-    width: 100%;
-    height: 39px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 2.8rem;
   }
 </style>

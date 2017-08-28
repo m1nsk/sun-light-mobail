@@ -1,12 +1,16 @@
 <template>
-  <content-wrapper>
-    <title-header title="Где забрать?" slot="header-menu"></title-header>
-    <shop-card-mini></shop-card-mini>
-    <div class="shop__count">
-      <span>Найдено {{ shopCount }} магазина</span>
-    </div>
-    <shop-card v-for="item in shopsList" :shopData="item" :key="item.id" @click.native="onShopClicked"></shop-card>
-  </content-wrapper>
+  <div>
+    <title-header title="Где забрать?"></title-header>
+    <page-content class="content-padding-bottom">
+      <div class="content-layout">
+        <shop-card-mini></shop-card-mini>
+        <div class="shop__count">
+          <span>Найдено {{ shopCount }} магазина</span>
+        </div>
+        <shop-card v-for="item in shopsList" :shopData="item" :key="item.id" @click.native="onShopClicked"></shop-card>
+      </div>
+    </page-content>
+  </div>
 </template>
 
 <script>
@@ -14,12 +18,14 @@
   import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
   import ShopCard from 'appComponents/components/cards/ShopCard.vue'
   import ShopCardMini from 'appComponents/components/cards/ShopCardMini.vue'
+  import Content from '~/components/content'
   export default {
     components: {
       ContentWrapper,
       ShopCardMini,
       ShopCard,
-      TitleHeader
+      TitleHeader,
+      'page-content': Content
     },
     data () {
       return {

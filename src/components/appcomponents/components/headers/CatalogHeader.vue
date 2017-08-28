@@ -1,5 +1,5 @@
 <template>
-  <page-header class="header-shadow">
+  <page-header>
     <header-link :left="true" :edge="false">
       <back-button></back-button>
     </header-link>
@@ -30,7 +30,6 @@
   export default {
     components: {
       BackButton,
-      Header,
       HeaderLink,
       HeaderTitle,
       'page-header': Header,

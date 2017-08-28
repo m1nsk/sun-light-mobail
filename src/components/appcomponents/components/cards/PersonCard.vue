@@ -33,8 +33,8 @@
 <style lang="less" scoped>
   .person__info
   {
+    width: 75%;
     height: 100%;
-    width: 70%;
     display: inline-block;
     float: left;
   }
@@ -51,18 +51,16 @@
 
   .person__banner-wrapper
   {
-    width: 30%;
     height: 100%;
-    display: table;
-    vertical-align: middle;
-    text-align: center;
+    width: 25%;
+    display: inline-block;
+    float: right;
   }
 
   .person__banner
   {
-    display: table-cell;
-    width: 48px;
-    height: 48px;
+    width: 100%;
+    height: auto;
   }
 
 

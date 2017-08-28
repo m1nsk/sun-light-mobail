@@ -1,8 +1,8 @@
 <template>
-  <div class="profile">
+  <div>
     <profile-header title="Информация"></profile-header>
-    <div class="profile__wrapper-outer">
-      <div class="profile__wrapper-inner">
+    <div class="content-padding-bottom">
+      <div class="content-layout">
         <form-card placeholder="Фамилия"></form-card>
         <form-card placeholder="Отчество"></form-card>
         <form-card placeholder="E-mail"></form-card>
@@ -24,13 +24,16 @@
   import FormCard from 'appComponents/components/cards/FormCard.vue'
   import DatePicker from 'appComponents/components/DatePicker.vue'
   import { Button, ButtonGroup } from '~/components/buttons'
+  import Content from '~/components/content'
+
   export default {
     components: {
       FormCard,
       ProfileHeader,
       DatePicker,
       'm-button': Button,
-      ButtonGroup
+      ButtonGroup,
+      'page-content': Content
     },
     data () {
       return {

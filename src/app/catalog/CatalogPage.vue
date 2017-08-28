@@ -1,18 +1,23 @@
 <template>
-  <content-wrapper style="background-color:#ff0000">
-    <main-header slot="header-menu"></main-header>
-    <router-link tag="li" :to="{name: 'category', params: { category: item.link }}" v-for="item in catalogItems" :key="item.id" class="catalog__item">
-      <div class="catalog__title">
-        <span>{{ item.title }}</span>
+  <div>
+    <main-header></main-header>
+    <page-content style="background-color:#ff0000" class="content-padding-bottom">
+      <div class="content-layout">
+      <router-link tag="li" :to="{name: 'category', params: { category: item.link }}" v-for="item in catalogItems" :key="item.id" class="catalog__item">
+        <div class="catalog__title">
+          <span>{{ item.title }}</span>
+        </div>
+        <banner-item :bannerImg="item.banner" v-if="item.banner !== null">
+        </banner-item>
+        <hr align="center" width="80%" color="white" size="1px"/>
+      </router-link>
       </div>
-      <banner-item :bannerImg="item.banner" v-if="item.banner !== null">
-      </banner-item>
-      <hr align="center" width="80%" color="white" size="1px"/>
-    </router-link>
-  </content-wrapper>
+    </page-content>
+  </div>
 </template>
 
 <script>
+  import Content from '~/components/content'
   import MainHeader from 'appComponents/components/headers/MainHeader.vue'
   import BannerItem from 'appComponents/components/banners/BannerItem.vue'
   import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
@@ -20,7 +25,8 @@
     components: {
       MainHeader,
       BannerItem,
-      ContentWrapper
+      ContentWrapper,
+      'page-content': Content
     },
     data () {
       return {

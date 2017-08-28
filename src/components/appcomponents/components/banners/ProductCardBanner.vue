@@ -1,30 +1,10 @@
 <template>
   <div class="product-card">
     <div class="product-card__banner-wrapper">
-      <!--
-      <progressive-img
-        :src="bannerData.img"
-        placeholder="https://unsplash.it/1920/1080?image=10"
-        :blur="30"
-        class="product-card__banner"
-      />
-      <img lazy="https://im0-tub-ru.yandex.net/i?id=a3e47fcfca8fd1217b6b154d48a4829e&n=22"/>
-      -->
-      <!--
-      <lazy-image
-        :src="bannerData.img"
-        placeholder="/static/loading.gif"
-        events="scroll"
-        class="product-card__banner"
-      />
-      -->
-
       <img v-lazy="bannerData.img" class="product-card__banner"/>
       <div class="product-card__hit-wrapper-outer" v-show="bannerData.isHit">
-        <div class="product-card__hit-wrapper-outer-inner">
-          <div class="product-card__hit">
-            <span class="product-card__hit-text">Хит</span>
-          </div>
+        <div class="product-card__hit">
+          <div class="product-card__hit-text">Хит</div>
         </div>
       </div>
     </div>
@@ -71,7 +51,6 @@
   {
     width: 100%;
     height: 100%;
-    position: absolute;
   }
 
   .product-card
@@ -160,11 +139,13 @@
     top: 0;
     right: 0;
     background-color: antiquewhite;
+    display: inline-block;
+    vertical-align: middle;
   }
 
   .product-card__hit-text
   {
-    line-height: 22px;
     font-size: 12px;
+    line-height: 22px;
   }
 </style>

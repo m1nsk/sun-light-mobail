@@ -1,20 +1,16 @@
 <template>
-  <div class="reserve-form">
-    <div class="reserve-form__wrapper">
-      <title-header title="Оформление резерва" slot="header-menu"></title-header>
-      <div class="reserve-form__person">
-        <div>
-          <shop-form-card></shop-form-card>
-          <form-card placeholder="Имя"></form-card>
-          <form-card placeholder="Почта"></form-card>
-          <form-card placeholder="Телефон"></form-card>
-        </div>
+  <div>
+    <title-header title="Оформление резерва"></title-header>
+    <second-footer><menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer></second-footer>
+    <page-content>
+      <div class="content-layout content-relative">
+        <shop-form-card></shop-form-card>
+        <form-card placeholder="Имя"></form-card>
+        <form-card placeholder="Почта"></form-card>
+        <form-card placeholder="Телефон"></form-card>
         <accept-form-card class="reserve-form__accept"></accept-form-card>
       </div>
-    </div>
-    <div class="reserve-form__button-area">
-      <menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer>
-    </div>
+    </page-content>
   </div>
 </template>
 
@@ -24,13 +20,17 @@
   import AcceptFormCard from 'appComponents/components/cards/AcceptFormCard.vue'
   import ShopFormCard from 'appComponents/components/cards/ShopFormCard.vue'
   import MenuFooter from 'appComponents/components/footers/MenuFooter.vue'
+  import { SecondFooter } from '~/components/footer'
+  import Content from '~/components/content'
   export default {
     components: {
       TitleHeader,
       AcceptFormCard,
       FormCard,
       MenuFooter,
-      ShopFormCard
+      ShopFormCard,
+      SecondFooter,
+      'page-content': Content
     },
     data () {
       return {
@@ -59,25 +59,13 @@
 </script>
 
 <style lang="less" scoped>
-  .reserve-form
-  {
-    width: 100%;
-    height: 100%;
-  }
-
   .reserve-form__accept
   {
     width: 100%;
     height: 40px;
-    padding-top: 100px;
-  }
-
-  .reserve-form__wrapper
-  {
-    width: 100%;
-    max-width: 500px;
-    height: 100%;
-    margin: 0 auto;
+    position: absolute;
+    bottom: 0;
+    left: 0;
   }
 
   .reserve-form__person
@@ -88,15 +76,4 @@
     padding-top: 50px;
   }
 
-  .reserve-form__button-area
-  {
-    width: 100%;
-    height: 39px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 2.8rem;
-  }
 </style>

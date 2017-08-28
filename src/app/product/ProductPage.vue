@@ -1,36 +1,40 @@
 <template>
-  <content-wrapper>
-    <product-header slot="header-menu"></product-header>
-    <div slot="slider" class="slider">
-      <div class="prodName max-width">
-        <span>Кольцо золотое</span>
-        <div class="hitClass">
-          <span>Хит</span>
+  <div>
+    <product-header></product-header>
+    <page-content class="content-padding-bottom">
+      <div class="slider">
+        <div class="prodName max-width">
+          <span>Кольцо золотое</span>
+          <div class="hitClass">
+            <span>Хит</span>
+          </div>
         </div>
+        <slide-wrapper class="sliderWrapper">
+          <slide><img class="sliderImg" src="/static/example/demo1.jpg"/></slide>
+          <slide><img class="sliderImg" src="/static/example/demo2.jpg"/></slide>
+        </slide-wrapper>
       </div>
-      <slide-wrapper class="sliderWrapper">
-        <slide><img class="sliderImg" src="/static/example/demo1.jpg"/></slide>
-        <slide><img class="sliderImg" src="/static/example/demo2.jpg"/></slide>
-      </slide-wrapper>
-    </div>
-    <div class="prodPrice max-width">
-      <span>до 1000000 р.</span>
-    </div>
-    <shop-button @click.native="onReserveClicked" caption="Оформить резерв" class="reservBtn max-width" ></shop-button>
-    <div class="prodQty max-width">
-      <span>В наличии в магазинах 10 </span>
-    </div>
-    <hr class="max-width hr" color="gray" size="1px"/>
-    <div class="prodDescription max-width">
-      ed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam
-    </div>
-    <hr class="max-width hr" color="gray" size="1px"/>
-    <div class="btnArea max-width">
-      <button-small @click.native="onMarkedClicked" caption="Может понравиться" class="markedBtn" ></button-small>
-      <button-small @click.native="onSeenClicked" caption="Просмотренные" class="seenBtn" ></button-small>
-    </div>
-    <product-banner-grid style="width: 80%;"></product-banner-grid>
-  </content-wrapper>
+      <div class="content-layout">
+        <div class="prodPrice max-width">
+          <span>до 1000000 р.</span>
+        </div>
+        <shop-button @click.native="onReserveClicked" caption="Оформить резерв" class="reservBtn max-width" ></shop-button>
+        <div class="prodQty max-width">
+          <span>В наличии в магазинах 10 </span>
+        </div>
+        <hr class="max-width hr" color="gray" size="1px"/>
+        <div class="prodDescription max-width">
+          ed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam
+        </div>
+        <hr class="max-width hr" color="gray" size="1px"/>
+        <div class="btnArea max-width">
+          <button-small @click.native="onMarkedClicked" caption="Может понравиться" class="markedBtn" ></button-small>
+          <button-small @click.native="onSeenClicked" caption="Просмотренные" class="seenBtn" ></button-small>
+        </div>
+        <product-banner-grid style="width: 80%;"></product-banner-grid>
+      </div>
+    </page-content>
+  </div>
 </template>
 
 <script>
@@ -40,6 +44,8 @@
   import Button from 'appComponents/components/buttons/Button.vue'
   import ButtonSmall from 'appComponents/components/buttons/ButtonSmall.vue'
   import ProductBannerGrid from 'appComponents/components/banners/ProductBannerGrid.vue'
+  import Content from '~/components/content'
+
   export default {
     components: {
       ProductHeader,
@@ -48,7 +54,8 @@
       'shop-button': Button,
       ButtonSmall,
       SlideWrapper,
-      Slide
+      Slide,
+      'page-content': Content
     },
     data () {
       return {
@@ -132,13 +139,13 @@
   .prodQty > span
   {
     font-size: 12px;
-    line-height: 24px;
+    line-height: 22px;
   }
 
   .hitClass
   {
     width: 48px;
-    height: 22px;
+    height: 32px;
     position: absolute;
     text-align: center;
     top: 0;
@@ -148,7 +155,7 @@
 
   .hitClass > span
   {
-    line-height: 22px;
+    line-height: 32px;
     font-size: 12px;
   }
 

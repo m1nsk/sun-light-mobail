@@ -41,7 +41,6 @@
   {
     width: 64px;
     height: 64px;
-    margin-left: 10px;
   }
 
   .shop__icon

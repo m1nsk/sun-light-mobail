@@ -1,24 +1,26 @@
 <template>
-  <div class="success">
+  <div>
     <title-header title="Успех"></title-header>
-    <div class="success__detail">
-      <div class="success__reserve">
-        <span><b>Резерв №{{ successData.id }} создан</b></span>
+    <second-footer>
+      <menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer>
+    </second-footer>
+    <page-content class="content-padding-bottom">
+      <div class="content-layout">
+        <div class="success__reserve">
+          <span><b>Резерв №{{ successData.id }} создан</b></span>
+        </div>
+        <div class="success__price">
+          <span>Общая стоимость {{ successData.price }}</span>
+        </div>
+        <hr class="max-width hr" color="gray" size="1px"/>
+        <div class="success__info">
+          <span>{{ successData.info }}</span>
+        </div>
+        <div class="success__prePay">
+          <span><b>Сумма предоплаты {{ successData.prePay }}</b></span>
+        </div>
       </div>
-      <div class="success__price">
-        <span>Общая стоимость {{ successData.price }}</span>
-      </div>
-      <hr class="max-width hr" color="gray" size="1px"/>
-      <div class="success__info">
-        <span>{{ successData.info }}</span>
-      </div>
-      <div class="success__prePay">
-        <span><b>Сумма предоплаты {{ successData.prePay }}</b></span>
-      </div>
-    </div>
-    <div class="success__button-area">
-    <menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer>
-  </div>
+    </page-content>
   </div>
 </template>
 
@@ -27,12 +29,16 @@
   import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
   import Button from 'appComponents/components/buttons/Button.vue'
   import MenuFooter from 'appComponents/components/footers/MenuFooter.vue'
+  import Content from '~/components/content'
+  import { SecondFooter } from '~/components/footer'
   export default {
     components: {
       TitleHeader,
       ContentWrapper,
       'shop-button': Button,
-      MenuFooter
+      MenuFooter,
+      SecondFooter,
+      'page-content': Content
     },
     data () {
       return {
@@ -66,7 +72,7 @@
 
   .success
   {
-    width: 100%;
+    width: 80%;
     height: 100%;
   }
 
@@ -111,12 +117,12 @@
   }
 
   .success__info
-   {
-     height: 80px;
-     display: table;
-     text-align: center;
-     width: 100%;
-   }
+  {
+    height: 80px;
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
 
   .success__info > span
   {

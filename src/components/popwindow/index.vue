@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 350px;">
+  <div>
     <overlay :show="mutableShow" :click="close"></overlay>
     <transition name="popwindow-modal">
       <div v-if="mutableShow"

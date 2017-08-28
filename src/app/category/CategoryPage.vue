@@ -1,14 +1,16 @@
 <template>
-  <content-wrapper>
-    <catalog-header :pageData="pageData.pageInfo" slot="header-menu"></catalog-header>
-    <div class="catalog__wrapper">
-      <div class="catalog__filter">
-        <filter-button v-for="item in pageData.filterList" :key="item.id" :data="item" @exclude="onFilterExclude(item)"></filter-button>
+  <div>
+    <catalog-header :pageData="pageData.pageInfo"></catalog-header>
+    <page-content class="content-padding-bottom">
+      <div class="content-layout">
+        <div class="catalog__filter">
+          <filter-button v-for="item in pageData.filterList" :key="item.id" :data="item" @exclude="onFilterExclude(item)"></filter-button>
+        </div>
+        <bannerItem :bannerImg="pageData.bannerImage"></bannerItem>
+        <product-banner-grid></product-banner-grid>
       </div>
-      <bannerItem :bannerImg="pageData.bannerImage"></bannerItem>
-      <product-banner-grid></product-banner-grid>
-    </div>
-  </content-wrapper>
+    </page-content>
+  </div>
 </template>
 
 <script>
@@ -18,6 +20,7 @@
   import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
   import FilterButton from 'appComponents/components/buttons/FilterButton.vue'
   import ProductBannerGrid from 'appComponents/components/banners/ProductBannerGrid.vue'
+  import Content from '~/components/content'
 
   export default {
     components: {
@@ -26,7 +29,8 @@
       ProductCardBanner,
       ContentWrapper,
       FilterButton,
-      ProductBannerGrid
+      ProductBannerGrid,
+      'page-content': Content
     },
     data () {
       return {
@@ -95,13 +99,5 @@
     width: 100%;
     display: inline-block;
     margin: 0 auto;
-  }
-
-  .catalog__wrapper
-  {
-    width: 80%;
-    padding-top: 5px;
-    margin: 0 auto;
-    max-width: 500px;
   }
 </style>

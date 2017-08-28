@@ -1,15 +1,14 @@
 <template>
   <div class="shop-card">
     <div class="shop-card__banner-wrapper">
-      <span class="shop-card__helper"></span>
       <img src="/static/logo.png" class="shop-card__banner">
     </div>
     <div class="shop-card__info">
-      <div class="shop-card__helper">
-          <div class="shop-card__title"><span>{{shopData.title}}</span></div>
-          <div class="shop-card__price"><span>{{shopData.price}}</span></div>
-          <div class="shop-card__shop"><span>{{shopData.shop}}</span></div>
-          <div class="shop-card__status"><span>{{shopData.status}}</span></div>
+        <span class="shop-card__helper"></span>
+        <div class="shop-card__title"><span>{{shopData.title}}</span></div>
+        <div class="shop-card__price"><span>{{shopData.price}}</span></div>
+        <div class="shop-card__shop"><span>{{shopData.shop}}</span></div>
+        <div class="shop-card__status"><span>{{shopData.status}}</span></div>
       </div>
     </div>
   </div>
@@ -35,35 +34,34 @@
 <style lang="less" scoped>
   .shop-card__info
   {
-    height: 100%;
     width: 70%;
-    display: inline-block;
+    height: 100%;
     float: left;
   }
 
   .shop-card
   {
     width: 100%;
-    height: 80px;
     position: relative;
     font-size: 16px;
     line-height: 18px;
     padding: 0 10px;
+    display: inline-block;
+    vertical-align: middle;
   }
 
   .shop-card__banner-wrapper
   {
     width: 30%;
     height: 100%;
-    white-space: nowrap; /* this is required unless you put the helper span closely near the img */
-    display: inline-block;
     float: left;
   }
 
-  .shop-card__helper {
-    display: inline-block;
-    height: 100%;
+  .shop-card__banner
+  {
     vertical-align: middle;
+    padding: 5px;
+    width: 100%;
   }
 
   .shop-card__title
@@ -117,12 +115,5 @@
     font-size: 10px;
     display: table-cell;
     vertical-align: middle;
-  }
-
-  .shop-card__banner
-  {
-    vertical-align: middle;
-    width: auto;
-    height: 90%;
   }
 </style>

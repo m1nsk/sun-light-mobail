@@ -1,33 +1,12 @@
 <template>
   <div class="filter">
-    <content-wrapper>
-      <TitleHeader title="Название категории" slot="header-menu"></TitleHeader>
+    <TitleHeader title="Название категории"></TitleHeader>
+    <page-content class="content-padding-bottom">
       <filter-card v-for="item in filterData" :key="item.id" @click.native="onFilterCliked" :filterData="item"></filter-card>
-      <!--
-      <list>
-        <list-item v-for="item in filterData" :key="item.id" @click.native="onFilterCliked">
-          <div class="item-content">
-            <div class="item-title-row">
-              <div class="item-title">
-                <div class="catalog__filter">
-                  <p>{{ item.title }}</p>
-                  <filter-button v-for="filter in item.filters" :key="filter.id" :data="filter"></filter-button>
-                </div>
-              </div>
-              <div class="item-after">
-                <div style="display: inline-block; float: right; padding-left: 5px">
-                  <img src="/static/myIcons/right-arrow.svg" width="16px"/>
-                </div>
-              </div>
-            </div>
-          </div>
-        </list-item>
-      </list>
-      -->
-    </content-wrapper>
-    <div class="filter__button-area">
-      <menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer>
-    </div>
+      <div class="filter__button-area">
+        <menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer>
+      </div>
+    </page-content>
     <pop-up ref="s" class="filter-settings-dialog" :isActive="show" width="70" height="45" @close="onPopUpClosed">
       <range-filter slot="content" v-if="type === 'range'"></range-filter>
       <list-filter slot="content" v-if="type === 'list'"></list-filter>

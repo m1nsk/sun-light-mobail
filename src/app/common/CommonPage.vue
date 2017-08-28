@@ -1,23 +1,25 @@
 <template>
-  <content-wrapper>
-    <TitleHeader title="Личный профиль" slot="header-menu"></TitleHeader>
-    <person-card :personData="personData"></person-card>
-    <list>
-      <list-item v-for="item in menuData" :key="item.id">
-        <div class="item-content">
-          <div class="item-title-row">
-            <div class="item-title" style="height: 40px; line-height: 40px">{{ item.title }}</div>
-            <div class="item-after">
-              <div v-if="item.value.add" style="display: inline-block; float: left">{{ item.value.value }}</div>
-              <div style="display: inline-block; float: right; padding-left: 5px">
-                <img src="/static/myIcons/right-arrow.svg" width="16px"/>
+  <div>
+    <TitleHeader title="Личный профиль"></TitleHeader>
+    <page-content class="content-padding-bottom">
+      <div class="content-layout">
+        <person-card :personData="personData"></person-card>
+        <list>
+          <list-item v-for="item in menuData" :key="item.id">
+            <div class="item-content">
+              <div class="item-title-row" style="height: 40px;">
+                <div class="item-title" style="font-size: .7rem;">{{ item.title }}</div>
+                <div class="item-after">
+                  <div v-if="item.value.add" style="float: left; font-size: .7rem;">{{ item.value.value }}</div>
+                  <img src="/static/myIcons/right-arrow.svg" style="display: inline-block; float: right; padding-left: 5px; width: 21px; height: 21px"/>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </list-item>
-    </list>
-  </content-wrapper>
+          </list-item>
+        </list>
+      </div>
+    </page-content>
+  </div>
 </template>
 
 <script>
@@ -25,6 +27,7 @@
   import PersonCard from 'appComponents/components/cards/PersonCard.vue'
   import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
   import { List, ListItem } from '~/components/list'
+  import Content from '~/components/content'
 
   export default {
     components: {
@@ -32,7 +35,8 @@
       PersonCard,
       TitleHeader,
       List,
-      ListItem
+      ListItem,
+      'page-content': Content
     },
     data () {
       return {
@@ -134,9 +138,9 @@
 </script>
 
 <style lang="less" scoped>
-.content
-{
-  height: 40px;
-  background-color: #0BB20C;
-}
+  .content
+  {
+    height: 40px;
+    background-color: #0BB20C;
+  }
 </style>
