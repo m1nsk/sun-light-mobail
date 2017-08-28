@@ -44,12 +44,14 @@
   .filter-title
   {
     font-size: 14px;
+    display: block;
   }
 
   .filter-list-string
   {
     font-size: 10px;
     color: #727a75;
+    display: block;
   }
 
   .filter

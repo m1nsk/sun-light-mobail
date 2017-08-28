@@ -103,4 +103,9 @@
     width: 80%;
     margin: 5px auto;
   }
+
+  .content-relative
+  {
+    position: relative;
+  }
 </style>

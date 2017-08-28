@@ -2,9 +2,11 @@
   <div class="filter">
     <TitleHeader title="Название категории"></TitleHeader>
     <page-content class="content-padding-bottom">
-      <filter-card v-for="item in filterData" :key="item.id" @click.native="onFilterCliked" :filterData="item"></filter-card>
-      <div class="filter__button-area">
-        <menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer>
+      <div class="content-layout">
+        <filter-card v-for="item in filterData" :key="item.id" @click.native="onFilterCliked" :filterData="item"></filter-card>
+        <div class="filter__button-area">
+          <menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer>
+        </div>
       </div>
     </page-content>
     <pop-up ref="s" class="filter-settings-dialog" :isActive="show" width="70" height="45" @close="onPopUpClosed">

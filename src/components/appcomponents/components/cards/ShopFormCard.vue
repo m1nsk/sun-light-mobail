@@ -54,6 +54,7 @@
   {
     width: 30%;
     max-width: 64px;
+    min-width: 48px;
     height: auto;
     float: left;
   }
