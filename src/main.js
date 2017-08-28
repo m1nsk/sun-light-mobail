@@ -9,6 +9,7 @@ import SmoothPicker from 'vue-smooth-picker'
 import 'animate.css/animate.min.css'
 import store from './store'
 import VueLazyload from 'vue-lazyload'
+import App from '~/app/App'
 
 Vue.use(VueRouter)
 Vue.use(Vum)
