@@ -63,9 +63,6 @@
   {
     width: 100%;
     height: 40px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
   }
 
   .reserve-form__person

@@ -53,7 +53,8 @@
   .shop-card__banner-wrapper
   {
     width: 30%;
-    height: 100%;
+    max-width: 64px;
+    height: auto;
     float: left;
   }
 

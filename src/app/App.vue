@@ -9,9 +9,11 @@
 
 <script>
   import MenuFooter from 'appComponents/components/footers/MenuFooter.vue'
+  import Page from '~/components/page'
 
   export default {
     components: {
+      Page,
       MenuFooter
     },
     data () {
@@ -46,24 +48,10 @@
 </script>
 
 <style lang="less">
-  .page {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #fff;
-  }
+  @import '../components/footer/footer.less';
 
   body, input, select, textarea {
     font-family: 'futurabookcregular',Arial,Helvetica,sans-serif;
-  }
-
-  .shadow
-  {
-    -webkit-box-shadow: 0px 1px 17px 0px rgba(0,0,0,0.33);
-    -moz-box-shadow: 0px 1px 17px 0px rgba(0,0,0,0.33);
-    box-shadow: 0px 1px 17px 0px rgba(0,0,0,0.33);
   }
 
   @font-face {
@@ -104,4 +92,15 @@
     }
   }
 
+  .content-padding-bottom
+  {
+    padding-bottom: @footer-height;
+  }
+
+  .content-layout
+  {
+    max-width: 500px;
+    width: 80%;
+    margin: 5px auto;
+  }
 </style>

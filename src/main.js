@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import FastClick from 'fastclick'
 import Vum from './vum.js'
 import RouteConfig from './route.js'
-import Index from '~/demos/Index'
+import App from '~/app/App'
 import 'vue-smooth-picker/dist/css/style.css'
 import SmoothPicker from 'vue-smooth-picker'
 import 'animate.css/animate.min.css'
@@ -24,7 +24,7 @@ const router = new VueRouter(RouteConfig)
 new Vue({
   store,
   router,
-  render: h => h(Index)
+  render: h => h(App)
 }).$mount('#app')
 
 // Vum.router(router)
