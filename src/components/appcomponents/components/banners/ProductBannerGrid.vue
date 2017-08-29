@@ -43,6 +43,6 @@
 
   .item
   {
-    float: left;
+    display: inline-block;
   }
 </style>

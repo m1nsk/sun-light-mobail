@@ -1,15 +1,17 @@
 <template>
   <div style="display: block">
     <catalog-header :pageData="pageInfo"></catalog-header>
-    <page-content class="content-padding-bottom">
+    <page-content>
       <scroll :on-infinite="onInfinite">
-      <div class="content-layout">
-        <div class="catalog__filter">
-          <filter-button v-for="item in filterList" :key="item.id" :data="item" @exclude="onFilterExclude(item)"></filter-button>
+        <div class="content-layout">
+          <div class="content-padded">
+            <div class="catalog__filter">
+              <filter-button v-for="item in filterList" :key="item.id" :data="item" @exclude="onFilterExclude(item)"></filter-button>
+            </div>
+            <bannerItem :bannerImg="bannerImage"></bannerItem>
+            <product-banner-grid :bannerList="bannerList"></product-banner-grid>
+          </div>
         </div>
-        <bannerItem :bannerImg="bannerImage"></bannerItem>
-        <product-banner-grid :bannerList="bannerList"></product-banner-grid>
-      </div>
       </scroll>
     </page-content>
   </div>
