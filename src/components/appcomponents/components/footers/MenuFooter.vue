@@ -1,5 +1,5 @@
 <template>
-    <page-footer>
+    <page-footer class="footer-shadow">
       <footer-item v-bind:class="{ 'active': currentView === item.name }" @click.native="changeView(item.name)" v-for="item in menuItemData" :key="item.id">
         <label>{{ item.title }}</label>
       </footer-item>

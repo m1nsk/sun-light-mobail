@@ -92,20 +92,36 @@
     }
   }
 
-  .content-padding-bottom
-  {
+  .content-padding-bottom {
     padding-bottom: @footer-height;
   }
 
-  .content-layout
-  {
-    max-width: 500px;
+  .content-layout {
     width: 80%;
+    max-width: 500px;
     margin: 5px auto;
   }
 
   .content-relative
   {
+    height: 100%;
     position: relative;
   }
+
+  .header-shadow
+  {
+    background:#FFF;
+    -webkit-box-shadow: 0 -4px 5px 2px #777;
+    -moz-box-shadow: 0 -4px 5px 2px #777;
+    box-shadow: 0 -4px 5px 2px #777;
+  }
+
+  .footer-shadow
+  {
+    background:#FFF;
+    -webkit-box-shadow: 0 4px 5px 2px #777;
+    -moz-box-shadow: 0 4px 5px 2px #777;
+    box-shadow: 0 4px 5px 2px #777;
+  }
+
 </style>

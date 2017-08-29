@@ -7,6 +7,7 @@
         <div class="shop__count">
           <span>Найдено {{ shopCount }} магазина</span>
         </div>
+        <a href=""></a>
         <shop-card v-for="item in shopsList" :shopData="item" :key="item.id" @click.native="onShopClicked"></shop-card>
       </div>
     </page-content>
@@ -31,14 +32,15 @@
       return {
         shopsList: [
           {
-            station: 'Сенная',
+            station: 'Сенная!!!!!!!!!!!!!!!!!!!!!!!!' +
+            ' !!!!!!!!!!!!!!!!!!!!!!!!!',
             address: 'village somewhere',
             worktime: '10:00 - 19:00',
             status: 'В наличии'
           },
           {
             station: 'Сенная',
-            address: 'village somewhere',
+            address: 'village somewhere!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
             worktime: '10:00 - 19:00',
             status: 'В наличии'
           },

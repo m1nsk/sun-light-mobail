@@ -1,8 +1,8 @@
 <template>
   <div class="product-card">
     <div class="product-card__banner-wrapper">
-      <img v-lazy="bannerData.img" class="product-card__banner"/>
-      <div class="product-card__hit-wrapper-outer" v-show="bannerData.isHit">
+      <img v-lazy="bannerData.image.mini" class="product-card__banner"/>
+      <div class="product-card__hit-wrapper-outer" v-if="bannerData.best">
         <div class="product-card__hit">
           <div class="product-card__hit-text">Хит</div>
         </div>
@@ -15,7 +15,7 @@
       </div>
       <div class="product-card__price-wrapper">
         <div class="product-card__price">
-          {{ bannerData.price }}
+          {{ bannerData.cost }}
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <page-header>
+  <page-header class="header-shadow">
     <header-link :left="true" :edge="false">
       <back-button></back-button>
     </header-link>

@@ -1,25 +1,29 @@
 <template>
-  <div>
-    <catalog-header :pageData="pageData.pageInfo"></catalog-header>
+  <div style="display: block">
+    <catalog-header :pageData="pageInfo"></catalog-header>
     <page-content class="content-padding-bottom">
+      <scroll :on-infinite="onInfinite">
       <div class="content-layout">
         <div class="catalog__filter">
-          <filter-button v-for="item in pageData.filterList" :key="item.id" :data="item" @exclude="onFilterExclude(item)"></filter-button>
+          <filter-button v-for="item in filterList" :key="item.id" :data="item" @exclude="onFilterExclude(item)"></filter-button>
         </div>
-        <bannerItem :bannerImg="pageData.bannerImage"></bannerItem>
-        <product-banner-grid></product-banner-grid>
+        <bannerItem :bannerImg="bannerImage"></bannerItem>
+        <product-banner-grid :bannerList="bannerList"></product-banner-grid>
       </div>
+      </scroll>
     </page-content>
   </div>
 </template>
 
 <script>
+  import { getCategoryProducts } from 'api/index'
   import CatalogHeader from 'appComponents/components/headers/CatalogHeader.vue'
   import BannerItem from 'appComponents/components/banners/BannerItem.vue'
   import ProductCardBanner from 'appComponents/components/banners/ProductCardBanner.vue'
   import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
   import FilterButton from 'appComponents/components/buttons/FilterButton.vue'
   import ProductBannerGrid from 'appComponents/components/banners/ProductBannerGrid.vue'
+  import Scroll from '~/components/scroll'
   import Content from '~/components/content'
 
   export default {
@@ -30,56 +34,28 @@
       ContentWrapper,
       FilterButton,
       ProductBannerGrid,
-      'page-content': Content
+      'page-content': Content,
+      Scroll
     },
     data () {
       return {
-        pageData: {
-          filterList: [
-            {title: 'Сначала Новые'},
-            {title: 'По Городу'},
-            {title: 'Сначала Дешевые'}
-          ],
-          bannerImage: '/static/logo.png',
-          pageInfo: {
-            num: '1',
-            total: '7',
-            category: 'Часы наручные'
-          },
-          bannerData: [
-            {
-              img: '/static/logo.png',
-              price: 1000,
-              isHit: true,
-              id: 0
-            },
-            {
-              img: '/static/logo.png',
-              price: 2000,
-              isHit: false,
-              id: 1
-            },
-            {
-              img: '/static/logo.png',
-              price: 3000,
-              isHit: true,
-              id: 2
-            },
-            {
-              img: '/static/logo.png',
-              price: 4000,
-              isHit: false,
-              id: 3
-            },
-            {
-              img: '/static/logo.png',
-              price: 5000,
-              isHit: false,
-              id: 4
-            }
-          ]
-        }
+        pageInfo: {
+          num: '1',
+          total: '7',
+          category: 'Часы наручные'
+        },
+        filterList: [
+          {title: 'Сначала Новые'},
+          {title: 'По Городу'},
+          {title: 'Сначала Дешевые'}
+        ],
+        bannerImage: '/static/logo.png',
+        bannerList: [],
+        productCounter: 0
       }
+    },
+    created: function () {
+      this.uploadProducts()
     },
     methods: {
       onProductClicked (item) {
@@ -88,6 +64,27 @@
       },
       onFilterExclude (item) {
         console.log(item.title)
+      },
+      onInfinite (done) {
+        this.uploadProducts()
+      },
+      uploadProducts (take = 2) {
+        console.log(this.productCounter)
+        let catalogId = this.$route.params.category
+        let promise = getCategoryProducts({
+          skip: this.productCounter,
+          take: take,
+          sort: 'id',
+          order: 'asc',
+          catalog_id: catalogId
+        })
+        this.productCounter += 2
+        promise.then((response) => {
+          for (let index = 0; index < response.data.data.length; index++) {
+            this.bannerList.push(response.data.data[index])
+          }
+          console.log(this.bannerList)
+        })
       }
     }
   }

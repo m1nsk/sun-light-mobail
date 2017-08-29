@@ -3,20 +3,25 @@
     <main-header></main-header>
     <page-content style="background-color:#ff0000" class="content-padding-bottom">
       <div class="content-layout">
-      <router-link tag="li" :to="{name: 'category', params: { category: item.link }}" v-for="item in catalogItems" :key="item.id" class="catalog__item">
-        <div class="catalog__title">
-          <span>{{ item.title }}</span>
+        <div tag="li"v-for="item in catalogItems" :key="item.id" class="catalog__item">
+          <router-link v-if="item.type !== banner" :to="{name: 'category', params: { category: item.id }}" class="catalog__title">
+            <div>
+              <span>{{ item.label }}</span>
+            </div>
+          </router-link>
+          <router-link :to="{name: 'category', params: { category: item.id }}" class="catalog__title" v-else>
+            <banner-item :bannerImg="banner" v-if="item.banner !== null">
+            </banner-item>
+          </router-link>
+          <hr align="center" width="80%" color="white" size="1px"/>
         </div>
-        <banner-item :bannerImg="item.banner" v-if="item.banner !== null">
-        </banner-item>
-        <hr align="center" width="80%" color="white" size="1px"/>
-      </router-link>
       </div>
     </page-content>
   </div>
 </template>
 
 <script>
+  import { getCatalogs } from 'api/index'
   import Content from '~/components/content'
   import MainHeader from 'appComponents/components/headers/MainHeader.vue'
   import BannerItem from 'appComponents/components/banners/BannerItem.vue'
@@ -31,53 +36,16 @@
     data () {
       return {
         catalogItems: [
-          {
-            title: 'Новинки',
-            banner: '/static/logo.png',
-            link: 'new'
-          },
-          {
-            title: 'Одежда',
-            banner: null,
-            link: 'wear'
-          },
-          {
-            title: 'Мотоциклы',
-            banner: '/static/logo.png',
-            link: 'moto'
-          },
-          {
-            title: 'Новинки',
-            banner: null,
-            link: 'new'
-          },
-          {
-            title: 'Одежда',
-            banner: '/static/logo.png',
-            link: 'wear'
-          },
-          {
-            title: 'Мотоциклы',
-            banner: null,
-            link: 'moto'
-          },
-          {
-            title: 'Новинки',
-            banner: null,
-            link: 'new'
-          },
-          {
-            title: 'Одежда',
-            banner: '/static/logo.png',
-            link: 'wear'
-          },
-          {
-            title: 'Мотоциклы',
-            banner: null,
-            link: 'moto'
-          }
-        ]
+        ],
+        banner: '/static/logo.png'
       }
+    },
+    created: function () {
+      let promise = getCatalogs()
+      promise.then((response) => {
+        this.catalogItems = response.data.data
+        console.log(response.data)
+      })
     },
     methods: {
       onRefresh (done) {

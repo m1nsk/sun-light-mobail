@@ -1,23 +1,25 @@
 <template>
-    <list>
-      <list-item>
-        <div class="item-media"><img class="shop__banner" src="static/logo.png"></div>
-        <div class="item-content">
-          <div class="item-title-row">
-            <div class="item-title">
+  <list>
+    <list-item>
+      <div class="item-media"><img class="shop__banner" src="static/logo.png"></div>
+      <div class="item-content">
+        <div class="item-title-row">
+          <div class="item-title">
+            <div class="info-wrapper">
               <div><b>{{ shopData.station }}</b></div>
               <div>{{ shopData.address }}</div>
               <div>{{ shopData.worktime }}</div>
               <div>{{ shopData.status }}</div>
             </div>
-            <div class="item-after">
-              <img src="/static/myIcons/right-arrow.svg" class="shop__icon">
-            </div>
           </div>
         </div>
-      </list-item>
-      <heart-mark-component class="shop__heart-mark"></heart-mark-component>
-    </list>
+      </div>
+    </list-item>
+    <heart-mark-component class="shop__heart-mark on-top"></heart-mark-component>
+    <div class="shop_right-arrow on-top">
+      <img src="/static/myIcons/right-arrow.svg" class="shop__icon">
+    </div>
+  </list>
 </template>
 
 <script>
@@ -56,6 +58,30 @@
   {
     position: absolute;
     top: 0;
-    right: 9px;
+    right: 0;
+  }
+
+  .shop_right-arrow
+  {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+  }
+
+  .info-wrapper
+  {
+    display: inline-block;
+    width: 140px;
+    overflow: hidden;
+  }
+
+  .info-wrapper > div
+  {
+    overflow: hidden;
+  }
+
+  .on-top
+  {
+    z-index: 1;
   }
 </style>

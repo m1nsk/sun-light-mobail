@@ -46,7 +46,7 @@
     position: relative;
     font-size: 16px;
     line-height: 18px;
-    padding: 0 10px;
+    padding: 0 .75rem;
   }
 
   .person__banner-wrapper

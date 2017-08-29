@@ -2,7 +2,7 @@
   <div class="page">
     <slot name="header-menu"></slot>
     <page-content class="content">
-      <scroll :enableInfinite="false" :enableRefresh="false" class="scroll">
+      <scroll :enableInfinite="false" :onRefresh="onRefresh" class="scroll">
         <slot name="slider"></slot>
         <div class='contentWrapper'>
           <slot></slot>

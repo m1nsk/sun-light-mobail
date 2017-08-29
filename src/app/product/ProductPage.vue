@@ -1,22 +1,21 @@
 <template>
   <div>
-    <product-header></product-header>
+    <product-header :product_id="productData.product_id"></product-header>
     <page-content class="content-padding-bottom">
       <div class="slider">
         <div class="prodName max-width">
-          <span>Кольцо золотое</span>
-          <div class="hitClass">
+          <span>{{ productData.label }}</span>
+          <div v-if="productData.best" class="hitClass">
             <span>Хит</span>
           </div>
         </div>
         <slide-wrapper class="sliderWrapper">
-          <slide><img class="sliderImg" src="/static/example/demo1.jpg"/></slide>
-          <slide><img class="sliderImg" src="/static/example/demo2.jpg"/></slide>
+          <slide v-for="img in productData.gallery"  :key="item.id"><img class="sliderImg" src="img.mini"/></slide>
         </slide-wrapper>
       </div>
       <div class="content-layout">
         <div class="prodPrice max-width">
-          <span>до 1000000 р.</span>
+          <span>до {{productData.cost}} р.</span>
         </div>
         <shop-button @click.native="onReserveClicked" caption="Оформить резерв" class="reservBtn max-width" ></shop-button>
         <div class="prodQty max-width">
@@ -24,7 +23,7 @@
         </div>
         <hr class="max-width hr" color="gray" size="1px"/>
         <div class="prodDescription max-width">
-          ed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam
+          {{ productData.description }}
         </div>
         <hr class="max-width hr" color="gray" size="1px"/>
         <div class="btnArea max-width">
@@ -38,6 +37,7 @@
 </template>
 
 <script>
+  import { getProduct } from 'api/index'
   import { SlideWrapper, Slide } from '~/components/slide'
   import ProductHeader from 'appComponents/components/headers/ProductHeader.vue'
   import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
@@ -59,7 +59,7 @@
     },
     data () {
       return {
-        pageData: {
+        productData: {
           bannerImage: '/static/logo.png',
           pageInfo: {
             num: '1',
@@ -68,6 +68,13 @@
           }
         }
       }
+    },
+    created: function () {
+      let promise = getProduct(this.$route.params.product)
+      promise.then((response) => {
+        console.log(response.data.data)
+        this.productData = response.data.data
+      })
     },
     methods: {
       onReserveClicked () {
