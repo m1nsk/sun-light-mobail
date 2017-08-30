@@ -137,8 +137,7 @@ export default {
       let ptrHeight = this.onRefresh ? this.$el.querySelector('.pull-to-refresh-layer').clientHeight : 0
       let infiniteHeight = this.$el.querySelector('.infinite-layer').clientHeight
       let bottom = innerHeight - outerHeight - scrollTop - ptrHeight
-
-      if (bottom < infiniteHeight) this.infinite()
+      if (bottom <= infiniteHeight) this.infinite()
     }
   }
 }

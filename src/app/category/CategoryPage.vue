@@ -1,8 +1,8 @@
 <template>
-  <div style="display: block">
+  <div>
     <catalog-header :pageData="pageInfo"></catalog-header>
     <page-content>
-      <scroll :on-infinite="onInfinite">
+      <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!loadedFlag" class="scroll">
         <div class="content-layout">
           <div class="content-padded">
             <div class="catalog__filter">
@@ -22,7 +22,6 @@
   import CatalogHeader from 'appComponents/components/headers/CatalogHeader.vue'
   import BannerItem from 'appComponents/components/banners/BannerItem.vue'
   import ProductCardBanner from 'appComponents/components/banners/ProductCardBanner.vue'
-  import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
   import FilterButton from 'appComponents/components/buttons/FilterButton.vue'
   import ProductBannerGrid from 'appComponents/components/banners/ProductBannerGrid.vue'
   import Scroll from '~/components/scroll'
@@ -33,7 +32,6 @@
       BannerItem,
       CatalogHeader,
       ProductCardBanner,
-      ContentWrapper,
       FilterButton,
       ProductBannerGrid,
       'page-content': Content,
@@ -41,6 +39,7 @@
     },
     data () {
       return {
+        fullHeight: '0',
         pageInfo: {
           num: '1',
           total: '7',
@@ -53,11 +52,17 @@
         ],
         bannerImage: '/static/logo.png',
         bannerList: [],
-        productCounter: 0
+        productCounter: 0,
+        loadedFlag: false
       }
     },
-    created: function () {
-      this.uploadProducts()
+    mounted: function () {
+      this.uploadProducts(2)
+    },
+    computed: {
+      windowSize () {
+        return this.$store.getters.getWindowSize
+      }
     },
     methods: {
       onProductClicked (item) {
@@ -68,7 +73,8 @@
         console.log(item.title)
       },
       onInfinite (done) {
-        this.uploadProducts()
+        this.uploadProducts(this.productCounter)
+        done()
       },
       uploadProducts (take = 2) {
         console.log(this.productCounter)
@@ -85,7 +91,6 @@
           for (let index = 0; index < response.data.data.length; index++) {
             this.bannerList.push(response.data.data[index])
           }
-          console.log(this.bannerList)
         })
       }
     }
@@ -93,10 +98,16 @@
 </script>
 
 <style lang="less" scoped>
+  @import "../../components/header/variables.less";
   .catalog__filter
   {
     width: 100%;
     display: inline-block;
     margin: 0 auto;
+  }
+
+  .scroll
+  {
+    margin-top: @nav-height;
   }
 </style>

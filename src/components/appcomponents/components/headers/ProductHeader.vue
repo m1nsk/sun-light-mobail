@@ -15,7 +15,7 @@
         <img src="/static/myIcons/heart.svg" class="header__icon">
       </div>
     </header-link>
-    <header-title>{{ product_id }}</header-title>
+    <header-title>Артикул: {{ product_id }}</header-title>
   </page-header>
 </template>
 

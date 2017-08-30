@@ -30,7 +30,7 @@
           <button-small @click.native="onMarkedClicked" caption="Может понравиться" class="markedBtn" ></button-small>
           <button-small @click.native="onSeenClicked" caption="Просмотренные" class="seenBtn" ></button-small>
         </div>
-        <product-banner-grid style="width: 80%;"></product-banner-grid>
+        <product-banner-grid :bannerList="bannerList"></product-banner-grid>
       </div>
     </page-content>
   </div>

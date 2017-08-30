@@ -111,17 +111,17 @@
   .header-shadow
   {
     background:#FFF;
-    -webkit-box-shadow: 0 -4px 5px 2px #777;
-    -moz-box-shadow: 0 -4px 5px 2px #777;
-    box-shadow: 0 -4px 5px 2px #777;
+    -webkit-box-shadow: 0 -3.4px 5px 2px #777;
+    -moz-box-shadow: 0 -3.4px 5px 2px #777;
+    box-shadow: 0 -3.4px 5px 2px #777;
   }
 
   .footer-shadow
   {
     background:#FFF;
-    -webkit-box-shadow: 0 4px 5px 2px #777;
-    -moz-box-shadow: 0 4px 5px 2px #777;
-    box-shadow: 0 4px 5px 2px #777;
+    -webkit-box-shadow: 0 3.4px 5px 2px #777;
+    -moz-box-shadow: 0 3.4px 5px 2px #777;
+    box-shadow: 0 3.4px 5px 2px #777;
   }
 
 </style>

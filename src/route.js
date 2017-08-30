@@ -26,7 +26,7 @@ export default {
         { path: 'profile', name: 'profile', component: ProfilePage },
         { path: 'favorites', name: 'favorites', component: FavoritesPage },
         { path: 'filter', name: 'filter', component: FilterPage },
-        { path: 'common', component: CommonPage },
+        { path: 'common', name: 'common', component: CommonPage },
         { path: 'catalog/:category', name: 'category', component: CategoryPage },
         { path: 'catalog/:category/:product', name: 'product', component: ProductPage },
         { path: 'catalog/:category/:product/reserve', name: 'reserve', component: ReserveShopPage },
