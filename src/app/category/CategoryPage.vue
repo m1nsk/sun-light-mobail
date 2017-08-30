@@ -1,8 +1,9 @@
 <template>
   <div>
     <catalog-header :pageData="pageInfo"></catalog-header>
-    <page-content>
-      <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!loadedFlag" class="scroll">
+    <page-content style="padding-top: 150px">
+      <h1> {{ windowSize }} </h1>
+      <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!flagLoaded">
         <div class="content-layout">
           <div class="content-padded">
             <div class="catalog__filter">
@@ -39,12 +40,6 @@
     },
     data () {
       return {
-        fullHeight: '0',
-        pageInfo: {
-          num: '1',
-          total: '7',
-          category: 'Часы наручные'
-        },
         filterList: [
           {title: 'Сначала Новые'},
           {title: 'По Городу'},
@@ -53,15 +48,43 @@
         bannerImage: '/static/logo.png',
         bannerList: [],
         productCounter: 0,
-        loadedFlag: false
+        flagLoaded: false,
+        totalCount: 0,
+        productsInResponse: 2
       }
     },
     mounted: function () {
-      this.uploadProducts(2)
+      let height = document.documentElement.clientHeight
+      let width = document.documentElement.clientWidth
+      let size = Math.round((width * 8 / 10) / 2 - 10)
+      console.log(height / size)
+      this.productsInResponse = Math.ceil(height / size) * 2
+      this.uploadProducts(this.productsInResponse)
     },
     computed: {
       windowSize () {
-        return this.$store.getters.getWindowSize
+        let windowSize = this.$store.getters.getWindowSize
+        let bannerSize = this.$store.getters.getBannerSize
+        let orientation = this.$store.getters.getWindowOrientation.type
+        let fitCount = this.productsInResponse
+        console.log(orientation, 'orientation')
+        if (orientation === 'portrait-primary') {
+          fitCount = Math.ceil(windowSize.height / bannerSize.height)
+          console.log(windowSize.height, bannerSize.height, fitCount)
+          if (Math.ceil(this.productCounter / 2) < fitCount) {
+            this.productsInResponse = fitCount
+            this.uploadProducts(fitCount - this.productCounter / 2)
+          }
+        }
+        return windowSize
+      },
+      pageInfo () {
+        console.log(this.productCounter)
+        return {
+          num: Math.ceil(this.productCounter / this.productsInResponse),
+          total: Math.ceil(this.totalCount / this.productsInResponse),
+          category: 'Часы наручные'
+        }
       }
     },
     methods: {
@@ -73,11 +96,17 @@
         console.log(item.title)
       },
       onInfinite (done) {
-        this.uploadProducts(this.productCounter)
+        if (!this.flagLoaded) {
+          if (this.productsInResponse + this.productCounter < this.totalCount) {
+            this.uploadProducts(this.productsInResponse)
+          } else {
+            this.uploadProducts(this.totalCount - this.productCounter)
+            this.flagLoaded = true
+          }
+        }
         done()
       },
       uploadProducts (take = 2) {
-        console.log(this.productCounter)
         let catalogId = this.$route.params.category
         let promise = getCategoryProducts({
           skip: this.productCounter,
@@ -86,10 +115,14 @@
           order: 'asc',
           catalog_id: catalogId
         })
-        this.productCounter += 2
+        this.productCounter += take
         promise.then((response) => {
           for (let index = 0; index < response.data.data.length; index++) {
             this.bannerList.push(response.data.data[index])
+            this.totalCount = response.data.totalCount
+            if (this.productCounter >= this.totalCount) {
+              this.flagLoaded = true
+            }
           }
         })
       }
@@ -106,8 +139,4 @@
     margin: 0 auto;
   }
 
-  .scroll
-  {
-    margin-top: @nav-height;
-  }
 </style>

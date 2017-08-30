@@ -7,13 +7,15 @@ const state = {
   windowSize: {
     height: '',
     width: ''
-  }
+  },
+  orientation: ''
 }
 
 // getters
 const getters = {
   getBannerSize: state => state.bannerSize,
-  getWindowSize: state => state.windowSize
+  getWindowSize: state => state.windowSize,
+  getWindowOrientation: state => state.orientation
 }
 
 // actions
