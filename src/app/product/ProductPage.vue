@@ -2,59 +2,71 @@
   <div>
     <product-header :product_id="productData.product_id"></product-header>
     <page-content class="content-padding-bottom">
-      <div class="slider">
-        <div class="prodName max-width">
-          <span>{{ productData.label }}</span>
-          <div v-if="productData.best" class="hitClass">
-            <span>Хит</span>
+      <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!flagLoaded" :infiniteLoading="reloadStatus">
+        <div class="slider">
+          <div class="prodName max-width">
+            <span>{{ productData.label }}</span>
+            <div v-if="productData.best" class="hitClass">
+              <span>Хит</span>
+            </div>
           </div>
+          <slide-wrapper class="sliderWrapper">
+            <slide v-for="img in productData.gallery"  :key="item.id"><img class="sliderImg" src="img.mini"/></slide>
+          </slide-wrapper>
         </div>
-        <slide-wrapper class="sliderWrapper">
-          <slide v-for="img in productData.gallery"  :key="item.id"><img class="sliderImg" src="img.mini"/></slide>
-        </slide-wrapper>
-      </div>
-      <div class="content-layout">
-        <div class="prodPrice max-width">
-          <span>до {{productData.cost}} р.</span>
+        <div class="content-layout">
+          <div class="prodPrice max-width">
+            <span>до {{productData.cost}} р.</span>
+          </div>
+          <shop-button @click.native="onReserveClicked" caption="Оформить резерв" class="reservBtn max-width" ></shop-button>
+          <div class="prodQty max-width">
+            <span>В наличии в магазинах 10 </span>
+          </div>
+          <hr class="max-width hr" color="gray" size="1px"/>
+          <div class="prodDescription max-width">
+            {{ productData.description }}
+          </div>
+          <hr class="max-width hr" color="gray" size="1px"/>
+          <div class="btnArea max-width">
+            <button-small @click.native="onMarkedClicked" caption="Может понравиться" class="markedBtn" ></button-small>
+            <button-small @click.native="onSeenClicked" caption="Просмотренные" class="seenBtn" ></button-small>
+          </div>
+          <custom-data-grid url="/products" :onReload="onReload" @flagLoaded="onFlagLoaded">
+            <template slot="content" scope="props">
+              <product-card-banner v-for="item in props.dataList" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)" class="item"></product-card-banner>
+            </template>
+          </custom-data-grid>
         </div>
-        <shop-button @click.native="onReserveClicked" caption="Оформить резерв" class="reservBtn max-width" ></shop-button>
-        <div class="prodQty max-width">
-          <span>В наличии в магазинах 10 </span>
-        </div>
-        <hr class="max-width hr" color="gray" size="1px"/>
-        <div class="prodDescription max-width">
-          {{ productData.description }}
-        </div>
-        <hr class="max-width hr" color="gray" size="1px"/>
-        <div class="btnArea max-width">
-          <button-small @click.native="onMarkedClicked" caption="Может понравиться" class="markedBtn" ></button-small>
-          <button-small @click.native="onSeenClicked" caption="Просмотренные" class="seenBtn" ></button-small>
-        </div>
-        <product-banner-grid :bannerList="bannerList"></product-banner-grid>
-      </div>
+      </scroll>
     </page-content>
   </div>
 </template>
 
 <script>
   import { getProduct } from 'api/index'
+  import scrollMixin from '~/mixins/scrollMixin.vue'
   import { SlideWrapper, Slide } from '~/components/slide'
   import ProductHeader from 'appComponents/components/headers/ProductHeader.vue'
   import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
   import Button from 'appComponents/components/buttons/Button.vue'
   import ButtonSmall from 'appComponents/components/buttons/ButtonSmall.vue'
-  import ProductBannerGrid from 'appComponents/components/banners/ProductBannerGrid.vue'
+  import ProductCardBanner from 'appComponents/components/banners/ProductCardBanner.vue'
+  import CustomDataGrid from 'appComponents/components/banners/CustomDataGrid.vue'
+  import Scroll from '~/components/customScroll'
   import Content from '~/components/content'
 
   export default {
+    extends: scrollMixin,
     components: {
       ProductHeader,
       ContentWrapper,
-      ProductBannerGrid,
       'shop-button': Button,
       ButtonSmall,
       SlideWrapper,
       Slide,
+      ProductCardBanner,
+      CustomDataGrid,
+      Scroll,
       'page-content': Content
     },
     data () {
@@ -65,8 +77,7 @@
             num: '1',
             total: '7',
             category: 'Часы наручные'
-          },
-          bannerList: {}
+          }
         }
       }
     },
@@ -89,7 +100,7 @@
         console.log('clicked')
       },
       onProductClicked (item) {
-        console.log(item.id)
+        this.$router.push(this.$route.path + '/' + item.id)
       }
     }
   }

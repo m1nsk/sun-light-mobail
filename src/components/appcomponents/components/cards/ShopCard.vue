@@ -6,7 +6,6 @@
         <div class="item-title-row">
           <div class="item-title">
             <div class="info-wrapper">
-              <div class="shop-station"><b>{{ shopData.station }}</b></div>
               <div class="shop-station">{{ shopData.label }}</div>
               <div class="shop-station">{{ shopData.address }}</div>
               <div class="shop-station">{{ shopData.working_hours }}</div>

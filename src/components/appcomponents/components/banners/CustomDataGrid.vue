@@ -1,6 +1,6 @@
 <template>
   <div class="productGridWrapper">
-    <slot name="content" :bannerList="bannerList"></slot>
+    <slot name="content" :dataList="dataList"></slot>
   </div>
 </template>
 
@@ -10,11 +10,12 @@
     props: ['onReload', 'url'],
     data () {
       return {
-        bannerList: [],
+        dataList: [],
         productCounter: 0,
         flagLoaded: false,
         totalCount: 0,
-        takeCount: 0
+        takeCount: 0,
+        productsInResponse: 0
       }
     },
     mounted: function () {
@@ -86,7 +87,7 @@
         this.productCounter += take
         promise.then((response) => {
           for (let index = 0; index < response.data.data.length; index++) {
-            this.bannerList.push(response.data.data[index])
+            this.dataList.push(response.data.data[index])
             this.totalCount = response.data.totalCount
             if (this.productCounter >= this.totalCount) {
               this.flagLoaded = true
