@@ -72,12 +72,7 @@
     data () {
       return {
         productData: {
-          bannerImage: '/static/logo.png',
-          pageInfo: {
-            num: '1',
-            total: '7',
-            category: 'Часы наручные'
-          }
+          bannerImage: '/static/logo.png'
         }
       }
     },
