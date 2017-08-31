@@ -37,7 +37,7 @@
 <script>
 export default {
   props: {
-    reloadStatus: {
+    infiniteLoadingValue: {
       type: Boolean,
       default: false
     },
@@ -69,16 +69,7 @@ export default {
       top: 0,
       state: 0, // 0:down, 1: up, 2: refreshing
       startY: 0,
-      touching: false,
-      infiniteLoading: false
-    }
-  },
-  computed: {
-    reloadStatusComputed () {
-      if (this.reloadStatus) {
-        this.infiniteDone()
-        this.reloadStatus = false
-      }
+      touching: false
     }
   },
   methods: {
