@@ -2,7 +2,7 @@
   <div>
     <catalog-header :pageData="pageInfo"></catalog-header>
     <page-content style="padding-top: 150px">
-      <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!flagLoaded">
+      <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!flagLoaded" :reloadStatus="reloadStatus">
         <div class="content-layout">
           <div class="content-padded">
             <div class="catalog__filter">
@@ -24,7 +24,7 @@
   import ProductCardBanner from 'appComponents/components/banners/ProductCardBanner.vue'
   import FilterButton from 'appComponents/components/buttons/FilterButton.vue'
   import ProductBannerGrid from 'appComponents/components/banners/ProductBannerGrid.vue'
-  import Scroll from '~/components/scroll'
+  import Scroll from '~/components/customScroll'
   import Content from '~/components/content'
 
   export default {
@@ -49,7 +49,8 @@
         productCounter: 0,
         flagLoaded: false,
         totalCount: 0,
-        takeCount: 0
+        takeCount: 0,
+        reloadStatus: false
       }
     },
     mounted: function () {
@@ -104,6 +105,7 @@
         console.log(item.title)
       },
       onInfinite (done) {
+        this.reloadStatus = false
         if (!this.flagLoaded) {
           if (this.productsInResponse + this.productCounter < this.totalCount) {
             this.uploadProducts(this.productsInResponse)
@@ -112,7 +114,7 @@
             this.flagLoaded = true
           }
         }
-        done()
+        this.reloadStatus = true
       },
       uploadProducts (take = 2) {
         let catalogId = this.$route.params.category

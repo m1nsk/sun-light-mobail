@@ -21,3 +21,7 @@ export function getCategoryProducts (catalogIdData) {
 export function getMarkets (catalogIdData) {
   return axios.post('/markets', catalogIdData)
 }
+
+export function getCustomData (url, catalogIdData) {
+  return axios.post(url, catalogIdData)
+}
