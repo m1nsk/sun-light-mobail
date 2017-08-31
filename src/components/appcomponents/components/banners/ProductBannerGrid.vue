@@ -39,6 +39,8 @@
     width: 100%;
     max-width: 500px;
     margin: auto;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .item

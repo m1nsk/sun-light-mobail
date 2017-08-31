@@ -15,6 +15,9 @@ export function getProduct (productId) {
 }
 
 export function getCategoryProducts (catalogIdData) {
-  console.log(catalogIdData, 'catalogData')
   return axios.post('/products', catalogIdData)
+}
+
+export function getMarkets (catalogIdData) {
+  return axios.post('/markets', catalogIdData)
 }

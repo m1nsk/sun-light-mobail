@@ -2,7 +2,6 @@
   <div>
     <catalog-header :pageData="pageInfo"></catalog-header>
     <page-content style="padding-top: 150px">
-      <h1> {{ windowSize }} </h1>
       <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!flagLoaded">
         <div class="content-layout">
           <div class="content-padded">
@@ -50,36 +49,45 @@
         productCounter: 0,
         flagLoaded: false,
         totalCount: 0,
-        productsInResponse: 2
+        takeCount: 0
       }
     },
     mounted: function () {
       let height = document.documentElement.clientHeight
       let width = document.documentElement.clientWidth
       let size = Math.round((width * 8 / 10) / 2 - 10)
-      console.log(height / size)
       this.productsInResponse = Math.ceil(height / size) * 2
-      this.uploadProducts(this.productsInResponse)
+      // this.uploadProducts(this.productsInResponse)
+    },
+    watch: {
+      restToLoad () {
+        if (!this.flagLoaded) {
+          console.log(this.restToLoad, 'rest to load')
+          this.uploadProducts(this.restToLoad)
+        }
+      }
     },
     computed: {
-      windowSize () {
-        let windowSize = this.$store.getters.getWindowSize
-        let bannerSize = this.$store.getters.getBannerSize
-        let orientation = this.$store.getters.getWindowOrientation.type
-        let fitCount = this.productsInResponse
-        console.log(orientation, 'orientation')
-        if (orientation === 'portrait-primary') {
-          fitCount = Math.ceil(windowSize.height / bannerSize.height)
-          console.log(windowSize.height, bannerSize.height, fitCount)
-          if (Math.ceil(this.productCounter / 2) < fitCount) {
-            this.productsInResponse = fitCount
-            this.uploadProducts(fitCount - this.productCounter / 2)
+      restToLoad () {
+        if (!this.flagLoaded) {
+          let windowSize = this.$store.getters.getWindowSize
+          let bannerSize = this.$store.getters.getBannerSize
+          let orientation = this.$store.getters.getWindowOrientation.type
+          let restCount = 0
+          console.log(orientation, 'orientation')
+          console.log(restCount, 'restcount')
+          if (windowSize && bannerSize && orientation !== undefined) {
+            restCount = Math.ceil(windowSize.height / bannerSize.height) * 2
+            if (Math.ceil(this.productCounter / 2 % restCount !== 0)) {
+              this.productsInResponse = restCount
+              console.log(restCount, this.productCounter, 'rest and counter')
+              return restCount - this.productCounter % restCount
+            }
           }
         }
-        return windowSize
+        return this.productsInResponse
       },
       pageInfo () {
-        console.log(this.productCounter)
         return {
           num: Math.ceil(this.productCounter / this.productsInResponse),
           total: Math.ceil(this.totalCount / this.productsInResponse),

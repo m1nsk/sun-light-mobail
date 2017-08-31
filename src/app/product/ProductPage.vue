@@ -65,7 +65,8 @@
             num: '1',
             total: '7',
             category: 'Часы наручные'
-          }
+          },
+          bannerList: {}
         }
       }
     },

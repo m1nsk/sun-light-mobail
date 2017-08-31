@@ -64,7 +64,6 @@
   .product-card
   {
     width: 50%;
-    cursor: pointer;
   }
 
   .product-card__banner-wrapper

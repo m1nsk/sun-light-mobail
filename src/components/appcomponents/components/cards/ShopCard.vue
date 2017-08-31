@@ -6,10 +6,12 @@
         <div class="item-title-row">
           <div class="item-title">
             <div class="info-wrapper">
-              <div><b>{{ shopData.station }}</b></div>
-              <div>{{ shopData.address }}</div>
-              <div>{{ shopData.worktime }}</div>
-              <div>{{ shopData.status }}</div>
+              <div class="shop-station"><b>{{ shopData.station }}</b></div>
+              <div class="shop-station">{{ shopData.label }}</div>
+              <div class="shop-station">{{ shopData.address }}</div>
+              <div class="shop-station">{{ shopData.working_hours }}</div>
+              <div class="shop-phone">{{ shopData.phone }}</div>
+              <div class="shop-station">{{ shopData.status }}</div>
             </div>
           </div>
         </div>
@@ -83,5 +85,10 @@
   .on-top
   {
     z-index: 1;
+  }
+
+  .shop-phone
+  {
+    font-size: 12px;
   }
 </style>

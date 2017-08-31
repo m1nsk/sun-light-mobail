@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <transition name="slide">
-      <router-view></router-view>
+      <router-view class="page-slide"></router-view>
     </transition>
     <menu-footer @view="changeView" :menuItemData="menuItemData"></menu-footer>
   </div>
@@ -90,6 +90,12 @@
       opacity: 0;
       transform: translate3d(70%, 0, 0);
     }
+  }
+
+  .page-slide
+  {
+    height: 100%;
+    width: 100%;
   }
 
   .content-padding-bottom {

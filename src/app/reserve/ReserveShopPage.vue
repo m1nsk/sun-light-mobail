@@ -15,6 +15,7 @@
 </template>
 
 <script>
+  import { getMarkets } from 'api/index'
   import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
   import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
   import ShopCard from 'appComponents/components/cards/ShopCard.vue'
@@ -53,6 +54,13 @@
         ],
         shopCount: 3
       }
+    },
+    mounted: function () {
+      let promise = getMarkets()
+      promise.then((response) => {
+        console.log(response, 'response')
+        this.shopsList = response.data.data
+      })
     },
     methods: {
       onShopClicked () {
