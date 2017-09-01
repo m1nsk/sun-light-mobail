@@ -3,7 +3,7 @@
     <title-header title="Оформление резерва"></title-header>
     <second-footer><menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer></second-footer>
     <page-content>
-      <div class="content-layout ">
+      <div class="content-layout content-relative">
         <shop-form-card></shop-form-card>
         <form-card placeholder="Имя"></form-card>
         <form-card placeholder="Почта"></form-card>
@@ -64,4 +64,13 @@
     width: 100%;
     height: 40px;
   }
+
+  .reserve-form__person
+  {
+    height: 70%;
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 50px;
+  }
+
 </style>

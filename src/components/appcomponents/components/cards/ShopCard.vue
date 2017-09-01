@@ -1,47 +1,33 @@
 <template>
-  <div class="shop-card">
-    <div class="content-wrapper">
-      <div class="item-media"><img class="shop__banner" src="static/logo.png"></div>
-      <div class="info-wrapper">
-        <div class="shop-station">{{ shopData.label }}</div>
-        <div class="shop-station">{{ shopData.address }}</div>
-        <div class="shop-station">{{ shopData.working_hours }}</div>
-        <div class="shop-phone">{{ shopData.phone }}</div>
-        <div class="shop-station">{{ shopData.status }}</div>
-      </div>
+  <custom-card>
+    <img slot="img" class="shop__banner" src="static/logo.png">
+    <div slot="info" class="info-wrapper">
+      <div class="shop-station">{{ shopData.label }}</div>
+      <div class="shop-station">{{ shopData.address }}</div>
+      <div class="shop-station">{{ shopData.working_hours }}</div>
+      <div class="shop-phone">{{ shopData.phone }}</div>
+      <div class="shop-station">{{ shopData.status }}</div>
     </div>
-    <div class="icon-wrapper on-top">
+    <div slot="icons" class="icon-wrapper on-top">
       <heart-mark-component class="shop__heart-mark"></heart-mark-component>
       <img src="/static/myIcons/right-arrow.svg" class="shop__right-arrow">
     </div>
-  </div>
+  </custom-card>
 </template>
 
 <script>
   import HeartMarkComponent from 'appComponents/components/buttons/HeartMarkButton.vue'
-  import { List, ListItem } from '~/components/list'
+  import CustomCard from 'appComponents/components/cards/CustomCard.vue'
   export default {
     components: {
-      List,
-      ListItem,
+      CustomCard,
       HeartMarkComponent
     },
-    props: ['shopData'],
-    data () {
-      return {
-      }
-    }
+    props: ['shopData']
   }
 </script>
 
 <style lang="less" scoped>
-  .shop-card
-  {
-    display: flex;
-    justify-content:space-between;
-    border-top: 1px solid #e7e7e7;
-    padding: 10px 0;
-  }
   .shop__banner
   {
     width: 64px;
@@ -64,33 +50,6 @@
     position: absolute;
     top: 0;
     right: 0;
-  }
-
-  .content-wrapper
-  {
-    display: flex;
-    justify-content: flex-start;
-  }
-
-  .info-wrapper
-  {
-    display: flex;
-    justify-content: flex-start;
-    align-content: flex-start;
-    flex-direction: column;
-    overflow: hidden;
-    padding-left: 10px;
-  }
-
-  .info-wrapper > div
-  {
-    overflow: hidden;
-  }
-
-  .icon-wrapper
-  {
-    position: relative;
-    width: 32px;
   }
 
   .on-top

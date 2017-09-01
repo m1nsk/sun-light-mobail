@@ -1,28 +1,19 @@
 <template>
-  <list>
-    <list-item>
-      <div class="item-media"><img class="shop__banner" src="static/logo.png"></div>
-      <div class="item-content">
-        <div class="item-title-row">
-          <div class="item-title">
-              <div><b>{{shopData.title}}</b></div>
-              <div>{{shopData.price}}</div>
-          </div>
-          <div class="item-after">
-            <img src="/static/myIcons/right-arrow.svg" class="shop__icon">
-          </div>
-        </div>
-      </div>
-    </list-item>
-  </list>
+  <custom-card>
+    <img slot="img" class="shop__banner" src="static/logo.png">
+    <div slot="info">
+      <div><b>{{shopData.title}}</b></div>
+      <div>{{shopData.price}}</div>
+    </div>
+    <img slot="icons" src="/static/myIcons/right-arrow.svg" class="shop__icon">
+  </custom-card>
 </template>
 
 <script>
-  import { List, ListItem } from '~/components/list'
+  import CustomCard from 'appComponents/components/cards/CustomCard.vue'
   export default {
     components: {
-      List,
-      ListItem
+      CustomCard
     },
     data () {
       return {

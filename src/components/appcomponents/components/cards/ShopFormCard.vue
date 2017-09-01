@@ -1,21 +1,20 @@
 <template>
-  <div class="shop-card">
-    <div class="shop-card__banner-wrapper">
-      <img src="/static/logo.png" class="shop-card__banner">
-    </div>
-    <div class="shop-card__info">
-      <span class="shop-card__helper"></span>
+  <custom-card>
+    <img slot="img" src="/static/logo.png" class="shop-card__banner">
+    <div slot="info">
       <div class="shop-card__title"><span>{{shopData.title}}</span></div>
       <div class="shop-card__price"><span>{{shopData.price}}</span></div>
       <div class="shop-card__shop"><span>{{shopData.shop}}</span></div>
       <div class="shop-card__status"><span>{{shopData.status}}</span></div>
     </div>
-  </div>
+  </custom-card>
 </template>
 
 <script>
+  import CustomCard from 'appComponents/components/cards/CustomCard.vue'
   export default {
     components: {
+      CustomCard
     },
     data () {
       return {
@@ -31,38 +30,11 @@
 </script>
 
 <style lang="less" scoped>
-  .shop-card__info
-  {
-    width: 70%;
-    height: 100%;
-    float: left;
-  }
-
-  .shop-card
-  {
-    width: 100%;
-    position: relative;
-    font-size: 16px;
-    line-height: 18px;
-    padding: 0 10px;
-    display: inline-block;
-    vertical-align: middle;
-  }
-
-  .shop-card__banner-wrapper
-  {
-    width: 30%;
-    max-width: 64px;
-    min-width: 48px;
-    height: auto;
-    float: left;
-  }
 
   .shop-card__banner
   {
-    vertical-align: middle;
-    padding: 5px;
-    width: 100%;
+    width: 64px;
+    height: 64px;
   }
 
   .shop-card__title
