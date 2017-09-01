@@ -11,9 +11,6 @@
       onFlagLoaded () {
         this.flagLoaded = true
       },
-      onFilterExclude (item) {
-        console.log(item.title)
-      },
       onInfinite (done) {
         this.onReload = true
       }

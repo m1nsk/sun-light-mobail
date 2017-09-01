@@ -6,7 +6,9 @@
         <div class="content-layout">
           <div class="content-padded">
             <div class="catalog__filter">
-              <filter-button v-for="item in filterList" :key="item.id" :data="item" @exclude="onFilterExclude(item)"></filter-button>
+              <transition-group name="fade">
+                <filter-button :key="filterIndex" v-for="(filter, filterIndex) in filterList" :data="filter" @exclude="onFilterExclude(filter)"></filter-button>
+              </transition-group>
             </div>
             <bannerItem :bannerImg="bannerImage"></bannerItem>
             <custom-data-grid url="/products" :onReload="onReload" :columnNum="2" :elementHeight="getElementHeight" @flagLoaded="onFlagLoaded">
@@ -63,6 +65,14 @@
       }
     },
     methods: {
+      onFilterExclude (item) {
+        console.log(item.title, 'item')
+        for (let index = 0; index < this.filterList.length; index++) {
+          if (this.filterList[index] === item) {
+            this.filterList.splice(index, 1)
+          }
+        }
+      },
       onProductClicked (item) {
         this.$router.push(this.$route.path + '/' + item.id)
       }
