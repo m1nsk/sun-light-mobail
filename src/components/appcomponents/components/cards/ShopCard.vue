@@ -8,7 +8,7 @@
       <div class="shop-phone">{{ shopData.phone }}</div>
       <div class="shop-station">{{ shopData.status }}</div>
     </div>
-    <div slot="icons" class="icon-wrapper on-top">
+    <div slot="icons">
       <heart-mark-component class="shop__heart-mark"></heart-mark-component>
       <img src="/static/myIcons/right-arrow.svg" class="shop__right-arrow">
     </div>
@@ -28,6 +28,15 @@
 </script>
 
 <style lang="less" scoped>
+  .info-wrapper
+  {
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    overflow: hidden;
+    padding-left: 10px;
+  }
+
   .shop__banner
   {
     width: 64px;
@@ -50,11 +59,6 @@
     position: absolute;
     top: 0;
     right: 0;
-  }
-
-  .on-top
-  {
-    z-index: 1;
   }
 
   .shop-phone

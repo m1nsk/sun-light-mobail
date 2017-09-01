@@ -3,9 +3,11 @@
     <div class="content-wrapper">
       <slot name="img"></slot>
       <div class="divider"></div>
-      <slot name="info" class="info"></slot>
+      <slot name="info"></slot>
     </div>
-    <slot name="icons"></slot>
+    <div slot="icons" class="icon-wrapper on-top">
+      <slot name="icons"></slot>
+    </div>
   </div>
 </template>
 
@@ -28,19 +30,14 @@
     justify-content: flex-start;
   }
 
-  .info-wrapper
-  {
-    display: flex;
-    justify-content: flex-start;
-    align-content: flex-start;
-    flex-direction: column;
-    overflow: hidden;
-    padding-left: 10px;
-  }
-
   .icon-wrapper
   {
     position: relative;
     width: 32px;
+  }
+
+  .on-top
+  {
+    z-index: 1;
   }
 </style>
