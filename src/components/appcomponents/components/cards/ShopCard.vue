@@ -1,26 +1,20 @@
 <template>
-  <list>
-    <list-item>
+  <div class="shop-card">
+    <div class="content-wrapper">
       <div class="item-media"><img class="shop__banner" src="static/logo.png"></div>
-      <div class="item-content">
-        <div class="item-title-row">
-          <div class="item-title">
-            <div class="info-wrapper">
-              <div class="shop-station">{{ shopData.label }}</div>
-              <div class="shop-station">{{ shopData.address }}</div>
-              <div class="shop-station">{{ shopData.working_hours }}</div>
-              <div class="shop-phone">{{ shopData.phone }}</div>
-              <div class="shop-station">{{ shopData.status }}</div>
-            </div>
-          </div>
-        </div>
+      <div class="info-wrapper">
+        <div class="shop-station">{{ shopData.label }}</div>
+        <div class="shop-station">{{ shopData.address }}</div>
+        <div class="shop-station">{{ shopData.working_hours }}</div>
+        <div class="shop-phone">{{ shopData.phone }}</div>
+        <div class="shop-station">{{ shopData.status }}</div>
       </div>
-    </list-item>
-    <heart-mark-component class="shop__heart-mark on-top"></heart-mark-component>
-    <div class="shop_right-arrow on-top">
-      <img src="/static/myIcons/right-arrow.svg" class="shop__icon">
     </div>
-  </list>
+    <div class="icon-wrapper on-top">
+      <heart-mark-component class="shop__heart-mark"></heart-mark-component>
+      <img src="/static/myIcons/right-arrow.svg" class="shop__right-arrow">
+    </div>
+  </div>
 </template>
 
 <script>
@@ -41,44 +35,62 @@
 </script>
 
 <style lang="less" scoped>
+  .shop-card
+  {
+    display: flex;
+    justify-content:space-between;
+    border-top: 1px solid #e7e7e7;
+    padding: 10px 0;
+  }
   .shop__banner
   {
     width: 64px;
     height: 64px;
   }
 
-  .shop__icon
+  .shop__right-arrow
   {
     height: 18px;
     width: 18px;
-    display: inline-block;
-    float: right;
+    position: absolute;
+    top: 50% - 9px;
+    right: 7px;
   }
 
   .shop__heart-mark
   {
+    height: 32px;
+    width: 32px;
     position: absolute;
     top: 0;
     right: 0;
   }
 
-  .shop_right-arrow
+  .content-wrapper
   {
-    position: absolute;
-    top: 50%;
-    right: 8px;
+    display: flex;
+    justify-content: flex-start;
   }
 
   .info-wrapper
   {
-    display: inline-block;
-    width: 140px;
+    display: flex;
+    justify-content: flex-start;
+    align-content: flex-start;
+    flex-direction: column;
     overflow: hidden;
+    padding-left: 10px;
   }
 
   .info-wrapper > div
   {
     overflow: hidden;
+  }
+
+  .icon-wrapper
+  {
+    position: relative;
+    width: 32px;
   }
 
   .on-top

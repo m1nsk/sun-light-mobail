@@ -4,12 +4,11 @@
       <img src="/static/logo.png" class="shop-card__banner">
     </div>
     <div class="shop-card__info">
-        <span class="shop-card__helper"></span>
-        <div class="shop-card__title"><span>{{shopData.title}}</span></div>
-        <div class="shop-card__price"><span>{{shopData.price}}</span></div>
-        <div class="shop-card__shop"><span>{{shopData.shop}}</span></div>
-        <div class="shop-card__status"><span>{{shopData.status}}</span></div>
-      </div>
+      <span class="shop-card__helper"></span>
+      <div class="shop-card__title"><span>{{shopData.title}}</span></div>
+      <div class="shop-card__price"><span>{{shopData.price}}</span></div>
+      <div class="shop-card__shop"><span>{{shopData.shop}}</span></div>
+      <div class="shop-card__status"><span>{{shopData.status}}</span></div>
     </div>
   </div>
 </template>

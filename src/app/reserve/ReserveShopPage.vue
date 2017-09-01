@@ -9,9 +9,9 @@
           <span>Найдено {{ shopCount }} магазина</span>
         </div>
         <a href=""></a>
-        <custom-data-grid url="/markets" :onReload="onReload" @flagLoaded="onFlagLoaded">
+        <custom-data-grid url="/markets" :onReload="onReload" :columnNum="2" :elementHeight="getElementHeight" @flagLoaded="onFlagLoaded">
           <template slot="content" scope="props">
-            <shop-card v-for="item in props.dataList" :key="item.id" :shopData="item" @click.native="onProductClicked(item)" class="item"></shop-card>
+            <shop-card v-for="item in props.dataList" :key="item.id" :shopData="item" @click.native="onShopClicked" class="item"></shop-card>
           </template>
         </custom-data-grid>
         <!-- <shop-card v-for="item in shopsList" :shopData="item" :key="item.id" @click.native="onShopClicked"></shop-card> -->
@@ -75,6 +75,11 @@
         console.log(response, 'response')
         this.shopsList = response.data.data
       })
+    },
+    computed: {
+      getElementHeight () {
+        return this.$store.getters.getBannerSize.height
+      }
     },
     methods: {
       onShopClicked () {

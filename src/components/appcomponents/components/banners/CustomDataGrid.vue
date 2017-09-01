@@ -7,7 +7,27 @@
 <script>
   import { getCustomData } from 'api/index'
   export default {
-    props: ['onReload', 'url'],
+    props: {
+      onReload: {
+        type: Boolean,
+        default: false
+      },
+      url: {
+        type: String,
+        default: ''
+      },
+      componentHeight: {
+        type: Number,
+        default: 120
+      },
+      columnNum: {
+        type: Number,
+        default: 1
+      },
+      payLoad: {
+        type: Object
+      }
+    },
     data () {
       return {
         dataList: [],
@@ -21,13 +41,14 @@
     mounted: function () {
       let height = document.documentElement.clientHeight
       let width = document.documentElement.clientWidth
-      let size = Math.round((width * 8 / 10) / 2 - 10)
-      this.productsInResponse = Math.ceil(height / size) * 2
-      // this.uploadProducts(this.productsInResponse)
+      let size = Math.round((width * 8 / 10) / this.columnNum - 10)
+      this.productsInResponse = Math.ceil(height / size) * this.columnNum
+      console.log(height, 'height', width, 'width', size, 'size', Math.ceil(height / size), 'rest')
+      this.uploadProducts(this.productsInResponse)
     },
     watch: {
       restToLoad () {
-        if (!this.flagLoaded) {
+        if (!this.flagLoaded && !this.restToLoad) {
           console.log(this.restToLoad, 'rest to load')
           this.uploadProducts(this.restToLoad)
         }
@@ -42,21 +63,22 @@
       restToLoad () {
         if (!this.flagLoaded) {
           let windowSize = this.$store.getters.getWindowSize
-          let bannerSize = this.$store.getters.getBannerSize
+          let elementHeight = this.componentHeight
           let orientation = this.$store.getters.getWindowOrientation.type
           let restCount = 0
-          console.log(orientation, 'orientation')
-          console.log(restCount, 'restcount')
-          if (windowSize && bannerSize && orientation !== undefined) {
-            restCount = Math.ceil(windowSize.height / bannerSize.height) * 2
-            if (Math.ceil(this.productCounter / 2 % restCount !== 0)) {
+          console.log(orientation, 'orientation', windowSize.height, 'W-height', elementHeight, 'B-height')
+          if (windowSize.height !== undefined && elementHeight !== undefined && orientation !== undefined) {
+            console.log(windowSize && elementHeight && orientation)
+            restCount = Math.ceil(windowSize.height / elementHeight) * this.columnNum
+            if (Math.ceil(this.productCounter / this.columnNum % restCount !== 0)) {
               this.productsInResponse = restCount
               console.log(restCount, this.productCounter, 'rest and counter')
               return restCount - this.productCounter % restCount
             }
+            return 0
           }
+          return 0
         }
-        return this.productsInResponse
       }
     },
     methods: {
@@ -74,7 +96,7 @@
           }
         }
       },
-      uploadProducts (take = 2) {
+      uploadProducts (take) {
         console.log(take, 'take')
         let catalogId = this.$route.params.category
         let promise = getCustomData(this.url, {

@@ -9,7 +9,7 @@
               <filter-button v-for="item in filterList" :key="item.id" :data="item" @exclude="onFilterExclude(item)"></filter-button>
             </div>
             <bannerItem :bannerImg="bannerImage"></bannerItem>
-            <custom-data-grid url="/products" :onReload="onReload" @flagLoaded="onFlagLoaded">
+            <custom-data-grid url="/products" :onReload="onReload" :columnNum="2" :elementHeight="getElementHeight" @flagLoaded="onFlagLoaded">
               <template slot="content" scope="props">
                 <product-card-banner v-for="item in props.dataList" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)" class="item"></product-card-banner>
               </template>
@@ -55,6 +55,11 @@
           category: 'Часы наручные'
         },
         bannerImage: '/static/logo.png'
+      }
+    },
+    computed: {
+      getElementHeight () {
+        return this.$store.getters.getBannerSize.height
       }
     },
     methods: {

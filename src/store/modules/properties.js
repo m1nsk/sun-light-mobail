@@ -4,6 +4,10 @@ const state = {
     height: 120,
     width: 120
   },
+  shopCardSize: {
+    height: 120,
+    width: 120
+  },
   windowSize: {
     height: '',
     width: ''

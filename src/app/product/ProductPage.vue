@@ -31,7 +31,7 @@
             <button-small @click.native="onMarkedClicked" caption="Может понравиться" class="markedBtn" ></button-small>
             <button-small @click.native="onSeenClicked" caption="Просмотренные" class="seenBtn" ></button-small>
           </div>
-          <custom-data-grid url="/products" :onReload="onReload" @flagLoaded="onFlagLoaded">
+          <custom-data-grid url="/products" :onReload="onReload" :columnNum="2" :elementHeight="getElementHeight" @flagLoaded="onFlagLoaded">
             <template slot="content" scope="props">
               <product-card-banner v-for="item in props.dataList" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)" class="item"></product-card-banner>
             </template>
@@ -82,6 +82,11 @@
         console.log(response.data.data)
         this.productData = response.data.data
       })
+    },
+    computed: {
+      getElementHeight () {
+        return this.$store.getters.getBannerSize.height
+      }
     },
     methods: {
       onReserveClicked () {
