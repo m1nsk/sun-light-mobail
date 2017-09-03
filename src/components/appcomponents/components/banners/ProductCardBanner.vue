@@ -1,7 +1,7 @@
 <template>
   <div class="product-card">
     <div class="product-card__banner-wrapper">
-      <img v-lazy="bannerData.image.mini" class="product-card__banner" :style="{ height: bannerSize.height + 'px', width: bannerSize.width + 'px' }"/>
+      <img v-lazy="bannerData.image.mini" :style="{ height: bannerSize.height + 'px', width: bannerSize.width + 'px' }"/>
       <div class="product-card__hit-wrapper-outer" v-if="bannerData.best">
         <div class="product-card__hit">
           <div class="product-card__hit-text">Хит</div>
@@ -51,10 +51,6 @@
 </script>
 
 <style lang="less" scoped>
-  .product-card__banner
-  {
-  }
-
   .product-card
   {
     width: 50%;
@@ -115,14 +111,6 @@
     display: table-cell;
     vertical-align: middle;
     text-align: center;
-  }
-
-  .product-card__hit-wrapper-inner
-  {
-    height: 100%;
-    font-size: 12px;
-    width: 48px;
-    display: table;
   }
 
   .product-card__heart-helper {
