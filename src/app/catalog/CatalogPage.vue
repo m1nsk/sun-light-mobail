@@ -46,19 +46,6 @@
         this.catalogItems = response.data.data
         console.log(response.data)
       })
-    },
-    methods: {
-      onRefresh (done) {
-        /*
-         Здесь может быть запрос на обновления данных
-         */
-
-        let self = this
-        setTimeout(function () {
-          self.time = new Date()
-          done()  // call done
-        }, 200)
-      }
     }
   }
 </script>

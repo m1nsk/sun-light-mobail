@@ -5,7 +5,7 @@
       <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!flagLoaded" :infiniteLoading="reloadStatus">
         <div class="content-layout">
           <div class="content-padded">
-            <div class="catalog__filter">
+            <div class="catalog__filter" @click.stop>
               <transition-group name="fade">
                 <filter-button :key="filterIndex" v-for="(filter, filterIndex) in filterList" :data="filter" @exclude="onFilterExclude(filter)"></filter-button>
               </transition-group>
@@ -65,15 +65,16 @@
       }
     },
     methods: {
-      onFilterExclude (item) {
-        console.log(item.title, 'item')
+      onFilterExclude (filter) {
+        console.log(filter.title, 'item')
         for (let index = 0; index < this.filterList.length; index++) {
-          if (this.filterList[index] === item) {
+          if (this.filterList[index] === filter) {
             this.filterList.splice(index, 1)
           }
         }
       },
       onProductClicked (item) {
+        console.log(item.id, 'item.id')
         this.$router.push(this.$route.path + '/' + item.id)
       }
     }

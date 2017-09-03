@@ -2,7 +2,7 @@
   <div class="product-card">
     <div class="product-card__banner-wrapper">
       <img v-lazy="bannerData.image.mini" :style="{ height: bannerSize.height + 'px', width: bannerSize.width + 'px' }"/>
-      <div class="product-card__hit-wrapper-outer" v-if="bannerData.best">
+      <div class="product-card__hit-wrapper" v-if="bannerData.best">
         <div class="product-card__hit">
           <div class="product-card__hit-text">Хит</div>
         </div>
@@ -62,7 +62,8 @@
     align-items: center;
     justify-content: center;
     border: 2px solid #ffffff;
-    background-color: #f8f8f8;
+    background-color: #fafafa;
+    position: relative;
   }
 
   .product-card__footer
@@ -71,7 +72,7 @@
     height: 32px;
   }
 
-  .product-card__hit-wrapper-outer
+  .product-card__hit-wrapper
   {
     position: absolute;
     top: 0;
