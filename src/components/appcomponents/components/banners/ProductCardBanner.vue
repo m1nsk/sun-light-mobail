@@ -53,8 +53,6 @@
 <style lang="less" scoped>
   .product-card__banner
   {
-    width: 100%;
-    height: 100%;
   }
 
   .product-card
