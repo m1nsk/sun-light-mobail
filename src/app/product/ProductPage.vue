@@ -18,7 +18,7 @@
           <div class="prodPrice max-width">
             <span>до {{productData.cost}} р.</span>
           </div>
-          <shop-button @click.native="onReserveClicked" caption="Оформить резерв" class="reservBtn max-width" ></shop-button>
+          <shop-button @click.native="onReserveClicked" caption="Оформить резерв" class="reserveBtn max-width" ></shop-button>
           <div class="prodQty max-width">
             <span>В наличии в магазинах 10 </span>
           </div>
@@ -199,17 +199,6 @@
   {
     max-width: 500px;
     margin: auto;
-  }
-
-  .reservBtn
-  {
-    height: 39px;
-    width: 80%;
-    text-align: center;
-    margin: 5px auto;
-    background-color: #fff0e9;
-    border: 1px solid #fff0e9;
-    cursor: pointer;
   }
 
   .btnArea

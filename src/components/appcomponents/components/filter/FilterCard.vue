@@ -1,11 +1,13 @@
 <template>
-  <custom-card>
+  <custom-card class="card">
     <div slot="img" src="/static/myIcons/cancel.svg" class="icon-left-wrapper">
       <img src="/static/myIcons/cancel.svg" class="icon-left">
     </div>
     <div slot="info" class="filter-data">
       <div class="filter-title"><span>{{ filterData.title }}</span></div>
-      <span class="filter-list-string" v-if="filterData.filters[0]">{{ filterString(filterData) }}</span>
+      <div>
+        <span class="filter-list-string" v-if="filterData.filters[0]">{{ filterString(filterData) }}</span>
+      </div>
     </div>
     <div slot="icons"><img src="/static/myIcons/right-arrow.svg" class="icon-right"/>
     </div>
@@ -37,6 +39,11 @@
 </script>
 
 <style lang="less" scoped>
+  .card
+  {
+    height: 45px;
+  }
+
   .filter-title
   {
     font-size: 14px;
@@ -54,9 +61,8 @@
   {
     display: flex;
     flex-direction: column;
-    width: 150px;
-    overflow: hidden;
     padding-left: 10px;
+    white-space: nowrap;
   }
 
   .icon-left-wrapper
