@@ -14,6 +14,9 @@
         <img :src="markIcon" class="product-card__heart-icon" @click.stop="onMarkClick">
       </div>
       <div class="product-card__price-wrapper">
+        <div class="product-card__sale" v-if="bannerData.sale">
+          {{ bannerData.sale }}
+        </div>
         <div class="product-card__price">
           {{ bannerData.cost }}
         </div>
@@ -69,7 +72,7 @@
   .product-card__footer
   {
     width: 100%;
-    height: 32px;
+    height: 48px;
   }
 
   .product-card__hit-wrapper
@@ -101,17 +104,22 @@
 
   .product-card__price-wrapper
   {
-    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: baseline;
+  }
+
+  .product-card__sale
+  {
+    color: gray;
+    text-decoration:line-through;
     font-size: 12px;
-    width: 48px;
-    display: table;
   }
 
   .product-card__price
   {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
+    font-size: 15px;
   }
 
   .product-card__heart-helper {
