@@ -14,7 +14,7 @@
             <slide v-for="img in productData.gallery"  :key="item.id"><img class="sliderImg" src="img.mini"/></slide>
           </slide-wrapper>
         </div>
-        <div class="content-layout">
+        <div>
           <div class="prodPrice max-width">
             <span>до {{productData.cost}} р.</span>
           </div>

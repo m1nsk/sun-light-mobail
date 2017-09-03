@@ -127,7 +127,7 @@
 <style lang="less">
   .productGridWrapper
   {
-    width: 100%;
+    width: 80%;
     max-width: 500px;
     margin: auto;
   }

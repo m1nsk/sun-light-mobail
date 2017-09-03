@@ -1,7 +1,7 @@
 <template>
   <div class="product-card">
     <div class="product-card__banner-wrapper">
-      <img v-lazy="bannerData.image.mini" class="product-card__banner" :style="{ height: bannerSize.height, width: bannerSize.width }"/>
+      <img v-lazy="bannerData.image.mini" class="product-card__banner" :style="{ height: bannerSize.height + 'px', width: bannerSize.width + 'px' }"/>
       <div class="product-card__hit-wrapper-outer" v-if="bannerData.best">
         <div class="product-card__hit">
           <div class="product-card__hit-text">Хит</div>
@@ -28,15 +28,8 @@
     props: ['bannerData'],
     data () {
       return {
-        marked: false,
-        bannerSize: {
-          height: 120,
-          width: 120
-        }
+        marked: false
       }
-    },
-    mounted: function () {
-      this.bannerSize = this.$store.getters.getBannerSize
     },
     methods: {
       onMarkClick () {
@@ -44,6 +37,9 @@
       }
     },
     computed: {
+      bannerSize () {
+        return this.$store.getters.getBannerSize
+      },
       markIcon () {
         if (this.marked) {
           return '/static/myIcons/like_full.svg'
@@ -68,7 +64,9 @@
 
   .product-card__banner-wrapper
   {
-    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 2px solid #ffffff;
     background-color: #f8f8f8;
   }
