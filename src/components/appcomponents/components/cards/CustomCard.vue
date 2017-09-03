@@ -5,7 +5,7 @@
       <div class="divider"></div>
       <slot name="info"></slot>
     </div>
-    <div slot="icons" class="icon-wrapper on-top">
+    <div class="icon-wrapper on-top">
       <slot name="icons"></slot>
     </div>
   </div>

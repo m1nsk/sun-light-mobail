@@ -1,12 +1,10 @@
 <template>
   <div class="filter">
-    <TitleHeader title="Название категории"></TitleHeader>
+    <title-header title="Название категории"></title-header>
+    <second-footer><menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer></second-footer>
     <page-content class="content-padding-bottom">
       <div class="content-layout">
         <filter-card v-for="item in filterData" :key="item.id" @click.native="onFilterCliked" :filterData="item"></filter-card>
-        <div class="filter__button-area">
-          <menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer>
-        </div>
       </div>
     </page-content>
     <pop-up ref="s" class="filter-settings-dialog" :isActive="show" width="70" height="45" @close="onPopUpClosed">
@@ -22,12 +20,12 @@
 <script>
   import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
   import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
-  import { List, ListItem } from '~/components/list'
   import MenuFooter from 'appComponents/components/footers/MenuFooter.vue'
   import RangeFilter from 'appComponents/components/filter/RangeFilter.vue'
   import ListFilter from 'appComponents/components/filter/ListFilter.vue'
   import PopUp from 'appComponents/components/PopUp.vue'
-  import PopWindow from '~/components/popwindow'
+  import { SecondFooter } from '~/components/footer'
+  import Content from '~/components/content'
   import FilterCard from 'appComponents/components/filter/FilterCard.vue'
 
   export default {
@@ -35,13 +33,12 @@
       FilterCard,
       ListFilter,
       PopUp,
-      PopWindow,
       RangeFilter,
       ContentWrapper,
       TitleHeader,
-      List,
-      ListItem,
-      MenuFooter
+      MenuFooter,
+      SecondFooter,
+      'page-content': Content
     },
     data () {
       return {
