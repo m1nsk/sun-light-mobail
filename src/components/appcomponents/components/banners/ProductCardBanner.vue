@@ -1,6 +1,6 @@
 <template>
   <div class="product-card">
-    <div class="product-card__banner-wrapper">
+    <div class="product-card__banner-wrapper flex-center">
       <img v-lazy="bannerData.image.mini" :style="{ height: bannerSize.height + 'px', width: bannerSize.width + 'px' }"/>
       <div class="product-card__hit-wrapper" v-if="bannerData.best">
         <div class="product-card__hit">
@@ -61,9 +61,6 @@
 
   .product-card__banner-wrapper
   {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border: 2px solid #ffffff;
     background-color: #fafafa;
     position: relative;

@@ -57,6 +57,9 @@
         if (this.onReload === true) {
           this.onInfinite()
         }
+      },
+      dataList () {
+        this.$emit('dataListLength', {length: this.dataList.length})
       }
     },
     computed: {

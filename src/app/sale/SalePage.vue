@@ -3,18 +3,18 @@
     <title-header title="Название акции"></title-header>
     <page-content class="content-padding-bottom">
       <div class="content-layout">
-        <div class="sale-title">
+        <div class="sale-title flex-center">
           <span>{{ sale.title }}</span>
         </div>
-        <div class="info-title">
+        <div class="info-title flex-center">
           <span>{{ sale.info }}</span>
         </div>
         <hr class="max-width hr" color="gray" size="1px"/>
         <div class="sale-wrapper">
-          <div class="sale-value">
+          <div class="sale-value flex-center">
             <span>{{ sale.value }}%</span>
           </div>
-          <button-small caption="Заказать" fontSize="16" class="sale-order-btn"></button-small>
+          <button-small caption="Заказать" fontSize="16" class="sale-order-btn flex-center"></button-small>
         </div>
       </div>
     </page-content>
@@ -49,9 +49,6 @@
   {
     width: 100%;
     height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-weight: bold;
     font-size: 32px;
   }
@@ -59,9 +56,6 @@
   .info-title
   {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: 14px;
   }
 
@@ -77,9 +71,6 @@
   {
     height: 100%;
     width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: 32px;
   }
 
@@ -87,9 +78,6 @@
   {
     height: 100%;
     width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
 </style>

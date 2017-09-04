@@ -4,7 +4,7 @@
     <page-content class="content-padding-bottom">
       <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!flagLoaded" :infiniteLoading="reloadStatus">
       <div class="content-layout">
-        <shop-card-mini></shop-card-mini>
+        <product-card-mini :productData="productData"></product-card-mini>
         <div class="shop__count">
           <span>Найдено {{ shopCount }} магазина</span>
         </div>
@@ -14,7 +14,6 @@
             <shop-card v-for="item in props.dataList" :key="item.id" :shopData="item" @click.native="onShopClicked" class="item"></shop-card>
           </template>
         </custom-data-grid>
-        <!-- <shop-card v-for="item in shopsList" :shopData="item" :key="item.id" @click.native="onShopClicked"></shop-card> -->
       </div>
       </scroll>
     </page-content>
@@ -22,12 +21,12 @@
 </template>
 
 <script>
-  import { getMarkets } from 'api/index'
+  import { getProduct } from 'api/index'
   import scrollMixin from '~/mixins/scrollMixin.vue'
   import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
   import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
   import ShopCard from 'appComponents/components/cards/ShopCard.vue'
-  import ShopCardMini from 'appComponents/components/cards/ShopCardMini.vue'
+  import ProductCardMini from 'appComponents/components/cards/ProductCardMini.vue'
   import CustomDataGrid from 'appComponents/components/banners/CustomDataGrid.vue'
   import Scroll from '~/components/customScroll'
   import Content from '~/components/content'
@@ -36,7 +35,7 @@
     extends: scrollMixin,
     components: {
       ContentWrapper,
-      ShopCardMini,
+      ProductCardMini,
       ShopCard,
       TitleHeader,
       CustomDataGrid,
@@ -45,35 +44,15 @@
     },
     data () {
       return {
-        shopsList: [
-          {
-            station: 'Сенная!!!!!!!!!!!!!!!!!!!!!!!!' +
-            ' !!!!!!!!!!!!!!!!!!!!!!!!!',
-            address: 'village somewhere',
-            worktime: '10:00 - 19:00',
-            status: 'В наличии'
-          },
-          {
-            station: 'Сенная',
-            address: 'village somewhere!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
-            worktime: '10:00 - 19:00',
-            status: 'В наличии'
-          },
-          {
-            station: 'Сенная',
-            address: 'village somewhere',
-            worktime: '10:00 - 19:00',
-            status: 'В наличии'
-          }
-        ],
-        shopCount: 3
+        shopCount: 0
       }
     },
     mounted: function () {
-      let promise = getMarkets()
-      promise.then((response) => {
+      console.log(this.$store.getters.productCode.id, 'stored id')
+      let promiseProduct = getProduct(this.$store.getters.productCode.id)
+      promiseProduct.then((response) => {
         console.log(response, 'response')
-        this.shopsList = response.data.data
+        this.productData = response.data.data
       })
     },
     computed: {
@@ -87,8 +66,7 @@
         this.$router.push({
           name: 'form',
           params: {
-            category: this.$route.params.category,
-            product: this.$route.params.product
+            id: this.$route.params.id
           }
         })
       }

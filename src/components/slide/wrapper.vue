@@ -67,10 +67,10 @@ export default {
       } else {
         this.diff = diff.x
       }
-      console.log(this.diff)
       this.touching = true
     },
     _swipeEnd (point, diff, time) {
+      console.log(diff, time, this.width / 3, 'diff time width/3')
       this.touching = false
       if (Math.abs(diff.x) >= this.width / 2 || // move long
         (Math.abs(diff.x) > 20 && time < 200) // or move shot but fast

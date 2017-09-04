@@ -1,6 +1,6 @@
 <template>
-  <div class="modal-overlay" :class="{ active: isActive}" @click="closePopUp">
-    <div class="modal" :class="{ active: isActive}" :style="{'width': width + '%', 'height': height + '%', 'max-height': maxHeight + '%', 'max-width': maxWidth + '%'}" @click.stop>
+  <div class="modal-overlay flex-center" :class="{ active: isActive}" @click="closePopUp">
+    <div class="modal flex-center" :class="{ active: isActive}" :style="{'width': width + '%', 'height': height + '%', 'max-height': maxHeight + '%', 'max-width': maxWidth + '%'}" @click.stop>
       <div class="modal-content">
         <slot name="header"></slot>
         <slot name="content"></slot>
@@ -49,9 +49,6 @@
   $easing: cubic-bezier(.55,0,.1,1);
 
   .modal-overlay {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: fixed;
     top: 0;
     left: 0;
@@ -71,9 +68,6 @@
   }
 
   .modal {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
     margin: 0 auto;
     background-color: #fff;

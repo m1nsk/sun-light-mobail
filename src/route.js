@@ -29,12 +29,12 @@ export default {
         { path: 'filter', name: 'filter', component: FilterPage },
         { path: 'profile', name: 'profile', component: ProfilePage },
         { path: 'profile/person', name: 'person', component: ProfileInfoPage },
-        { path: 'catalog/:category', name: 'category', component: CategoryPage },
-        { path: 'catalog/:category/:product', name: 'product', component: ProductPage },
-        { path: 'catalog/:category/:product/reserve', name: 'reserve', component: ReserveShopPage },
-        { path: 'catalog/:category/:product/reserve/form', name: 'form', component: ReserveFormPage },
-        { path: 'catalog/:category/:product/reserve/form/accept', name: 'accept', component: AcceptFormPage },
-        { path: 'catalog/:category/:product/reserve/form/accept/success', name: 'success', component: SuccessOrderPage }
+        { path: 'catalog/:id', name: 'catalogId', component: CategoryPage },
+        { path: 'product/:id', name: 'product', component: ProductPage },
+        { path: 'reserve', name: 'reserve', component: ReserveShopPage },
+        { path: 'reserve/form', name: 'form', component: ReserveFormPage },
+        { path: 'reserve/form/shop/:id/accept', name: 'accept', component: AcceptFormPage },
+        { path: 'reserve/form/shop/:id/accept/success', name: 'success', component: SuccessOrderPage }
       ]
     }
   ]

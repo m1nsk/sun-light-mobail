@@ -130,4 +130,11 @@
     box-shadow: 0 3.4px 5px 2px #777;
   }
 
+  .flex-center
+  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
 </style>

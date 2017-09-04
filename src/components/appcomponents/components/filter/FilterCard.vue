@@ -1,6 +1,6 @@
 <template>
   <custom-card class="card">
-    <div slot="img" src="/static/myIcons/cancel.svg" class="icon-left-wrapper">
+    <div slot="img" src="/static/myIcons/cancel.svg" class="flex-center">
       <img src="/static/myIcons/cancel.svg" class="icon-left">
     </div>
     <div slot="info" class="filter-data">
@@ -63,13 +63,6 @@
     flex-direction: column;
     padding-left: 10px;
     white-space: nowrap;
-  }
-
-  .icon-left-wrapper
-  {
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   .icon-left

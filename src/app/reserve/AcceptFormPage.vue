@@ -1,7 +1,9 @@
 <template>
   <div>
     <title-header title="Подтверждение"></title-header>
-    <second-footer><menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer></second-footer>
+    <second-footer>
+      <action-footer @action="onActionClicked"></action-footer>
+    </second-footer>
     <page-content class="content-padding-bottom">
       <div class="content-layout">
         <shop-form-card></shop-form-card>
@@ -16,7 +18,7 @@
   import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
   import ShopFormCard from 'appComponents/components/cards/ShopFormCard.vue'
   import FormCard from 'appComponents/components/cards/FormCard.vue'
-  import MenuFooter from 'appComponents/components/footers/MenuFooter.vue'
+  import ActionFooter from 'appComponents/components/footers/ActionFooter.vue'
   import { SecondFooter } from '~/components/footer'
   import Content from '~/components/content'
   export default {
@@ -24,7 +26,7 @@
       TitleHeader,
       ShopFormCard,
       FormCard,
-      MenuFooter,
+      ActionFooter,
       SecondFooter,
       'page-content': Content
     },
@@ -44,10 +46,16 @@
     },
     methods: {
       onActionClicked (data) {
-        if (data['view'] === 'right') {
-          this.$router.push(this.$route.path + 'success/')
-        } else if (data['view'] === 'left') {
-          console.log('cancel')
+        console.log(data)
+        if (data.action === 'accept') {
+          this.$router.push({
+            name: 'success',
+            params: {
+              id: this.$route.params.id
+            }
+          })
+        } else if (data.action === 'cancel') {
+          this.$router.push(-1)
         }
       }
     }

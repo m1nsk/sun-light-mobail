@@ -1,9 +1,9 @@
 <template>
   <custom-card>
-    <img slot="img" class="shop__banner" src="static/logo.png">
+    <img slot="img" class="shop__banner" :src="productData.image.mini">
     <div slot="info" class="info-wrapper">
-      <div><b>{{shopData.title}}</b></div>
-      <div>{{shopData.price}}</div>
+      <div><b>{{productData.label}}</b></div>
+      <div>{{productData.cost}}</div>
     </div>
     <div slot="icons">
       <img slot="icons" src="/static/myIcons/right-arrow.svg" class="shop__right-arrow">
@@ -17,12 +17,9 @@
     components: {
       CustomCard
     },
+    props: ['productData'],
     data () {
       return {
-        shopData: {
-          title: 'Золотое колечко',
-          price: '16 000-'
-        }
       }
     }
   }

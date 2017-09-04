@@ -1,7 +1,9 @@
 <template>
   <div>
     <title-header title="Оформление резерва"></title-header>
-    <second-footer><menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer></second-footer>
+    <second-footer>
+      <action-footer @action="onActionClicked"></action-footer>
+    </second-footer>
     <page-content>
       <div class="content-layout content-relative">
         <shop-form-card></shop-form-card>
@@ -19,15 +21,17 @@
   import FormCard from 'appComponents/components/cards/FormCard.vue'
   import AcceptFormCard from 'appComponents/components/cards/AcceptFormCard.vue'
   import ShopFormCard from 'appComponents/components/cards/ShopFormCard.vue'
-  import MenuFooter from 'appComponents/components/footers/MenuFooter.vue'
+  import ActionFooter from 'appComponents/components/footers/ActionFooter.vue'
+  import ButtonSmall from 'appComponents/components/buttons/ButtonSmall.vue'
   import { SecondFooter } from '~/components/footer'
   import Content from '~/components/content'
   export default {
     components: {
+      ButtonSmall,
       TitleHeader,
       AcceptFormCard,
       FormCard,
-      MenuFooter,
+      ActionFooter,
       ShopFormCard,
       SecondFooter,
       'page-content': Content
@@ -48,16 +52,16 @@
     },
     methods: {
       onActionClicked (data) {
-        if (data['view'] === 'right') {
+        console.log(data)
+        if (data.action === 'accept') {
           this.$router.push({
             name: 'accept',
             params: {
-              category: this.$route.params.category,
-              product: this.$route.params.product
+              id: this.$route.params.id
             }
           })
-        } else if (data['view'] === 'left') {
-          console.log('cancel')
+        } else if (data.action === 'cancel') {
+          this.$router.push(-1)
         }
       }
     }
@@ -78,5 +82,4 @@
     margin: 0 auto;
     padding-top: 50px;
   }
-
 </style>

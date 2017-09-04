@@ -137,9 +137,7 @@
     },
     methods: {
       onProfileClicked () {
-        this.$router.push({
-          name: 'person'
-        })
+        this.$router.push({name: 'person'})
       }
     }
   }
