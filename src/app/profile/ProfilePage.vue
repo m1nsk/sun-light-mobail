@@ -1,92 +1,154 @@
 <template>
   <div>
-    <profile-header title="Информация"></profile-header>
-    <div class="content-padding-bottom">
+    <TitleHeader title="Личный профиль"></TitleHeader>
+    <page-content class="content-padding-bottom">
       <div class="content-layout">
-        <form-card placeholder="Фамилия"></form-card>
-        <form-card placeholder="Отчество"></form-card>
-        <form-card placeholder="E-mail"></form-card>
-        <div class="profile__label-birth-date">
-          <span>Дата рождения</span>
-        </div>
-        <date-picker></date-picker>
-        <button-group :round="true">
-          <m-button :active="profileData.sex === 'female'" @click.native="onSexClicked('female')">Женский</m-button>
-          <m-button :active="profileData.sex === 'male'" @click.native="onSexClicked('male')">Мужской</m-button>
-        </button-group>
+        <person-card :personData="personData"></person-card>
+        <list>
+          <list-item v-for="item in menuData" :key="item.id">
+            <div class="item-content">
+              <div class="item-title-row" style="height: 40px;">
+                <div class="item-title" style="font-size: .7rem;">{{ item.title }}</div>
+                <div class="item-after">
+                  <div v-if="item.value.add" style="float: left; font-size: .7rem;">{{ item.value.value }}</div>
+                  <img src="/static/myIcons/right-arrow.svg" style="display: inline-block; float: right; padding-left: 5px; width: 21px; height: 21px"/>
+                </div>
+              </div>
+            </div>
+          </list-item>
+        </list>
+        <button-small caption="Профиль" @click.native="onProfileClicked"></button-small>
       </div>
-    </div>
+    </page-content>
   </div>
 </template>
 
 <script>
-  import ProfileHeader from 'appComponents/components/headers/ProfileHeader.vue'
-  import FormCard from 'appComponents/components/cards/FormCard.vue'
-  import DatePicker from 'appComponents/components/DatePicker.vue'
-  import { Button, ButtonGroup } from '~/components/buttons'
+  import PersonCard from 'appComponents/components/cards/PersonCard.vue'
+  import ButtonSmall from 'appComponents/components/buttons/ButtonSmall.vue'
+  import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
+  import { List, ListItem } from '~/components/list'
   import Content from '~/components/content'
 
   export default {
     components: {
-      FormCard,
-      ProfileHeader,
-      DatePicker,
-      'm-button': Button,
-      ButtonGroup,
+      ButtonSmall,
+      PersonCard,
+      TitleHeader,
+      List,
+      ListItem,
       'page-content': Content
     },
     data () {
       return {
-        profileData: {
-          sex: 'male'
-        }
+        personData: {
+          name: 'Алексей',
+          surname: 'Королев',
+          patronymic: 'Михайлович',
+          phone: '+7 692 680 28 75',
+          bonuses: 2000,
+          ordervalue: 6,
+          favorites: 13,
+          region: 'Saint-Petersburg'
+        },
+        menuData: [
+          {
+            title: 'История списаний и начислений',
+            value: {
+              add: false,
+              value: ''
+            },
+            link: ''
+          },
+          {
+            title: 'Подарок за E-mail ',
+            value: {
+              add: false,
+              value: ''
+            },
+            link: ''
+          },
+          {
+            title: 'Промокоды и подарки',
+            value: {
+              add: false,
+              value: ''
+            },
+            link: ''
+          },
+          {
+            title: 'Мои покупки и заказы',
+            value: {
+              add: true,
+              value: '5'
+            },
+            link: ''
+          },
+          {
+            title: 'Избранные товары',
+            value: {
+              add: true,
+              value: '12'
+            },
+            link: ''
+          },
+          {
+            title: 'Просмотренные товары',
+            value: {
+              add: false,
+              value: ''
+            },
+            link: ''
+          },
+          {
+            title: 'Персональная информация',
+            value: {
+              add: false,
+              value: ''
+            },
+            link: ''
+          },
+          {
+            title: 'Поддержка',
+            value: {
+              add: false,
+              value: ''
+            },
+            link: ''
+          },
+          {
+            title: 'FAQ',
+            value: {
+              add: false,
+              value: ''
+            },
+            link: ''
+          },
+          {
+            title: 'Мой регион',
+            value: {
+              add: true,
+              value: 'Санк-Петербург'
+            },
+            link: ''
+          }
+        ]
       }
     },
     methods: {
-      onSexClicked (sex) {
-        console.log(sex)
-        this.profileData.sex = sex
+      onProfileClicked () {
+        this.$router.push({
+          name: 'person'
+        })
       }
     }
   }
 </script>
 
 <style lang="less" scoped>
-  .profile__label-birth-date
+  .content
   {
-    height: 12px;
-    display: table;
-  }
-
-  .profile__label-birth-date > span
-  {
-    font-size: 12px;
-    display: table-cell;
-    vertical-align: top;
-  }
-
-  .profile__wrapper-outer
-  {
-    width: 100%;
-    height: 70%;
-    vertical-align: middle;
-    position: absolute;
-    left: 0;
-    bottom: 5.6rem;
-  }
-
-  .profile__wrapper-inner
-  {
-    height: 100%;
-    width: 80%;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-
-  .profile
-  {
-    width: 100%;
-    height: 100%;
-    position: relative;
+    height: 40px;
+    background-color: #0BB20C;
   }
 </style>

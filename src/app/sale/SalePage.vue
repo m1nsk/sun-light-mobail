@@ -14,7 +14,7 @@
           <div class="sale-value">
             <span>{{ sale.value }}%</span>
           </div>
-          <button-small caption="Заказать" fontSize="16" class="order-btn"></button-small>
+          <button-small caption="Заказать" fontSize="16" class="sale-order-btn"></button-small>
         </div>
       </div>
     </page-content>
@@ -70,22 +70,23 @@
     width: 100%;
     height: 60px;
     display: flex;
-    align-items: stretch;
     justify-content: space-around;
   }
 
   .sale-value
   {
     height: 100%;
+    width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 32px;
   }
 
-  .order-btn
+  .sale-order-btn
   {
     height: 100%;
+    width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;

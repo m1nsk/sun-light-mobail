@@ -34,6 +34,7 @@
   {
     width: 50%;
     height: 40px;
+    border-radius: 15px;
   }
 
   .button-small_wrapper
@@ -64,6 +65,7 @@
     height: 100%;
     background-color: #fff0e9;
     border: 1px solid #fff0e9;
+    border-radius: 5px;
   }
 
 </style>
