@@ -2,7 +2,7 @@
   <div>
     <main-header></main-header>
     <page-content class="content-padding-bottom">
-      <banner-item bannerImg="/static/logo.png" v-for="item in 10" :key="item.id">
+      <banner-item bannerImg="/static/logo.png" v-for="item in 10" :key="item.id" @click.native="stockClicked(item)">
       </banner-item>
     </page-content>
   </div>
@@ -10,16 +10,25 @@
 
 <script>
   import MainHeader from 'appComponents/components/headers/MainHeader.vue'
-  import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
   import BannerItem from 'appComponents/components/banners/BannerItem.vue'
   import Content from '~/components/content'
 
   export default {
     components: {
-      ContentWrapper,
       MainHeader,
       BannerItem,
       'page-content': Content
+    },
+    methods: {
+      stockClicked (item) {
+        console.log(item)
+        this.$router.push({
+          name: 'sale',
+          params: {
+            sale: 1
+          }
+        })
+      }
     },
     data () {
       return {

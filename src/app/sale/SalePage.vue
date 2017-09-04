@@ -1,32 +1,94 @@
 <template>
   <div>
-    <main-header></main-header>
+    <title-header title="Название акции"></title-header>
     <page-content class="content-padding-bottom">
-      <banner-item bannerImg="/static/logo.png" v-for="item in 10" :key="item.id">
-      </banner-item>
+      <div class="content-layout">
+        <div class="sale-title">
+          <span>{{ sale.title }}</span>
+        </div>
+        <div class="info-title">
+          <span>{{ sale.info }}</span>
+        </div>
+        <hr class="max-width hr" color="gray" size="1px"/>
+        <div class="sale-wrapper">
+          <div class="sale-value">
+            <span>{{ sale.value }}%</span>
+          </div>
+          <button-small caption="Заказать" fontSize="16" class="order-btn"></button-small>
+        </div>
+      </div>
     </page-content>
   </div>
 </template>
 
 <script>
-  import MainHeader from 'appComponents/components/headers/MainHeader.vue'
-  import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
-  import BannerItem from 'appComponents/components/banners/BannerItem.vue'
+  import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
+  import ButtonSmall from 'appComponents/components/buttons/ButtonSmall.vue'
   import Content from '~/components/content'
 
   export default {
     components: {
-      ContentWrapper,
-      MainHeader,
-      BannerItem,
+      TitleHeader,
+      ButtonSmall,
       'page-content': Content
     },
     data () {
       return {
+        sale: {
+          title: 'МТС',
+          info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+          value: '70'
+        }
       }
     }
   }
 </script>
 
 <style lang="less" scoped>
+  .sale-title
+  {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 32px;
+  }
+
+  .info-title
+  {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+
+  .sale-wrapper
+  {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-around;
+  }
+
+  .sale-value
+  {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+  }
+
+  .order-btn
+  {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
 </style>

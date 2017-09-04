@@ -2,7 +2,7 @@
   <div class="button-small">
     <div class="button-small_wrapper">
       <div :class="{buttonActive: reserveBtnActive}" @mousedown="reserveMouseDown" @mouseup="reserveMouseUp" class="button-small__button">
-        <span class="button-small__caption">{{ caption }}</span>
+        <span class="button-small__caption" :style="{'fontSize': fontSize + 'px'}">{{ caption }}</span>
       </div>
     </div>
   </div>
@@ -12,7 +12,7 @@
   export default {
     components: {
     },
-    props: ['caption'],
+    props: ['caption', 'fontSize'],
     data () {
       return {
         reserveBtnActive: false
@@ -39,6 +39,7 @@
   .button-small_wrapper
   {
     height: 100%;
+    width: 100%;
     border: 2px solid white;
   }
 

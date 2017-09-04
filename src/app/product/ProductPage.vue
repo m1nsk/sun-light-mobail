@@ -227,7 +227,6 @@
     text-align: center;
     display: inline-block;
     float: left;
-    cursor: pointer;
   }
 
   .seenBtn
@@ -237,6 +236,5 @@
     text-align: center;
     display: inline-block;
     float: left;
-    cursor: pointer;
   }
 </style>

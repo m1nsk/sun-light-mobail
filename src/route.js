@@ -3,6 +3,7 @@ import FavoritesPage from '~/app/favorites/FavoritesPage.vue'
 import ProductPage from '~/app/product/ProductPage.vue'
 import ProfilePage from '~/app/profile/ProfilePage.vue'
 import StockPage from '~/app/stock/StockPage.vue'
+import SalePage from '~/app/sale/SalePage.vue'
 import CategoryPage from '~/app/category/CategoryPage.vue'
 import ReserveShopPage from '~/app/reserve/ReserveShopPage.vue'
 import ReserveFormPage from '~/app/reserve/ReserveFormPage.vue'
@@ -23,6 +24,7 @@ export default {
       children: [
         { path: 'catalog', name: 'catalog', component: CatalogPage },
         { path: 'stock', name: 'stock', component: StockPage },
+        { path: 'stock/:sale', name: 'sale', component: SalePage },
         { path: 'profile', name: 'profile', component: ProfilePage },
         { path: 'favorites', name: 'favorites', component: FavoritesPage },
         { path: 'filter', name: 'filter', component: FilterPage },
