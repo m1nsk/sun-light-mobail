@@ -1,6 +1,6 @@
 <template>
   <div class="banner">
-    <img :src="bannerImg" class="banner__img"/>
+    <img v-lazy="bannerImg" class="banner__img"/>
   </div>
 </template>
 

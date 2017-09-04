@@ -4,38 +4,37 @@
     <page-content>
       <div v-if="dataLoaded === false" class="flex-center pageIsLoading">
         <i class="fa fa-spinner fa-pulse fa-3x fa-fw" style="color: black"></i>
-        <span class="sr-only">Loading...</span>
       </div>
       <div v-else-if="dataLoaded === true">
-        <div class="slider">
-          <div class="prodName max-width">
-            <span>{{ productData.label }}</span>
-            <div v-if="productData.best" class="hitClass">
-              <span>Хит</span>
+        <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!flagLoaded" :infiniteLoading="reloadStatus">
+          <div class="slider">
+            <div class="prodName max-width">
+              <span>{{ productData.label }}</span>
+              <div v-if="productData.best" class="hitClass">
+                <span>Хит</span>
+              </div>
             </div>
           </div>
-        </div>
-        <slide-wrapper class="sliderWrapper">
-          <slide v-for="img in productData.gallery"  :key="img.id"><img class="sliderImg" :src="img.mini"/></slide>
-        </slide-wrapper>
-        <div class="prodPrice max-width">
-          <span>до {{productData.cost}} р.</span>
-        </div>
-        <shop-button @click.native="onReserveClicked" caption="Оформить резерв" class="reserveBtn max-width" ></shop-button>
-        <div class="prodQty max-width">
-          <span>В наличии в магазинах 10 </span>
-        </div>
-        <hr class="max-width hr" color="gray" size="1px"/>
-        <div class="prodDescription max-width">
-          {{ productData.description }}
-        </div>
-        <hr class="max-width hr" color="gray" size="1px"/>
-        <div class="btnArea max-width">
-          <button-small @click.native="onMarkedClicked" caption="Может понравиться" class="markedBtn" ></button-small>
-          <button-small @click.native="onSeenClicked" caption="Просмотренные" class="seenBtn" ></button-small>
-        </div>
-        <div style="position: relative; width: 100%;" :style="{'height': this.$store.getters.getWindowSize.height + 'px'}">
-          <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!flagLoaded" :infiniteLoading="reloadStatus">
+          <slide-wrapper class="sliderWrapper">
+            <slide v-for="img in productData.gallery"  :key="img.id"><img class="sliderImg" v-lazy="img.mini" alt="Нет картинки"/></slide>
+          </slide-wrapper>
+          <div class="prodPrice max-width">
+            <span>до {{productData.cost}} р.</span>
+          </div>
+          <shop-button @click.native="onReserveClicked" caption="Оформить резерв" class="reserveBtn max-width" ></shop-button>
+          <div class="prodQty max-width">
+            <span>В наличии в магазинах 10 </span>
+          </div>
+          <hr class="max-width hr" color="gray" size="1px"/>
+          <div class="prodDescription max-width">
+            {{ productData.description }}
+          </div>
+          <hr class="max-width hr" color="gray" size="1px"/>
+          <div class="btnArea max-width">
+            <button-small @click.native="onMarkedClicked" caption="Может понравиться" class="markedBtn" ></button-small>
+            <button-small @click.native="onSeenClicked" caption="Просмотренные" class="seenBtn" ></button-small>
+          </div>
+          <div style="position: relative; width: 100%;" :style="{'height': this.$store.getters.getWindowSize.height + 'px'}">
             <div class="content-layout">
               <div class="content-padded">
                 <custom-data-grid url="/products" :onReload="onReload" :columnNum="2" :elementHeight="getElementHeight" @flagLoaded="onFlagLoaded">
@@ -45,8 +44,8 @@
                 </custom-data-grid>
               </div>
             </div>
-          </scroll>
-        </div>
+          </div>
+        </scroll>
       </div>
     </page-content>
   </div>
@@ -126,13 +125,6 @@
 </script>
 
 <style lang="less" scoped>
-
-  .pageIsLoading
-  {
-    width: 100%;
-    height: 100px;
-  }
-
   .slider
   {
     padding-top: 20px;

@@ -1,6 +1,6 @@
 <template>
   <custom-card>
-    <img slot="img" class="shop__banner" :src="productData.image.mini">
+    <img slot="img" class="shop__banner" v-lazy="productData.image.mini">
     <div slot="info" class="info-wrapper">
       <div><b>{{productData.label}}</b></div>
       <div>{{productData.cost}}</div>

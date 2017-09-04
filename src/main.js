@@ -18,6 +18,7 @@ Vue.use(Vum)
 Vue.use(SmoothPicker)
 Vue.use(VueLazyload, {
   preLoad: 1.3,
+  error: '/static/myIcons/no-image.svg',
   loading: '/static/loading.gif',
   attempt: 1
 })

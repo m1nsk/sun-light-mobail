@@ -2,18 +2,23 @@
   <div>
     <main-header></main-header>
     <page-content style="background-color:#ff0000" class="content-padding-bottom">
-      <div class="content-layout">
-        <div tag="li"v-for="item in catalogItems" :key="item.id" class="catalog__item">
-          <router-link v-if="item.type !== banner" :to="{name: 'catalogId', params: { id: item.id }}" class="catalog__title">
-            <div>
-              <span>{{ item.label }}</span>
-            </div>
-          </router-link>
-          <router-link :to="{name: 'catalogId', params: { id: item.id }}" class="catalog__title" v-else>
-            <banner-item :bannerImg="banner" v-if="item.banner !== null">
-            </banner-item>
-          </router-link>
-          <hr align="center" width="80%" color="white" size="1px"/>
+      <div v-if="dataLoaded === false" class="flex-center pageIsLoading">
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw" style="color: white"></i>
+      </div>
+      <div v-else-if="dataLoaded === true">
+        <div class="content-layout">
+          <div tag="li"v-for="item in catalogItems" :key="item.id" class="catalog__item">
+            <router-link v-if="item.type !== banner" :to="{name: 'catalogId', params: { id: item.id }}" class="catalog__title">
+              <div>
+                <span>{{ item.label }}</span>
+              </div>
+            </router-link>
+            <router-link :to="{name: 'catalogId', params: { id: item.id }}" class="catalog__title" v-else>
+              <banner-item :bannerImg="banner" v-if="item.banner !== null">
+              </banner-item>
+            </router-link>
+            <hr align="center" width="80%" color="white" size="1px"/>
+          </div>
         </div>
       </div>
     </page-content>
@@ -37,14 +42,15 @@
       return {
         catalogItems: [
         ],
-        banner: '/static/logo.png'
+        banner: '/static/logo.png',
+        dataLoaded: false
       }
     },
     created: function () {
       let promise = getCatalogs()
       promise.then((response) => {
         this.catalogItems = response.data.data
-        console.log(response.data)
+        this.dataLoaded = true
       })
     }
   }

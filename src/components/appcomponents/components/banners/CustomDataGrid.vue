@@ -1,5 +1,8 @@
 <template>
-  <div class="productGridWrapper">
+  <div v-if="dataLoaded === false" class="flex-center pageIsLoading">
+    <i class="fa fa-spinner fa-pulse fa-3x fa-fw" style="color: black"></i>
+  </div>
+  <div v-else-if="dataLoaded === true" class="productGridWrapper">
     <slot name="content" :dataList="dataList"></slot>
   </div>
 </template>
@@ -35,7 +38,8 @@
         flagLoaded: false,
         totalCount: 0,
         takeCount: 0,
-        productsInResponse: 0
+        productsInResponse: 0,
+        dataLoaded: false
       }
     },
     mounted: function () {
@@ -121,6 +125,7 @@
             }
             this.$emit('onReload', false)
           }
+          this.dataLoaded = true
         })
       }
     }
