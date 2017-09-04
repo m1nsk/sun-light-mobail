@@ -48,7 +48,7 @@
     height: 18px;
     width: 18px;
     position: absolute;
-    top: 50% ;
+    top: 50% - 9px;
     right: 7px;
   }
 

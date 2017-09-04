@@ -1,5 +1,5 @@
 <template>
-  <div :class="{buttonActive: btnActive}" @mousedown="btneMouseDown" @mouseup="btnMouseUp" class="button">
+  <div :class="{buttonActive: btnActive}" @mousedown="btnMouseDown" @mouseup="btnMouseUp" class="button">
     <span class="button__title">{{ caption }}</span>
   </div>
 </template>

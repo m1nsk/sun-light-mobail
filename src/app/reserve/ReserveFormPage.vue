@@ -49,7 +49,13 @@
     methods: {
       onActionClicked (data) {
         if (data['view'] === 'right') {
-          this.$router.push(this.$route.path + 'accept/')
+          this.$router.push({
+            name: 'accept',
+            params: {
+              category: this.$route.params.category,
+              product: this.$route.params.product
+            }
+          })
         } else if (data['view'] === 'left') {
           console.log('cancel')
         }

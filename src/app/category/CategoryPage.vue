@@ -74,8 +74,13 @@
         }
       },
       onProductClicked (item) {
-        console.log(item.id, 'item.id')
-        this.$router.push(this.$route.path + '/' + item.id)
+        this.$router.push({
+          name: 'product',
+          params: {
+            category: this.$route.params.category,
+            product: item.id
+          }
+        })
       }
     }
   }

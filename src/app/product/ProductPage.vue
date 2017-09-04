@@ -94,8 +94,13 @@
     },
     methods: {
       onReserveClicked () {
-        console.log('clicked')
-        this.$router.push(this.$route.path + '/reserve/')
+        this.$router.push({
+          name: 'reserve',
+          params: {
+            category: this.$route.params.category,
+            product: this.$route.params.product
+          }
+        })
       },
       onMarkedClicked () {
         console.log('clicked')
@@ -104,7 +109,13 @@
         console.log('clicked')
       },
       onProductClicked (item) {
-        this.$router.push(this.$route.path + '/' + item.id)
+        this.$router.push({
+          name: 'reserve',
+          params: {
+            category: this.$route.params.category,
+            product: item.id
+          }
+        })
       }
     }
   }

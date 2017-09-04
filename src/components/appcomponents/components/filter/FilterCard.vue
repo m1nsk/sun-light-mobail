@@ -9,13 +9,13 @@
         <span class="filter-list-string" v-if="filterData.filters[0]">{{ filterString(filterData) }}</span>
       </div>
     </div>
-    <div slot="icons"><img src="/static/myIcons/right-arrow.svg" class="icon-right"/>
+    <div slot="icons">
+      <img src="/static/myIcons/right-arrow.svg" class="icon-right"/>
     </div>
   </custom-card>
 </template>
 
 <script>
-
   import CustomCard from 'appComponents/components/cards/CustomCard.vue'
   export default {
     props: ['filterData'],
@@ -83,6 +83,6 @@
     width: 12px;
     height: 12px;
     position: absolute;
-    top: 50% - 6px;
+    top: 25%;
   }
 </style>
