@@ -1,10 +1,9 @@
 <template>
   <div>
     <catalog-header :pageData="pageInfo"></catalog-header>
-    <page-content style="padding-top: 150px">
+    <page-content>
       <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!flagLoaded" :infiniteLoading="reloadStatus">
         <div class="content-layout">
-          <div class="content-padded">
             <div class="catalog__filter" @click.stop>
               <transition-group name="fade">
                 <filter-button :key="filterIndex" v-for="(filter, filterIndex) in filterList" :data="filter" @exclude="onFilterExclude(filter)"></filter-button>
@@ -17,7 +16,6 @@
               </template>
             </custom-data-grid>
           </div>
-        </div>
       </scroll>
     </page-content>
   </div>

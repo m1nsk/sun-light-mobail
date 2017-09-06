@@ -52,7 +52,7 @@
     },
     watch: {
       restToLoad () {
-        if (!this.flagLoaded && !this.restToLoad) {
+        if (!this.flagLoaded && this.restToLoad) {
           console.log(this.restToLoad, 'rest to load')
           this.uploadProducts(this.restToLoad)
         }
