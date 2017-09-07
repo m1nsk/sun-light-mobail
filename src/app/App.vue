@@ -29,7 +29,7 @@
             title: 'Каталог'
           },
           {
-            name: '/common',
+            name: '/login',
             title: 'Избранное'
           },
           {

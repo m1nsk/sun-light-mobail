@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import products from './modules/products'
 import properties from './modules/properties'
 import categories from './modules/categories'
+import login from './modules/login'
 
 Vue.use(Vuex)
 
@@ -10,6 +11,7 @@ export default new Vuex.Store({
   modules: {
     products,
     properties,
-    categories
+    categories,
+    login
   }
 })

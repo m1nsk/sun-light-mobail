@@ -25,3 +25,8 @@ export function getMarkets (catalogIdData) {
 export function getCustomData (url, catalogIdData) {
   return axios.post(url, catalogIdData)
 }
+
+export function createSecret (userData) {
+  console.log(userData)
+  return axios.post(baseHost + '/create_secret', userData)
+}

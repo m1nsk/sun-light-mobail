@@ -1,7 +1,7 @@
 <template>
   <div>
     <profile-header title="Информация"></profile-header>
-    <div class="content-padding-bottom">
+    <page-content class="content-padding-bottom">
       <div class="content-layout">
         <form-card placeholder="Фамилия"></form-card>
         <form-card placeholder="Отчество"></form-card>
@@ -15,7 +15,7 @@
           <m-button :active="profileData.sex === 'male'" @click.native="onSexClicked('male')">Мужской</m-button>
         </button-group>
       </div>
-    </div>
+    </page-content>
   </div>
 </template>
 
