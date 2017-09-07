@@ -52,7 +52,6 @@
 </template>
 
 <script>
-  import { getProduct } from 'api/index'
   import scrollMixin from '~/mixins/scrollMixin.vue'
   import { SlideWrapper, Slide } from '~/components/slide'
   import ProductHeader from 'appComponents/components/headers/ProductHeader.vue'
@@ -78,22 +77,21 @@
     },
     data () {
       return {
-        productData: {
-          bannerImage: '/static/logo.png'
-        },
-        dataLoaded: false
       }
     },
     created: function () {
-      let promise = getProduct(this.$route.params.id)
-      promise.then((response) => {
-        this.dataLoaded = true
-        this.productData = response.data.data
-      })
+      let id = this.$route.params.id
+      this.$store.dispatch('getProducts', {id: id})
     },
     computed: {
       getElementHeight () {
         return this.$store.getters.getBannerSize.height
+      },
+      productData () {
+        return this.$store.getters.getProductsItems
+      },
+      dataLoaded () {
+        return this.$store.getters.isProductsLoaded
       }
     },
     methods: {

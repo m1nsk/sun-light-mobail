@@ -28,7 +28,6 @@
 </template>
 
 <script>
-  import { getCatalogs } from 'api/index'
   import Content from '~/components/content'
   import MainHeader from 'appComponents/components/headers/MainHeader.vue'
   import BannerItem from 'appComponents/components/banners/BannerItem.vue'
@@ -40,18 +39,19 @@
     },
     data () {
       return {
-        catalogItems: [
-        ],
-        banner: '/static/logo.png',
-        dataLoaded: false
+        banner: '/static/logo.png'
+      }
+    },
+    computed: {
+      catalogItems () {
+        return this.$store.getters.getCatalogItems
+      },
+      dataLoaded () {
+        return this.$store.getters.isCategoriesLoaded
       }
     },
     created: function () {
-      let promise = getCatalogs()
-      promise.then((response) => {
-        this.catalogItems = response.data.data
-        this.dataLoaded = true
-      })
+      this.$store.dispatch('getCategories')
     }
   }
 </script>

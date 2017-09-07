@@ -6,7 +6,7 @@ export const baseURL = baseHost + '/api/'
 
 axios.defaults.baseURL = baseURL
 
-export function getCatalogs (formData) {
+export function getCategories (formData) {
   return axios.post('/catalogs', formData)
 }
 
