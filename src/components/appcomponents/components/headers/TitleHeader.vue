@@ -26,14 +26,14 @@
 </script>
 
 <style lang="less" scoped>
-  .header__icon
+  .icon
   {
     vertical-align: middle;
     width: 18px;
     height: 18px;
   }
 
-  .header__frame {
+  .frame {
     height: 100%;      /* equals max image height */
     width: 32px;
     white-space: nowrap; /* this is required unless you put the helper span closely near the img */

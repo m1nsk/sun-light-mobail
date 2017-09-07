@@ -1,8 +1,8 @@
 <template>
   <div class="button-small">
-    <div class="button-small_wrapper">
-      <div :class="{buttonActive: reserveBtnActive}" @mousedown="reserveMouseDown" @mouseup="reserveMouseUp" class="button-small__button">
-        <span class="button-small__caption" :style="{'fontSize': fontSize + 'px'}">{{ caption }}</span>
+    <div class="wrapper">
+      <div :class="{buttonActive: reserveBtnActive}" @mousedown="reserveMouseDown" @mouseup="reserveMouseUp" class="button-button flex-center">
+        <span class="caption" :style="{'fontSize': fontSize + 'px'}">{{ caption }}</span>
       </div>
     </div>
   </div>
@@ -37,7 +37,7 @@
     border-radius: 15px;
   }
 
-  .button-small_wrapper
+  .wrapper
   {
     height: 100%;
     width: 100%;
@@ -49,18 +49,14 @@
     border: 1px solid #4A4A4A;
   }
 
-  .button-small__caption
+  .caption
   {
     font-size: 10px;
     line-height: 18px;
-    display: table-cell;
-    text-align: center;
-    vertical-align: middle;
   }
 
-  .button-small__button
+  .button-button
   {
-    display: table;
     width: 100%;
     height: 100%;
     background-color: #fff0e9;

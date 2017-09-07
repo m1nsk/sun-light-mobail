@@ -140,7 +140,7 @@
     margin: auto;
   }
 
-  .item
+  .listItem
   {
     display: inline-block;
   }

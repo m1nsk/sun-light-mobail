@@ -32,7 +32,7 @@ export default {
         { path: 'catalog/:id', name: 'catalogId', component: CategoryPage },
         { path: 'product/:id', name: 'product', component: ProductPage },
         { path: 'reserve', name: 'reserve', component: ReserveShopPage },
-        { path: 'reserve/form', name: 'form', component: ReserveFormPage },
+        { path: 'reserve/form/shop/:id', name: 'form', component: ReserveFormPage },
         { path: 'reserve/form/shop/:id/accept', name: 'accept', component: AcceptFormPage },
         { path: 'reserve/form/shop/:id/accept/success', name: 'success', component: SuccessOrderPage }
       ]

@@ -2,8 +2,8 @@
   <scroll :enableInfinite="false" :enableRefresh="false" class="scroll">
     <div class="content">
       <div v-for="item in 20" class="wrapper">
-        <div class="item-name">Назавание</div>
-        <div class="item-value">Тип</div>
+        <div class="name">Назавание</div>
+        <div class="value">Тип</div>
       </div>
     </div>
   </scroll>
@@ -26,7 +26,7 @@
     width: 100%;
   }
 
-  .item-name
+  .name
   {
     width: 50%;
     display: inline-block;
@@ -36,7 +36,7 @@
     color: black;
   }
 
-  .item-value
+  .value
   {
     width: 50%;
     display: inline-block;

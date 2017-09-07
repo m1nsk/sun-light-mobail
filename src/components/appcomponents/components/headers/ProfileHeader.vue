@@ -4,9 +4,8 @@
       <back-button></back-button>
     </header-link>
     <header-link :left="false" :edge="false">
-      <div class="header__frame">
-        <span class="header__helper"></span>
-        <img src="/static/myIcons/tick.svg" class="header__icon">
+      <div class="frame flex-center">
+        <img src="/static/myIcons/tick.svg" class="icon">
       </div>
     </header-link>
     <header-title>{{ title }}</header-title>
@@ -32,23 +31,15 @@
 </script>
 
 <style lang="less" scoped>
-  .header__icon
+  .icon
   {
     vertical-align: middle;
     width: 18px;
     height: 18px;
   }
 
-  .header__frame {
+  .frame {
     height: 100%;      /* equals max image height */
     width: 32px;
-    white-space: nowrap; /* this is required unless you put the helper span closely near the img */
-    text-align: center;
-  }
-
-  .header__helper {
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
   }
 </style>

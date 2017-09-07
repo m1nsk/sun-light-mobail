@@ -11,7 +11,7 @@
         <a href=""></a>
         <custom-data-grid url="/markets" :onReload="onReload" :columnNum="2" :elementHeight="getElementHeight" @flagLoaded="onFlagLoaded">
           <template slot="content" scope="props">
-            <shop-card v-for="item in props.dataList" :key="item.id" :shopData="item" @click.native="onShopClicked" class="item"></shop-card>
+            <shop-card v-for="item in props.dataList" :key="item.id" :shopData="item" @click.native="onShopClicked(item)" class="listItem"></shop-card>
           </template>
         </custom-data-grid>
       </div>
@@ -44,14 +44,19 @@
     },
     data () {
       return {
-        shopCount: 0
+        shopCount: 0,
+        productData: {
+          id: '',
+          image: {
+            mini: ''
+          }
+        }
       }
     },
     mounted: function () {
       console.log(this.$store.getters.productCode.id, 'stored id')
       let promiseProduct = getProduct(this.$store.getters.productCode.id)
       promiseProduct.then((response) => {
-        console.log(response, 'response')
         this.productData = response.data.data
       })
     },
@@ -61,12 +66,12 @@
       }
     },
     methods: {
-      onShopClicked () {
-        console.log('clicked')
+      onShopClicked (item) {
+        console.log(item, 'clicked')
         this.$router.push({
           name: 'form',
           params: {
-            id: this.$route.params.id
+            id: item.id
           }
         })
       }

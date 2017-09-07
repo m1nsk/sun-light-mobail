@@ -39,7 +39,7 @@
               <div class="content-padded">
                 <custom-data-grid url="/products" :onReload="onReload" :columnNum="2" :elementHeight="getElementHeight" @flagLoaded="onFlagLoaded">
                   <template slot="content" scope="props">
-                    <product-card-banner v-for="item in props.dataList" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)" class="item"></product-card-banner>
+                    <product-card-banner v-for="item in props.dataList" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)" class="listItem"></product-card-banner>
                   </template>
                 </custom-data-grid>
               </div>
@@ -56,7 +56,6 @@
   import scrollMixin from '~/mixins/scrollMixin.vue'
   import { SlideWrapper, Slide } from '~/components/slide'
   import ProductHeader from 'appComponents/components/headers/ProductHeader.vue'
-  import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
   import Button from 'appComponents/components/buttons/Button.vue'
   import ButtonSmall from 'appComponents/components/buttons/ButtonSmall.vue'
   import ProductCardBanner from 'appComponents/components/banners/ProductCardBanner.vue'
@@ -68,7 +67,6 @@
     extends: scrollMixin,
     components: {
       ProductHeader,
-      ContentWrapper,
       'shop-button': Button,
       ButtonSmall,
       SlideWrapper,
@@ -87,7 +85,6 @@
       }
     },
     created: function () {
-      console.log()
       let promise = getProduct(this.$route.params.id)
       promise.then((response) => {
         this.dataLoaded = true
@@ -206,12 +203,6 @@
     margin: 5px auto;
     width: 80%;
     text-align: center;
-  }
-
-  .max-width
-  {
-    max-width: 500px;
-    margin: auto;
   }
 
   .btnArea

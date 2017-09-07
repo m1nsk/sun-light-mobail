@@ -142,4 +142,10 @@
     width: 100%;
     height: 100px;
   }
+
+  .max-width
+  {
+    max-width: 500px;
+    margin: auto;
+  }
 </style>

@@ -4,20 +4,18 @@
       <back-button></back-button>
     </header-link>
     <header-link :left="false" :edge="false" @click.native="onFilterClicked">
-      <div class="header__frame">
-        <span class="header__helper"></span>
-        <img src="/static/myIcons/filter.svg" class="header__icon">
+      <div class="frame flex-center">
+        <img src="/static/myIcons/filter.svg" class="icon">
       </div>
     </header-link>
     <header-link :left="false" :edge="false">
-      <div class="header__frame" >
-        <span class="header__helper"></span>
-        <img src="/static/myIcons/search.svg" class="header__icon">
+      <div class="frame flex-center" >
+        <img src="/static/myIcons/search.svg" class="icon">
       </div>
     </header-link>
-    <div class="header__title">
-      <div class="header__category"><b>{{pageData.category}}</b></div>
-      <div class="header__pages">{{pageData.num}} страница из {{pageData.total}}</div>
+    <div class="title">
+      <div class="category"><b>{{pageData.category}}</b></div>
+      <div class="pages">{{pageData.num}} страница из {{pageData.total}}</div>
     </div>
   </page-header>
 </template>
@@ -50,24 +48,16 @@
 </script>
 
 <style lang="less" scoped>
-  .header__icon
+  .icon
   {
     vertical-align: middle;
     width: 18px;
     height: 18px;
   }
 
-  .header__frame {
+  .frame {
     height: 100%;      /* equals max image height */
     width: 32px;
-    white-space: nowrap; /* this is required unless you put the helper span closely near the img */
-    text-align: center;
-  }
-
-  .header__helper {
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
   }
 
   .header
@@ -76,14 +66,14 @@
     height: 48px;
   }
 
-  .header__title
+  .title
   {
     height: 48px;
     width: 230px;
     margin: auto;
   }
 
-  .header__category
+  .category
   {
     height: 22px;
     width: 230px;
@@ -91,7 +81,7 @@
     font-size: 18px;
   }
 
-  .header__pages
+  .pages
   {
     height: 22px;
     width: 230px;

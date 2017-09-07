@@ -4,13 +4,13 @@
     <second-footer><menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer></second-footer>
     <page-content class="content-padding-bottom">
       <div class="content-layout">
-        <filter-card v-for="item in filterData" :key="item.id" @click.native="onFilterCliked" :filterData="item"></filter-card>
+        <filter-card v-for="item in filterData" :key="item.id" @click.native="onFilterClicked" :filterData="item"></filter-card>
       </div>
     </page-content>
-    <pop-up ref="s" class="filter-settings-dialog" :isActive="show" width="70" height="45" @close="onPopUpClosed">
+    <pop-up ref="s" class="filter-popup" :isActive="show" width="70" height="45" @close="onPopUpClosed">
       <range-filter slot="content" v-if="type === 'range'"></range-filter>
       <list-filter slot="content" v-if="type === 'list'"></list-filter>
-      <div slot="footer" class="filter__popup-button-area">
+      <div slot="footer" class="filter-popup-footer">
         <menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer>
       </div>
     </pop-up>
@@ -18,7 +18,6 @@
 </template>
 
 <script>
-  import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
   import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
   import MenuFooter from 'appComponents/components/footers/MenuFooter.vue'
   import RangeFilter from 'appComponents/components/filter/RangeFilter.vue'
@@ -34,7 +33,6 @@
       ListFilter,
       PopUp,
       RangeFilter,
-      ContentWrapper,
       TitleHeader,
       MenuFooter,
       SecondFooter,
@@ -112,7 +110,7 @@
           console.log('cancel')
         }
       },
-      onFilterCliked () {
+      onFilterClicked () {
         this.show = true
       },
       onPopUpClosed () {
@@ -124,7 +122,7 @@
 
 <style lang="less" scoped>
 
-  .filter-settings-dialog
+  .filter-popup
   {
     width: 50%;
     height: 60%;
@@ -139,31 +137,13 @@
 
   }
 
-  .range-filter
-  {
-    vertical-align: middle;
-    display: table-cell;
-    height: 60%;
-    width: 50%;
-  }
-
   .filter
   {
     width: 100%;
     height: 100%;
   }
 
-  .filter__button-area
-  {
-    width: 100%;
-    height: 39px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 2.4rem;
-  }
-
-  .filter__popup-button-area
+  .filter-popup-footer
   {
     width: 100%;
     height: 39px;

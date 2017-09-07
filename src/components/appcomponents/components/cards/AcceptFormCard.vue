@@ -1,7 +1,7 @@
 <template>
-  <div class="accept-card">
-    <div class="accept-card__text">Ознакомился и согласен с условиями</div>
-    <div class="accept-card__input">
+  <div class="accept-card flex-center">
+    <div class="text">Ознакомился и согласен с условиями</div>
+    <div class="input">
       <switcher></switcher>
     </div>
   </div>
@@ -25,27 +25,21 @@
 
 <style lang="less" scoped>
 
-  .accept-card__text
+  .text
   {
-    display: table-cell;
     width: 80%;
     height: 100%;
-    vertical-align: middle;
   }
 
-  .accept-card__input
+  .input
   {
-    display: table-cell;
     width: 20%;
     height: 100%;
-    vertical-align: middle;
-    text-align: center;
   }
 
   .accept-card
   {
     height: 60px;
     width: 100%;
-    display: table;
   }
 </style>

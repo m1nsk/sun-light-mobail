@@ -63,18 +63,5 @@
 </script>
 
 <style lang="less" scoped>
-  .accept-form__wrapper
-  {
-    width: 100%;
-    max-width: 500px;
-    height: 100%;
-    margin: 0 auto;
-  }
 
-  .accept-form__mail-code
-  {
-    height: 70%;
-    width: 80%;
-    margin: 0 auto;
-  }
 </style>

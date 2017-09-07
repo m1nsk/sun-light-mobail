@@ -3,10 +3,10 @@
     <div slot="img" src="/static/myIcons/cancel.svg" class="flex-center">
       <img src="/static/myIcons/cancel.svg" class="icon-left">
     </div>
-    <div slot="info" class="filter-data">
-      <div class="filter-title"><span>{{ filterData.title }}</span></div>
+    <div slot="info" class="data">
+      <div class="title"><span>{{ filterData.title }}</span></div>
       <div>
-        <span class="filter-list-string" v-if="filterData.filters[0]">{{ filterString(filterData) }}</span>
+        <span class="list-string" v-if="filterData.filters[0]">{{ filterString(filterData) }}</span>
       </div>
     </div>
     <div slot="icons">
@@ -44,20 +44,20 @@
     height: 45px;
   }
 
-  .filter-title
+  .title
   {
     font-size: 14px;
     display: block;
   }
 
-  .filter-list-string
+  .list-string
   {
     font-size: 10px;
     color: #727a75;
     display: block;
   }
 
-  .filter-data
+  .data
   {
     display: flex;
     flex-direction: column;

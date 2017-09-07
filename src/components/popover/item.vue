@@ -1,5 +1,5 @@
 <template>
-  <div class="item"><slot></slot></div>
+  <div class="listItem"><slot></slot></div>
 </template>
 
 <style lang="less" scoped>

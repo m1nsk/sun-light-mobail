@@ -9,13 +9,13 @@
       <!--main page body-->
       <div v-else-if="dataLoaded === true">
         <div class="content-layout">
-          <div v-for="item in catalogItems" :key="item.id" class="catalog__item">
-            <router-link v-if="item.type !== banner" :to="{name: 'catalogId', params: { id: item.id }}" class="catalog__title">
+          <div v-for="item in catalogItems" :key="item.id" class="list-item">
+            <router-link v-if="item.type !== banner" :to="{name: 'catalogId', params: { id: item.id }}" class="title">
               <div>
                 <span>{{ item.label }}</span>
               </div>
             </router-link>
-            <router-link :to="{name: 'catalogId', params: { id: item.id }}" class="catalog__title" v-else>
+            <router-link :to="{name: 'catalogId', params: { id: item.id }}" class="title" v-else>
               <banner-item :bannerImg="banner" v-if="item.banner !== null">
               </banner-item>
             </router-link>
@@ -57,20 +57,20 @@
 </script>
 
 <style lang="less" scoped>
-  .catalog__title
+  .title
   {
     text-align: center;
     height: 33px;
     color: white;
   }
 
-  .catalog__title > span
+  .title > span
   {
     line-height: 33px;
     font-size: 22px;
   }
 
-  .catalog__item
+  .list-item
   {
     max-width: 500px;
     margin: 5px auto;

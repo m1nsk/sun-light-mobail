@@ -74,12 +74,4 @@
     width: 100%;
     height: 40px;
   }
-
-  .reserve-form__person
-  {
-    height: 70%;
-    width: 80%;
-    margin: 0 auto;
-    padding-top: 50px;
-  }
 </style>

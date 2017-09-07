@@ -1,23 +1,22 @@
 <template>
   <div class="product-card">
-    <div class="product-card__banner-wrapper flex-center">
+    <div class="banner-wrapper flex-center">
       <img v-lazy="bannerData.image.mini" :style="{ height: bannerSize.height + 'px', width: bannerSize.width + 'px' }"/>
-      <div class="product-card__hit-wrapper" v-if="bannerData.best">
-        <div class="product-card__hit">
-          <div class="product-card__hit-text">Хит</div>
+      <div class="hit-wrapper" v-if="bannerData.best">
+        <div class="hit">
+          <div class="hit-text">Хит</div>
         </div>
       </div>
     </div>
-    <div class="product-card__footer" >
-      <div class="product-card__heart-frame">
-        <span class="product-card__heart-helper"></span>
-        <img :src="markIcon" class="product-card__heart-icon" @click.stop="onMarkClick">
+    <div class="card-footer" >
+      <div class="heart-frame flex-center">
+        <img :src="markIcon" class="heart-icon" @click.stop="onMarkClick">
       </div>
-      <div class="product-card__price-wrapper">
-        <div class="product-card__sale" v-if="bannerData.sale">
+      <div class="price-wrapper">
+        <div class="sale" v-if="bannerData.sale">
           {{ bannerData.sale }}
         </div>
-        <div class="product-card__price">
+        <div class="price">
           {{ bannerData.cost }}
         </div>
       </div>
@@ -59,20 +58,20 @@
     width: 50%;
   }
 
-  .product-card__banner-wrapper
+  .banner-wrapper
   {
     border: 2px solid #ffffff;
     background-color: #fafafa;
     position: relative;
   }
 
-  .product-card__footer
+  .card-footer
   {
     width: 100%;
     height: 48px;
   }
 
-  .product-card__hit-wrapper
+  .hit-wrapper
   {
     position: absolute;
     top: 0;
@@ -81,25 +80,20 @@
     height: 32px;
   }
 
-  .product-card__heart-icon
+  .heart-icon
   {
-    vertical-align: middle;
     width: 18px;
     height: 18px;
   }
 
-  .product-card__heart-frame
+  .heart-frame
   {
-    height: 100%;      /* equals max image height */
+    height: 100%;
     width: 48px;
-    white-space: nowrap; /* this is required unless you put the helper span closely near the img */
-    text-align: center;
     float: right;
-    display: inline-block;
-    vertical-align: middle;
   }
 
-  .product-card__price-wrapper
+  .price-wrapper
   {
     display: flex;
     justify-content: space-around;
@@ -107,14 +101,14 @@
     align-items: baseline;
   }
 
-  .product-card__sale
+  .sale
   {
     color: gray;
     text-decoration:line-through;
     font-size: 12px;
   }
 
-  .product-card__price
+  .price
   {
     font-size: 15px;
   }
@@ -125,7 +119,7 @@
     vertical-align: middle;
   }
 
-  .product-card__hit
+  .hit
   {
     width: 48px;
     height: 22px;
@@ -138,7 +132,7 @@
     vertical-align: middle;
   }
 
-  .product-card__hit-text
+  .hit-text
   {
     font-size: 12px;
     line-height: 22px;
