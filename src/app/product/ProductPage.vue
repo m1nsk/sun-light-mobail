@@ -140,8 +140,7 @@
     height: 24px;
     text-align: center;
     width: 80%;
-    position: relative;
-    margin: auto;
+    margin: 0 auto;
   }
 
   .prodName > span
@@ -153,8 +152,8 @@
   {
     height: 24px;
     text-align: center;
-    width: 100%;
-    margin: 5px 0;
+    width: 80%;
+    margin: 5px auto;
     padding-bottom: 35px;
   }
 
@@ -162,8 +161,8 @@
   {
     height: 24px;
     text-align: center;
-    width: 100%;
-    margin: 5px 0;
+    width: 80%;
+    margin: 5px auto;
     padding-bottom: 35px;
   }
 

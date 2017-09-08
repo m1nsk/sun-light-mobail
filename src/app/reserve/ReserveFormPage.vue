@@ -7,9 +7,11 @@
     <page-content>
       <div class="content-layout content-relative">
         <shop-form-card></shop-form-card>
-        <form-card placeholder="Имя"></form-card>
-        <form-card placeholder="Почта"></form-card>
-        <form-card placeholder="Телефон"></form-card>
+        <div v-if="">
+          <form-card placeholder="Имя" :inputValue="profile.fio" @input="fioChanged"></form-card>
+          <form-card placeholder="Почта" :inputValue="profile.mail" @input="mailChanged"></form-card>
+          <form-card placeholder="Телефон" :inputValue="profile.phone" @input="phoneChanged"></form-card>
+        </div>
         <accept-form-card class="reserve-form__accept"></accept-form-card>
       </div>
     </page-content>
@@ -47,21 +49,59 @@
             name: 'right',
             title: 'Продолжить'
           }
-        ]
+        ],
+        profile: {}
+      }
+    },
+    mounted: function () {
+      let profileCash = this.$store.getters.getProfile
+      this.profile = {
+        fio: profileCash.fio,
+        mail: profileCash.mail,
+        phone: profileCash.phone
       }
     },
     methods: {
+      fioChanged (item) {
+        this.profile.fio = item.input
+      },
+      mailChanged (item) {
+        this.profile.mail = item.input
+      },
+      phoneChanged (item) {
+        this.profile.phone = item.input
+      },
       onActionClicked (data) {
-        console.log(data)
         if (data.action === 'accept') {
-          this.$router.push({
-            name: 'accept',
-            params: {
-              id: this.$route.params.id
+          if (this.profile.phone !== this.$store.getters.getProfile.phone) {
+            let payload = this.profile
+            payload.router = {
+              router: this.$router,
+              params: {
+                name: 'accept',
+                params: {
+                  id: this.$route.params.id
+                }
+              }
             }
-          })
+            this.$store.dispatch('getSecretCode', payload)
+          } else {
+            let payload = {}
+            payload.router = {
+              router: this.$router,
+              params: {
+                name: 'success',
+                params: {
+                  id: this.$route.params.id
+                }
+              }
+            }
+            this.$store.commit('setProfile', this.profile)
+            console.log(payload, 'pload')
+            this.$store.dispatch('getOrderStatus', payload)
+          }
         } else if (data.action === 'cancel') {
-          this.$router.push(-1)
+          this.$router.go(-1)
         }
       }
     }

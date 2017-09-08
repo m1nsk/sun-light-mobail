@@ -7,8 +7,7 @@
     <page-content class="content-padding-bottom">
       <div class="content-layout">
         <shop-form-card></shop-form-card>
-        <form-card placeholder="Почта"></form-card>
-        <form-card placeholder="Код подтверждения"></form-card>
+        <form-card placeholder="Введите код" @input="codeChanged"></form-card>
       </div>
     </page-content>
   </div>
@@ -41,17 +40,30 @@
             name: 'right',
             title: 'Продолжить'
           }
-        ]
+        ],
+        code: ''
       }
     },
+    mounted: function () {
+      this.profile =  this.$store.getters.getProfile
+    },
     methods: {
+      codeChanged (item) {
+        this.code = item.input
+      },
       onActionClicked (data) {
         console.log(data)
         if (data.action === 'accept') {
-          this.$router.push({
-            name: 'success',
-            params: {
-              id: this.$route.params.id
+          this.$store.dispatch('getToken', {
+            code: this.code,
+            router: {
+              router: this.$router,
+              params: {
+                name: 'success',
+                params: {
+                  id: this.$route.params.id
+                }
+              }
             }
           })
         } else if (data.action === 'cancel') {

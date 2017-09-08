@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import products from './modules/products'
 import properties from './modules/properties'
 import categories from './modules/categories'
-import login from './modules/login'
+import login from './modules/profile'
 
 Vue.use(Vuex)
 

@@ -146,6 +146,6 @@
   .max-width
   {
     max-width: 500px;
-    margin: auto;
+    margin: 0 auto;
   }
 </style>

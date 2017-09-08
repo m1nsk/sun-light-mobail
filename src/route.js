@@ -12,6 +12,7 @@ import SuccessOrderPage from '~/app/success/SuccessOrderPage.vue'
 import ProfilePage from '~/app/profile/ProfilePage.vue'
 import FilterPage from '~/app/filter/FilterPage.vue'
 import Login from '~/app/login/Login.vue'
+import CodeEnter from '~/app/login/CodeEnter.vue'
 import App from '~/app/App'
 
 export default {
@@ -25,6 +26,7 @@ export default {
       children: [
         { path: 'catalog', name: 'catalog', component: CatalogPage },
         { path: 'login', name: 'login', component: Login },
+        { path: 'login/code', name: 'code', component: CodeEnter },
         { path: 'stock', name: 'stock', component: StockPage },
         { path: 'stock/:sale', name: 'sale', component: SalePage },
         { path: 'favorites', name: 'favorites', component: FavoritesPage },

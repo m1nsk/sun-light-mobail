@@ -1,11 +1,10 @@
 <template>
   <div>
-    <profile-header title="Регистрация"></profile-header>
+    <profile-header title="Завершение регистрации"></profile-header>
     <page-content class="content-padding-bottom">
       <div class="content-layout">
-        <form-card placeholder="Как к вам обращаться?" @input="fioChanged"></form-card>
-        <form-card placeholder="Телефон" @input="phoneChanged"></form-card>
-        <m-button style="background-color: #fff0e9; color: black" @click.native="register">Зарегистрироваться</m-button>
+        <form-card placeholder="Введите код" @input="codeChanged"></form-card>
+        <m-button style="background-color: #fff0e9; color: black" @click.native="register">Завершить регистрацию</m-button>
       </div>
     </page-content>
   </div>
@@ -27,25 +26,20 @@
     },
     data () {
       return {
-        fio: '',
-        phone: ''
+        code: ''
       }
     },
     methods: {
-      fioChanged (item) {
-        this.fio = item.input
-      },
-      phoneChanged (item) {
-        this.phone = item.input
+      codeChanged (item) {
+        this.code = item.input
       },
       register () {
-        this.$store.dispatch('getSecretCode', {
-          fio: this.fio,
-          phone: this.phone,
+        this.$store.dispatch('getToken', {
+          code: this.code,
           router: {
             router: this.$router,
             params: {
-              name: 'code'
+              name: 'catalog'
             }
           }
         })

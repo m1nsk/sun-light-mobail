@@ -14,12 +14,14 @@ const getters = {
 
 // actions
 const actions = {
-  getCategories ({ commit }) {
-    let promise = getCategories()
-    promise.then((response) => {
-      commit('setCatalogItems', response.data.data)
-      commit('setCategoriesLoadedStatus', true)
-    })
+  getCategories ({ commit,state }) {
+    if (state.categoryLoaded === false) {
+      let promise = getCategories()
+      promise.then((response) => {
+        commit('setCatalogItems', response.data.data)
+        commit('setCategoriesLoadedStatus', true)
+      })
+    }
   }
 }
 

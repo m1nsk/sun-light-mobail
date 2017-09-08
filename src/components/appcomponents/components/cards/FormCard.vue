@@ -1,12 +1,12 @@
 <template>
-  <p><input :placeholder="placeholder" v-model="input"></input></p>
+  <p><input :placeholder="placeholder" v-model="input"/></p>
 </template>
 
 <script>
   export default {
     components: {
     },
-    props: ['placeholder'],
+    props: ['placeholder', 'inputValue'],
     data () {
       return {
         input: ''
@@ -15,6 +15,9 @@
     watch: {
       input () {
         this.$emit('input', {input: this.input})
+      },
+      inputValue () {
+        this.input = this.inputValue
       }
     }
   }
