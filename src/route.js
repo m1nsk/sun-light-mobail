@@ -13,6 +13,7 @@ import ProfilePage from '~/app/profile/ProfilePage.vue'
 import FilterPage from '~/app/filter/FilterPage.vue'
 import Login from '~/app/login/Login.vue'
 import CodeEnter from '~/app/login/CodeEnter.vue'
+import OrderedPage from '~/app/ordered/OrderedPage.vue'
 import App from '~/app/App'
 
 export default {
@@ -28,6 +29,7 @@ export default {
         { path: 'login', name: 'login', component: Login },
         { path: 'login/code', name: 'code', component: CodeEnter },
         { path: 'stock', name: 'stock', component: StockPage },
+        { path: 'ordered', name: 'ordered', component: OrderedPage },
         { path: 'stock/:sale', name: 'sale', component: SalePage },
         { path: 'favorites', name: 'favorites', component: FavoritesPage },
         { path: 'filter', name: 'filter', component: FilterPage },

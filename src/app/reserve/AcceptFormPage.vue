@@ -59,7 +59,7 @@
             router: {
               router: this.$router,
               params: {
-                name: 'success',
+                name: 'form',
                 params: {
                   id: this.$route.params.id
                 }

@@ -34,6 +34,18 @@ export function getFavorites (productData) {
   return axios.get('/product/likes', productData)
 }
 
+export function getOrdered (productData) {
+  productData.sort = 'id'
+  productData.order = 'asc'
+  console.log(productData, 'productData')
+  return axios.post('/orders', productData)
+}
+
+export function putOrder (productData) {
+  console.log(productData, 'productData')
+  return axios.put('/orders/null', productData)
+}
+
 export function getCategoryProducts (catalogIdData) {
   return axios.post('/products', catalogIdData)
 }

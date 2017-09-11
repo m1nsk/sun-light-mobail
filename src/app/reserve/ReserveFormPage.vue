@@ -96,8 +96,9 @@
                 }
               }
             }
+            payload.shop_id = this.$route.params.id
+            payload.product_id = this.$store.getters.productCode.id
             this.$store.commit('setProfile', this.profile)
-            console.log(payload, 'pload')
             this.$store.dispatch('getOrderStatus', payload)
           }
         } else if (data.action === 'cancel') {

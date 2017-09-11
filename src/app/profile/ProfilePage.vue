@@ -5,7 +5,7 @@
       <div class="content-layout">
         <person-card :personData="personData"></person-card>
         <list>
-          <list-item v-for="item in menuData" :key="item.id">
+          <list-item v-for="item in menuData" :key="item.id" @click.native="onItemClicked(item)">
             <div class="item-content">
               <div class="item-title-row" style="height: 40px;">
                 <div class="item-title" style="font-size: .7rem;">{{ item.title }}</div>
@@ -138,6 +138,12 @@
     methods: {
       onProfileClicked () {
         this.$router.push({name: 'person'})
+      },
+      onItemClicked (item) {
+        switch (item.title) {
+          case 'Мои покупки и заказы':
+            this.$router.push({name: 'ordered'})
+        }
       }
     }
   }

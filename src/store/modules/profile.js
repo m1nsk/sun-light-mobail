@@ -1,4 +1,4 @@
-import { createSecret, getToken, setAxiosToken } from 'api/index'
+import { createSecret, getToken, setAxiosToken, putOrder } from 'api/index'
 // initial state
 const state = {
   profile: JSON.parse(localStorage.getItem('profile') || '') || {}
@@ -49,8 +49,10 @@ const actions = {
     })
   },
   getOrderStatus ({ commit }, payload) {
-    console.log(payload)
-    payload.router.router.push(payload.router.params)
+    let promise = putOrder({shop_id: payload.shop_id, product_id: payload.product_id})
+    promise.then(response => {
+      payload.router.router.push(payload.router.params)
+    })
   }
 }
 
