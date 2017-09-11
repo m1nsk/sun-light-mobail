@@ -27,8 +27,8 @@
     },
     data () {
       return {
-        fio: '1',
-        phone: '1'
+        fio: '',
+        phone: ''
       }
     },
     methods: {

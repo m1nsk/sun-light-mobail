@@ -4,7 +4,7 @@ import { toggleMarketLike } from 'api/index'
 const state = {
   filterList: {
     price: {
-      included: false,
+      included: true,
       title: 'По Цене',
       type: 'range',
       from: 0,
@@ -12,7 +12,7 @@ const state = {
       filters: []
     },
     hit: {
-      included: false,
+      included: true,
       title: 'Хит',
       enable: false,
       filters: []

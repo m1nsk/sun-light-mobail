@@ -31,7 +31,7 @@ export default {
         { path: 'stock', name: 'stock', component: StockPage },
         { path: 'ordered', name: 'ordered', component: OrderedPage },
         { path: 'stock/:sale', name: 'sale', component: SalePage },
-        { path: 'favorites', name: 'favorites', component: FavoritesPage },
+        { path: 'favorites', name: 'favorites', component: Login },
         { path: 'filter', name: 'filter', component: FilterPage },
         { path: 'profile', name: 'profile', component: ProfilePage },
         { path: 'profile/person', name: 'person', component: ProfileInfoPage },

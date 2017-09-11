@@ -6,7 +6,7 @@
         <div class="content-layout">
             <div class="catalog__filter" @click.stop>
               <transition-group name="fade">
-                <filter-button :key="filterIndex" v-for="(filter, filterIndex) in filterList" :data="filter" @exclude="onFilterExclude(filter)"></filter-button>
+                <filter-button :key="filterIndex" v-for="(filter, filterIndex) in filterList" v-if="filter.included === true" :data="filter" @exclude="onFilterExclude(filter)"></filter-button>
               </transition-group>
             </div>
             <bannerItem :bannerImg="bannerImage"></bannerItem>
@@ -73,11 +73,13 @@
     methods: {
       onFilterExclude (filter) {
         console.log(filter.title, 'item')
-        for (let index = 0; index < this.filterList.length; index++) {
-          if (this.filterList[index] === filter) {
-            this.filterList.splice(index, 1)
+        for (let filterItem in this.filterList) {
+          if (this.filterList[filterItem].title === filter.title) {
+            filter.included = false
+            break
           }
         }
+        this.$state.commit('setFilters', this.filterList)
       },
       onProductClicked (item) {
         this.$router.push({
