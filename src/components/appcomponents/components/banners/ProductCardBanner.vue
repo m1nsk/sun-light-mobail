@@ -1,8 +1,8 @@
 <template>
   <div class="product-card">
     <div class="banner-wrapper flex-center">
-      <img v-lazy="bannerData.image.mini" :style="{ height: bannerSize.height + 'px', width: bannerSize.width + 'px' }"/>
-      <div class="hit-wrapper" v-if="bannerData.best">
+      <img v-lazy="itemData.image.mini" :style="{ height: bannerSize.height + 'px', width: bannerSize.width + 'px' }"/>
+      <div class="hit-wrapper" v-if="itemData.best">
         <div class="hit">
           <div class="hit-text">Хит</div>
         </div>
@@ -13,11 +13,11 @@
         <img :src="markIcon" class="heart-icon" @click.stop="onMarkClick">
       </div>
       <div class="price-wrapper">
-        <div class="sale" v-if="bannerData.sale">
-          {{ bannerData.sale }}
+        <div class="sale" v-if="itemData.sale">
+          {{ itemData.sale }}
         </div>
         <div class="price">
-          {{ bannerData.cost }}
+          {{ itemData.cost }}
         </div>
       </div>
     </div>
@@ -30,12 +30,12 @@
     props: ['bannerData'],
     data () {
       return {
-        marked: false
+        itemData: this.bannerData,
       }
     },
     methods: {
       onMarkClick () {
-        this.marked = !this.marked
+        this.$store.dispatch('toggleLike', {id: this.bannerData.id})
       }
     },
     computed: {
@@ -43,7 +43,7 @@
         return this.$store.getters.getBannerSize
       },
       markIcon () {
-        if (this.marked) {
+        if (this.itemData.like) {
           return '/static/myIcons/like_full.svg'
         }
         return '/static/myIcons/like.svg'

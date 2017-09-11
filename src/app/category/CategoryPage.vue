@@ -10,9 +10,9 @@
               </transition-group>
             </div>
             <bannerItem :bannerImg="bannerImage"></bannerItem>
-            <custom-data-grid url="/products" :onReload="onReload" :columnNum="2" :elementHeight="getElementHeight" @flagLoaded="onFlagLoaded">
+            <custom-data-grid :requestFunction="getProductListFunction" setter="setProductItemList" getter="getProductItemList" :payload="{catalog_id: this.$route.params.id}" :onReload="onReload" :columnNum="2" :elementHeight="getElementHeight" @flagLoaded="onFlagLoaded">
               <template slot="content" scope="props">
-                <product-card-banner v-for="item in props.dataList" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)" class="item"></product-card-banner>
+                <product-card-banner v-for="item in props.dataList" :key="item.id" :bannerData="item" @marked="onItemMarked(item)" @click.native="onProductClicked(item)" class="item"></product-card-banner>
               </template>
             </custom-data-grid>
           </div>
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+  import { getProductList } from 'api/index'
   import scrollMixin from '~/mixins/scrollMixin.vue'
   import CatalogHeader from 'appComponents/components/headers/CatalogHeader.vue'
   import BannerItem from 'appComponents/components/banners/BannerItem.vue'
@@ -42,6 +43,9 @@
       'page-content': Content,
       Scroll
     },
+    created: function () {
+      this.$store.commit('clearProductItemList')
+    },
     data () {
       return {
         filterList: [
@@ -54,7 +58,8 @@
           total: 2,
           category: 'Часы наручные'
         },
-        bannerImage: '/static/logo.png'
+        bannerImage: '/static/logo.png',
+        getProductListFunction: getProductList
       }
     },
     computed: {

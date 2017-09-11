@@ -20,6 +20,20 @@ export function getProduct (productId) {
   return axios.get('/products/' + productId)
 }
 
+export function getProductList (productData) {
+  productData.sort = 'id'
+  productData.order = 'asc'
+  console.log(productData, 'productData')
+  return axios.post('/products', productData)
+}
+
+export function getFavorites (productData) {
+  productData.sort = 'id'
+  productData.order = 'asc'
+  console.log(productData, 'productData')
+  return axios.get('/product/likes', productData)
+}
+
 export function getCategoryProducts (catalogIdData) {
   return axios.post('/products', catalogIdData)
 }
@@ -33,11 +47,14 @@ export function getCustomData (url, catalogIdData) {
 }
 
 export function createSecret (userData) {
-  console.log(userData)
   return axios.post(baseHost + '/create_secret', userData)
 }
 
 export function getToken (userData) {
-  console.log(userData)
   return axios.post(baseHost + '/get_token', userData)
+}
+
+export function toggleLike (id) {
+  console.log(`/api/product/${id}/like`)
+  return axios.get(baseHost + `/api/product/${id}/like`)
 }

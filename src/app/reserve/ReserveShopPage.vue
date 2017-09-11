@@ -9,7 +9,7 @@
           <span>Найдено {{ shopCount }} магазина</span>
         </div>
         <a href=""></a>
-        <custom-data-grid url="/markets" :onReload="onReload" :columnNum="2" :elementHeight="getElementHeight" @flagLoaded="onFlagLoaded">
+        <custom-data-grid :requestFunction="getMarketsList" setter="setProductItemList" getter="getProductItemList" :onReload="onReload" :columnNum="2" :elementHeight="getElementHeight" @flagLoaded="onFlagLoaded">
           <template slot="content" scope="props">
             <shop-card v-for="item in props.dataList" :key="item.id" :shopData="item" @click.native="onShopClicked(item)" class="listItem"></shop-card>
           </template>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  import { getProduct } from 'api/index'
+  import { getProduct, getMarkets } from 'api/index'
   import scrollMixin from '~/mixins/scrollMixin.vue'
   import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
   import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
@@ -50,7 +50,8 @@
           image: {
             mini: ''
           }
-        }
+        },
+        getMarketsList: getMarkets
       }
     },
     mounted: function () {

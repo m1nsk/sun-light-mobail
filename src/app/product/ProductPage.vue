@@ -81,14 +81,14 @@
     },
     created: function () {
       let id = this.$route.params.id
-      this.$store.dispatch('getProducts', {id: id})
+      this.$store.dispatch('getProduct', {id: id})
     },
     computed: {
       getElementHeight () {
         return this.$store.getters.getBannerSize.height
       },
       productData () {
-        return this.$store.getters.getProductsItems
+        return this.$store.getters.getProductsItem
       },
       dataLoaded () {
         return this.$store.getters.isProductsLoaded

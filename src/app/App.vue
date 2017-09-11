@@ -29,7 +29,7 @@
             title: 'Каталог'
           },
           {
-            name: '/login',
+            name: '/favorites',
             title: 'Избранное'
           },
           {

@@ -10,6 +10,7 @@
     </header-link>
     <header-link :left="false" :edge="false" >
       <div class="frame flex-center">
+        // TODO: add mark action
         <img src="/static/myIcons/heart.svg" class="icon">
       </div>
     </header-link>
