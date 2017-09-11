@@ -9,21 +9,27 @@
       <div class="shop-station">{{ shopData.status }}</div>
     </div>
     <div slot="icons">
-      <heart-mark-component class="heart-mark"></heart-mark-component>
+      <heart-mark-button :liked="shopData.like" @like="onMarkedClicked" class="heart-mark"></heart-mark-button>
       <img src="/static/myIcons/right-arrow.svg" class="right-arrow">
     </div>
   </custom-card>
 </template>
 
 <script>
-  import HeartMarkComponent from 'appComponents/components/buttons/HeartMarkButton.vue'
+  import HeartMarkButton from 'appComponents/components/buttons/HeartMarkButton.vue'
   import CustomCard from 'appComponents/components/cards/CustomCard.vue'
   export default {
     components: {
       CustomCard,
-      HeartMarkComponent
+      HeartMarkButton
     },
-    props: ['shopData']
+    props: ['shopData'],
+    methods: {
+      onMarkedClicked () {
+        console.log('marked')
+        this.$store.dispatch('toggleMarketLike', {id: this.shopData.id})
+      }
+    }
   }
 </script>
 

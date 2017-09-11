@@ -8,13 +8,15 @@
   export default {
     components: {
     },
+    props: ['liked'],
     data () {
       return {
-        marked: false
+        marked: this.liked || false
       }
     },
     methods: {
       onMarkClick () {
+        this.$emit('like')
         this.marked = !this.marked
       }
     },

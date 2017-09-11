@@ -58,3 +58,8 @@ export function toggleLike (id) {
   console.log(`/api/product/${id}/like`)
   return axios.get(baseHost + `/api/product/${id}/like`)
 }
+
+export function toggleMarketLike (id) {
+  console.log(`/api/market/${id}/like`)
+  return axios.get(baseHost + `/api/market/${id}/like`)
+}

@@ -34,6 +34,7 @@
             <button-small @click.native="onMarkedClicked" caption="Может понравиться" class="markedBtn" ></button-small>
             <button-small @click.native="onSeenClicked" caption="Просмотренные" class="seenBtn" ></button-small>
           </div>
+          <!--
           <div style="position: relative; width: 100%;" :style="{'height': this.$store.getters.getWindowSize.height + 'px'}">
             <div class="content-layout">
               <div class="content-padded">
@@ -45,6 +46,7 @@
               </div>
             </div>
           </div>
+          -->
         </scroll>
       </div>
     </page-content>

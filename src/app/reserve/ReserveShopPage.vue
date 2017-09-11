@@ -6,10 +6,10 @@
       <div class="content-layout">
         <product-card-mini :productData="productData"></product-card-mini>
         <div class="shop__count">
-          <span>Найдено {{ shopCount }} магазина</span>
+          <span>Найдено {{ this.shopCounter }} магазина</span>
         </div>
         <a href=""></a>
-        <custom-data-grid :requestFunction="getMarketsList" setter="setProductItemList" getter="getProductItemList" :onReload="onReload" :columnNum="2" :elementHeight="getElementHeight" @flagLoaded="onFlagLoaded">
+        <custom-data-grid :requestFunction="getMarketsList" setter="setMarketItemList" getter="getMarketItemList" :onReload="onReload" :columnNum="2" :elementHeight="getElementHeight" @flagLoaded="onFlagLoaded">
           <template slot="content" scope="props">
             <shop-card v-for="item in props.dataList" :key="item.id" :shopData="item" @click.native="onShopClicked(item)" class="listItem"></shop-card>
           </template>
@@ -44,7 +44,6 @@
     },
     data () {
       return {
-        shopCount: 0,
         productData: {
           id: '',
           image: {
@@ -55,6 +54,7 @@
       }
     },
     mounted: function () {
+      this.$store.commit('clearMarketItemList')
       console.log(this.$store.getters.productCode.id, 'stored id')
       let promiseProduct = getProduct(this.$store.getters.productCode.id)
       promiseProduct.then((response) => {
@@ -64,6 +64,9 @@
     computed: {
       getElementHeight () {
         return this.$store.getters.getBannerSize.height
+      },
+      shopCounter () {
+        return this.$store.getters.getMarketItemList.length
       }
     },
     methods: {
