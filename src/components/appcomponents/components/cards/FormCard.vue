@@ -1,23 +1,20 @@
 <template>
-  <p><input :placeholder="placeholder" v-model="input"/></p>
+  <p><input :placeholder="placeholder" :value="value" @input="updateValue($event.target.value)"/></p>
 </template>
 
 <script>
   export default {
     components: {
     },
-    props: ['placeholder', 'inputValue'],
+    props: ['placeholder', 'value'],
     data () {
       return {
         input: ''
       }
     },
-    watch: {
-      input () {
-        this.$emit('input', {input: this.input})
-      },
-      inputValue () {
-        this.input = this.inputValue
+    methods: {
+      updateValue (value) {
+        this.$emit('input', value)
       }
     }
   }

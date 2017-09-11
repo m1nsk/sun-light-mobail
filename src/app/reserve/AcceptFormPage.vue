@@ -7,7 +7,7 @@
     <page-content class="content-padding-bottom">
       <div class="content-layout">
         <shop-form-card></shop-form-card>
-        <form-card placeholder="Введите код" @input="codeChanged"></form-card>
+        <form-card placeholder="Введите код" v-model="code"></form-card>
       </div>
     </page-content>
   </div>

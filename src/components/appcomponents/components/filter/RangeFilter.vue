@@ -1,7 +1,7 @@
 <template>
   <div>
-    <form-card placeholder="От"></form-card>
-    <form-card placeholder="До"></form-card>
+    <form-card placeholder="От" v-model.lazy="min"></form-card>
+    <form-card placeholder="До" v-model.lazy="max"></form-card>
   </div>
 </template>
 
@@ -10,6 +10,23 @@
   export default {
     components: {
       FormCard
+    },
+    props: ['from', 'to'],
+    data () {
+      return {
+          min: this.from,
+          max: this.to
+      }
+    },
+    watch: {
+      min () {
+        console.log(this.min)
+        this.$emit('min', this.min)
+      },
+      max () {
+        console.log(this.max)
+        this.$emit('max', this.max)
+      }
     }
   }
 

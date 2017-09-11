@@ -3,8 +3,8 @@
     <profile-header title="Регистрация"></profile-header>
     <page-content class="content-padding-bottom">
       <div class="content-layout">
-        <form-card placeholder="Как к вам обращаться?" @input="fioChanged"></form-card>
-        <form-card placeholder="Телефон" @input="phoneChanged"></form-card>
+        <form-card placeholder="Как к вам обращаться?" v-model="fio"></form-card>
+        <form-card placeholder="Телефон" v-model="phone"></form-card>
         <m-button style="background-color: #fff0e9; color: black" @click.native="register">Зарегистрироваться</m-button>
       </div>
     </page-content>
@@ -27,8 +27,8 @@
     },
     data () {
       return {
-        fio: '',
-        phone: ''
+        fio: '1',
+        phone: '1'
       }
     },
     methods: {

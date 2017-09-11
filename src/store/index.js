@@ -5,6 +5,7 @@ import properties from './modules/properties'
 import categories from './modules/categories'
 import profile from './modules/profile'
 import markets from './modules/markets'
+import filters from './modules/filters'
 
 Vue.use(Vuex)
 
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     properties,
     categories,
     profile,
-    markets
+    markets,
+    filters
   }
 })

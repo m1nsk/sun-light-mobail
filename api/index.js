@@ -1,5 +1,6 @@
 import axios from 'axios'
 import store from '~/store'
+
 import { API_HOST, API_PORT } from '../api/config'
 
 export const baseHost = `${API_HOST}`
@@ -20,7 +21,8 @@ export function getProduct (productId) {
   return axios.get('/products/' + productId)
 }
 
-export function getProductList (productData) {
+export function getProductList (productData, filterData) {
+  console.log(filterData, 'filterData')
   productData.sort = 'id'
   productData.order = 'asc'
   console.log(productData, 'productData')

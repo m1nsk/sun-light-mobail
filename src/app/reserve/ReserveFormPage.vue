@@ -8,9 +8,9 @@
       <div class="content-layout content-relative">
         <shop-form-card></shop-form-card>
         <div v-if="">
-          <form-card placeholder="Имя" :inputValue="profile.fio" @input="fioChanged"></form-card>
-          <form-card placeholder="Почта" :inputValue="profile.mail" @input="mailChanged"></form-card>
-          <form-card placeholder="Телефон" :inputValue="profile.phone" @input="phoneChanged"></form-card>
+          <form-card placeholder="Имя" v-model="profile.fio"></form-card>
+          <form-card placeholder="Почта" v-model="profile.mail" @input="mailChanged"></form-card>
+          <form-card placeholder="Телефон" v-model="profile.phone" @input="phoneChanged"></form-card>
         </div>
         <accept-form-card class="reserve-form__accept"></accept-form-card>
       </div>

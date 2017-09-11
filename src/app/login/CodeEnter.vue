@@ -3,7 +3,7 @@
     <profile-header title="Завершение регистрации"></profile-header>
     <page-content class="content-padding-bottom">
       <div class="content-layout">
-        <form-card placeholder="Введите код" @input="codeChanged"></form-card>
+        <form-card placeholder="Введите код" v-model="code"></form-card>
         <m-button style="background-color: #fff0e9; color: black" @click.native="register">Завершить регистрацию</m-button>
       </div>
     </page-content>

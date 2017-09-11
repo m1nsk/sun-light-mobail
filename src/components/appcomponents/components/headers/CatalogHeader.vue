@@ -8,20 +8,26 @@
         <img src="/static/myIcons/filter.svg" class="icon">
       </div>
     </header-link>
-    <header-link :left="false" :edge="false">
-      <div class="frame flex-center" >
+    <header-link :left="false" :edge="false" @click.native="onSearchClicked">
+      <div class="frame flex-center">
         <img src="/static/myIcons/search.svg" class="icon">
       </div>
     </header-link>
-    <div class="title">
-      <div class="category"><b>{{pageData.category}}</b></div>
-      <div class="pages">{{pageData.num}} страница из {{pageData.total}}</div>
+    <div class="title page-slide">
+      <div v-if="state === false" :key="0">
+        <div class="category"><b>{{pageData.category}}</b></div>
+        <div class="pages">{{pageData.num}} страница из {{pageData.total}}</div>
+      </div>
+      <div v-else :key="1">
+        <searchbar v-model="search" :searchText="search"></searchbar>
+      </div>
     </div>
   </page-header>
 </template>
 
 <script>
   import Content from '~/components/content'
+  import searchbar from '~/components/searchbar'
   import { Header, HeaderLink, HeaderTitle } from '~/components/header'
   import Icon from '~/components/icons'
   import BackButton from 'appComponents/components/BackButton.vue'
@@ -30,6 +36,7 @@
       BackButton,
       HeaderLink,
       HeaderTitle,
+      searchbar,
       'page-header': Header,
       'page-content': Content,
       Icon
@@ -37,11 +44,21 @@
     props: ['pageData'],
     data () {
       return {
+        state: false,
+        search: ''
       }
     },
     methods: {
       onFilterClicked () {
         this.$router.push('/filter')
+      },
+      onSearchClicked () {
+        this.state =! this.state
+        if (this.state === false) {
+          this.$store.commit('setSearch', this.search)
+        } else if (this.state === true) {
+          this.search = this.$store.getters.getSearch
+        }
       }
     }
   }

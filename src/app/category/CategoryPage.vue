@@ -10,7 +10,7 @@
               </transition-group>
             </div>
             <bannerItem :bannerImg="bannerImage"></bannerItem>
-            <custom-data-grid :requestFunction="getProductListFunction" setter="setProductItemList" getter="getProductItemList" :payload="{catalog_id: this.$route.params.id}" :onReload="onReload" :columnNum="2" :elementHeight="getElementHeight" @flagLoaded="onFlagLoaded">
+            <custom-data-grid :requestFunction="getProductListFunction" setter="setProductItemList" getter="getProductItemList" :payload="payload" :onReload="onReload" :columnNum="2" :elementHeight="getElementHeight" @flagLoaded="onFlagLoaded">
               <template slot="content" scope="props">
                 <product-card-banner v-for="item in props.dataList" :key="item.id" :bannerData="item" @marked="onItemMarked(item)" @click.native="onProductClicked(item)" class="item"></product-card-banner>
               </template>
@@ -48,11 +48,6 @@
     },
     data () {
       return {
-        filterList: [
-          {title: 'Сначала Новые'},
-          {title: 'По Городу'},
-          {title: 'Сначала Дешевые'}
-        ],
         pageInfo: {
           num: 1,
           total: 2,
@@ -63,8 +58,16 @@
       }
     },
     computed: {
+      payload () {
+        let payload = this.$store.getters.getFilterForResponse
+        payload.catalog_id = this.$route.params.id
+        return payload
+      },
       getElementHeight () {
         return this.$store.getters.getBannerSize.height
+      },
+      filterList () {
+        return this.$store.getters.getFilterList
       }
     },
     methods: {

@@ -4,11 +4,11 @@
     <second-footer><menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer></second-footer>
     <page-content class="content-padding-bottom">
       <div class="content-layout">
-        <filter-card v-for="item in filterData" :key="item.id" @click.native="onFilterClicked" :filterData="item"></filter-card>
+        <filter-card v-for="item in filterList" :key="item.id" @click.native="onFilterClicked(item)" :filterData="item"></filter-card>
       </div>
     </page-content>
     <pop-up ref="s" class="filter-popup" :isActive="show" width="70" height="45" @close="onPopUpClosed">
-      <range-filter slot="content" v-if="type === 'range'"></range-filter>
+      <range-filter slot="content" :from="from" :to="to" v-if="type === 'range'" @min="onMinChanged" @max="onMaxChanged"></range-filter>
       <list-filter slot="content" v-if="type === 'list'"></list-filter>
       <div slot="footer" class="filter-popup-footer">
         <menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer>
@@ -42,54 +42,6 @@
       return {
         show: false,
         type: 'list',
-        filterList: [
-          {title: 'Сначала Новые'},
-          {title: 'По Городу'},
-          {title: 'Сначала Дешевые'}
-        ],
-        filterData: [
-          {
-            included: true,
-            title: 'По дате',
-            filters: [
-              {title: 'Сначала Новые'},
-              {title: 'По Городу'},
-              {title: 'Сначала Дешевые'},
-              {title: 'По Городу'},
-              {title: 'Сначала Дешевые'},
-              {title: 'По Городу'},
-              {title: 'Сначала Дешевые'},
-              {title: 'По Городу'},
-              {title: 'Сначала Дешевые'},
-              {title: 'По Городу'},
-              {title: 'Сначала Дешевые'}
-            ]
-          },
-          {
-            included: false,
-            title: 'По Города',
-            filters: [
-            ]
-          },
-          {
-            included: true,
-            title: 'По Цене',
-            filters: [
-              {title: 'Сначала Новые'},
-              {title: 'По Городу'},
-              {title: 'Сначала Дешевые'}
-            ]
-          },
-          {
-            included: true,
-            title: 'По Названию',
-            filters: [
-              {title: 'Сначала Новые'},
-              {title: 'По Городу'},
-              {title: 'Сначала Дешевые'}
-            ]
-          }
-        ],
         footerActionData: [
           {
             name: 'left',
@@ -99,18 +51,41 @@
             name: 'right',
             title: 'Продолжить'
           }
-        ]
+        ],
+        from: '',
+        to: '',
+        filter: {}
+      }
+    },
+    computed: {
+      filterList () {
+        return this.$store.getters.getFilterList
       }
     },
     methods: {
+      onMinChanged (val) {
+        console.log(val)
+        this.filter.from = val
+      },
+      onMaxChanged (val) {
+        console.log(val)
+        this.filter.to = val
+      },
       onActionClicked (data) {
         if (data['view'] === 'right') {
-          // this.$router.push(this.$route.path + 'accept/')
+          this.$store.commit('setFilters', this.filterList)
+          this.$router.back()
         } else if (data['view'] === 'left') {
           console.log('cancel')
         }
       },
-      onFilterClicked () {
+      onFilterClicked (item) {
+        this.type = item.type
+        this.filter = item
+        if (this.type === 'range') {
+          this.to = item.to
+          this.from = item.from
+        }
         this.show = true
       },
       onPopUpClosed () {
