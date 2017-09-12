@@ -1,14 +1,16 @@
 <template>
   <div>
-    <title-header title="Избранное"></title-header>
+    <catalog-header :pageData="pageInfo"></catalog-header>
     <page-content>
-      <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!flagLoaded" :infiniteLoading="reloadStatus">
+      <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!flagLoaded" :infiniteLoadingStatus="reloadStatus">
         <div class="content-layout">
-          <custom-data-grid :requestFunction="getFavoritesList" setter="setProductItemList" getter="getProductItemList" :onReload="onReload" :columnNum="2" :elementHeight="getElementHeight" @flagLoaded="onFlagLoaded">
-            <template slot="content" scope="props">
-              <product-card-banner v-for="item in props.dataList" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)" class="item"></product-card-banner>
-            </template>
-          </custom-data-grid>
+          <div class="catalog__filter" @click.stop>
+            <transition-group name="fade">
+              <filter-button :key="filterIndex" v-for="(filter, filterIndex) in filterList" v-if="filter.included === true" :data="filter" @exclude="onFilterExclude(filter)"></filter-button>
+            </transition-group>
+          </div>
+          <bannerItem :bannerImg="bannerImage"></bannerItem>
+          <product-card-banner v-for="item in productList" :key="item.id" :bannerData="item" @marked="onItemMarked(item)" @click.native="onProductClicked(item)" class="item"></product-card-banner>
         </div>
       </scroll>
     </page-content>
@@ -17,36 +19,75 @@
 
 <script>
   import { getFavorites } from 'api/index'
-  import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
-  import scrollMixin from '~/mixins/scrollMixin.vue'
+  import CatalogHeader from 'appComponents/components/headers/CatalogHeader.vue'
+  import BannerItem from 'appComponents/components/banners/BannerItem.vue'
   import ProductCardBanner from 'appComponents/components/banners/ProductCardBanner.vue'
+  import FilterButton from 'appComponents/components/buttons/FilterButton.vue'
   import CustomDataGrid from 'appComponents/components/banners/CustomDataGrid.vue'
   import Scroll from '~/components/customScroll'
   import Content from '~/components/content'
 
   export default {
-    extends: scrollMixin,
     components: {
-      TitleHeader,
-      'page-content': Content,
+      BannerItem,
+      CatalogHeader,
       ProductCardBanner,
+      FilterButton,
       CustomDataGrid,
+      'page-content': Content,
       Scroll
     },
     data () {
       return {
-        getFavoritesList: getFavorites
+        pageInfo: {
+          num: 1,
+          total: 2,
+          category: 'Часы наручные'
+        },
+        bannerImage: '/static/logo.png',
+        getProductFunction: getFavorites
       }
     },
-    created: function () {
-      this.$store.commit('clearProductItemList')
+    mounted: function () {
+      this.$nextTick(function () {
+        this.$nextTick(function () {
+          this.$store.commit('setProductsToDefault')
+          this.$store.dispatch('getProductList', this.getProductFunction)
+        })
+      })
     },
     computed: {
-      getElementHeight () {
-        return this.$store.getters.getBannerSize.height
+      payload () {
+        let payload = this.$store.getters.getFilterForResponse
+        payload.catalog_id = this.$route.params.id
+        return payload
+      },
+      filterList () {
+        return this.$store.getters.getFilterList
+      },
+      productList () {
+        return this.$store.getters.getProductItemList
+      },
+      flagLoaded () {
+        return this.$store.getters.getProductLoadedFlag
+      },
+      reloadStatus () {
+        return this.$store.getters.getProductReloadStatus
       }
     },
     methods: {
+      onFilterExclude (filter) {
+        console.log(filter.title, 'item')
+        for (let filterItem in this.filterList) {
+          if (this.filterList[filterItem].title === filter.title) {
+            filter.included = false
+            break
+          }
+        }
+        this.$store.commit('setFilters', this.filterList)
+        this.$store.commit('setProductsToDefault')
+        this.$store.dispatch('getProductList', this.getProductFunction)
+      },
       onProductClicked (item) {
         this.$router.push({
           name: 'product',
@@ -54,6 +95,9 @@
             id: item.id
           }
         })
+      },
+      onInfinite () {
+        this.$store.dispatch('getProductList', this.getProductFunction)
       }
     }
   }
@@ -61,6 +105,12 @@
 
 <style lang="less" scoped>
   @import "../../components/header/variables.less";
+  .catalog__filter
+  {
+    width: 100%;
+    display: inline-block;
+    margin: 0 auto;
+  }
 
   .item
   {

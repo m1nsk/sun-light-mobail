@@ -62,11 +62,11 @@
         payload.catalog_id = this.$route.params.id
         return payload
       },
-      productList () {
-        return this.$store.getters.getProductItemList
-      },
       filterList () {
         return this.$store.getters.getFilterList
+      },
+      productList () {
+        return this.$store.getters.getProductItemList
       },
       flagLoaded () {
         return this.$store.getters.getProductLoadedFlag
@@ -97,7 +97,7 @@
         })
       },
       onInfinite () {
-        this.$store.dispatch('getProductList')
+        this.$store.dispatch('getProductList', this.getProductFunction)
       }
     }
   }
