@@ -1,24 +1,48 @@
-import { toggleMarketLike } from 'api/index'
+import { toggleMarketLike, getMarketList } from 'api/index'
 
 // initial state
 const state = {
-  marketItemList: []
+  marketItemList: [],
+  reloadMarketFlag: false,
+  loadedMarketFlag: false,
+  totalMarketCount: 0,
+  marketCounter: 0,
+  columnNum: 1
 }
 
 
 // getters
 const getters = {
-  getMarketItemList: state => state.marketItemList
+  getMarketItemList: state => state.marketItemList,
+  getMarketReloadStatus: state => state.reloadMarketFlag,
+  getMarketLoadedFlag: state => state.loadedMarketFlag
 }
 
 // actions
 const actions = {
-  getMarkets ({commit, state}, payload) {
+  getMarketList ({commit, state, rootState, rootGetters}, payload) {
+    state.reloadMarketFlag = true
     payload.sort = 'id'
     payload.order = 'asc'
-    let promise = getProductsList (payload)
+    payload.take = (function () {
+      if (!state.loadedMarketFlag) {
+        // debugger
+        let restCount = Math.ceil(rootState.properties.windowSize.height / rootState.properties.bannerSize.height)
+        return restCount - state.marketCounter % restCount
+      }
+      return 0
+    })()
+    console.log(payload, 'payload')
+    payload.skip = state.marketCounter
+    let promise = getMarketList (payload)
     promise.then(response => {
-      commit('setProductItemList', response.data.data)
+      state.marketCounter += payload.take
+      state.totalMarketCount = response.data.totalCount
+      commit('setMarketItemList', response.data.data)
+      state.reloadMarketFlag = false
+      if (state.marketCounter >= state.totalMarketCount) {
+        state.loadedMarketFlag = true
+      }
     })
   },
   toggleMarketLike ({ commit,state }, payload) {
@@ -36,15 +60,19 @@ const mutations = {
       state.marketItemList.push(marketItemList[index])
     }
   },
-  clearMarketItemList (state) {
-    state.marketItemList = []
-  },
   setMarketLike (state, id) {
     for (let index = 0; index < state.marketItemList.length; index++) {
       if (state.marketItemList[index].id == id) {
         state.marketItemList[index].like = !state.marketItemList[index].like
       }
     }
+  },
+  setMarketsToDefault (state) {
+    state.loadedMarketFlag = false
+    state.reloadMarketFlag = false
+    state.marketItemList = []
+    state.totalMarketCount = 0
+    state.marketCounter = 0
   }
 }
 

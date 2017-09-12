@@ -2,20 +2,16 @@
   <div>
     <catalog-header :pageData="pageInfo"></catalog-header>
     <page-content>
-      <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!flagLoaded" :infiniteLoading="reloadStatus">
+      <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!flagLoaded" :infiniteLoadingStatus="reloadStatus">
         <div class="content-layout">
-            <div class="catalog__filter" @click.stop>
-              <transition-group name="fade">
-                <filter-button :key="filterIndex" v-for="(filter, filterIndex) in filterList" v-if="filter.included === true" :data="filter" @exclude="onFilterExclude(filter)"></filter-button>
-              </transition-group>
-            </div>
-            <bannerItem :bannerImg="bannerImage"></bannerItem>
-            <custom-data-grid :requestFunction="getProductListFunction" setter="setProductItemList" getter="getProductItemList" :payload="payload" :onReload="onReload" :columnNum="2" :elementHeight="getElementHeight" @flagLoaded="onFlagLoaded">
-              <template slot="content" scope="props">
-                <product-card-banner v-for="item in props.dataList" :key="item.id" :bannerData="item" @marked="onItemMarked(item)" @click.native="onProductClicked(item)" class="item"></product-card-banner>
-              </template>
-            </custom-data-grid>
+          <div class="catalog__filter" @click.stop>
+            <transition-group name="fade">
+              <filter-button :key="filterIndex" v-for="(filter, filterIndex) in filterList" v-if="filter.included === true" :data="filter" @exclude="onFilterExclude(filter)"></filter-button>
+            </transition-group>
           </div>
+          <bannerItem :bannerImg="bannerImage"></bannerItem>
+          <product-card-banner v-for="item in productList" :key="item.id" :bannerData="item" @marked="onItemMarked(item)" @click.native="onProductClicked(item)" class="item"></product-card-banner>
+        </div>
       </scroll>
     </page-content>
   </div>
@@ -23,7 +19,6 @@
 
 <script>
   import { getProductList } from 'api/index'
-  import scrollMixin from '~/mixins/scrollMixin.vue'
   import CatalogHeader from 'appComponents/components/headers/CatalogHeader.vue'
   import BannerItem from 'appComponents/components/banners/BannerItem.vue'
   import ProductCardBanner from 'appComponents/components/banners/ProductCardBanner.vue'
@@ -33,7 +28,6 @@
   import Content from '~/components/content'
 
   export default {
-    extends: scrollMixin,
     components: {
       BannerItem,
       CatalogHeader,
@@ -43,9 +37,6 @@
       'page-content': Content,
       Scroll
     },
-    created: function () {
-      this.$store.commit('clearProductItemList')
-    },
     data () {
       return {
         pageInfo: {
@@ -54,8 +45,16 @@
           category: 'Часы наручные'
         },
         bannerImage: '/static/logo.png',
-        getProductListFunction: getProductList
+        getProductFunction: getProductList
       }
+    },
+    mounted: function () {
+      this.$nextTick(function () {
+       this.$nextTick(function () {
+         this.$store.commit('setProductsToDefault')
+         this.$store.dispatch('getProductList', this.getProductFunction)
+       })
+      })
     },
     computed: {
       payload () {
@@ -63,11 +62,17 @@
         payload.catalog_id = this.$route.params.id
         return payload
       },
-      getElementHeight () {
-        return this.$store.getters.getBannerSize.height
+      productList () {
+        return this.$store.getters.getProductItemList
       },
       filterList () {
         return this.$store.getters.getFilterList
+      },
+      flagLoaded () {
+        return this.$store.getters.getProductLoadedFlag
+      },
+      reloadStatus () {
+        return this.$store.getters.getProductReloadStatus
       }
     },
     methods: {
@@ -79,7 +84,9 @@
             break
           }
         }
-        this.$state.commit('setFilters', this.filterList)
+        this.$store.commit('setFilters', this.filterList)
+        this.$store.commit('setProductsToDefault')
+        this.$store.dispatch('getProductList', this.getProductFunction)
       },
       onProductClicked (item) {
         this.$router.push({
@@ -88,6 +95,9 @@
             id: item.id
           }
         })
+      },
+      onInfinite () {
+        this.$store.dispatch('getProductList')
       }
     }
   }

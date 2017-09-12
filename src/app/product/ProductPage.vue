@@ -93,7 +93,7 @@
         return this.$store.getters.getProductsItem
       },
       dataLoaded () {
-        return this.$store.getters.isProductsLoaded
+        return this.$store.getters.getProductItemLoaded
       }
     },
     methods: {

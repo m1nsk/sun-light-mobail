@@ -6,6 +6,7 @@ const state = {
     price: {
       included: true,
       title: 'По Цене',
+      name: 'price',
       type: 'range',
       from: 0,
       to: 1000000,
@@ -13,8 +14,9 @@ const state = {
     },
     hit: {
       included: true,
+      name: 'hit',
+      type: 'check',
       title: 'Хит',
-      enable: false,
       filters: []
     }
   },
@@ -28,9 +30,11 @@ const getters = {
   getSearch: state => state.search,
   getFilterForResponse: (state) => {
     let filterData = {}
-    filterData.cost_min = state.filterList.price.from
-    filterData.cost_max = state.filterList.price.to
-    filterData.best = state.filterList.hit.enable
+    if (state.filterList.price.included) {
+      filterData.cost_min = state.filterList.price.from
+      filterData.cost_max = state.filterList.price.to
+    }
+    filterData.best = state.filterList.hit.included
     filterData.filter = state.search
     return filterData
   }

@@ -37,7 +37,7 @@
 <script>
 export default {
   props: {
-    infiniteLoadingValue: {
+    infiniteLoadingStatus: {
       type: Boolean,
       default: false
     },
@@ -70,6 +70,11 @@ export default {
       state: 0, // 0:down, 1: up, 2: refreshing
       startY: 0,
       touching: false
+    }
+  },
+  watch: {
+    infiniteLoadingStatus () {
+      this.infiniteLoading = this.infiniteLoadingStatus
     }
   },
   methods: {
@@ -130,6 +135,7 @@ export default {
     },
 
     onScroll (e) {
+      console.log(this.enableInfinite, this.infiniteLoading, 'inifnifninf')
       if (!this.enableInfinite || this.infiniteLoading) {
         return
       }
@@ -139,6 +145,7 @@ export default {
       let ptrHeight = this.onRefresh ? this.$el.querySelector('.pull-to-refresh-layer').clientHeight : 0
       let infiniteHeight = this.$el.querySelector('.infinite-layer').clientHeight
       let bottom = innerHeight - outerHeight - scrollTop - ptrHeight
+      console.log(bottom - infiniteHeight, 'bottom')
       if (bottom <= infiniteHeight) this.infinite()
     }
   }

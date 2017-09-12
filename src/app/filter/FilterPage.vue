@@ -85,8 +85,8 @@
         if (this.type === 'range') {
           this.to = item.to
           this.from = item.from
+          this.show = true
         }
-        this.show = true
       },
       onPopUpClosed () {
         this.show = false

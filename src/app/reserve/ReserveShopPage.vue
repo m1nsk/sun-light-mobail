@@ -2,27 +2,21 @@
   <div>
     <title-header title="Где забрать?"></title-header>
     <page-content class="content-padding-bottom">
-      <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!flagLoaded" :infiniteLoading="reloadStatus">
-      <div class="content-layout">
-        <product-card-mini :productData="productData"></product-card-mini>
-        <div class="shop__count">
-          <span>Найдено {{ this.shopCounter }} магазина</span>
+      <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!flagLoaded" :infiniteLoadingStatus="reloadStatus">
+        <div class="content-layout">
+          <product-card-mini :productData="productData"></product-card-mini>
+          <div class="shop__count">
+            <span>Найдено {{ this.shopCounter }} магазина</span>
+          </div>
+          <shop-card v-for="item in marketList" :key="item.id" :shopData="item" @click.native="onShopClicked(item)" class="listItem"></shop-card>
         </div>
-        <a href=""></a>
-        <custom-data-grid :requestFunction="getMarketsList" setter="setMarketItemList" getter="getMarketItemList" :onReload="onReload" :columnNum="2" :elementHeight="getElementHeight" @flagLoaded="onFlagLoaded">
-          <template slot="content" scope="props">
-            <shop-card v-for="item in props.dataList" :key="item.id" :shopData="item" @click.native="onShopClicked(item)" class="listItem"></shop-card>
-          </template>
-        </custom-data-grid>
-      </div>
       </scroll>
     </page-content>
   </div>
 </template>
 
 <script>
-  import { getProduct, getMarkets } from 'api/index'
-  import scrollMixin from '~/mixins/scrollMixin.vue'
+  import { getProduct } from 'api/index'
   import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
   import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
   import ShopCard from 'appComponents/components/cards/ShopCard.vue'
@@ -32,7 +26,6 @@
   import Content from '~/components/content'
 
   export default {
-    extends: scrollMixin,
     components: {
       ContentWrapper,
       ProductCardMini,
@@ -49,24 +42,29 @@
           image: {
             mini: ''
           }
-        },
-        getMarketsList: getMarkets
+        }
       }
     },
     mounted: function () {
-      this.$store.commit('clearMarketItemList')
-      console.log(this.$store.getters.productCode.id, 'stored id')
+      this.$store.commit('setMarketsToDefault')
       let promiseProduct = getProduct(this.$store.getters.productCode.id)
+      this.$store.dispatch('getMarketList', {})
       promiseProduct.then((response) => {
         this.productData = response.data.data
       })
     },
     computed: {
-      getElementHeight () {
-        return this.$store.getters.getBannerSize.height
-      },
       shopCounter () {
         return this.$store.getters.getMarketItemList.length
+      },
+      flagLoaded () {
+        return this.$store.getters.getMarketLoadedFlag
+      },
+      reloadStatus () {
+        return this.$store.getters.getMarketReloadStatus
+      },
+      marketList () {
+        return this.$store.getters.getMarketItemList
       }
     },
     methods: {
@@ -78,6 +76,9 @@
             id: item.id
           }
         })
+      },
+      onInfinite () {
+        this.$store.dispatch('getMarketList', {})
       }
     }
   }

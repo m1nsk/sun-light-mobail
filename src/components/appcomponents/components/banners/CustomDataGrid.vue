@@ -22,6 +22,10 @@
         type: String,
         required: true
       },
+      cleaner: {
+        type: String,
+        required: true
+      },
       onReload: {
         type: Boolean,
         default: false
@@ -46,12 +50,12 @@
         productCounter: 0,
         flagLoaded: false,
         totalCount: 0,
-        takeCount: 0,
         productsInResponse: 0,
         dataLoaded: false
       }
     },
     mounted: function () {
+      this.$store.commit(this.cleaner)
       let height = document.documentElement.clientHeight
       let width = document.documentElement.clientWidth
       let size = Math.round((width * 8 / 10) / this.columnNum - 10)
@@ -124,7 +128,7 @@
         promise.then((response) => {
           this.productCounter += take
           this.$store.commit(this.setter, response.data.data)
-          this.totalCount = response.data.totalCount
+          this.totalCount = response.data.totalProductCount
           if (this.productCounter >= this.totalCount) {
             this.flagLoaded = true
             this.reloadStatus = false
