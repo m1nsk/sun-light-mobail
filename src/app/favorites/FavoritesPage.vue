@@ -1,15 +1,9 @@
 <template>
   <div>
-    <catalog-header :pageData="pageInfo"></catalog-header>
+    <title-header title="Избранное"></title-header>
     <page-content>
       <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!flagLoaded" :infiniteLoadingStatus="reloadStatus">
         <div class="content-layout">
-          <div class="catalog__filter" @click.stop>
-            <transition-group name="fade">
-              <filter-button :key="filterIndex" v-for="(filter, filterIndex) in filterList" v-if="filter.included === true" :data="filter" @exclude="onFilterExclude(filter)"></filter-button>
-            </transition-group>
-          </div>
-          <bannerItem :bannerImg="bannerImage"></bannerItem>
           <product-card-banner v-for="item in productList" :key="item.id" :bannerData="item" @marked="onItemMarked(item)" @click.native="onProductClicked(item)" class="item"></product-card-banner>
         </div>
       </scroll>
@@ -19,32 +13,20 @@
 
 <script>
   import { getFavorites } from 'api/index'
-  import CatalogHeader from 'appComponents/components/headers/CatalogHeader.vue'
-  import BannerItem from 'appComponents/components/banners/BannerItem.vue'
+  import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
   import ProductCardBanner from 'appComponents/components/banners/ProductCardBanner.vue'
-  import FilterButton from 'appComponents/components/buttons/FilterButton.vue'
-  import CustomDataGrid from 'appComponents/components/banners/CustomDataGrid.vue'
   import Scroll from '~/components/customScroll'
   import Content from '~/components/content'
 
   export default {
     components: {
-      BannerItem,
-      CatalogHeader,
+      TitleHeader,
       ProductCardBanner,
-      FilterButton,
-      CustomDataGrid,
       'page-content': Content,
       Scroll
     },
     data () {
       return {
-        pageInfo: {
-          num: 1,
-          total: 2,
-          category: 'Часы наручные'
-        },
-        bannerImage: '/static/logo.png',
         getProductFunction: getFavorites
       }
     },
@@ -57,14 +39,6 @@
       })
     },
     computed: {
-      payload () {
-        let payload = this.$store.getters.getFilterForResponse
-        payload.catalog_id = this.$route.params.id
-        return payload
-      },
-      filterList () {
-        return this.$store.getters.getFilterList
-      },
       productList () {
         return this.$store.getters.getProductItemList
       },
@@ -76,18 +50,6 @@
       }
     },
     methods: {
-      onFilterExclude (filter) {
-        console.log(filter.title, 'item')
-        for (let filterItem in this.filterList) {
-          if (this.filterList[filterItem].title === filter.title) {
-            filter.included = false
-            break
-          }
-        }
-        this.$store.commit('setFilters', this.filterList)
-        this.$store.commit('setProductsToDefault')
-        this.$store.dispatch('getProductList', this.getProductFunction)
-      },
       onProductClicked (item) {
         this.$router.push({
           name: 'product',

@@ -15,16 +15,14 @@
   import { getOrdered } from 'api/index'
   import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
   import ProductCardBanner from 'appComponents/components/banners/ProductCardBanner.vue'
-  import CustomDataGrid from 'appComponents/components/banners/CustomDataGrid.vue'
   import Scroll from '~/components/customScroll'
   import Content from '~/components/content'
 
   export default {
     components: {
       TitleHeader,
-      'page-content': Content,
       ProductCardBanner,
-      CustomDataGrid,
+      'page-content': Content,
       Scroll
     },
     data () {
