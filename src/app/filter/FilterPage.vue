@@ -4,7 +4,7 @@
     <second-footer><menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer></second-footer>
     <page-content class="content-padding-bottom">
       <div class="content-layout">
-        <filter-card v-for="item in filterList" :key="item.id" @click.native="onFilterClicked(item)" :filterData="item"></filter-card>
+        <filter-card v-for="item in filterList" :key="item.id" @filterData="onChecked(item)" @click.native="onFilterClicked(item)" :filterData="item"></filter-card>
       </div>
     </page-content>
     <pop-up ref="s" class="filter-popup" :isActive="show" width="70" height="45" @close="onPopUpClosed">
@@ -63,6 +63,10 @@
       }
     },
     methods: {
+      onChecked (filter) {
+        this.filterList[filter.name].included = filter.included
+        console.log(filter, this.filterList[filter.name])
+      },
       onMinChanged (val) {
         console.log(val)
         this.filter.from = val
@@ -76,7 +80,7 @@
           this.$store.commit('setFilters', this.filterList)
           this.$router.back()
         } else if (data['view'] === 'left') {
-          console.log('cancel')
+          this.$router.back()
         }
       },
       onFilterClicked (item) {

@@ -26,6 +26,7 @@
 </template>
 
 <script>
+  import { getProductList } from 'api/index'
   import Content from '~/components/content'
   import searchbar from '~/components/searchbar'
   import { Header, HeaderLink, HeaderTitle } from '~/components/header'
@@ -45,7 +46,8 @@
     data () {
       return {
         state: false,
-        search: ''
+        search: '',
+        getProductFunction: getProductList
       }
     },
     methods: {
@@ -56,6 +58,8 @@
         this.state =! this.state
         if (this.state === false) {
           this.$store.commit('setSearch', this.search)
+          this.$store.commit('setProductsToDefault')
+          this.$store.dispatch('getProductList', this.getProductFunction)
         } else if (this.state === true) {
           this.search = this.$store.getters.getSearch
         }

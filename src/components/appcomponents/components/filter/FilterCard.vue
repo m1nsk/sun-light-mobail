@@ -1,12 +1,12 @@
 <template>
   <custom-card class="card">
-    <div slot="img" src="/static/myIcons/cancel.svg" class="flex-center">
-      <img src="/static/myIcons/cancel.svg" class="icon-left">
+    <div slot="img" class="flex-center">
+      <switcher @click.native.stop :value="checked" @input="onChange"></switcher>
     </div>
     <div slot="info" class="data">
       <div class="title"><span>{{ filterData.title }}</span></div>
       <div>
-        <span class="list-string" v-if="filterData.filters[0]">{{ filterString(filterData) }}</span>
+        <span class="list-string" v-if="filterData.filters[0]">{{ this.filterString(filterData) }}</span>
       </div>
     </div>
     <div slot="icons">
@@ -17,12 +17,23 @@
 
 <script>
   import CustomCard from 'appComponents/components/cards/CustomCard.vue'
+  import Switcher from '~/components/switcher'
   export default {
     props: ['filterData'],
     components: {
-      CustomCard
+      CustomCard,
+      Switcher
+    },
+    data () {
+      return {
+        checked: this.filterData.included
+      }
     },
     methods: {
+      onChange (input) {
+        this.filterData.included = input
+        this.$emit('filterData', this.filterData)
+      },
       filterString (item) {
         const size = 40
         let result = ''

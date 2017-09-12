@@ -69,7 +69,6 @@
     },
     methods: {
       onShopClicked (item) {
-        console.log(item, 'clicked')
         this.$router.push({
           name: 'form',
           params: {
