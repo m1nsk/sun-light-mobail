@@ -4,7 +4,7 @@
     <page-content>
       <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!flagLoaded" :infiniteLoadingStatus="reloadStatus">
         <div class="content-layout">
-          <product-card-banner v-for="item in productList" :key="item.id" :bannerData="item.product" @click.native="onProductClicked(item.product)" class="item"></product-card-banner>
+          <product-card-banner v-for="item in itemList" :key="item.id" :bannerData="item.product" @click.native="onProductClicked(item.product)" class="item"></product-card-banner>
         </div>
       </scroll>
     </page-content>
@@ -13,6 +13,7 @@
 
 <script>
   import { getOrdered } from 'api/index'
+  import scrollMixin from '~/mixins/scrollMixin.vue'
   import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
   import ProductCardBanner from 'appComponents/components/banners/ProductCardBanner.vue'
   import Scroll from '~/components/customScroll'
@@ -25,28 +26,11 @@
       'page-content': Content,
       Scroll
     },
+    extends: scrollMixin,
     data () {
       return {
-        getOrderedList: getOrdered
-      }
-    },
-    mounted: function () {
-      this.$nextTick(function () {
-        this.$nextTick(function () {
-          this.$store.commit('setProductsToDefault')
-          this.$store.dispatch('getProductList', this.getOrderedList)
-        })
-      })
-    },
-    computed: {
-      productList () {
-        return this.$store.getters.getProductItemList
-      },
-      flagLoaded () {
-        return this.$store.getters.getProductLoadedFlag
-      },
-      reloadStatus () {
-        return this.$store.getters.getProductReloadStatus
+        getItemFunction: getOrdered,
+        payload: {}
       }
     },
     methods: {
@@ -57,9 +41,6 @@
             id: item.id
           }
         })
-      },
-      onInfinite () {
-        this.$store.dispatch('getProductList', this.getOrderedList)
       }
     }
   }

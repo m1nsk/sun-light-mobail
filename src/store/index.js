@@ -6,6 +6,7 @@ import categories from './modules/categories'
 import profile from './modules/profile'
 import markets from './modules/markets'
 import filters from './modules/filters'
+import scrollContainer from './modules/scrollContainer'
 
 Vue.use(Vuex)
 
@@ -16,6 +17,7 @@ export default new Vuex.Store({
     categories,
     profile,
     markets,
-    filters
+    filters,
+    scrollContainer
   }
 })

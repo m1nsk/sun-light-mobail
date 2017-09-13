@@ -6,7 +6,7 @@
         <i class="fa fa-spinner fa-pulse fa-3x fa-fw" style="color: black"></i>
       </div>
       <div v-else-if="dataLoaded === true">
-        <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!flagLoaded" :infiniteLoading="reloadStatus">
+        <!-- <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!flagLoaded" :infiniteLoading="reloadStatus"> -->
           <div class="slider">
             <div class="prodName max-width">
               <span>{{ productData.label }}</span>
@@ -47,14 +47,13 @@
             </div>
           </div>
           -->
-        </scroll>
+        <!-- </scroll> -->
       </div>
     </page-content>
   </div>
 </template>
 
 <script>
-  import scrollMixin from '~/mixins/scrollMixin.vue'
   import { SlideWrapper, Slide } from '~/components/slide'
   import ProductHeader from 'appComponents/components/headers/ProductHeader.vue'
   import Button from 'appComponents/components/buttons/Button.vue'
@@ -65,7 +64,6 @@
   import Content from '~/components/content'
 
   export default {
-    extends: scrollMixin,
     components: {
       ProductHeader,
       'shop-button': Button,
@@ -86,9 +84,6 @@
       this.$store.dispatch('getProduct', {id: id})
     },
     computed: {
-      getElementHeight () {
-        return this.$store.getters.getBannerSize.height
-      },
       productData () {
         return this.$store.getters.getProductsItem
       },

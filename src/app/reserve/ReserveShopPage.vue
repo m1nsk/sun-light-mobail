@@ -6,9 +6,9 @@
         <div class="content-layout">
           <product-card-mini :productData="productData"></product-card-mini>
           <div class="shop__count">
-            <span>Найдено {{ this.shopCounter }} магазина</span>
+            <span>Найдено {{ this.itemList.length }} магазина</span>
           </div>
-          <shop-card v-for="item in marketList" :key="item.id" :shopData="item" @click.native="onShopClicked(item)" class="listItem"></shop-card>
+          <shop-card v-for="item in itemList" :key="item.id" :shopData="item" @click.native="onShopClicked(item)" class="listItem"></shop-card>
         </div>
       </scroll>
     </page-content>
@@ -16,7 +16,8 @@
 </template>
 
 <script>
-  import { getProduct } from 'api/index'
+  import { getProduct, getMarketList } from 'api/index'
+  import scrollMixin from '~/mixins/scrollMixin.vue'
   import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
   import ContentWrapper from 'appComponents/components/wrappers/ContentWrapper.vue'
   import ShopCard from 'appComponents/components/cards/ShopCard.vue'
@@ -35,6 +36,7 @@
       'page-content': Content,
       Scroll
     },
+    extends: scrollMixin,
     data () {
       return {
         productData: {
@@ -42,30 +44,19 @@
           image: {
             mini: ''
           }
-        }
+        },
+        getItemFunction: getMarketList,
+        payload: {}
       }
     },
     mounted: function () {
       this.$store.commit('setMarketsToDefault')
       let promiseProduct = getProduct(this.$store.getters.productCode.id)
-      this.$store.dispatch('getMarketList', {})
       promiseProduct.then((response) => {
         this.productData = response.data.data
       })
     },
     computed: {
-      shopCounter () {
-        return this.$store.getters.getMarketItemList.length
-      },
-      flagLoaded () {
-        return this.$store.getters.getMarketLoadedFlag
-      },
-      reloadStatus () {
-        return this.$store.getters.getMarketReloadStatus
-      },
-      marketList () {
-        return this.$store.getters.getMarketItemList
-      }
     },
     methods: {
       onShopClicked (item) {
@@ -75,9 +66,6 @@
             id: item.id
           }
         })
-      },
-      onInfinite () {
-        this.$store.dispatch('getMarketList', {})
       }
     }
   }

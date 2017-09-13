@@ -10,7 +10,7 @@
             </transition-group>
           </div>
           <bannerItem :bannerImg="bannerImage"></bannerItem>
-          <product-card-banner v-for="item in productList" :key="item.id" :bannerData="item" @marked="onItemMarked(item)" @click.native="onProductClicked(item)" class="item"></product-card-banner>
+          <product-card-banner v-for="item in itemList" :key="item.id" :bannerData="item" @marked="onItemMarked(item)" @click.native="onProductClicked(item)" class="item"></product-card-banner>
         </div>
       </scroll>
     </page-content>
@@ -19,6 +19,7 @@
 
 <script>
   import { getProductList } from 'api/index'
+  import scrollMixin from '~/mixins/scrollMixin.vue'
   import CatalogHeader from 'appComponents/components/headers/CatalogHeader.vue'
   import BannerItem from 'appComponents/components/banners/BannerItem.vue'
   import ProductCardBanner from 'appComponents/components/banners/ProductCardBanner.vue'
@@ -37,6 +38,7 @@
       'page-content': Content,
       Scroll
     },
+    extends: scrollMixin,
     data () {
       return {
         pageInfo: {
@@ -45,16 +47,8 @@
           category: 'Часы наручные'
         },
         bannerImage: '/static/logo.png',
-        getProductFunction: getProductList
+        getItemFunction: getProductList
       }
-    },
-    mounted: function () {
-      this.$nextTick(function () {
-       this.$nextTick(function () {
-         this.$store.commit('setProductsToDefault')
-         this.$store.dispatch('getProductList', this.getProductFunction)
-       })
-      })
     },
     computed: {
       payload () {
@@ -65,15 +59,6 @@
       filterList () {
         return this.$store.getters.getFilterList
       },
-      productList () {
-        return this.$store.getters.getProductItemList
-      },
-      flagLoaded () {
-        return this.$store.getters.getProductLoadedFlag
-      },
-      reloadStatus () {
-        return this.$store.getters.getProductReloadStatus
-      }
     },
     methods: {
       onFilterExclude (filter) {
@@ -85,8 +70,8 @@
           }
         }
         this.$store.commit('setFilters', this.filterList)
-        this.$store.commit('setProductsToDefault')
-        this.$store.dispatch('getProductList', this.getProductFunction)
+        this.clearItemList()
+        this.getItems()
       },
       onProductClicked (item) {
         this.$router.push({
@@ -95,9 +80,6 @@
             id: item.id
           }
         })
-      },
-      onInfinite () {
-        this.$store.dispatch('getProductList', this.getProductFunction)
       }
     }
   }
