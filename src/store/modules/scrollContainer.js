@@ -56,7 +56,14 @@ const mutations = {
       state.scrollItemList.push(scrollItemList[index])
     }
   },
-  setScrollLike (state, id) {
+  setProductLike (state, id) {
+    for (let index = 0; index < state.scrollItemList.length; index++) {
+      if (state.scrollItemList[index].id == id) {
+        state.scrollItemList[index].like = !state.scrollItemList[index].like
+      }
+    }
+  },
+  setMarketLike (state, id) {
     for (let index = 0; index < state.scrollItemList.length; index++) {
       if (state.scrollItemList[index].id == id) {
         state.scrollItemList[index].like = !state.scrollItemList[index].like
