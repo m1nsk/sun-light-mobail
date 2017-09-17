@@ -1,7 +1,7 @@
 import { createSecret, getToken, setAxiosToken, putOrder } from 'api/index'
 // initial state
 const state = {
-  profile: JSON.parse(localStorage.getItem('profile') || '') || {}
+  profile: JSON.parse(localStorage.getItem('profile') === null ? '{}' : localStorage.getItem('profile')) || {}
 }
 
 // getters
@@ -60,6 +60,7 @@ const actions = {
 const mutations = {
   setProfile (state, payload) {
     let profile = JSON.parse(localStorage.getItem('profile')) || {}
+    console.log(profile, 'profile')
     profile['token'] = payload['token'] || profile.token
     profile['fio'] = payload['fio'] || profile.fio
     profile['phone'] = payload['phone'] || profile.phone

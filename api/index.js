@@ -6,10 +6,11 @@ export const baseHost = `${API_HOST}`
 export const baseURL = baseHost + '/api/'
 
 axios.defaults.baseURL = baseURL
-axios.defaults.headers.common['X-CSRF-TOKEN'] = JSON.parse(localStorage.getItem('profile')).token
+// TODO: get a real way to fix this
+axios.defaults.headers.common['X-CSRF-TOKEN'] = JSON.parse(localStorage.getItem('profile') === null ? '{}' : localStorage.getItem('profile')) || {}
 
 export function setAxiosToken() {
-  axios.defaults.headers.common['X-CSRF-TOKEN'] = JSON.parse(localStorage.getItem('profile')).token
+  axios.defaults.headers.common['X-CSRF-TOKEN'] = JSON.parse(localStorage.getItem('profile') === null ? '{}' : localStorage.getItem('profile')) || {}
 }
 
 export function getCategories (formData) {
