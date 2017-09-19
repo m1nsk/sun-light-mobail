@@ -13,7 +13,6 @@ const getters = {
 // actions
 const actions = {
   getSecretCode ({ commit, state, rootState }, payload) {
-    rootState.callbackUrl.url = router.history.current.path
     let profile = state.profile
     let userData = {
       fio: payload.profile.fio || profile.fio,
