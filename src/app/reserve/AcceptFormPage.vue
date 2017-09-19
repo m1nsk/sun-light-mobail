@@ -52,19 +52,9 @@
         this.code = item.input
       },
       onActionClicked (data) {
-        console.log(data)
         if (data.action === 'accept') {
           this.$store.dispatch('getToken', {
-            code: this.code,
-            router: {
-              router: this.$router,
-              params: {
-                name: 'form',
-                params: {
-                  id: this.$route.params.id
-                }
-              }
-            }
+            code: this.code
           })
         } else if (data.action === 'cancel') {
           this.$router.push(-1)

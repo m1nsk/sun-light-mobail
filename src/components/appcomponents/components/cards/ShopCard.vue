@@ -1,6 +1,6 @@
 <template>
   <custom-card>
-    <img slot="img" class="banner" src="static/logo.png">
+    <img slot="img" class="banner" src="/static/logo.png">
     <div slot="info" class="wrapper">
       <div class="shop-station">{{ shopData.label }}</div>
       <div class="shop-station">{{ shopData.address }}</div>

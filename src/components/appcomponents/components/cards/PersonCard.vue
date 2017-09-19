@@ -8,7 +8,7 @@
       </div>
     </div>
     <div class="banner-wrapper">
-      <img src="/static/logo.png" class="banner">
+      <img src="/static/icon.png" class="banner">
     </div>
   </div>
 </template>

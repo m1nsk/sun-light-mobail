@@ -3,7 +3,7 @@
     <title-header title="Мои покупки"></title-header>
     <page-content>
       <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!flagLoaded" :infiniteLoadingStatus="reloadStatus">
-        <div class="content-layout">
+        <div v-if="!animationFlag" class="content-layout">
           <product-card-banner v-for="item in itemList" :key="item.id" :bannerData="item.product" @click.native="onProductClicked(item.product)" class="item"></product-card-banner>
         </div>
       </scroll>

@@ -13,6 +13,10 @@
       },
       reloadStatus () {
         return this.$store.getters.getScrollReloadStatus
+      },
+      animationFlag () {
+        console.log(this.$store.getters.getAnimationFlag, 'animationFlag')
+        return this.$store.getters.getAnimationFlag
       }
     },
     created: function () {

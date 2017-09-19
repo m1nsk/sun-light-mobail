@@ -9,8 +9,8 @@
         <shop-form-card></shop-form-card>
         <div v-if="">
           <form-card placeholder="Имя" v-model="profile.fio"></form-card>
-          <form-card placeholder="Почта" v-model="profile.mail" @input="mailChanged"></form-card>
-          <form-card placeholder="Телефон" v-model="profile.phone" @input="phoneChanged"></form-card>
+          <form-card placeholder="Почта" v-model="profile.mail"></form-card>
+          <form-card placeholder="Телефон" v-model="profile.phone"></form-card>
         </div>
         <accept-form-card class="reserve-form__accept"></accept-form-card>
       </div>
@@ -62,43 +62,16 @@
       }
     },
     methods: {
-      fioChanged (item) {
-        this.profile.fio = item.input
-      },
-      mailChanged (item) {
-        this.profile.mail = item.input
-      },
-      phoneChanged (item) {
-        this.profile.phone = item.input
-      },
       onActionClicked (data) {
         if (data.action === 'accept') {
+          let payload = {}
+          payload.profile = this.profile
           if (this.profile.phone !== this.$store.getters.getProfile.phone) {
-            let payload = this.profile
-            payload.router = {
-              router: this.$router,
-              params: {
-                name: 'accept',
-                params: {
-                  id: this.$route.params.id
-                }
-              }
-            }
             this.$store.dispatch('getSecretCode', payload)
           } else {
-            let payload = {}
-            payload.router = {
-              router: this.$router,
-              params: {
-                name: 'success',
-                params: {
-                  id: this.$route.params.id
-                }
-              }
-            }
             payload.shop_id = this.$route.params.id
             payload.product_id = this.$store.getters.productCode.id
-            this.$store.commit('setProfile', this.profile)
+            debugger
             this.$store.dispatch('getOrderStatus', payload)
           }
         } else if (data.action === 'cancel') {

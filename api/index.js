@@ -1,16 +1,32 @@
 import axios from 'axios'
+import router from '../src/main.js'
+import properties from '../src/store/modules/properties'
+import store from '../src/store'
 
 import { API_HOST, API_PORT } from '../api/config'
 
-export const baseHost = `${API_HOST}`
+export const baseHost = API_HOST
 export const baseURL = baseHost + '/api/'
+
+axios.interceptors.response.use(function (response) {
+  return response;
+}, function (error) {
+  if (500 === error.response.status) {
+    console.log(router.history.current.path, 'patch callback')
+    store.state.properties.callbackUrl.url = router.history.current.path
+    console.log(store.state.properties.callbackUrl.url, 'callback post')
+    router.push({name: 'login'})
+  } else {
+    return Promise.reject(error);
+  }
+});
 
 axios.defaults.baseURL = baseURL
 // TODO: get a real way to fix this
-axios.defaults.headers.common['X-CSRF-TOKEN'] = JSON.parse(localStorage.getItem('profile') === null ? '{}' : localStorage.getItem('profile')) || {}
+axios.defaults.headers.common['X-CSRF-TOKEN'] = JSON.parse(localStorage.getItem('profile') === null ? '' : localStorage.getItem('profile')).token || ''
 
 export function setAxiosToken() {
-  axios.defaults.headers.common['X-CSRF-TOKEN'] = JSON.parse(localStorage.getItem('profile') === null ? '{}' : localStorage.getItem('profile')) || {}
+  axios.defaults.headers.common['X-CSRF-TOKEN'] = JSON.parse(localStorage.getItem('profile') === null ? '' : localStorage.getItem('profile')).token || ''
 }
 
 export function getCategories (formData) {
@@ -43,7 +59,7 @@ export function getOrdered (productData) {
 
 export function putOrder (productData) {
   console.log(productData, 'productData')
-  return axios.put('/orders/null', productData)
+  return axios.put('/orders/create', productData)
 }
 
 export function getCategoryProducts (catalogIdData) {
@@ -67,11 +83,9 @@ export function getToken (userData) {
 }
 
 export function toggleLike (id) {
-  console.log(`/api/product/${id}/like`)
-  return axios.get(baseHost + `/api/product/${id}/like`)
+  return axios.get(baseHost + '/api/product/' + id + '/like')
 }
 
 export function toggleMarketLike (id) {
-  console.log(`/api/market/${id}/like`)
-  return axios.get(baseHost + `/api/market/${id}/like`)
+  return axios.get(baseHost + '/api/shop/' + id + '/like')
 }

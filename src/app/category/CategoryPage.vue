@@ -10,7 +10,9 @@
             </transition-group>
           </div>
           <bannerItem :bannerImg="bannerImage"></bannerItem>
-          <product-card-banner v-for="item in itemList" :key="item.id" :bannerData="item" @marked="onItemMarked(item)" @click.native="onProductClicked(item)" class="item"></product-card-banner>
+          <div v-if="!animationFlag">
+            <product-card-banner v-for="item in itemList" :key="item.id" :bannerData="item" @marked="onItemMarked(item)" @click.native="onProductClicked(item)" class="item"></product-card-banner>
+          </div>
         </div>
       </scroll>
     </page-content>
@@ -58,7 +60,7 @@
       },
       filterList () {
         return this.$store.getters.getFilterList
-      },
+      }
     },
     methods: {
       onFilterExclude (filter) {

@@ -8,7 +8,9 @@
           <div class="shop__count">
             <span>Найдено {{ this.itemList.length }} магазина</span>
           </div>
-          <shop-card v-for="item in itemList" :key="item.id" :shopData="item" @click.native="onShopClicked(item)" class="listItem"></shop-card>
+          <div v-if="!animationFlag">
+            <shop-card v-for="item in itemList" :key="item.id" :shopData="item" @click.native="onShopClicked(item)" class="listItem"></shop-card>
+          </div>
         </div>
       </scroll>
     </page-content>
@@ -55,8 +57,6 @@
       promiseProduct.then((response) => {
         this.productData = response.data.data
       })
-    },
-    computed: {
     },
     methods: {
       onShopClicked (item) {

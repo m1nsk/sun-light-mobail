@@ -1,7 +1,8 @@
 import { createSecret, getToken, setAxiosToken, putOrder } from 'api/index'
+import router from '~/main'
 // initial state
 const state = {
-  profile: JSON.parse(localStorage.getItem('profile') === null ? '{}' : localStorage.getItem('profile')) || {}
+  profile: JSON.parse(localStorage.getItem('profile') === null ? '' : localStorage.getItem('profile')) || ''
 }
 
 // getters
@@ -11,36 +12,33 @@ const getters = {
 
 // actions
 const actions = {
-  getSecretCode ({ commit, state }, payload) {
-    console.log(payload, 'payload')
-    console.log(state.profile, 'profile.fio')
+  getSecretCode ({ commit, state, rootState }, payload) {
+    rootState.callbackUrl.url = router.history.current.path
     let profile = state.profile
     let userData = {
-      fio: payload.fio || profile.fio,
-      phone: payload.phone || profile.phone,
-      mail: payload.mail || profile.mail,
+      fio: payload.profile.fio || profile.fio,
+      phone: payload.profile.phone || profile.phone,
+      mail: payload.profile.mail || profile.mail,
     }
     let promise = createSecret(userData)
     promise.then((response) => {
-      commit('setProfile', userData)
-      payload.router.router.push(payload.router.params)
-      return true
+      if (response.data.success) {
+        commit('setProfile', payload.profile)
+        router.push({name: "code"})
+      }
     }).catch(err => {
       console.log(err)
-      return false
     })
   },
-  getToken ({ commit }, payload) {
+  getToken ({ commit, rootState }, payload) {
     let secretCode = {
       secret: payload.code
     }
-    console.log(secretCode)
     let promise = getToken(secretCode)
     promise.then((response) => {
-      console.log(response.data)
       if (response.data.success === true) {
         commit('setProfile', {token: response.data.token})
-        payload.router.router.push(payload.router.params)
+        router.push({name: "success"})
       }
       return true
     }).catch(err => {
@@ -50,8 +48,9 @@ const actions = {
   },
   getOrderStatus ({ commit }, payload) {
     let promise = putOrder({shop_id: payload.shop_id, product_id: payload.product_id})
+    console.log(payload, 'p_load')
     promise.then(response => {
-      payload.router.router.push(payload.router.params)
+      router.push({name: "success"})
     })
   }
 }

@@ -2,7 +2,7 @@
   <page-header class="header-shadow">
     <header-link :left="true" :edge="false">
       <div class="frame flex-center">
-        <img src="/static/logo.png" class="logo">
+        <img src="/static/icon.png" class="logo">
       </div>
     </header-link>
     <header-link :left="false" :edge="false">

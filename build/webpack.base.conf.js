@@ -24,7 +24,6 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js',
       '~': resolve('src'),
       'appComponents': resolve('src/components/appcomponents'),
-      'assets': resolve('src/assets'),
       'api': resolve('api')
     }
   },
@@ -49,7 +48,7 @@ module.exports = {
         loader: 'style!css!sass'
       },
       {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        test: /\.(png|jpe?g|gif|svg|ico)(\?.*)?$/,
         loader: 'url-loader',
         query: {
           limit: 10000,

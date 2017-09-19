@@ -10,7 +10,7 @@
       </div>
     </div>
     <div slot="icons">
-      <img src="/static/myIcons/right-arrow.svg" class="icon-right"/>
+      <img src="/myIcons/right-arrow.svg" class="icon-right"/>
     </div>
   </custom-card>
 </template>

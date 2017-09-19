@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <transition name="slide">
+    <transition name="slide" @before-enter="beforeEnter(that)" @after-leave="afterLeave(that)">
       <router-view class="page-slide"></router-view>
     </transition>
     <menu-footer @view="changeView" :menuItemData="menuItemData"></menu-footer>
@@ -18,7 +18,6 @@
     },
     data () {
       return {
-        currentView: 'home',
         menuItemData: [
           {
             name: '/stock',
@@ -36,12 +35,25 @@
             name: '/profile',
             title: 'Профиль'
           }
-        ]
+        ],
+        that: this
       }
     },
     methods: {
       changeView (view) {
         this.$router.push(view['view'])
+      },
+      beforeEnter (that) {
+        console.log('anim true')
+        that.$store.commit('setAnimationFlag', {
+          state: true
+        })
+      },
+      afterLeave (that) {
+        console.log('anim false')
+        that.$store.commit('setAnimationFlag', {
+          state: false
+        })
       }
     }
   }
@@ -115,19 +127,22 @@
   }
 
   .header-shadow
-  {
+  { /*
     background:#FFF;
     -webkit-box-shadow: 0 -3.4px 5px 2px #777;
     -moz-box-shadow: 0 -3.4px 5px 2px #777;
     box-shadow: 0 -3.4px 5px 2px #777;
+    */
   }
 
   .footer-shadow
   {
+    /*
     background:#FFF;
     -webkit-box-shadow: 0 3.4px 5px 2px #777;
     -moz-box-shadow: 0 3.4px 5px 2px #777;
     box-shadow: 0 3.4px 5px 2px #777;
+    */
   }
 
   .flex-center

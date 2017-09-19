@@ -41,13 +41,7 @@
       register () {
         this.$store.dispatch('getSecretCode', {
           fio: this.fio,
-          phone: this.phone,
-          router: {
-            router: this.$router,
-            params: {
-              name: 'code'
-            }
-          }
+          phone: this.phone
         })
       }
     }

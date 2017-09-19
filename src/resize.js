@@ -16,6 +16,7 @@ function resizeProcess () {
     height: height,
     width: width
   }
+  console.log(store.state.properties.windowSize)
   size = Math.round((width * 8 / 10) / 2 - 10)
   console.log(size, 'size1')
   size = size < 233.2 ? size : 233.2
@@ -25,6 +26,7 @@ function resizeProcess () {
     height: size
   }
   store.state.properties.bannerSize = bannerSize
+  console.log(store.state.properties.bannersize)
   size = Math.round((width * 8 / 10) / 2 - 10)
   size = size < 233.2 ? size : 233.2
   shopCardSize = {

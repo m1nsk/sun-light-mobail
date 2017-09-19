@@ -36,12 +36,6 @@
       register () {
         this.$store.dispatch('getToken', {
           code: this.code,
-          router: {
-            router: this.$router,
-            params: {
-              name: 'catalog'
-            }
-          }
         })
       }
     }

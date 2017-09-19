@@ -37,3 +37,5 @@ new Vue({
 
 // Vum.router(router)
 FastClick.attach(document.body)
+
+export default router;
