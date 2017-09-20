@@ -9,14 +9,16 @@ const state = {
   ],
   productItem: {},
   productItemLoaded: false,
+  productsListReloadFlag: false
 }
 
 
 // getters
 const getters = {
   productCode: state => state.card[0],
-  getProductsItem: state => state.productItem,
+  getProductItem: state => state.productItem,
   getProductItemLoaded: state => state.productItemLoaded,
+  getProductListReload: state => state.productsListReloadFlag,
 }
 
 // actions
@@ -47,8 +49,12 @@ const mutations = {
   },
   setProduct (state, product) {
     state.productItem = product
+  },
+  setProductListReloadFlag (state, flag) {
+    state.productsListReloadFlag = flag
   }
 }
+
 
 export default {
   state,

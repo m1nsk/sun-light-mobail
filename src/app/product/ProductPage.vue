@@ -2,51 +2,50 @@
   <div class="page">
     <product-header :product_id="productData.product_id"></product-header>
     <page-content>
-      <div v-if="dataLoaded === false" class="flex-center pageIsLoading">
+      <div v-if="productItemLoaded === false" class="flex-center pageIsLoading">
         <i class="fa fa-spinner fa-pulse fa-3x fa-fw" style="color: black"></i>
       </div>
-      <div v-else-if="dataLoaded === true">
+      <div v-else-if="productItemLoaded === true">
         <!-- <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!flagLoaded" :infiniteLoading="reloadStatus"> -->
-          <div class="slider">
-            <div class="prodName max-width">
-              <span>{{ productData.label }}</span>
-              <div v-if="productData.best" class="hitClass">
-                <span>Хит</span>
-              </div>
+        <div class="slider">
+          <div class="prodName max-width">
+            <span>{{ productData.label }}</span>
+            <div v-if="productData.best" class="hitClass">
+              <span>Хит</span>
             </div>
           </div>
-          <slide-wrapper class="sliderWrapper">
-            <slide v-for="img in productData.gallery"  :key="img.id"><img class="sliderImg" v-lazy="img.mini" alt="Нет картинки"/></slide>
-          </slide-wrapper>
-          <div class="prodPrice max-width">
-            <span>до {{productData.cost}} р.</span>
-          </div>
-          <shop-button @click.native="onReserveClicked" caption="Оформить резерв" class="reserveBtn max-width" ></shop-button>
-          <div class="prodQty max-width">
-            <span>В наличии в магазинах 10 </span>
-          </div>
-          <hr class="max-width hr" color="gray" size="1px"/>
-          <div class="prodDescription max-width">
-            {{ productData.description }}
-          </div>
-          <hr class="max-width hr" color="gray" size="1px"/>
-          <div class="btnArea max-width">
-            <button-small @click.native="onMarkedClicked" caption="Может понравиться" class="markedBtn" ></button-small>
-            <button-small @click.native="onSeenClicked" caption="Просмотренные" class="seenBtn" ></button-small>
-          </div>
-          <!--
-          <div style="position: relative; width: 100%;" :style="{'height': this.$store.getters.getWindowSize.height + 'px'}">
-            <div class="content-layout">
-              <div class="content-padded">
-                <custom-data-grid url="/products" :onReload="onReload" :columnNum="2" :elementHeight="getElementHeight" @flagLoaded="onFlagLoaded">
-                  <template slot="content" scope="props">
-                    <product-card-banner v-for="item in props.dataList" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)" class="listItem"></product-card-banner>
-                  </template>
-                </custom-data-grid>
-              </div>
+        </div>
+        <slide-wrapper class="sliderWrapper">
+          <slide v-for="img in productData.gallery"  :key="img.id"><img class="sliderImg" v-lazy="img.mini" alt="Нет картинки"/></slide>
+        </slide-wrapper>
+        <div class="prodPrice max-width">
+          <span>до {{productData.cost}} р.</span>
+        </div>
+        <shop-button @click.native="onReserveClicked" caption="Оформить резерв" class="reserveBtn max-width" ></shop-button>
+        <div class="prodQty max-width">
+          <span>В наличии в магазинах 10 </span>
+        </div>
+        <hr class="max-width hr" color="gray" size="1px"/>
+        <div class="prodDescription max-width">
+        </div>
+        <hr class="max-width hr" color="gray" size="1px"/>
+        <div class="btnArea max-width">
+          <button-small @click.native="onMarkedClicked" caption="Может понравиться" class="markedBtn" ></button-small>
+          <button-small @click.native="onSeenClicked" caption="Просмотренные" class="seenBtn" ></button-small>
+        </div>
+        <!--
+        <div style="position: relative; width: 100%;" :style="{'height': this.$store.getters.getWindowSize.height + 'px'}">
+          <div class="content-layout">
+            <div class="content-padded">
+              <custom-data-grid url="/products" :onReload="onReload" :columnNum="2" :elementHeight="getElementHeight" @flagLoaded="onFlagLoaded">
+                <template slot="content" scope="props">
+                  <product-card-banner v-for="item in props.dataList" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)" class="listItem"></product-card-banner>
+                </template>
+              </custom-data-grid>
             </div>
           </div>
-          -->
+        </div>
+        -->
         <!-- </scroll> -->
       </div>
     </page-content>
@@ -54,6 +53,7 @@
 </template>
 
 <script>
+  import { getProduct } from 'api/index'
   import { SlideWrapper, Slide } from '~/components/slide'
   import ProductHeader from 'appComponents/components/headers/ProductHeader.vue'
   import Button from 'appComponents/components/buttons/Button.vue'
@@ -77,16 +77,24 @@
     },
     data () {
       return {
+        productData: {},
+        productItemLoaded: false
       }
     },
-    created: function () {
-      let id = this.$route.params.id
-      this.$store.dispatch('getProduct', {id: id})
+    activated: function () {
+      let payload = {
+        id: this.$route.params.id
+      }
+      let promise = getProduct(payload.id)
+      promise.then((response) => {
+        this.productData = response.data.data
+        this.productItemLoaded = true
+      })
+    },
+    deactivated: function () {
+      this.productItemLoaded = false
     },
     computed: {
-      productData () {
-        return this.$store.getters.getProductsItem
-      },
       dataLoaded () {
         return this.$store.getters.getProductItemLoaded
       }

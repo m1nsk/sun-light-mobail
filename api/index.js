@@ -12,9 +12,7 @@ axios.interceptors.response.use(function (response) {
   return response;
 }, function (error) {
   if (500 === error.response.status) {
-    console.log(router.history.current.path, 'patch callback')
     store.state.properties.callbackUrl.url = router.history.current.path
-    console.log(store.state.properties.callbackUrl.url, 'callback post')
     router.push({name: 'login'})
   } else {
     return Promise.reject(error);
@@ -40,6 +38,7 @@ export function getProduct (productId) {
 export function getProductList (productData) {
   productData.sort = 'id'
   productData.order = 'asc'
+  console.log(productData, 'productData')
   return axios.post('/products', productData)
 }
 
@@ -58,7 +57,6 @@ export function getOrdered (productData) {
 }
 
 export function putOrder (productData) {
-  console.log(productData, 'productData')
   return axios.put('/orders/create', productData)
 }
 

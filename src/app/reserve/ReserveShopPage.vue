@@ -2,14 +2,14 @@
   <div>
     <title-header title="Где забрать?"></title-header>
     <page-content class="content-padding-bottom">
-      <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!flagLoaded" :infiniteLoadingStatus="reloadStatus">
+      <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!loadedScrollFlag" :infiniteLoadingStatus="reloadScrollFlag">
         <div class="content-layout">
           <product-card-mini :productData="productData"></product-card-mini>
           <div class="shop__count">
-            <span>Найдено {{ this.itemList.length }} магазина</span>
+            <span>Найдено {{ this.scrollItemList.length }} магазина</span>
           </div>
-          <div v-if="!animationFlag">
-            <shop-card v-for="item in itemList" :key="item.id" :shopData="item" @click.native="onShopClicked(item)" class="listItem"></shop-card>
+          <div v-show="!animationFlag">
+            <shop-card v-for="item in scrollItemList" :key="item.id" :shopData="item" @click.native="onShopClicked(item)" class="listItem"></shop-card>
           </div>
         </div>
       </scroll>
@@ -51,7 +51,7 @@
         payload: {}
       }
     },
-    mounted: function () {
+    activated: function () {
       // this.$store.commit('setMarketsToDefault')
       let promiseProduct = getProduct(this.$store.getters.productCode.id)
       promiseProduct.then((response) => {

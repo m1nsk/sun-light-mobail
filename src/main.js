@@ -12,10 +12,12 @@ import 'animate.css/animate.min.css'
 import store from './store'
 import VueLazyload from 'vue-lazyload'
 import 'font-awesome/css/font-awesome.css'
+import VueKeepScrollPosition from 'vue-keep-scroll-position'
 
 Vue.use(VueRouter)
 Vue.use(Vum)
 Vue.use(SmoothPicker)
+Vue.use(VueKeepScrollPosition)
 Vue.use(VueLazyload, {
   preLoad: 1.3,
   error: '/static/myIcons/no-image.svg',

@@ -1,7 +1,9 @@
 <template>
   <div class="page">
     <transition name="slide" @before-enter="beforeEnter(that)" @after-leave="afterLeave(that)">
-      <router-view class="page-slide"></router-view>
+      <keep-alive>
+        <router-view class="page-slide" v-keep-scroll-position></router-view>
+      </keep-alive>
     </transition>
     <menu-footer @view="changeView" :menuItemData="menuItemData"></menu-footer>
   </div>

@@ -13,9 +13,6 @@ const state = {
 
 // getters
 const getters = {
-  getScrollItemList: state => state.scrollItemList,
-  getScrollReloadStatus: state => state.reloadScrollFlag,
-  getScrollLoadedFlag: state => state.loadedScrollFlag
 }
 
 // actions
@@ -34,7 +31,6 @@ const actions = {
       }
       return 0
     })()
-    console.log(payload, 'payload')
     payload.skip = state.scrollCounter
     let promise = getFunction (payload)
     promise.then(response => {

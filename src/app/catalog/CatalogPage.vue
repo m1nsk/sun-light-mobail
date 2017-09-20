@@ -9,16 +9,16 @@
       <!--main page body-->
       <div v-else-if="dataLoaded === true">
         <div class="content-layout">
-          <div v-for="item in catalogItems" :key="item.id" class="list-item">
-            <router-link v-if="item.type !== banner" :to="{name: 'catalogId', params: { id: item.id }}" class="title">
+          <div v-for="item in catalogItems" :key="item.id" class="list-item" @click="onCategoryClicked(item.id)">
+            <div v-if="item.type !== banner" class="title">
               <div>
                 <span>{{ item.label }}</span>
               </div>
-            </router-link>
-            <router-link :to="{name: 'catalogId', params: { id: item.id }}" class="title" v-else>
+            </div>
+            <div class="title" v-else>
               <banner-item :bannerImg="banner" v-if="item.banner !== null">
               </banner-item>
-            </router-link>
+            </div>
             <hr align="center" width="80%" color="white" size="1px"/>
           </div>
         </div>
@@ -52,6 +52,13 @@
     },
     created: function () {
       this.$store.dispatch('getCategories')
+    },
+    methods: {
+      onCategoryClicked (itemId) {
+        this.$store.commit('setProductListReloadFlag', false)
+        console.log(this.$store.getters.getProductListReload, 'reload flag')
+        this.$router.push({name: 'catalogId', params: { id: itemId }})
+      }
     }
   }
 </script>

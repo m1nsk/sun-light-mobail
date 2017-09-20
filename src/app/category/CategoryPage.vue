@@ -1,20 +1,22 @@
 <template>
   <div>
     <catalog-header :pageData="pageInfo"></catalog-header>
-    <page-content>
-      <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!flagLoaded" :infiniteLoadingStatus="reloadStatus">
-        <div class="content-layout">
-          <div class="catalog__filter" @click.stop>
-            <transition-group name="fade">
-              <filter-button :key="filterIndex" v-for="(filter, filterIndex) in filterList" v-if="filter.included === true" :data="filter" @exclude="onFilterExclude(filter)"></filter-button>
-            </transition-group>
+    <page-content  v-keep-scroll-position>
+      <keep-alive>
+        <scroll v-keep-scroll-position :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!loadedScrollFlag" :infiniteLoadingStatus="reloadScrollFlag">
+          <div class="content-layout">
+            <div class="catalog__filter" @click.stop>
+              <transition-group name="fade">
+                <filter-button :key="filterIndex" v-for="(filter, filterIndex) in filterList" v-if="filter.included === true" :data="filter" @exclude="onFilterExclude(filter)"></filter-button>
+              </transition-group>
+            </div>
+            <bannerItem :bannerImg="bannerImage"></bannerItem>
+            <div>
+              <product-card-banner v-for="item in scrollItemList" :key="item.id" :bannerData="item" @marked="onItemMarked(item)" @click.native="onProductClicked(item)" class="item"></product-card-banner>
+            </div>
           </div>
-          <bannerItem :bannerImg="bannerImage"></bannerItem>
-          <div v-if="!animationFlag">
-            <product-card-banner v-for="item in itemList" :key="item.id" :bannerData="item" @marked="onItemMarked(item)" @click.native="onProductClicked(item)" class="item"></product-card-banner>
-          </div>
-        </div>
-      </scroll>
+        </scroll>
+      </keep-alive>
     </page-content>
   </div>
 </template>
@@ -60,9 +62,15 @@
       },
       filterList () {
         return this.$store.getters.getFilterList
+      },
+      reloadListFlag () {
+        return this.$store.getters.getProductListReload
       }
     },
     methods: {
+      setReloadListFlag () {
+        this.$store.commit('setProductListReloadFlag', true)
+      },
       onFilterExclude (filter) {
         console.log(filter.title, 'item')
         for (let filterItem in this.filterList) {

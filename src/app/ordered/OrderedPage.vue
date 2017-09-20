@@ -2,9 +2,9 @@
   <div>
     <title-header title="Мои покупки"></title-header>
     <page-content>
-      <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!flagLoaded" :infiniteLoadingStatus="reloadStatus">
-        <div v-if="!animationFlag" class="content-layout">
-          <product-card-banner v-for="item in itemList" :key="item.id" :bannerData="item.product" @click.native="onProductClicked(item.product)" class="item"></product-card-banner>
+      <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!loadedScrollFlag" :infiniteLoadingStatus="reloadScrollFlag">
+        <div v-show="!animationFlag" class="content-layout">
+          <product-card-banner v-for="item in scrollItemList" :key="item.id" :bannerData="item.product" @click.native="onProductClicked(item.product)" class="item"></product-card-banner>
         </div>
       </scroll>
     </page-content>
