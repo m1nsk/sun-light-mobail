@@ -22,7 +22,7 @@ const actions = {
     let promise = createSecret(userData)
     promise.then((response) => {
       if (response.data.success) {
-        commit('setProfile', payload.profile)
+        commit('setProfile', userData)
         router.push({name: "code"})
       }
     }).catch(err => {
@@ -35,9 +35,10 @@ const actions = {
     }
     let promise = getToken(secretCode)
     promise.then((response) => {
+      debugger
       if (response.data.success === true) {
         commit('setProfile', {token: response.data.token})
-        router.push({name: "success"})
+        router.push(rootState.properties.callbackUrl.url)
       }
       return true
     }).catch(err => {
@@ -47,9 +48,14 @@ const actions = {
   },
   getOrderStatus ({ commit }, payload) {
     let promise = putOrder({shop_id: payload.shop_id, product_id: payload.product_id})
-    console.log(payload, 'p_load')
+    commit('setProfile', payload.profile)
     promise.then(response => {
-      router.push({name: "success"})
+      router.push({
+        name: "success",
+        params: {
+          id: payload.product_id
+        }
+      })
     })
   }
 }

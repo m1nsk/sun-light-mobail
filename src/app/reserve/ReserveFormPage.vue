@@ -66,13 +66,15 @@
         if (data.action === 'accept') {
           let payload = {}
           payload.profile = this.profile
-          if (this.profile.phone !== this.$store.getters.getProfile.phone) {
-            this.$store.dispatch('getSecretCode', payload)
-          } else {
-            payload.shop_id = this.$route.params.id
-            payload.product_id = this.$store.getters.productCode.id
-            this.$store.dispatch('getOrderStatus', payload)
-          }
+          this.$store.commit('setCallbackUrl', {
+            name: "accept",
+            params: {
+              id: payload.product_id
+            }
+          })
+          payload.shop_id = this.$route.params.id
+          payload.product_id = this.$store.getters.productCode.id
+          this.$store.dispatch('getOrderStatus', payload)
         } else if (data.action === 'cancel') {
           this.$router.go(-1)
         }

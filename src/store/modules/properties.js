@@ -40,7 +40,7 @@ const mutations = {
     state.animationFlag = payload.state
   },
   setCallbackUrl (state, payload) {
-    state.callbackUrl = payload.url
+    state.callbackUrl = {url: payload.url}
   }
 }
 

@@ -53,6 +53,7 @@
       },
       onActionClicked (data) {
         if (data.action === 'accept') {
+          this.$store.commit('setCallbackUrl', {url: this.$route.path + 'success'})
           this.$store.dispatch('getToken', {
             code: this.code
           })

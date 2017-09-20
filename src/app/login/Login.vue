@@ -32,17 +32,13 @@
       }
     },
     methods: {
-      fioChanged (item) {
-        this.fio = item.input
-      },
-      phoneChanged (item) {
-        this.phone = item.input
-      },
       register () {
-        this.$store.dispatch('getSecretCode', {
+        let payload = {}
+        payload.profile = {
           fio: this.fio,
           phone: this.phone
-        })
+        }
+        this.$store.dispatch('getSecretCode', payload)
       }
     }
   }
