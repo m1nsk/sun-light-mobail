@@ -59,6 +59,8 @@
       })
     },
     methods: {
+      setReloadListFlag () {
+      },
       onShopClicked (item) {
         this.$router.push({
           name: 'form',

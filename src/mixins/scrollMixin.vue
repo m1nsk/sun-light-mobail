@@ -40,9 +40,6 @@
     deactivated: function () {
     },
     methods: {
-      setReloadListFlag() {
-        console.log('reload list set')
-      },
       getScrollList (scrollData) {
         let payload = scrollData.payload
         let getFunction = scrollData.getFunction
