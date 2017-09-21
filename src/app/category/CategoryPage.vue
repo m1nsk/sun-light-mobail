@@ -22,7 +22,7 @@
 </template>
 
 <script>
-  import { getProductList } from 'api/index'
+  import { getProductList, getCategory } from 'api/index'
   import scrollMixin from '~/mixins/scrollMixin.vue'
   import CatalogHeader from 'appComponents/components/headers/CatalogHeader.vue'
   import BannerItem from 'appComponents/components/banners/BannerItem.vue'
@@ -46,13 +46,9 @@
     extends: scrollMixin,
     data () {
       return {
-        pageInfo: {
-          num: 1,
-          total: 2,
-          category: 'Часы наручные'
-        },
         bannerImage: '/static/logo.png',
-        getItemFunction: getProductList
+        getItemFunction: getProductList,
+        categoryTitle: ''
       }
     },
     name: 'CategoryPage',
@@ -64,9 +60,23 @@
       },
       filterList () {
         return this.$store.getters.getFilterList
+      },
+      pageInfo () {
+        return {
+          num: Math.ceil(this.scrollCounter / this.onPage),
+          total: Math.ceil(this.totalScrollCount / this.onPage),
+          category: this.categoryTitle
+        }
       }
     },
     methods: {
+      activatedPage () {
+        let categoryId = this.$route.params.id
+        let promise = getCategory(categoryId)
+        promise.then((response) => {
+          this.categoryTitle = response.data.data.label
+        })
+      },
       getReloadListFlag () {
         return this.$store.getters.getProductListReload
       },

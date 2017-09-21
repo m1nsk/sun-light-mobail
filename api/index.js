@@ -31,6 +31,10 @@ export function getCategories (formData) {
   return axios.post('/catalogs', formData)
 }
 
+export function getCategory (categoryId) {
+  return axios.get('/catalogs/' + categoryId)
+}
+
 export function getProduct (productId) {
   return axios.get('/products/' + productId)
 }

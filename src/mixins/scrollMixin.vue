@@ -8,7 +8,8 @@
         totalScrollCount: 0,
         scrollCounter: 0,
         columnNum: 1,
-        productReloadListFlag: false
+        productReloadListFlag: false,
+        onPage: 0
       }
     },
     computed: {
@@ -20,6 +21,7 @@
       if (!this.getReloadListFlag()) {
         this.setReloadListFlag(true)
         this.clearItemList()
+        this.activatedPage()
         this.$nextTick(function () {
           this.$nextTick(function () {
             this.getItems()
@@ -34,16 +36,17 @@
         let payload = scrollData.payload
         let getFunction = scrollData.getFunction
         let that = this
-        this.reloadScrollFlag = true
-        payload.sort = 'id'
-        payload.order = 'asc'
-        payload.take = (() => {
+        this.onPage = (() => {
           if (!this.loadedScrollFlag) {
             let restCount = Math.ceil(that.$store.getters.getWindowSize.height / that.$store.getters.getBannerSize.height)
             return restCount - that.scrollCounter % restCount
           }
           return 0
         })()
+        this.reloadScrollFlag = true
+        payload.sort = 'id'
+        payload.order = 'asc'
+        payload.take = this.onPage
         payload.skip = this.scrollCounter
         let promise = getFunction (payload)
         promise.then(response => {

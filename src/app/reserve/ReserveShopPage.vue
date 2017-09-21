@@ -59,6 +59,8 @@
       })
     },
     methods: {
+      activatedPage() {
+      },
       getReloadListFlag () {
       },
       setReloadListFlag () {
