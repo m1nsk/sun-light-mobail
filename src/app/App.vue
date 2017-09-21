@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <transition name="slide" @before-enter="beforeEnter(that)" @after-leave="afterLeave(that)">
-      <keep-alive>
+      <keep-alive exclude="CategoryPageAlive">
         <router-view class="page-slide" v-keep-scroll-position></router-view>
       </keep-alive>
     </transition>

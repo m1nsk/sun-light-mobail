@@ -58,8 +58,7 @@
         this.state =! this.state
         if (this.state === false) {
           this.$store.commit('setSearch', this.search)
-          this.$store.commit('setProductsToDefault')
-          this.$store.dispatch('getProductList', this.getProductFunction)
+          this.$emit('update')
         } else if (this.state === true) {
           this.search = this.$store.getters.getSearch
         }

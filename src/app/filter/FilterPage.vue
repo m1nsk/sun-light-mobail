@@ -1,5 +1,5 @@
 <template>
-  <div class="filter">
+  <div class="filter" v-if="activeFlag">
     <title-header title="Название категории"></title-header>
     <second-footer><menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer></second-footer>
     <page-content class="content-padding-bottom">
@@ -54,7 +54,8 @@
         ],
         from: '',
         to: '',
-        filter: {}
+        filter: {},
+        activeFlag: false
       }
     },
     computed: {
@@ -62,13 +63,24 @@
         return this.$store.getters.getFilterList
       }
     },
+    activated: function () {
+      console.log('activated')
+      this.activeFlag = true
+    },
+    deactivated: function () {
+      console.log('deactivated')
+      this.activeFlag = false
+    },
+    mounted: function ()
+    {
+      console.log('filter-mounted')
+    },
     methods: {
       onChecked (filter) {
         this.filterList[filter.name].included = filter.included
         console.log(filter, this.filterList[filter.name])
       },
       onMinChanged (val) {
-        console.log(val)
         this.filter.from = val
       },
       onMaxChanged (val) {
@@ -78,6 +90,7 @@
       onActionClicked (data) {
         if (data['view'] === 'right') {
           this.$store.commit('setFilters', this.filterList)
+          this.$store.commit('setProductListReloadFlag', false)
           this.$router.back()
         } else if (data['view'] === 'left') {
           this.$router.back()

@@ -11,6 +11,7 @@ import SmoothPicker from 'vue-smooth-picker'
 import 'animate.css/animate.min.css'
 import store from './store'
 import VueLazyload from 'vue-lazyload'
+import VueResource from 'vue-resource'
 import 'font-awesome/css/font-awesome.css'
 import VueKeepScrollPosition from 'vue-keep-scroll-position'
 
@@ -18,6 +19,7 @@ Vue.use(VueRouter)
 Vue.use(Vum)
 Vue.use(SmoothPicker)
 Vue.use(VueKeepScrollPosition)
+Vue.use(VueResource)
 Vue.use(VueLazyload, {
   preLoad: 1.3,
   error: '/static/myIcons/no-image.svg',
@@ -26,6 +28,20 @@ Vue.use(VueLazyload, {
 })
 
 const router = new VueRouter(RouteConfig)
+
+Vue.http.interceptors.push({
+  response(resp) {
+    if (resp.status === 500) {
+      console.log('vue-resources')
+      window.location.href = '/sign-in';
+      store.state.properties.callbackUrl.url = router.history.current.path
+      router.push({name: 'login'})
+      return;
+    }
+
+    return resp;
+  }
+});
 
 new Vue({
   store,

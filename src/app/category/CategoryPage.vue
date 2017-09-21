@@ -1,7 +1,7 @@
 <template>
   <div>
-    <catalog-header :pageData="pageInfo"></catalog-header>
-    <page-content  v-keep-scroll-position>
+    <catalog-header :pageData="pageInfo" @update="onSearchUpdated"></catalog-header>
+    <page-content>
       <keep-alive>
         <scroll v-keep-scroll-position :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!loadedScrollFlag" :infiniteLoadingStatus="reloadScrollFlag">
           <div class="content-layout">
@@ -42,6 +42,7 @@
       'page-content': Content,
       Scroll
     },
+    name: 'CategoryPageAlive',
     extends: scrollMixin,
     data () {
       return {
@@ -54,6 +55,7 @@
         getItemFunction: getProductList
       }
     },
+    name: 'CategoryPage',
     computed: {
       payload () {
         let payload = this.$store.getters.getFilterForResponse
@@ -75,11 +77,16 @@
         console.log(filter.title, 'item')
         for (let filterItem in this.filterList) {
           if (this.filterList[filterItem].title === filter.title) {
-            filter.included = false
+            this.filterList[filterItem].included = false
             break
           }
         }
         this.$store.commit('setFilters', this.filterList)
+        this.clearItemList()
+        this.getItems()
+      },
+      onSearchUpdated () {
+        console.log('search updated')
         this.clearItemList()
         this.getItems()
       },

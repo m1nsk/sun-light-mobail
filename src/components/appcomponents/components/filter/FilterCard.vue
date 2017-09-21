@@ -1,7 +1,7 @@
 <template>
   <custom-card class="card">
     <div slot="img" class="flex-center">
-      <switcher @click.native.stop :value="checked" @input="onChange"></switcher>
+      <switcher @click.native.stop :value="filterData.included" @input="onChange"></switcher>
     </div>
     <div slot="info" class="data">
       <div class="title"><span>{{ filterData.title }}</span></div>
@@ -10,7 +10,7 @@
       </div>
     </div>
     <div slot="icons">
-      <img src="/myIcons/right-arrow.svg" class="icon-right"/>
+      <img src="/static/myIcons/right-arrow.svg" class="icon-right"/>
     </div>
   </custom-card>
 </template>
@@ -26,7 +26,6 @@
     },
     data () {
       return {
-        checked: this.filterData.included
       }
     },
     methods: {
