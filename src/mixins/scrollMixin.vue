@@ -16,19 +16,9 @@
         return this.$store.getters.getAnimationFlag
       }
     },
-    created: function () {
-      this.setReloadListFlag(true)
-      this.$nextTick(function () {
-        this.$nextTick(function () {
-          this.getItems()
-        })
-      })
-    },
     activated: function () {
-      console.log(this.getReloadListFlag(), 'activated')
       if (!this.getReloadListFlag()) {
         this.setReloadListFlag(true)
-        console.log('reloading')
         this.clearItemList()
         this.$nextTick(function () {
           this.$nextTick(function () {

@@ -48,7 +48,8 @@
           }
         },
         getItemFunction: getMarketList,
-        payload: {}
+        payload: {},
+        reloadListFlag: false
       }
     },
     activated: function () {
