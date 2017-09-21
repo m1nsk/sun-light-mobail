@@ -62,14 +62,14 @@
       },
       filterList () {
         return this.$store.getters.getFilterList
-      },
-      reloadListFlag () {
-        return this.$store.getters.getProductListReload
       }
     },
     methods: {
-      setReloadListFlag () {
-        this.$store.commit('setProductListReloadFlag', true)
+      getReloadListFlag () {
+        return this.$store.getters.getProductListReload
+      },
+      setReloadListFlag (state) {
+        this.$store.commit('setProductListReloadFlag', state)
       },
       onFilterExclude (filter) {
         console.log(filter.title, 'item')

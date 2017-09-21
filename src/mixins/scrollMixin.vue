@@ -17,18 +17,18 @@
       }
     },
     created: function () {
-      if (!this.reloadListFlag) {
-        this.clearItemList()
-        this.setReloadListFlag()
+      this.setReloadListFlag(true)
+      this.$nextTick(function () {
         this.$nextTick(function () {
-          this.$nextTick(function () {
-            this.getItems()
-          })
+          this.getItems()
         })
-      }
+      })
     },
     activated: function () {
-      if (!this.reloadListFlag) {
+      console.log(this.getReloadListFlag(), 'activated')
+      if (!this.getReloadListFlag()) {
+        this.setReloadListFlag(true)
+        console.log('reloading')
         this.clearItemList()
         this.$nextTick(function () {
           this.$nextTick(function () {
