@@ -1,11 +1,12 @@
 <template>
   <custom-card>
+    {{this.cardData}}
     <img slot="img" src="/static/logo.png" class="banner">
     <div slot="info">
-      <div class="title"><span>{{shopData.title}}</span></div>
-      <div class="price"><span>{{shopData.price}}</span></div>
-      <div class="shop"><span>{{shopData.shop}}</span></div>
-      <div class="status"><span>{{shopData.status}}</span></div>
+      <div class="title"><span>{{cardData.label}}</span></div>
+      <div class="price"><span>{{cardData.cost}}</span></div>
+      <div class="shop"><span>{{cardData.shop}}</span></div>
+      <div class="status"><span>{{cardData.status}}</span></div>
     </div>
   </custom-card>
 </template>
@@ -16,14 +17,17 @@
     components: {
       CustomCard
     },
+    props: ['cardData'],
     data () {
       return {
+        /*
         shopData: {
           title: 'Золотое колечко',
           price: '16 000-',
           shop: 'МЕГА ДЫБЕНКО',
           status: 'В НАЛИЧИИ можно забрать сегодня'
         }
+        */
       }
     }
   }

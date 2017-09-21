@@ -60,16 +60,12 @@ export function putOrder (productData) {
   return axios.put('/orders/create', productData)
 }
 
-export function getCategoryProducts (catalogIdData) {
-  return axios.post('/products', catalogIdData)
-}
-
 export function getMarketList (catalogIdData) {
   return axios.post('/markets', catalogIdData)
 }
 
-export function getCustomData (url, catalogIdData) {
-  return axios.post(url, catalogIdData)
+export function getMarket (marketId) {
+  return axios.get('/markets/' + marketId)
 }
 
 export function createSecret (userData) {

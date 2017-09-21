@@ -52,7 +52,6 @@
       }
     },
     activated: function () {
-      // this.$store.commit('setMarketsToDefault')
       let promiseProduct = getProduct(this.$store.getters.productCode.id)
       promiseProduct.then((response) => {
         this.productData = response.data.data

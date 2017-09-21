@@ -37,6 +37,7 @@
       BannerItem,
       'page-content': Content
     },
+    name: "catalogPage",
     data () {
       return {
         banner: '/static/logo.png'

@@ -6,8 +6,8 @@
     </second-footer>
     <page-content>
       <div class="content-layout content-relative">
-        <shop-form-card></shop-form-card>
-        <div v-if="">
+        <shop-form-card :cardData="cardData"></shop-form-card>
+        <div>
           <form-card placeholder="Имя" v-model="profile.fio"></form-card>
           <form-card placeholder="Почта" v-model="profile.mail"></form-card>
           <form-card placeholder="Телефон" v-model="profile.phone"></form-card>
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+  import { getProduct, getMarket } from 'api/index'
   import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
   import FormCard from 'appComponents/components/cards/FormCard.vue'
   import AcceptFormCard from 'appComponents/components/cards/AcceptFormCard.vue'
@@ -50,8 +51,27 @@
             title: 'Продолжить'
           }
         ],
-        profile: {}
+        profile: {},
+        cardData: {}
       }
+    },
+    activated: function () {
+      let cardDataTemp = {}
+      let that = this
+      let promiseProduct = getProduct(this.$store.getters.productCode.id)
+      promiseProduct.then((response) => {
+        console.log(response.data.data, 'product')
+        cardDataTemp.label = response.data.data.label
+        cardDataTemp.cost = response.data.data.cost
+        let promiseMarket = getMarket(this.$route.params.id)
+        promiseMarket.then((response) => {
+          console.log(response.data.data.label, 'market')
+          cardDataTemp.shop = response.data.data.label
+          cardDataTemp.status = 'В НАЛИЧИИ можно забрать сегодня'
+          that.cardData = cardDataTemp
+          console.log(that.cardData)
+        })
+      })
     },
     mounted: function () {
       let profileCash = this.$store.getters.getProfile
