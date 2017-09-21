@@ -58,6 +58,8 @@
       })
     },
     methods: {
+      getReloadListFlag () {
+      },
       setReloadListFlag () {
       },
       onShopClicked (item) {
