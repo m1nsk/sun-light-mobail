@@ -1,23 +1,24 @@
 <template>
-  <div class="filter" v-if="activeFlag">
+  <div class="filter">
     <title-header title="Название категории"></title-header>
     <second-footer><menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer></second-footer>
     <page-content class="content-padding-bottom">
       <div class="content-layout">
-        <filter-card v-for="item in filterList" :key="item.id" @filterData="onChecked(item)" @click.native="onFilterClicked(item)" :filterData="item"></filter-card>
+        <filter-card v-for="item in filterList" :key="item.id" @filterData="onChecked" @click.native="onFilterClicked(item)" :filterData="item"></filter-card>
       </div>
     </page-content>
     <pop-up ref="s" class="filter-popup" :isActive="show" width="70" height="45" @close="onPopUpClosed">
       <range-filter slot="content" :from="from" :to="to" v-if="type === 'range'" @min="onMinChanged" @max="onMaxChanged"></range-filter>
       <list-filter slot="content" v-if="type === 'list'"></list-filter>
       <div slot="footer" class="filter-popup-footer">
-        <menu-footer :menuItemData="footerActionData" @view="onActionClicked"></menu-footer>
+        <menu-footer :menuItemData="footerActionData" @view="onPopUpClosed"></menu-footer>
       </div>
     </pop-up>
   </div>
 </template>
 
 <script>
+  import { clone } from '~/helpers/cloneObject'
   import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
   import MenuFooter from 'appComponents/components/footers/MenuFooter.vue'
   import RangeFilter from 'appComponents/components/filter/RangeFilter.vue'
@@ -38,6 +39,7 @@
       SecondFooter,
       'page-content': Content
     },
+    name: 'Foo',
     data () {
       return {
         show: false,
@@ -55,30 +57,26 @@
         from: '',
         to: '',
         filter: {},
-        activeFlag: false
+        filterList: {}
       }
     },
+    /*
     computed: {
       filterList () {
-        return this.$store.getters.getFilterList
+        return clone(this.$store.getters.getFilterList)
       }
     },
-    activated: function () {
-      console.log('activated')
-      this.activeFlag = true
-    },
-    deactivated: function () {
-      console.log('deactivated')
-      this.activeFlag = false
-    },
+    */
     mounted: function ()
     {
-      console.log('filter-mounted')
+      console.log('mounted')
+      this.filterList = clone(this.$store.getters.getFilterList)
     },
     methods: {
       onChecked (filter) {
+        console.log(filter)
         this.filterList[filter.name].included = filter.included
-        console.log(filter, this.filterList[filter.name])
+        console.log(this.filterList[filter.name].included)
       },
       onMinChanged (val) {
         this.filter.from = val
@@ -89,6 +87,7 @@
       },
       onActionClicked (data) {
         if (data['view'] === 'right') {
+          console.log(this.filterList.price, 'filter price')
           this.$store.commit('setFilters', this.filterList)
           this.$store.commit('setProductListReloadFlag', false)
           this.$router.back()

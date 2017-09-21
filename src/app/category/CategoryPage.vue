@@ -2,7 +2,6 @@
   <div>
     <catalog-header :pageData="pageInfo" @update="onSearchUpdated"></catalog-header>
     <page-content>
-      <keep-alive>
         <scroll v-keep-scroll-position :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!loadedScrollFlag" :infiniteLoadingStatus="reloadScrollFlag">
           <div class="content-layout">
             <div class="catalog__filter" @click.stop>
@@ -16,7 +15,6 @@
             </div>
           </div>
         </scroll>
-      </keep-alive>
     </page-content>
   </div>
 </template>
@@ -42,7 +40,6 @@
       'page-content': Content,
       Scroll
     },
-    name: 'CategoryPageAlive',
     extends: scrollMixin,
     data () {
       return {
@@ -51,7 +48,6 @@
         categoryTitle: ''
       }
     },
-    name: 'CategoryPage',
     computed: {
       payload () {
         let payload = this.$store.getters.getFilterForResponse

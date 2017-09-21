@@ -9,7 +9,7 @@
         <div class="birth-date">
           <span>Дата рождения</span>
         </div>
-        <date-picker></date-picker>
+        <date-picker style="padding: 10px"></date-picker>
         <button-group :round="true">
           <m-button :active="profileData.sex === 'female'" @click.native="onSexClicked('female')">Женский</m-button>
           <m-button :active="profileData.sex === 'male'" @click.native="onSexClicked('male')">Мужской</m-button>

@@ -1,6 +1,6 @@
 <template>
   <label class="label-switch">
-    <input type="checkbox" :checked="checked"
+    <input type="checkbox" :checked="value"
            @change="change"
     >
     <div class="checkbox"></div>
@@ -17,7 +17,6 @@
     },
     data () {
       return {
-        checked: this.value
       }
     },
     methods: {
