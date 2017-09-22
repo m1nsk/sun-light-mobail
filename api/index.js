@@ -9,7 +9,8 @@ export const baseHost = API_HOST
 export const baseURL = baseHost + '/api/'
 export function setAxiosToken() {
   let data = localStorage.getItem('profile') != "" ? JSON.parse(localStorage.getItem('profile')) : {}
-  axios.defaults.headers.common['X-CSRF-TOKEN'] = data
+  axios.defaults.headers.common['X-CSRF-TOKEN'] = data.token
+  axios.defaults.headers.common['Authorization'] = data.phone
 }
 
 axios.interceptors.response.use(function (response) {

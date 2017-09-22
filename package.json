@@ -80,6 +80,7 @@
     "style-loader": "^0.16.1",
     "url": "^0.11.0",
     "url-loader": "^0.5.7",
+    "vee-validate": "^2.0.0-rc.17",
     "vue-html-loader": "^1.2.4",
     "vue-loader": "^11.1.4",
     "vue-style-loader": "^2.0.4",

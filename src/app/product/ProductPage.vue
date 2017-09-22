@@ -83,6 +83,7 @@
     },
     activated: function () {
       if (!this.getReloadListFlag()) {
+        this.productItemLoaded = false
         let payload = {
           id: this.$route.params.id
         }

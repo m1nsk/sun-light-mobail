@@ -149,7 +149,6 @@
     },
     mounted: function () {
       this.profile = this.$store.getters.getProfile
-      console.log(this.profile, 'profile')
     }
   }
 </script>

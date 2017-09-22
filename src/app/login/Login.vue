@@ -4,7 +4,17 @@
     <page-content class="content-padding-bottom">
       <div class="content-layout">
         <form-card placeholder="Как к вам обращаться?" v-model="fio"></form-card>
-        <form-card placeholder="Телефон" v-model="phone"></form-card>
+        <div class="form">
+          <p><input v-validate="{ email: true }" placeholder="Почта" v-model="mail" name="mail"/></p>
+          <transition name="fade">
+            <span v-show="errors.has('mail')">{{ errors.first('mail') }}</span>
+          </transition>
+
+          <p><input v-validate="{ rules: { required: true, regex: /\+7[0-9]{10}/} }" placeholder="Телефон" v-model="phone" @input="onPhoneInput" name="phone"/></p>
+          <transition name="fade">
+            <span v-show="errors.has('phone')">{{ errors.first('phone') }}</span>
+          </transition>
+        </div>
         <m-button style="background-color: #fff0e9; color: black" @click.native="register">Зарегистрироваться</m-button>
       </div>
     </page-content>
@@ -28,15 +38,21 @@
     data () {
       return {
         fio: '',
-        phone: ''
+        mail: '',
+        phone: '+7'
       }
     },
     methods: {
+      onPhoneInput () {
+        if (this.phone.slice(0,2) != '+7') {
+          this.phone = '+7' + this.phone.slice(2)
+        }
+      },
       register () {
         let payload = {}
         payload.profile = {
           fio: this.fio,
-          phone: this.phone
+          phone: '8' + this.phone.slice(2)
         }
         this.$store.dispatch('getSecretCode', payload)
       }

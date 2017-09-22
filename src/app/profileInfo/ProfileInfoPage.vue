@@ -57,7 +57,7 @@
         payload.profile.birthDate = this.birthDate
         this.$store.commit('setProfile', payload)
         this.$store.commit('setCallbackUrl', {
-          name: "profile"
+          name: "person"
         })
       }
     },
