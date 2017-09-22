@@ -19,6 +19,7 @@
       BannerItem,
       'page-content': Content
     },
+    name: 'stock-page',
     methods: {
       stockClicked (item) {
         console.log(item)

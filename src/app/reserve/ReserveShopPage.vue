@@ -2,7 +2,7 @@
   <div>
     <title-header title="Где забрать?"></title-header>
     <page-content class="content-padding-bottom">
-      <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!loadedScrollFlag" :infiniteLoadingStatus="reloadScrollFlag">
+      <scroll v-keep-scroll-position :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!loadedScrollFlag" :infiniteLoadingStatus="reloadScrollFlag">
         <div class="content-layout">
           <product-card-mini :productData="productData"></product-card-mini>
           <div class="shop__count">
@@ -52,18 +52,19 @@
         reloadListFlag: false
       }
     },
-    activated: function () {
-      let promiseProduct = getProduct(this.$store.getters.productCode.id)
-      promiseProduct.then((response) => {
-        this.productData = response.data.data
-      })
-    },
     methods: {
-      activatedPage() {
+      activatedPage: function () {
+        console.log('activated page')
+        let promiseProduct = getProduct(this.$store.getters.productCode.id)
+        promiseProduct.then((response) => {
+          this.productData = response.data.data
+        })
       },
       getReloadListFlag () {
+        return this.$store.getters.getMarketListReload
       },
-      setReloadListFlag () {
+      setReloadListFlag (state) {
+        this.$store.commit('setMarketListReloadFlag', state)
       },
       onShopClicked (item) {
         this.$router.push({

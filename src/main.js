@@ -14,6 +14,9 @@ import VueLazyload from 'vue-lazyload'
 import VueResource from 'vue-resource'
 import 'font-awesome/css/font-awesome.css'
 import VueKeepScrollPosition from 'vue-keep-scroll-position'
+import CategoryPage from './app/category/CategoryPage.vue'
+import ReserveFormPage from './app/reserve/ReserveFormPage.vue'
+import ProductPage from './app/product/ProductPage.vue'
 
 Vue.use(VueRouter)
 Vue.use(Vum)
@@ -38,10 +41,13 @@ Vue.http.interceptors.push({
       router.push({name: 'login'})
       return;
     }
-
     return resp;
   }
 });
+
+Vue.component('category-page', CategoryPage)
+Vue.component('reserve-form-page', ReserveFormPage)
+Vue.component('product-page', ProductPage)
 
 new Vue({
   store,

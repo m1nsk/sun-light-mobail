@@ -7,6 +7,10 @@ import { API_HOST, API_PORT } from '../api/config'
 
 export const baseHost = API_HOST
 export const baseURL = baseHost + '/api/'
+export function setAxiosToken() {
+  let data = localStorage.getItem('profile') != "" ? JSON.parse(localStorage.getItem('profile')) : {}
+  axios.defaults.headers.common['X-CSRF-TOKEN'] = data
+}
 
 axios.interceptors.response.use(function (response) {
   return response;
@@ -21,11 +25,7 @@ axios.interceptors.response.use(function (response) {
 
 axios.defaults.baseURL = baseURL
 // TODO: get a real way to fix this
-axios.defaults.headers.common['X-CSRF-TOKEN'] = JSON.parse(localStorage.getItem('profile') === null ? '' : localStorage.getItem('profile')).token || ''
-
-export function setAxiosToken() {
-  axios.defaults.headers.common['X-CSRF-TOKEN'] = JSON.parse(localStorage.getItem('profile') === null ? '' : localStorage.getItem('profile')).token || ''
-}
+setAxiosToken()
 
 export function getCategories (formData) {
   return axios.post('/catalogs', formData)
@@ -85,5 +85,5 @@ export function toggleLike (id) {
 }
 
 export function toggleMarketLike (id) {
-  return axios.get(baseHost + '/api/shop/' + id + '/like')
+  return axios.get(baseHost + '/api/market/' + id + '/like')
 }

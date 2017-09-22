@@ -97,6 +97,7 @@
         this.getItems()
       },
       onProductClicked (item) {
+        this.$store.commit('setMarketListReloadFlag', false)
         this.$router.push({
           name: 'product',
           params: {

@@ -13,6 +13,7 @@
         <img :src="markIcon" class="heart-icon" @click.stop="onMarkClick">
       </div>
       <div class="price-wrapper">
+        <div class="title">{{itemData.label}}</div>
         <div class="sale" v-if="itemData.sale">
           {{ itemData.sale }}
         </div>
@@ -68,7 +69,7 @@
   .card-footer
   {
     width: 100%;
-    height: 48px;
+    height: 72px;
   }
 
   .hit-wrapper
@@ -99,6 +100,11 @@
     justify-content: space-around;
     flex-direction: column;
     align-items: baseline;
+  }
+
+  .sale
+  {
+    font-size: 12px;
   }
 
   .sale

@@ -29,6 +29,7 @@
       SecondFooter,
       'page-content': Content
     },
+    name: 'accept-form-page',
     data () {
       return {
         footerActionData: [

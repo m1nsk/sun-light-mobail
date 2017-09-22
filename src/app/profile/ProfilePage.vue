@@ -3,7 +3,7 @@
     <TitleHeader title="Личный профиль"></TitleHeader>
     <page-content class="content-padding-bottom">
       <div class="content-layout">
-        <person-card :personData="personData"></person-card>
+        <person-card :personData="profile"></person-card>
         <list>
           <list-item v-for="item in menuData" :key="item.id" @click.native="onItemClicked(item)">
             <div class="item-content">
@@ -29,7 +29,6 @@
   import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
   import { List, ListItem } from '~/components/list'
   import Content from '~/components/content'
-
   export default {
     components: {
       ButtonSmall,
@@ -39,8 +38,10 @@
       ListItem,
       'page-content': Content
     },
+    name: 'profile-page',
     data () {
       return {
+        profile: {},
         personData: {
           name: 'Алексей',
           surname: 'Королев',
@@ -145,6 +146,10 @@
             this.$router.push({name: 'ordered'})
         }
       }
+    },
+    mounted: function () {
+      this.profile = this.$store.getters.getProfile
+      console.log(this.profile, 'profile')
     }
   }
 </script>

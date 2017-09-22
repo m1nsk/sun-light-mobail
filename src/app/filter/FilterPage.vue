@@ -39,7 +39,7 @@
       SecondFooter,
       'page-content': Content
     },
-    name: 'Foo',
+    name: 'filter-page',
     data () {
       return {
         show: false,

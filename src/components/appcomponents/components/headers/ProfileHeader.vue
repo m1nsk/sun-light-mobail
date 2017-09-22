@@ -3,7 +3,7 @@
     <header-link :left="true" :edge="false">
       <back-button></back-button>
     </header-link>
-    <header-link :left="false" :edge="false">
+    <header-link :left="false" :edge="false" @click.native="onConfirmClicked">
       <div class="frame flex-center">
         <img src="/static/myIcons/tick.svg" class="icon">
       </div>
@@ -26,7 +26,13 @@
       'page-content': Content,
       Icon
     },
-    props: ['title']
+    props: ['title'],
+    methods: {
+      onConfirmClicked () {
+        console.log('confirm header')
+        this.$emit('confirm')
+      }
+    }
   }
 </script>
 

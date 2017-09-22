@@ -2,7 +2,7 @@
   <div class="person">
     <div class="info">
       <div>
-        <div class="fio"><span>{{ fio }}</span></div>
+        <div class="fio"><span>{{ personData.fio }}</span></div>
         <div class="phone"><span>{{ personData.phone }}</span></div>
         <div class="bonuses"><span>{{personData.bonuses}} бонусов</span></div>
       </div>
@@ -20,11 +20,6 @@
     props: ['personData'],
     data () {
       return {
-      }
-    },
-    computed: {
-      fio () {
-        return [this.personData.name, this.personData.surname, this.personData.patronymic].join(' ')
       }
     }
   }

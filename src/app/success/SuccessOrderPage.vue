@@ -38,6 +38,7 @@
       SecondFooter,
       'page-content': Content
     },
+    name: 'success-page',
     data () {
       return {
         successData: {

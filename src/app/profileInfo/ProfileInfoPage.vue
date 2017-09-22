@@ -1,18 +1,17 @@
 <template>
   <div>
-    <profile-header title="Информация"></profile-header>
+    <profile-header title="Информация" @confirm="onConfirmClicked"></profile-header>
     <page-content class="content-padding-bottom">
       <div class="content-layout">
-        <form-card placeholder="Фамилия"></form-card>
-        <form-card placeholder="Отчество"></form-card>
-        <form-card placeholder="E-mail"></form-card>
+        <form-card placeholder="Имя" v-model="profile.fio"></form-card>
+        <form-card placeholder="Телефон" v-model="profile.phone"></form-card>
         <div class="birth-date">
           <span>Дата рождения</span>
         </div>
-        <date-picker style="padding: 10px"></date-picker>
+        <date-picker @dateTime="onDateChange"></date-picker>
         <button-group :round="true">
-          <m-button :active="profileData.sex === 'female'" @click.native="onSexClicked('female')">Женский</m-button>
-          <m-button :active="profileData.sex === 'male'" @click.native="onSexClicked('male')">Мужской</m-button>
+          <m-button :active="sex === 'female'" @click.native="onSexClicked('female')">Женский</m-button>
+          <m-button :active="sex === 'male'" @click.native="onSexClicked('male')">Мужской</m-button>
         </button-group>
       </div>
     </page-content>
@@ -20,6 +19,7 @@
 </template>
 
 <script>
+  import { clone } from '~/helpers/cloneObject'
   import ProfileHeader from 'appComponents/components/headers/ProfileHeader.vue'
   import FormCard from 'appComponents/components/cards/FormCard.vue'
   import DatePicker from 'appComponents/components/DatePicker.vue'
@@ -35,18 +35,36 @@
       ButtonGroup,
       'page-content': Content
     },
+    name: 'profile-info-page',
     data () {
       return {
-        profileData: {
-          sex: 'male'
-        }
+        sex: 'male',
+        profile: {},
+        birthDate: ''
       }
     },
     methods: {
+      onDateChange (birthDate) {
+        this.birthDate = birthDate
+      },
       onSexClicked (sex) {
-        this.profileData.sex = sex
+        this.sex = sex
+      },
+      onConfirmClicked (data) {
+        let payload = {}
+        payload.profile = this.profile
+        payload.profile.sex = this.sex
+        payload.profile.birthDate = this.birthDate
+        this.$store.commit('setProfile', payload)
+        this.$store.commit('setCallbackUrl', {
+          name: "profile"
+        })
       }
-    }
+    },
+    mounted: function () {
+      console.log('mounted')
+      this.profile = clone(this.$store.getters.getProfile) || {}
+    },
   }
 </script>
 

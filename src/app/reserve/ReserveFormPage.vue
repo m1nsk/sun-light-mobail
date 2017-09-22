@@ -9,7 +9,6 @@
         <shop-form-card :cardData="cardData"></shop-form-card>
         <div>
           <form-card placeholder="Имя" v-model="profile.fio"></form-card>
-          <form-card placeholder="Почта" v-model="profile.mail"></form-card>
           <form-card placeholder="Телефон" v-model="profile.phone"></form-card>
         </div>
         <accept-form-card class="reserve-form__accept"></accept-form-card>
@@ -19,6 +18,7 @@
 </template>
 
 <script>
+  import { clone } from '~/helpers/cloneObject'
   import { getProduct, getMarket } from 'api/index'
   import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
   import FormCard from 'appComponents/components/cards/FormCard.vue'
@@ -39,6 +39,7 @@
       SecondFooter,
       'page-content': Content
     },
+    name: 'reserve-form-page',
     data () {
       return {
         footerActionData: [
@@ -56,6 +57,7 @@
       }
     },
     activated: function () {
+      console.log('activated')
       let cardDataTemp = {}
       let that = this
       let promiseProduct = getProduct(this.$store.getters.productCode.id)
@@ -65,21 +67,16 @@
         cardDataTemp.cost = response.data.data.cost
         let promiseMarket = getMarket(this.$route.params.id)
         promiseMarket.then((response) => {
-          console.log(response.data.data.label, 'market')
           cardDataTemp.shop = response.data.data.label
           cardDataTemp.status = 'В НАЛИЧИИ можно забрать сегодня'
           that.cardData = cardDataTemp
-          console.log(that.cardData)
         })
       })
     },
     mounted: function () {
-      let profileCash = this.$store.getters.getProfile
-      this.profile = {
-        fio: profileCash.fio,
-        mail: profileCash.mail,
-        phone: profileCash.phone
-      }
+      console.log('mounted')
+      this.profile = clone(this.$store.getters.getProfile)
+      console.log(this.profile)
     },
     methods: {
       onActionClicked (data) {

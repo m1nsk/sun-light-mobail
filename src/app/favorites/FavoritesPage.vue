@@ -26,6 +26,7 @@
       'page-content': Content,
       Scroll
     },
+    name: 'favorites-page',
     extends: scrollMixin,
     data () {
       return {

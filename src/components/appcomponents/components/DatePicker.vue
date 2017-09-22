@@ -83,6 +83,7 @@
           const list = [...Array(monthCount)].map((d, i) => i + 1)
           this.$refs.smoothPicker.setGroupData(2, {...this.data[2], ...{ currentIndex, list }})
         }
+        this.confirm()
       },
       clickOnDay (gIndex, iIndex) {
         window.alert('Clicked day: ' + this.data[gIndex].list[iIndex])
@@ -96,6 +97,9 @@
           year + ' / ' + month + ' / ' + day
         )
       }
+    },
+    mounted: function () {
+      this.confirm()
     }
   }
 </script>

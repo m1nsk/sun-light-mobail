@@ -2,11 +2,13 @@ import { toggleMarketLike, getMarketList } from 'api/index'
 
 // initial state
 const state = {
+  marketListReloadFlag: false
 }
 
 
 // getters
 const getters = {
+  getMarketListReload: state => state.marketListReloadFlag,
 }
 
 // actions
@@ -21,6 +23,9 @@ const actions = {
 
 // mutations
 const mutations = {
+  setMarketListReloadFlag (state, flag) {
+    state.marketListReloadFlag = flag
+  }
 }
 
 export default {

@@ -82,17 +82,16 @@
       }
     },
     activated: function () {
-      let payload = {
-        id: this.$route.params.id
+      if (!this.getReloadListFlag()) {
+        let payload = {
+          id: this.$route.params.id
+        }
+        let promise = getProduct(payload.id)
+        promise.then((response) => {
+          this.productData = response.data.data
+          this.productItemLoaded = true
+        })
       }
-      let promise = getProduct(payload.id)
-      promise.then((response) => {
-        this.productData = response.data.data
-        this.productItemLoaded = true
-      })
-    },
-    deactivated: function () {
-      this.productItemLoaded = false
     },
     computed: {
       dataLoaded () {
@@ -100,6 +99,12 @@
       }
     },
     methods: {
+      getReloadListFlag () {
+        return this.$store.getters.getMarketListReload
+      },
+      setReloadListFlag (state) {
+        this.$store.commit('setMarketListReloadFlag', state)
+      },
       onReserveClicked () {
         this.$store.commit('setCardCode', this.$route.params.id)
         this.$router.push({

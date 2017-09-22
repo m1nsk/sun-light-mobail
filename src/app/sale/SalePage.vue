@@ -32,6 +32,7 @@
       ButtonSmall,
       'page-content': Content
     },
+    name: 'sale-page',
     data () {
       return {
         sale: {

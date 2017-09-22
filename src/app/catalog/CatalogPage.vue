@@ -37,6 +37,7 @@
       BannerItem,
       'page-content': Content
     },
+    name: 'catalog-page',
     data () {
       return {
         banner: '/static/logo.png'
@@ -50,7 +51,7 @@
         return this.$store.getters.isCategoriesLoaded
       }
     },
-    created: function () {
+    mounted: function () {
       this.$store.dispatch('getCategories')
     },
     methods: {

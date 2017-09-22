@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <keep-alive include="['Foo']">
+    <keep-alive>
       <router-view class="page-slide" v-keep-scroll-position></router-view>
     </keep-alive>
     <menu-footer @view="changeView" :menuItemData="menuItemData"></menu-footer>

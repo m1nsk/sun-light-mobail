@@ -2,7 +2,7 @@ import { createSecret, getToken, setAxiosToken, putOrder } from 'api/index'
 import router from '~/main'
 // initial state
 const state = {
-  profile: JSON.parse(localStorage.getItem('profile') === null ? '' : localStorage.getItem('profile')) || ''
+  profile:  localStorage.getItem('profile') != "" ? JSON.parse(localStorage.getItem('profile')) : {}| ''
 }
 
 // getters
@@ -14,11 +14,18 @@ const getters = {
 const actions = {
   getSecretCode ({ commit, state, rootState }, payload) {
     let profile = state.profile
+    let userData = {}
+    console.log(Object.keys(payload.profile))
+    for (let value of Object.keys(payload.profile)) {
+      userData[value] = payload.profile[value] || profile[value]
+    }
+    /*
     let userData = {
       fio: payload.profile.fio || profile.fio,
       phone: payload.profile.phone || profile.phone,
       mail: payload.profile.mail || profile.mail,
     }
+    */
     let promise = createSecret(userData)
     promise.then((response) => {
       if (response.data.success) {
@@ -35,7 +42,6 @@ const actions = {
     }
     let promise = getToken(secretCode)
     promise.then((response) => {
-      debugger
       if (response.data.success === true) {
         commit('setProfile', {token: response.data.token})
         router.push(rootState.properties.callbackUrl.url)
@@ -63,12 +69,17 @@ const actions = {
 // mutations
 const mutations = {
   setProfile (state, payload) {
-    let profile = JSON.parse(localStorage.getItem('profile')) || {}
-    console.log(profile, 'profile')
+    let profile = localStorage.getItem('profile') != "" ? JSON.parse(localStorage.getItem('profile')) : {}
+     console.log(profile, 'profile')
+    for (let value of Object.keys(payload.profile)) {
+      profile[value] = payload.profile[value] || profile[value]
+    }
+    /*
     profile['token'] = payload['token'] || profile.token
     profile['fio'] = payload['fio'] || profile.fio
     profile['phone'] = payload['phone'] || profile.phone
     profile['mail'] = payload['mail'] || profile.mail
+    */
     profile = JSON.stringify(profile)
     localStorage.setItem('profile', profile)
     state.profile = JSON.parse(localStorage.getItem('profile'))
