@@ -17,7 +17,6 @@
             </div>
           </list-item>
         </list>
-        <button-small caption="Профиль" @click.native="onProfileClicked"></button-small>
       </div>
     </page-content>
   </div>
@@ -83,7 +82,7 @@
               add: true,
               value: '5'
             },
-            link: ''
+            link: {name: 'ordered'}
           },
           {
             title: 'Избранные товары',
@@ -91,7 +90,7 @@
               add: true,
               value: '12'
             },
-            link: ''
+            link: {name: 'favorites'}
           },
           {
             title: 'Просмотренные товары',
@@ -107,7 +106,7 @@
               add: false,
               value: ''
             },
-            link: ''
+            link: {name: 'person'}
           },
           {
             title: 'Поддержка',
@@ -115,7 +114,7 @@
               add: false,
               value: ''
             },
-            link: ''
+            link: {name: 'support'}
           },
           {
             title: 'FAQ',
@@ -137,14 +136,8 @@
       }
     },
     methods: {
-      onProfileClicked () {
-        this.$router.push({name: 'person'})
-      },
       onItemClicked (item) {
-        switch (item.title) {
-          case 'Мои покупки и заказы':
-            this.$router.push({name: 'ordered'})
-        }
+        this.$router.push(item.link)
       }
     },
     mounted: function () {
