@@ -24,6 +24,7 @@
       ButtonGroup,
       'page-content': Content
     },
+    name: 'code-page',
     data () {
       return {
         code: ''

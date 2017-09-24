@@ -8,9 +8,14 @@ import { API_HOST, API_PORT } from '../api/config'
 export const baseHost = API_HOST
 export const baseURL = baseHost + '/api/'
 export function setAxiosToken() {
-  let data = localStorage.getItem('profile') != "" ? JSON.parse(localStorage.getItem('profile')) : {}
-  axios.defaults.headers.common['X-CSRF-TOKEN'] = data.token
-  axios.defaults.headers.common['Authorization'] = data.phone
+  let data = localStorage.getItem('profile') != null ? JSON.parse(localStorage.getItem('profile')) : {}
+  axios.defaults.headers.common['X-CSRF-TOKEN'] = data.token || ''
+  axios.defaults.headers.common['Authorization'] = (() => {
+    if ((data.phone) && (data.phone.slice(0, 2) === '+7')) {
+      return '8' + data.phone.slice(2)
+    }
+    return ''
+  })()
 }
 
 axios.interceptors.response.use(function (response) {

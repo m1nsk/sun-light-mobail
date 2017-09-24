@@ -1,15 +1,32 @@
 <template>
-  <p><input :placeholder="placeholder" :value="value" @input="updateValue($event.target.value)"/></p>
+  <p><input
+    :placeholder="placeholder"
+    :value="value"
+    @input="updateValue($event.target.value)"
+  /></p>
 </template>
 
 <script>
   export default {
     components: {
     },
-    props: ['placeholder', 'value'],
+    props: {
+      placeholder: {
+        type: String,
+        default: ''
+      },
+      value: {
+        type: String,
+        default: ''
+      }
+    },
     data () {
       return {
-        input: ''
+      }
+    },
+    computed: {
+      errorsFlag () {
+        return this.errors.has(this.name)
       }
     },
     methods: {
@@ -47,5 +64,4 @@
     font-size:14px;
     color:#5a5a5a
   }
-
 </style>

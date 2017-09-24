@@ -9,7 +9,13 @@
         <shop-form-card :cardData="cardData"></shop-form-card>
         <div>
           <form-card placeholder="Имя" v-model="profile.fio"></form-card>
-          <form-card placeholder="Телефон" v-model="profile.phone"></form-card>
+
+          <form-card placeholder="email" v-validate.initial="'email'" data-vv-value-path="innerValue" name="mail" :has-error="errors.has('mail')" v-model="profile.mail"></form-card>
+          <span class="alert-input" v-show="errors.has('mail')">{{ errors.first('mail') }}</span>
+
+          <form-card placeholder="Телефон" @input="onPhoneInput" v-validate="'phoneRequire|phone'" data-vv-value-path="valueInner" data-vv-name="phone" :has-error="errors.has('phone')" v-model="profile.phone"></form-card>
+          <span class="alert-input" v-show="errors.has('phone')">{{ errors.first('phone') }}</span>
+
         </div>
         <accept-form-card class="reserve-form__accept"></accept-form-card>
       </div>
@@ -52,7 +58,11 @@
             title: 'Продолжить'
           }
         ],
-        profile: {},
+        profile: {
+          fio: '',
+          phone: '+7',
+          mail: ''
+        },
         cardData: {}
       }
     },
@@ -74,13 +84,28 @@
       })
     },
     mounted: function () {
-      console.log('mounted')
-      this.profile = clone(this.$store.getters.getProfile)
-      console.log(this.profile)
+      let profile = clone(this.$store.getters.getProfile) || {};
+      for (let key of Object.keys(this.profile)) {
+        this.profile[key] = profile[key]
+      }
     },
     methods: {
+      validate() {
+        return this.$validator.validateAll().then((result) => {
+          return result
+        });
+      },
+      onPhoneInput () {
+        if (this.profile.phone.slice(0,2) != '+7') {
+          console.log('hone ')
+          this.$nextTick(() => {
+              this.profile.phone = '+7' + this.profile.phone.slice(2)
+            }
+          )
+        }
+      },
       onActionClicked (data) {
-        if (data.action === 'accept') {
+        if ((data.action === 'accept') && (this.validate())){
           let payload = {}
           payload.profile = this.profile
           this.$store.commit('setCallbackUrl', {

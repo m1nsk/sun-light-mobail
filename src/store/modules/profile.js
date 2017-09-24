@@ -2,7 +2,7 @@ import { createSecret, getToken, setAxiosToken, putOrder } from 'api/index'
 import router from '~/main'
 // initial state
 const state = {
-  profile:  localStorage.getItem('profile') != "" ? JSON.parse(localStorage.getItem('profile')) : {}
+  profile:  localStorage.getItem('profile') != null ? JSON.parse(localStorage.getItem('profile')) : {}
 }
 
 // getters
@@ -47,8 +47,9 @@ const actions = {
     })
   },
   getOrderStatus ({ commit }, payload) {
+    debugger
     let promise = putOrder({shop_id: payload.shop_id, product_id: payload.product_id})
-    commit('setProfile', payload.profile)
+    commit('setProfile', payload)
     promise.then(response => {
       router.push({
         name: "success",
@@ -63,7 +64,7 @@ const actions = {
 // mutations
 const mutations = {
   setProfile (state, payload) {
-    let profile = localStorage.getItem('profile') != "" ? JSON.parse(localStorage.getItem('profile')) : {}
+    let profile = localStorage.getItem('profile') != null ? JSON.parse(localStorage.getItem('profile')) : {}
     for (let value of Object.keys(payload.profile)) {
       profile[value] = payload.profile[value] || profile[value]
     }

@@ -18,17 +18,9 @@ import CategoryPage from './app/category/CategoryPage.vue'
 import ReserveFormPage from './app/reserve/ReserveFormPage.vue'
 import ProductPage from './app/product/ProductPage.vue'
 import VeeValidate from 'vee-validate';
+import { validateOptions } from './validators/validators'
 
-const dictionary = {
-  en: {
-    messages:{
-      regex: () => 'Неверное значение',
-      required: () => "Это поле необходимо к заполнению",
-      email: () => "Введите коректный адрес"
-    }
-  }
-};
-VeeValidate.Validator.updateDictionary(dictionary);
+validateOptions(VeeValidate)
 
 Vue.use(VueRouter)
 Vue.use(Vum)
@@ -36,7 +28,6 @@ Vue.use(SmoothPicker)
 Vue.use(VueKeepScrollPosition)
 Vue.use(VueResource)
 Vue.use(VeeValidate);
-
 Vue.use(VueLazyload, {
   preLoad: 1.3,
   error: '/static/myIcons/no-image.svg',

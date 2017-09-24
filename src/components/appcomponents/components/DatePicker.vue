@@ -8,7 +8,7 @@
     data () {
       const nowYear = (new Date()).getFullYear()
       const years = []
-      for (let i = 1991; i <= nowYear; i++) {
+      for (let i = 1900; i <= nowYear; i++) {
         years.push(i)
       }
       return {

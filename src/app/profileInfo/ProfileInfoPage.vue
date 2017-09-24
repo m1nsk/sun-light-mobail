@@ -4,7 +4,13 @@
     <page-content class="content-padding-bottom">
       <div class="content-layout">
         <form-card placeholder="Имя" v-model="profile.fio"></form-card>
-        <form-card placeholder="Телефон" v-model="profile.phone"></form-card>
+
+        <form-card placeholder="email" v-validate.initial="'email'" data-vv-value-path="innerValue" name="mail" :has-error="errors.has('mail')" v-model="profile.mail"></form-card>
+        <span class="alert-input" v-show="errors.has('mail')">{{ errors.first('mail') }}</span>
+
+        <form-card placeholder="Телефон" @input="onPhoneInput" v-validate="'phoneRequire|phone'" data-vv-value-path="innerValue" data-vv-name="phone" :has-error="errors.has('phone')" v-model="profile.phone"></form-card>
+        <span class="alert-input" v-show="errors.has('phone')">{{ errors.first('phone') }}</span>
+
         <div class="birth-date">
           <span>Дата рождения</span>
         </div>
@@ -38,12 +44,29 @@
     name: 'profile-info-page',
     data () {
       return {
+        profile: {
+          fio: '',
+          phone: '+7',
+          mail: ''
+        },
         sex: 'male',
-        profile: {},
         birthDate: ''
       }
     },
     methods: {
+      validate() {
+        return this.$validator.validateAll().then((result) => {
+          return result
+        });
+      },
+      onPhoneInput () {
+        if (this.profile.phone.slice(0,2) != '+7') {
+          this.$nextTick(() => {
+              this.profile.phone = '+7' + this.profile.phone.slice(2)
+            }
+          )
+        }
+      },
       onDateChange (birthDate) {
         this.birthDate = birthDate
       },
@@ -51,19 +74,24 @@
         this.sex = sex
       },
       onConfirmClicked (data) {
-        let payload = {}
-        payload.profile = this.profile
-        payload.profile.sex = this.sex
-        payload.profile.birthDate = this.birthDate
-        this.$store.commit('setProfile', payload)
-        this.$store.commit('setCallbackUrl', {
-          name: "person"
-        })
+        if (this.validate()) {
+          console.log('valid')
+          let payload = {}
+          payload.profile = this.profile
+          payload.profile.sex = this.sex
+          payload.profile.birthDate = this.birthDate
+          this.$store.commit('setProfile', payload)
+          this.$store.commit('setCallbackUrl', {
+            name: "person"
+          })
+        }
       }
     },
     mounted: function () {
-      console.log('mounted')
-      this.profile = clone(this.$store.getters.getProfile) || {}
+      let profile = clone(this.$store.getters.getProfile) || {};
+      for (let key of Object.keys(this.profile)) {
+        this.profile[key] = profile[key]
+      }
     },
   }
 </script>
