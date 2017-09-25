@@ -1,36 +1,36 @@
-<script>
-  import { actions } from '~/store/modules/chat';
+<template>
+  <div>
+    <title-header title="Поддержка"></title-header>
+    <page-content class="content-padding-bottom">
+      <div id="chat">
+        <div class="main">
+          <message></message>
+          <text-enter></text-enter>
+        </div>
+      </div>
+    </page-content>
+  </div>
+</template>
 
-  import Card from './components/card.vue';
-  import List from './components/list.vue';
+
+<script>
   import Text from './components/text.vue';
   import Message from './components/message.vue';
-
+  import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
+  import Content from '~/components/content'
   export default {
-    components: { Card, List, Text, Message },
+    components: { 'text-enter': Text, Message, 'page-content': Content, TitleHeader },
     created () {
       this.$store.dispatch('initData');
     }
   }
 </script>
 
-<template>
-  <div id="chat">
-    <div class="sidebar">
-      <card></card>
-      <list></list>
-    </div>
-    <div class="main">
-      <message></message>
-      <text></text>
-    </div>
-  </div>
-</template>
 
 <style lang="less" scoped>
   #chat {
-    margin: 20px auto;
-    width: 800px;
+    margin: 0 auto;
+    width: 100%;
     height: 600px;
 
     overflow: hidden;

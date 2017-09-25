@@ -18,6 +18,7 @@ import CategoryPage from './app/category/CategoryPage.vue'
 import ReserveFormPage from './app/reserve/ReserveFormPage.vue'
 import ProductPage from './app/product/ProductPage.vue'
 import VeeValidate from 'vee-validate';
+import VueChatScroll from 'vue-chat-scroll'
 import { validateOptions } from './validators/validators'
 
 validateOptions(VeeValidate)
@@ -27,7 +28,8 @@ Vue.use(Vum)
 Vue.use(SmoothPicker)
 Vue.use(VueKeepScrollPosition)
 Vue.use(VueResource)
-Vue.use(VeeValidate);
+Vue.use(VeeValidate)
+Vue.use(VueChatScroll)
 Vue.use(VueLazyload, {
   preLoad: 1.3,
   error: '/static/myIcons/no-image.svg',

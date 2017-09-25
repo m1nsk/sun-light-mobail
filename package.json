@@ -26,6 +26,7 @@
     "font-awesome": "^4.7.0",
     "request": "^2.81.0",
     "vue": "^2.2.2",
+    "vue-chat-scroll": "^1.2.1",
     "vue-keep-scroll": "^0.1.1",
     "vue-keep-scroll-position": "^0.1.2",
     "vue-lazyload": "^1.0.6",
