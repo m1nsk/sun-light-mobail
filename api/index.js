@@ -1,6 +1,5 @@
 import axios from 'axios'
 import router from '../src/main.js'
-import properties from '../src/store/modules/properties'
 import store from '../src/store'
 
 import { API_HOST, API_PORT } from '../api/config'
@@ -48,21 +47,18 @@ export function getProduct (productId) {
 export function getProductList (productData) {
   productData.sort = 'id'
   productData.order = 'asc'
-  console.log(productData, 'productData')
   return axios.post('/products', productData)
 }
 
 export function getFavorites (productData) {
   productData.sort = 'id'
   productData.order = 'asc'
-  console.log(productData, 'productData')
   return axios.get('/product/likes', productData)
 }
 
 export function getOrdered (productData) {
   productData.sort = 'id'
   productData.order = 'asc'
-  console.log(productData, 'productData')
   return axios.post('/orders', productData)
 }
 
@@ -86,7 +82,7 @@ export function getToken (userData) {
   return axios.post(baseHost + '/get_token', userData)
 }
 
-export function toggleLike (id) {
+export function toggleProductLike (id) {
   return axios.get(baseHost + '/api/product/' + id + '/like')
 }
 

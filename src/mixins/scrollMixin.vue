@@ -79,7 +79,6 @@
         })
       },
       onInfinite () {
-        console.log('on infinite')
         this.getItems()
       }
     }

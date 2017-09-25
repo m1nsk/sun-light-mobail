@@ -1,11 +1,13 @@
 <template>
   <div>
     <title-header title="Поддержка"></title-header>
-    <page-content class="content-padding-bottom">
+    <second-footer>
+      <text-enter></text-enter>
+    </second-footer>
+    <page-content>
       <div id="chat">
         <div class="main">
           <message></message>
-          <text-enter></text-enter>
         </div>
       </div>
     </page-content>
@@ -16,10 +18,11 @@
 <script>
   import Text from './components/text.vue';
   import Message from './components/message.vue';
+  import { SecondFooter } from '~/components/footer'
   import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
   import Content from '~/components/content'
   export default {
-    components: { 'text-enter': Text, Message, 'page-content': Content, TitleHeader },
+    components: { 'text-enter': Text, Message, 'page-content': Content, TitleHeader, SecondFooter },
     created () {
       this.$store.dispatch('initData');
     }
@@ -57,7 +60,7 @@
       left: 0;
     }
     .message {
-      height: ~'calc(100% - 160px)';
+      height: 100%;
     }
   }
 </style>

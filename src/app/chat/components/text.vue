@@ -13,7 +13,7 @@
     },
     methods: {
       onKeyup (e) {
-        if (e.ctrlKey && e.keyCode === 13 && this.content.length) {
+        if (e.keyCode === 13 && this.content.length) {
           this.$store.dispatch('sendMessage',this.content);
           this.content = '';
         }
@@ -24,7 +24,6 @@
 
 <style lang="less" scoped>
 .text {
-    height: 160px;
     border-top: solid 1px #ddd;
 
     textarea {

@@ -17,7 +17,7 @@
     methods: {
       onMarkClick () {
         this.$emit('like')
-        this.marked = !this.marked
+        // this.marked = !this.marked
       }
     },
     computed: {

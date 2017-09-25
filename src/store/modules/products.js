@@ -1,4 +1,4 @@
-import { getProduct, toggleLike } from 'api/index'
+import { getProduct, toggleProductLike } from 'api/index'
 
 // initial state
 const state = {
@@ -31,7 +31,7 @@ const actions = {
     })
   },
   toggleLike ({ commit,state }, payload) {
-    let promise = toggleLike(payload.id)
+    let promise = toggleProductLike(payload.id)
     promise.then(response => {
       commit('setProductLike', payload.id)
     })

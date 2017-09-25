@@ -36,7 +36,7 @@
     },
     methods: {
       onMarkClick () {
-        this.$store.dispatch('toggleLike', {id: this.bannerData.id})
+        this.$store.dispatch('toggleProductLike', {id: this.bannerData.id})
       }
     },
     computed: {
