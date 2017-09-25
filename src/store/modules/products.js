@@ -7,9 +7,7 @@ const state = {
       id: ''
     }
   ],
-  productItem: {},
-  productItemLoaded: false,
-  productsListReloadFlag: false
+  productItemLoaded: false
 }
 
 
@@ -17,25 +15,10 @@ const state = {
 const getters = {
   productCode: state => state.card[0],
   getProductItem: state => state.productItem,
-  getProductItemLoaded: state => state.productItemLoaded,
-  getProductListReload: state => state.productsListReloadFlag,
 }
 
 // actions
 const actions = {
-  getProduct ({ commit }, payload) {
-    let promise = getProduct(payload.id)
-    promise.then((response) => {
-      commit('setProduct', response.data.data)
-      state.productItemLoaded =true
-    })
-  },
-  toggleProductLike ({ commit,state }, payload) {
-    let promise = toggleProductLike(payload.id)
-    promise.then(response => {
-      commit('setProductLike', payload.id)
-    })
-  }
 }
 
 // mutations
@@ -46,12 +29,6 @@ const mutations = {
         id: id
       }
     ]
-  },
-  setProduct (state, product) {
-    state.productItem = product
-  },
-  setProductListReloadFlag (state, flag) {
-    state.productsListReloadFlag = flag
   }
 }
 

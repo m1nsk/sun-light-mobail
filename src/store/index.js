@@ -4,11 +4,9 @@ import products from './modules/products'
 import properties from './modules/properties'
 import categories from './modules/categories'
 import profile from './modules/profile'
-import markets from './modules/markets'
 import filters from './modules/filters'
-import scrollContainer from './modules/scrollContainer'
-import productList from './modules/productList'
 import chat from './modules/chat'
+import flags from './modules/flags'
 
 Vue.use(Vuex)
 
@@ -18,9 +16,8 @@ export default new Vuex.Store({
     properties,
     categories,
     profile,
-    markets,
     filters,
-    productList,
-    chat
+    chat,
+    flags
   }
 })

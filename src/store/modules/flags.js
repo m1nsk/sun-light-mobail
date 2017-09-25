@@ -1,30 +1,27 @@
-import { toggleMarketLike, getMarketList } from 'api/index'
-
 // initial state
 const state = {
-  marketListReloadFlag: false
+  marketListReloadFlag: false,
+  productsListReloadFlag: false
 }
 
 
 // getters
 const getters = {
   getMarketListReload: state => state.marketListReloadFlag,
+  getProductListReload: state => state.productsListReloadFlag
 }
 
 // actions
 const actions = {
-  toggleMarketLike ({ commit,state }, payload) {
-    let promise = toggleMarketLike(payload.id)
-    promise.then(response => {
-      commit('setMarketLike', payload.id)
-    })
-  }
 }
 
 // mutations
 const mutations = {
   setMarketListReloadFlag (state, flag) {
     state.marketListReloadFlag = flag
+  },
+  setProductListReloadFlag (state, flag) {
+    state.productsListReloadFlag = flag
   }
 }
 

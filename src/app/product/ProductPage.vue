@@ -94,11 +94,6 @@
         })
       }
     },
-    computed: {
-      dataLoaded () {
-        return this.$store.getters.getProductItemLoaded
-      }
-    },
     methods: {
       getReloadListFlag () {
         return this.$store.getters.getMarketListReload
