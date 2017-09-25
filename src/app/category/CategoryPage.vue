@@ -26,7 +26,6 @@
   import BannerItem from 'appComponents/components/banners/BannerItem.vue'
   import ProductCardBanner from 'appComponents/components/banners/ProductCardBanner.vue'
   import FilterButton from 'appComponents/components/buttons/FilterButton.vue'
-  import CustomDataGrid from 'appComponents/components/banners/CustomDataGrid.vue'
   import Scroll from '~/components/customScroll'
   import Content from '~/components/content'
 
@@ -36,7 +35,6 @@
       CatalogHeader,
       ProductCardBanner,
       FilterButton,
-      CustomDataGrid,
       'page-content': Content,
       Scroll
     },

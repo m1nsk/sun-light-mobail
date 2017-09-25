@@ -17,6 +17,7 @@ import VueKeepScrollPosition from 'vue-keep-scroll-position'
 import CategoryPage from './app/category/CategoryPage.vue'
 import ReserveFormPage from './app/reserve/ReserveFormPage.vue'
 import ProductPage from './app/product/ProductPage.vue'
+import FavoritesPage from './app/favorites/FavoritesPage.vue'
 import VeeValidate from 'vee-validate';
 import VueChatScroll from 'vue-chat-scroll'
 import { validateOptions } from './validators/validators'
@@ -55,6 +56,7 @@ Vue.http.interceptors.push({
 Vue.component('category-page', CategoryPage)
 Vue.component('reserve-form-page', ReserveFormPage)
 Vue.component('product-page', ProductPage)
+Vue.component('favorites-page', FavoritesPage)
 
 new Vue({
   store,

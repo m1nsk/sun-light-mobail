@@ -2,9 +2,11 @@
   <div>
     <title-header title="Избранное"></title-header>
     <page-content>
-      <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!flagLoaded" :infiniteLoadingStatus="reloadStatus">
-        <div v-show="!animationFlag" class="content-layout">
-          <product-card-banner v-for="item in itemList" :key="item.id" :bannerData="item" @marked="onItemMarked(item)" @click.native="onProductClicked(item)" class="item"></product-card-banner>
+      <scroll v-keep-scroll-position :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!loadedScrollFlag" :infiniteLoadingStatus="reloadScrollFlag">
+        <div class="content-layout">
+          <div>
+            <product-card-banner @like="onLike(item)" v-for="item in scrollItemList" :key="item.id" :bannerData="item" @marked="onItemMarked(item)" @click.native="onProductClicked(item)" class="item"></product-card-banner>
+          </div>
         </div>
       </scroll>
     </page-content>
@@ -26,15 +28,26 @@
       'page-content': Content,
       Scroll
     },
-    name: 'favorites-page',
     extends: scrollMixin,
     data () {
       return {
+        bannerImage: '/static/logo.png',
         getItemFunction: getFavorites,
+        categoryTitle: '',
         payload: {}
       }
     },
     methods: {
+      onLike (item) {
+        item.like = !item.like
+      },
+      activatedPage () {
+      },
+      getReloadListFlag () {
+        return false
+      },
+      setReloadListFlag (state) {
+      },
       onProductClicked (item) {
         this.$router.push({
           name: 'product',

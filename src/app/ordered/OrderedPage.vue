@@ -1,10 +1,12 @@
 <template>
   <div>
-    <title-header title="Мои покупки"></title-header>
+    <title-header title="Избранное"></title-header>
     <page-content>
-      <scroll :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!loadedScrollFlag" :infiniteLoadingStatus="reloadScrollFlag">
-        <div v-show="!animationFlag" class="content-layout">
-          <product-card-banner v-for="item in scrollItemList" :key="item.id" :bannerData="item.product" @click.native="onProductClicked(item.product)" class="item"></product-card-banner>
+      <scroll v-keep-scroll-position :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!loadedScrollFlag" :infiniteLoadingStatus="reloadScrollFlag">
+        <div class="content-layout">
+          <div>
+            <product-card-banner @like="onLike(item)" v-for="item in scrollItemList" :key="item.id" :bannerData="item" @marked="onItemMarked(item)" @click.native="onProductClicked(item)" class="item"></product-card-banner>
+          </div>
         </div>
       </scroll>
     </page-content>
@@ -29,11 +31,23 @@
     extends: scrollMixin,
     data () {
       return {
+        bannerImage: '/static/logo.png',
         getItemFunction: getOrdered,
+        categoryTitle: '',
         payload: {}
       }
     },
     methods: {
+      onLike (item) {
+        item.like = !item.like
+      },
+      activatedPage () {
+      },
+      getReloadListFlag () {
+        return false
+      },
+      setReloadListFlag (state) {
+      },
       onProductClicked (item) {
         this.$router.push({
           name: 'product',
@@ -48,6 +62,12 @@
 
 <style lang="less" scoped>
   @import "../../components/header/variables.less";
+  .catalog__filter
+  {
+    width: 100%;
+    display: inline-block;
+    margin: 0 auto;
+  }
 
   .item
   {

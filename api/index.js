@@ -20,7 +20,7 @@ export function setAxiosToken() {
 axios.interceptors.response.use(function (response) {
   return response;
 }, function (error) {
-  if (500 === error.response.status) {
+  if (401 === error.response.status) {
     store.state.properties.callbackUrl.url = router.history.current.path
     router.push({name: 'login'})
   } else {

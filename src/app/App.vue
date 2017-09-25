@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <keep-alive>
-      <router-view class="page-slide" v-keep-scroll-position></router-view>
+      <router-view class="page-slide" v-keep-scroll-position include="'favorites-page', 'product-page', 'reserve-form-page', 'category-page'"></router-view>
     </keep-alive>
     <menu-footer @view="changeView" :menuItemData="menuItemData"></menu-footer>
   </div>
