@@ -11,18 +11,16 @@
     props: ['liked'],
     data () {
       return {
-        marked: this.liked || false
       }
     },
     methods: {
       onMarkClick () {
         this.$emit('like')
-        // this.marked = !this.marked
       }
     },
     computed: {
       markIcon () {
-        if (this.marked) {
+        if (this.liked) {
           return '/static/myIcons/like_full.svg'
         }
         return '/static/myIcons/like.svg'

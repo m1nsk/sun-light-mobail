@@ -8,7 +8,7 @@
         <form-card placeholder="email" v-validate.initial="'email'" data-vv-value-path="innerValue" name="mail" :has-error="errors.has('mail')" v-model="profile.mail"></form-card>
         <span class="alert-input" v-show="errors.has('mail')">{{ errors.first('mail') }}</span>
 
-        <form-card placeholder="Телефон" @input="onPhoneInput" v-validate="'phoneRequire|phone'" data-vv-value-path="innerValue" data-vv-name="phone" :has-error="errors.has('phone')" v-model="profile.phone"></form-card>
+        <form-card placeholder="Телефон" @input="onPhoneInput" v-validate.initial="'phoneRequire|phone'" data-vv-value-path="innerValue" data-vv-name="phone" :has-error="errors.has('phone')" v-model="profile.phone"></form-card>
         <span class="alert-input" v-show="errors.has('phone')">{{ errors.first('phone') }}</span>
 
         <div class="birth-date">
@@ -26,6 +26,7 @@
 
 <script>
   import { clone } from '~/helpers/cloneObject'
+  import loginMixin from '~/mixins/loginMixin.vue'
   import ProfileHeader from 'appComponents/components/headers/ProfileHeader.vue'
   import FormCard from 'appComponents/components/cards/FormCard.vue'
   import DatePicker from 'appComponents/components/DatePicker.vue'
@@ -41,32 +42,15 @@
       ButtonGroup,
       'page-content': Content
     },
+    mixins: [loginMixin],
     name: 'profile-info-page',
     data () {
       return {
-        profile: {
-          fio: '',
-          phone: '+7',
-          mail: ''
-        },
         sex: 'male',
         birthDate: ''
       }
     },
     methods: {
-      validate() {
-        return this.$validator.validateAll().then((result) => {
-          return result
-        });
-      },
-      onPhoneInput () {
-        if (this.profile.phone.slice(0,2) != '+7') {
-          this.$nextTick(() => {
-              this.profile.phone = '+7' + this.profile.phone.slice(2)
-            }
-          )
-        }
-      },
       onDateChange (birthDate) {
         this.birthDate = birthDate
       },
@@ -85,12 +69,6 @@
             name: "person"
           })
         }
-      }
-    },
-    mounted: function () {
-      let profile = clone(this.$store.getters.getProfile) || {};
-      for (let key of Object.keys(this.profile)) {
-        this.profile[key] = profile[key]
       }
     },
   }

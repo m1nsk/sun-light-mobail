@@ -27,6 +27,7 @@
 </template>
 
 <script>
+  import { toggleProductLike } from 'api/index'
   export default {
     props: ['bannerData'],
     data () {
@@ -36,7 +37,12 @@
     },
     methods: {
       onMarkClick () {
-        this.$store.dispatch('toggleProductLike', {id: this.bannerData.id})
+        let itemData = this.itemData
+        let that = this
+        let promise = toggleProductLike(itemData.id)
+        promise.then(response => {
+          that.$emit('like')
+        })
       }
     },
     computed: {

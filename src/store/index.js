@@ -7,6 +7,7 @@ import profile from './modules/profile'
 import markets from './modules/markets'
 import filters from './modules/filters'
 import scrollContainer from './modules/scrollContainer'
+import productList from './modules/productList'
 import chat from './modules/chat'
 
 Vue.use(Vuex)
@@ -19,7 +20,7 @@ export default new Vuex.Store({
     profile,
     markets,
     filters,
-    scrollContainer,
+    productList,
     chat
   }
 })

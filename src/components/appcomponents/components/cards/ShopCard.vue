@@ -16,6 +16,7 @@
 </template>
 
 <script>
+  import { toggleMarketLike } from 'api/index'
   import HeartMarkButton from 'appComponents/components/buttons/HeartMarkButton.vue'
   import CustomCard from 'appComponents/components/cards/CustomCard.vue'
   export default {
@@ -26,8 +27,11 @@
     props: ['shopData'],
     methods: {
       onMarkedClicked () {
-        console.log('marked')
-        this.$store.dispatch('toggleMarketLike', {id: this.shopData.id})
+        let that = this
+        let promise = toggleMarketLike(this.shopData.id)
+        promise.then(response => {
+          that.$emit('like')
+        })
       }
     }
   }

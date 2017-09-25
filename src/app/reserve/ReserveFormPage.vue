@@ -13,7 +13,7 @@
           <form-card placeholder="email" v-validate.initial="'email'" data-vv-value-path="innerValue" name="mail" :has-error="errors.has('mail')" v-model="profile.mail"></form-card>
           <span class="alert-input" v-show="errors.has('mail')">{{ errors.first('mail') }}</span>
 
-          <form-card placeholder="Телефон" @input="onPhoneInput" v-validate="'phoneRequire|phone'" data-vv-value-path="valueInner" data-vv-name="phone" :has-error="errors.has('phone')" v-model="profile.phone"></form-card>
+          <form-card placeholder="Телефон" @input="onPhoneInput" v-validate.initial="'phoneRequire|phone'" data-vv-value-path="valueInner" data-vv-name="phone" :has-error="errors.has('phone')" v-model="profile.phone"></form-card>
           <span class="alert-input" v-show="errors.has('phone')">{{ errors.first('phone') }}</span>
 
         </div>
@@ -25,6 +25,7 @@
 
 <script>
   import { clone } from '~/helpers/cloneObject'
+  import loginMixin from '~/mixins/loginMixin.vue'
   import { getProduct, getMarket } from 'api/index'
   import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
   import FormCard from 'appComponents/components/cards/FormCard.vue'
@@ -45,6 +46,7 @@
       SecondFooter,
       'page-content': Content
     },
+    mixins: [loginMixin],
     name: 'reserve-form-page',
     data () {
       return {
@@ -58,11 +60,6 @@
             title: 'Продолжить'
           }
         ],
-        profile: {
-          fio: '',
-          phone: '+7',
-          mail: ''
-        },
         cardData: {}
       }
     },
@@ -83,27 +80,7 @@
         })
       })
     },
-    mounted: function () {
-      let profile = clone(this.$store.getters.getProfile) || {};
-      for (let key of Object.keys(this.profile)) {
-        this.profile[key] = profile[key]
-      }
-    },
     methods: {
-      validate() {
-        return this.$validator.validateAll().then((result) => {
-          return result
-        });
-      },
-      onPhoneInput () {
-        if (this.profile.phone.slice(0,2) != '+7') {
-          console.log('hone ')
-          this.$nextTick(() => {
-              this.profile.phone = '+7' + this.profile.phone.slice(2)
-            }
-          )
-        }
-      },
       onActionClicked (data) {
         if ((data.action === 'accept') && (this.validate())){
           let payload = {}

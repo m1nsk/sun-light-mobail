@@ -12,7 +12,7 @@ export function validateOptions(VeeValidate) {
   VeeValidate.Validator.setLocale('ru')
   VeeValidate.Validator.extend('phone', {
     getMessage: field => 'Введите телефон в формате +79...',
-    validate: value => value.search(/\+7[0-9]{10}/) != -1
+    validate: value => value.search(/\+7[0-9]{10}$/) != -1
   });
   VeeValidate.Validator.extend('phoneRequire', {
     getMessage: field => 'Это поле необходимо к заполнению',

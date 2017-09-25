@@ -30,7 +30,7 @@ const actions = {
       state.productItemLoaded =true
     })
   },
-  toggleLike ({ commit,state }, payload) {
+  toggleProductLike ({ commit,state }, payload) {
     let promise = toggleProductLike(payload.id)
     promise.then(response => {
       commit('setProductLike', payload.id)

@@ -2,41 +2,63 @@ import { toggleProductLike, getProductList } from 'api/index'
 
 // initial state
 const state = {
-  productList: [],
+  productItemList: [],
   reloadProductFlag: false,
   loadedProductFlag: false,
   totalProductCount: 0,
-  scrollCounter: 0,
-  columnNum: 2
+  productCounter: 0,
+  columnNum: 2,
+  productsOnPage: 0
 }
 
 
 // getters
 const getters = {
+  productItemList: state => state.productItemList,
+  reloadProductFlag: state => state.reloadProductFlag,
+  loadedProductFlag: state => state.loadedProductFlag,
+  totalProductCount: state => state.totalProductCount,
+  productCounter: state => state.productCounter,
+  productsOnPage: state => state.productsOnPage
 }
 
 // actions
 const actions = {
-  getProductList ({commit, state, rootState}, scrollData) {
-    let payload = scrollData.payload
+  toggleProductLike ({ commit,state }, payload) {
+    let promise = toggleProductLike(payload.id)
+    promise.then(response => {
+      console.log(response.data, 'like fine')
+      commit('setProductLike', payload.id)
+    })
+  },
+  getProductList ({commit, state, rootState}, productData) {
+    let payload = productData.payload
+    let that = this
+    this.productsOnPage = (() => {
+      if (!this.loadedProductFlag) {
+        let restCount = Math.ceil(rootState.parameters.windowSize.height / rootState.parameters.bannerSize.height)
+        return restCount - that.productCounter % restCount
+      }
+      return 0
+    })()
     state.reloadProductFlag = true
     payload.sort = 'id'
     payload.order = 'asc'
     payload.take = (function () {
       if (!state.loadedProductFlag) {
         let restCount = Math.ceil(rootState.properties.windowSize.height / rootState.properties.bannerSize.height)
-        return restCount - state.scrollCounter % restCount
+        return restCount - state.productCounter % restCount
       }
       return 0
     })()
-    payload.skip = state.scrollCounter
+    payload.skip = state.productCounter
     let promise = getProductList(payload)
     promise.then(response => {
-      state.scrollCounter += payload.take
+      state.productCounter += payload.take
       state.totalProductCount = response.data.totalCount
       commit('setProductList', response.data.data)
       state.reloadProductFlag = false
-      if (state.scrollCounter >= state.totalProductCount) {
+      if (state.productCounter >= state.totalProductCount) {
         state.loadedProductFlag = true
       }
     })
@@ -51,12 +73,19 @@ const mutations = {
     }
   },
   setProductToDefault (state) {
-    state.loadedScrollFlag = false
-    state.reloadScrollFlag = false
+    state.loadedProductFlag = false
+    state.reloadProductFlag = false
     state.productItemList = []
-    state.totalScrollCount = 0
+    state.totalProductCount = 0
     state.productCounter = 0
-  }
+  },
+  setProductLike (state, id) {
+    for (let index = 0; index < state.productItemList.length; index++) {
+      if (state.productItemList[index].id === id) {
+        state.productItemList[index].like = !state.productItemList[index].like
+      }
+    }
+  },
 }
 
 export default {

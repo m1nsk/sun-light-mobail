@@ -9,7 +9,7 @@
             <span>Найдено {{ this.scrollItemList.length }} магазина</span>
           </div>
           <div v-show="!animationFlag">
-            <shop-card v-for="item in scrollItemList" :key="item.id" :shopData="item" @click.native="onShopClicked(item)" class="listItem"></shop-card>
+            <shop-card @like="onLike(item)" v-for="item in scrollItemList" :key="item.id" :shopData="item" @click.native="onShopClicked(item)" class="listItem"></shop-card>
           </div>
         </div>
       </scroll>
@@ -53,6 +53,9 @@
       }
     },
     methods: {
+      onLike (item) {
+        item.like = !item.like
+      },
       activatedPage: function () {
         console.log('activated page')
         let promiseProduct = getProduct(this.$store.getters.productCode.id)
