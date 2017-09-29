@@ -15,7 +15,7 @@
 
 <script>
   import { getFavorites } from 'api/index'
-  import scrollMixin from '~/mixins/scrollMixin.vue'
+  import scrollMixinNew from '~/mixins/scrollMixinNew.vue'
   import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
   import ProductCardBanner from 'appComponents/components/banners/ProductCardBanner.vue'
   import Scroll from '~/components/customScroll'
@@ -28,16 +28,26 @@
       'page-content': Content,
       Scroll
     },
-    extends: scrollMixin,
+    extends: scrollMixinNew,
     data () {
       return {
         bannerImage: '/static/logo.png',
         getItemFunction: getFavorites,
         categoryTitle: '',
-        payload: {}
+        payload: {},
+        scrollName: 'favorites'
       }
     },
+    computed: {
+
+      scrollItemList() {
+          return this.$store.getters.scrollProductList
+        }
+      },
     methods: {
+      setCurrentStore () {
+        this.$store.commit('setCurrentStore', 'favorites')
+      },
       onLike (item) {
         item.like = !item.like
       },

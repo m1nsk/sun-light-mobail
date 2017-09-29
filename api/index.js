@@ -53,6 +53,7 @@ export function getProductList (productData) {
 export function getFavorites (productData) {
   productData.sort = 'id'
   productData.order = 'asc'
+  console.log(productData)
   return axios.get('/product/likes', productData)
 }
 

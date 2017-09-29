@@ -24,7 +24,8 @@ const getters = {
   getWindowSize: state => state.windowSize,
   getWindowOrientation: state => state.orientation,
   getAnimationFlag: state => state.animationFlag,
-  getCallbackUrl: state => state.callbackUrl.url
+  getCallbackUrl: state => state.callbackUrl.url,
+  restCount: state => Math.ceil(state.windowSize.height / state.bannerSize.height)
 }
 
 // actions

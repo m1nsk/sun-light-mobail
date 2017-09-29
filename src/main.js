@@ -55,7 +55,6 @@ Vue.http.interceptors.push({
 
 Vue.component('category-page', CategoryPage)
 Vue.component('reserve-form-page', ReserveFormPage)
-Vue.component('product-page', ProductPage)
 Vue.component('favorites-page', FavoritesPage)
 
 new Vue({

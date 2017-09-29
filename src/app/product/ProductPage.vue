@@ -75,14 +75,14 @@
       Scroll,
       'page-content': Content
     },
+    name: 'product-page',
     data () {
       return {
         productData: {},
         productItemLoaded: false
       }
     },
-    activated: function () {
-      if (!this.getReloadListFlag()) {
+    created: function () {
         this.productItemLoaded = false
         let payload = {
           id: this.$route.params.id
@@ -92,7 +92,6 @@
           this.productData = response.data.data
           this.productItemLoaded = true
         })
-      }
     },
     methods: {
       getReloadListFlag () {

@@ -2,26 +2,26 @@
   <div>
     <catalog-header :pageData="pageInfo" @update="onSearchUpdated"></catalog-header>
     <page-content>
-        <scroll v-keep-scroll-position :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!loadedScrollFlag" :infiniteLoadingStatus="reloadScrollFlag">
-          <div class="content-layout">
-            <div class="catalog__filter" @click.stop>
-              <transition-group name="fade">
-                <filter-button :key="filterIndex" v-for="(filter, filterIndex) in filterList" v-if="filter.included === true" :data="filter" @exclude="onFilterExclude(filter)"></filter-button>
-              </transition-group>
-            </div>
-            <bannerItem :bannerImg="bannerImage"></bannerItem>
-            <div>
-              <product-card-banner @like="onLike(item)" v-for="item in scrollItemList" :key="item.id" :bannerData="item" @marked="onItemMarked(item)" @click.native="onProductClicked(item)" class="item"></product-card-banner>
-            </div>
+      <scroll v-keep-scroll-position :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!loadedScrollFlag" :infiniteLoadingStatus="reloadScrollFlag">
+        <div class="content-layout">
+          <div class="catalog__filter" @click.stop>
+            <transition-group name="fade">
+              <filter-button :key="filterIndex" v-for="(filter, filterIndex) in filterList" v-if="filter.included === true" :data="filter" @exclude="onFilterExclude(filter)"></filter-button>
+            </transition-group>
           </div>
-        </scroll>
+          <bannerItem :bannerImg="bannerImage"></bannerItem>
+          <div>
+            <product-card-banner @like="onLike(item)" v-for="item in scrollItemList" :key="item.id" :bannerData="item" @marked="onItemMarked(item)" @click.native="onProductClicked(item)" class="item"></product-card-banner>
+          </div>
+        </div>
+      </scroll>
     </page-content>
   </div>
 </template>
 
 <script>
   import { getProductList, getCategory } from 'api/index'
-  import scrollMixin from '~/mixins/scrollMixin.vue'
+  import scrollMixinNew from '~/mixins/scrollMixinNew.vue'
   import CatalogHeader from 'appComponents/components/headers/CatalogHeader.vue'
   import BannerItem from 'appComponents/components/banners/BannerItem.vue'
   import ProductCardBanner from 'appComponents/components/banners/ProductCardBanner.vue'
@@ -38,15 +38,19 @@
       'page-content': Content,
       Scroll
     },
-    extends: scrollMixin,
+    extends: scrollMixinNew,
     data () {
       return {
         bannerImage: '/static/logo.png',
         getItemFunction: getProductList,
-        categoryTitle: ''
+        categoryTitle: '',
+        scrollName: 'products'
       }
     },
     computed: {
+      scrollItemList () {
+        return this.$store.getters.scrollProductList
+      },
       payload () {
         let payload = this.$store.getters.getFilterForResponse
         payload.catalog_id = this.$route.params.id
@@ -64,6 +68,12 @@
       }
     },
     methods: {
+      getReloadListFlag () {
+        return this.$store.getters.getProductListReload
+      },
+      setReloadListFlag (state) {
+        this.$store.commit('setProductListReloadFlag', state)
+      },
       onLike (item) {
         item.like = !item.like
       },
@@ -74,11 +84,8 @@
           this.categoryTitle = response.data.data.label
         })
       },
-      getReloadListFlag () {
-        return this.$store.getters.getProductListReload
-      },
-      setReloadListFlag (state) {
-        this.$store.commit('setProductListReloadFlag', state)
+      setCurrentStore () {
+        this.$store.commit('setCurrentStore', 'products')
       },
       onFilterExclude (filter) {
         console.log(filter.title, 'item')
@@ -93,7 +100,6 @@
         this.getItems()
       },
       onSearchUpdated () {
-        console.log('search updated')
         this.clearItemList()
         this.getItems()
       },
