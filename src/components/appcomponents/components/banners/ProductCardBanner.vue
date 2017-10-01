@@ -1,8 +1,8 @@
 <template>
   <div class="product-card">
     <div class="banner-wrapper flex-center">
-      <img v-lazy="itemData.image.mini" :style="{ height: bannerSize.height + 'px', width: bannerSize.width + 'px' }"/>
-      <div class="hit-wrapper" v-if="itemData.best">
+      <img v-lazy="bannerData.image.mini" :style="{ height: bannerSize.height + 'px', width: bannerSize.width + 'px' }"/>
+      <div class="hit-wrapper" v-if="bannerData.best">
         <div class="hit">
           <div class="hit-text">Хит</div>
         </div>
@@ -13,12 +13,12 @@
         <img :src="markIcon" class="heart-icon" @click.stop="onMarkClick">
       </div>
       <div class="price-wrapper">
-        <div class="title">{{itemData.label}}</div>
-        <div class="sale" v-if="itemData.sale">
-          {{ itemData.sale }}
+        <div class="title">{{bannerData.label}}</div>
+        <div class="sale" v-if="bannerData.sale">
+          {{ bannerData.sale }}
         </div>
         <div class="price">
-          {{ itemData.cost }}
+          {{ bannerData.cost }}
         </div>
       </div>
     </div>
@@ -27,22 +27,15 @@
 </template>
 
 <script>
-  import { toggleProductLike } from 'api/index'
   export default {
     props: ['bannerData'],
     data () {
       return {
-        itemData: this.bannerData,
       }
     },
     methods: {
       onMarkClick () {
-        let itemData = this.itemData
-        let that = this
-        let promise = toggleProductLike(itemData.id)
-        promise.then(response => {
-          that.$emit('like')
-        })
+        this.$store.dispatch('toggleProductLike', this.bannerData.id)
       }
     },
     computed: {
@@ -50,7 +43,7 @@
         return this.$store.getters.getBannerSize
       },
       markIcon () {
-        if (this.itemData.like) {
+        if (this.bannerData.like) {
           return '/static/myIcons/like_full.svg'
         }
         return '/static/myIcons/like.svg'

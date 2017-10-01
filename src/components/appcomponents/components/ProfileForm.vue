@@ -41,6 +41,7 @@
     methods: {
       validate() {
         return this.$validator.validateAll().then((result) => {
+          console.log(result)
           return result
         });
       },
@@ -53,7 +54,8 @@
       submit (callBack) {
         let payload = {}
         payload.profile = this.profile
-        if (this.validate()) {
+        console.log(this.validate(), 'validate')
+          if (this.validate()) {
           callBack(payload)
         }
         else {

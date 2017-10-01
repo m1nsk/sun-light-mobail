@@ -30,8 +30,7 @@
     },
     methods: {
       onChange (input) {
-        this.filterData.included = input
-        this.$emit('filterData', this.filterData)
+        this.$emit('checked')
       },
       filterString (item) {
         const size = 40

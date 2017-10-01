@@ -48,6 +48,7 @@ const actions = {
 // mutations
 const mutations = {
   setFilters (state, filterList) {
+    console.log(filterList, 'filterList')
     state.filterList = filterList
   },
   setSearch (state, search) {

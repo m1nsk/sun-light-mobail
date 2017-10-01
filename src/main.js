@@ -53,10 +53,6 @@ Vue.http.interceptors.push({
   }
 });
 
-Vue.component('category-page', CategoryPage)
-Vue.component('reserve-form-page', ReserveFormPage)
-Vue.component('favorites-page', FavoritesPage)
-
 new Vue({
   store,
   router,

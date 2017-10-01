@@ -11,7 +11,7 @@
           </div>
           <bannerItem :bannerImg="bannerImage"></bannerItem>
           <div>
-            <product-card-banner @like="onLike(item)" v-for="item in scrollItemList" :key="item.id" :bannerData="item" @marked="onItemMarked(item)" @click.native="onProductClicked(item)" class="item"></product-card-banner>
+            <product-card-banner v-for="item in scrollItemList" :key="item.id" :bannerData="item" @marked="onItemMarked(item)" @click.native="onProductClicked(item)" class="item"></product-card-banner>
           </div>
         </div>
       </scroll>
@@ -68,16 +68,8 @@
       }
     },
     methods: {
-      getReloadListFlag () {
-        return this.$store.getters.getProductListReload
-      },
-      setReloadListFlag (state) {
-        this.$store.commit('setProductListReloadFlag', state)
-      },
-      onLike (item) {
-        item.like = !item.like
-      },
       activatedPage () {
+        console.log('activated')
         let categoryId = this.$route.params.id
         let promise = getCategory(categoryId)
         promise.then((response) => {

@@ -14,12 +14,17 @@ const state = {
   },
   orientation: '',
   animationFlag: false,
-  callbackUrl: {url: 'catalog'}
-
+  callbackUrl: {url: 'catalog'},
+  card: [
+    {
+      id: ''
+    }
+  ]
 }
 
 // getters
 const getters = {
+  productCode: state => state.card[0],
   getBannerSize: state => state.bannerSize,
   getWindowSize: state => state.windowSize,
   getWindowOrientation: state => state.orientation,
@@ -34,6 +39,13 @@ const actions = {
 
 // mutations
 const mutations = {
+  setCardCode (state, id) {
+    state.card = [
+      {
+        id: id
+      }
+    ]
+  },
   setWindowSize (state) {
     state.windowSize = document.documentElement.clientHeight
   },

@@ -1,4 +1,4 @@
-import { getProductList, getMarketList, getFavorites, getOrdered } from 'api/index'
+import { getProductList, getMarketList, getFavorites, getOrdered, toggleProductLike, toggleMarketLike } from 'api/index'
 
 // initial state
 const state = {
@@ -8,7 +8,7 @@ const state = {
     loadedScrollFlag: false,
     totalScrollCount: 0,
     scrollCounter: 0,
-    columnNum: 1,
+    columnNum: 2,
     getFunction: getProductList
   },
   markets: {
@@ -26,7 +26,7 @@ const state = {
     loadedScrollFlag: false,
     totalScrollCount: 0,
     scrollCounter: 0,
-    columnNum: 1,
+    columnNum: 2,
     getFunction: getFavorites
   },
   ordered: {
@@ -35,7 +35,7 @@ const state = {
     loadedScrollFlag: false,
     totalScrollCount: 0,
     scrollCounter: 0,
-    columnNum: 1,
+    columnNum: 2,
     getFunction: getOrdered
   },
   currentStore: 'product'
@@ -48,7 +48,7 @@ const getters = {
   scrollProductList: state => state.products.scrollItemList,
   scrollMarketList: state => state.markets.scrollItemList,
   scrollFavoritesList: state => state.favorites.scrollItemList,
-  scrollOrderwedList: state => state.ordered.scrollItemList,
+  scrollOrderedList: state => state.ordered.scrollItemList,
   reloadScrollFlag: state => state[state.currentStore].reloadScrollFlag,
   loadedScrollFlag: state => state[state.currentStore].loadedScrollFlag,
   totalScrollCount: state => state[state.currentStore].totalScrollCount,
@@ -83,6 +83,19 @@ const actions = {
         commit('setLoadedScrollFlag', true)
       }
     })
+  },
+  toggleProductLike ({commit}, id) {
+    let promise = toggleProductLike(id)
+    promise.then((response) => {
+      console.log(id)
+      commit('setProductLike', id)
+    })
+  },
+  toggleMarketLike ({commit}, id) {
+    let promise = toggleMarketLike(id)
+    promise.then((response) => {
+      commit('setMarketLike', id)
+    })
   }
 }
 
@@ -107,25 +120,32 @@ const mutations = {
     state[state.currentStore].scrollItemList = state[state.currentStore].scrollItemList.concat(scrollItemList)
   },
   setProductLike (state, id) {
-    for (let index = 0; index < state[state.currentStore].scrollItemList.length; index++) {
-      if (state[state.currentStore].scrollItemList[index].id === id) {
-        state[state.currentStore].scrollItemList[index].like = !state[state.currentStore].scrollItemList[index].like
+    for (let index = 0; index < state.products.scrollItemList.length; index++) {
+      if (state.products.scrollItemList[index].id === id) {
+        state.products.scrollItemList[index].like = !state.products.scrollItemList[index].like
       }
     }
   },
   setMarketLike (state, id) {
-    for (let index = 0; index < state[state.currentStore].scrollItemList.length; index++) {
-      if (state[state.currentStore].scrollItemList[index].id === id) {
-        state[state.currentStore].scrollItemList[index].like = !state[state.currentStore].scrollItemList[index].like
+    for (let index = 0; index < state.markets.scrollItemList.length; index++) {
+      if (state.markets.scrollItemList[index].id === id) {
+        state.markets.scrollItemList[index].like = !state.markets.scrollItemList[index].like
       }
     }
   },
-  setScrollToDefault (state,) {
+  setScrollToDefault (state) {
     state[state.currentStore].reloadScrollFlag = false
     state[state.currentStore].loadedScrollFlag = false
     state[state.currentStore].totalScrollCount = 0
     state[state.currentStore].scrollCounter = 0
     state[state.currentStore].scrollItemList = []
+  },
+  setNamedScrollToDefault (state, name) {
+    state[name].reloadScrollFlag = false
+    state[name].loadedScrollFlag = false
+    state[name].totalScrollCount = 0
+    state[name].scrollCounter = 0
+    state[name].scrollItemList = []
   },
   setCurrentStore (state, currentStore){
     state.currentStore = currentStore

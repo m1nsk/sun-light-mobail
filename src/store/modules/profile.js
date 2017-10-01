@@ -47,6 +47,7 @@ const actions = {
     })
   },
   getOrderStatus ({ commit }, payload) {
+    console.log(payload, 'payload')
     let promise = putOrder({shop_id: payload.shop_id, product_id: payload.product_id})
     commit('setProfile', payload)
     promise.then(response => {

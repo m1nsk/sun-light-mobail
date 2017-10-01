@@ -55,18 +55,9 @@
     computed: {
       scrollItemList () {
         return this.$store.getters.scrollMarketList
-      },
+      }
     },
     methods: {
-      getReloadListFlag () {
-        return this.$store.getters.getMarketListReload
-      },
-      setReloadListFlag (state) {
-        this.$store.commit('setMarketListReloadFlag', state)
-      },
-      onLike (item) {
-        item.like = !item.like
-      },
       activatedPage: function () {
         let promise = getProduct(this.$store.getters.productCode.id)
         promise.then((response) => {

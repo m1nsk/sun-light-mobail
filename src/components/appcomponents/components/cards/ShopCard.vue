@@ -9,7 +9,7 @@
       <div class="shop-station">{{ shopData.status }}</div>
     </div>
     <div slot="icons">
-      <heart-mark-button :liked="shopData.like" @like="onMarkedClicked" class="heart-mark"></heart-mark-button>
+      <heart-mark-button :liked="shopData.like" @like="onMarkClick" class="heart-mark"></heart-mark-button>
       <img src="/static/myIcons/right-arrow.svg" class="right-arrow">
     </div>
   </custom-card>
@@ -26,12 +26,8 @@
     },
     props: ['shopData'],
     methods: {
-      onMarkedClicked () {
-        let that = this
-        let promise = toggleMarketLike(this.shopData.id)
-        promise.then(response => {
-          that.$emit('like')
-        })
+      onMarkClick () {
+        this.$store.dispatch('toggleMarketLike', this.shopData.id)
       }
     }
   }

@@ -5,7 +5,7 @@
       <scroll v-keep-scroll-position :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!loadedScrollFlag" :infiniteLoadingStatus="reloadScrollFlag">
         <div class="content-layout">
           <div>
-            <product-card-banner @like="onLike(item)" v-for="item in scrollItemList" :key="item.id" :bannerData="item" @marked="onItemMarked(item)" @click.native="onProductClicked(item)" class="item"></product-card-banner>
+            <product-card-banner v-for="item in scrollItemList" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)" class="item"></product-card-banner>
           </div>
         </div>
       </scroll>
@@ -14,8 +14,7 @@
 </template>
 
 <script>
-  import { getOrdered } from 'api/index'
-  import scrollMixin from '~/mixins/scrollMixin.vue'
+  import scrollMixinNew from '~/mixins/scrollMixinNew.vue'
   import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
   import ProductCardBanner from 'appComponents/components/banners/ProductCardBanner.vue'
   import Scroll from '~/components/customScroll'
@@ -28,25 +27,24 @@
       'page-content': Content,
       Scroll
     },
-    extends: scrollMixin,
+    extends: scrollMixinNew,
     data () {
       return {
         bannerImage: '/static/logo.png',
-        getItemFunction: getOrdered,
-        categoryTitle: '',
-        payload: {}
+        payload: {},
+        scrollName: 'ordered'
+      }
+    },
+    computed: {
+      scrollItemList() {
+        return this.$store.getters.scrollOrderedList
       }
     },
     methods: {
-      onLike (item) {
-        item.like = !item.like
+      setCurrentStore () {
+        this.$store.commit('setCurrentStore', 'ordered')
       },
       activatedPage () {
-      },
-      getReloadListFlag () {
-        return false
-      },
-      setReloadListFlag (state) {
       },
       onProductClicked (item) {
         this.$router.push({

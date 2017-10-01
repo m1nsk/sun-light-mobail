@@ -94,14 +94,9 @@
         })
     },
     methods: {
-      getReloadListFlag () {
-        return this.$store.getters.getMarketListReload
-      },
-      setReloadListFlag (state) {
-        this.$store.commit('setMarketListReloadFlag', state)
-      },
       onReserveClicked () {
         this.$store.commit('setCardCode', this.$route.params.id)
+        this.$store.dispatch('setNamedScrollToDefault', 'markets')
         this.$router.push({
           name: 'reserve'
         })

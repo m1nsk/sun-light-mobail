@@ -2,6 +2,7 @@
   export default {
     data () {
       return {
+        createdFlag: false
       }
     },
     computed: {
@@ -16,23 +17,8 @@
       },
     },
     created: function () {
-      this.setCurrentStore()
-      console.log('created')
-      this.setReloadListFlag(true)
-      this.clearItemList()
-      this.activatedPage()
-      this.$nextTick(function () {
-        this.$nextTick(function () {
-          this.getItems()
-        })
-      })
-    },
-    activated: function () {
-      this.setCurrentStore()
-      console.log('activated')
-      if (!this.getReloadListFlag()) {
-        this.setReloadListFlag(true)
-        this.clearItemList()
+      if (!this.createdFlag) {
+        this.setCurrentStore()
         this.activatedPage()
         this.$nextTick(function () {
           this.$nextTick(function () {
@@ -41,7 +27,18 @@
         })
       }
     },
-    deactivated: function () {
+    activated: function () {
+      if (this.createdFlag === false) {
+        this.createdFlag = true
+      } else {
+        this.setCurrentStore()
+        this.activatedPage()
+        this.$nextTick(function () {
+          this.$nextTick(function () {
+            this.getItems()
+          })
+        })
+      }
     },
     methods: {
       setScrollItemList (addItemsList) {
@@ -57,6 +54,7 @@
         this.$store.dispatch('getScrollList', payload)
       },
       onInfinite () {
+        console.log('infinite')
         this.getItems()
       }
     }

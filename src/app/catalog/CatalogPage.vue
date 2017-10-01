@@ -56,8 +56,7 @@
     },
     methods: {
       onCategoryClicked (itemId) {
-        this.$store.commit('setProductListReloadFlag', false)
-        console.log(this.$store.getters.getProductListReload, 'reload flag')
+        this.$store.commit('setNamedScrollToDefault', 'products')
         this.$router.push({name: 'catalogId', params: { id: itemId }})
       }
     }

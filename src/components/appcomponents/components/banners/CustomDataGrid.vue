@@ -59,6 +59,7 @@
       let height = document.documentElement.clientHeight
       let width = document.documentElement.clientWidth
       let size = Math.round((width * 8 / 10) / this.columnNum - 10)
+      size = size < 233.2 ? size : 233.2
       this.productsInResponse = Math.ceil(height / size) * this.columnNum
       // console.log(height, 'height', width, 'width', size, 'size', Math.ceil(height / size), 'rest')
       this.uploadProducts(this.productsInResponse)

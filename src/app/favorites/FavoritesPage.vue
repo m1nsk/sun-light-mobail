@@ -5,7 +5,7 @@
       <scroll v-keep-scroll-position :on-infinite="onInfinite" :enableRefresh=false :enableInfinite="!loadedScrollFlag" :infiniteLoadingStatus="reloadScrollFlag">
         <div class="content-layout">
           <div>
-            <product-card-banner @like="onLike(item)" v-for="item in scrollItemList" :key="item.id" :bannerData="item" @marked="onItemMarked(item)" @click.native="onProductClicked(item)" class="item"></product-card-banner>
+            <product-card-banner v-for="item in scrollItemList" :key="item.id" :bannerData="item" @click.native="onProductClicked(item)" class="item"></product-card-banner>
           </div>
         </div>
       </scroll>
@@ -14,7 +14,6 @@
 </template>
 
 <script>
-  import { getFavorites } from 'api/index'
   import scrollMixinNew from '~/mixins/scrollMixinNew.vue'
   import TitleHeader from 'appComponents/components/headers/TitleHeader.vue'
   import ProductCardBanner from 'appComponents/components/banners/ProductCardBanner.vue'
@@ -32,31 +31,20 @@
     data () {
       return {
         bannerImage: '/static/logo.png',
-        getItemFunction: getFavorites,
-        categoryTitle: '',
         payload: {},
         scrollName: 'favorites'
       }
     },
     computed: {
-
       scrollItemList() {
-          return this.$store.getters.scrollProductList
+          return this.$store.getters.scrollFavoritesList
         }
       },
     methods: {
       setCurrentStore () {
         this.$store.commit('setCurrentStore', 'favorites')
       },
-      onLike (item) {
-        item.like = !item.like
-      },
       activatedPage () {
-      },
-      getReloadListFlag () {
-        return false
-      },
-      setReloadListFlag (state) {
       },
       onProductClicked (item) {
         this.$router.push({

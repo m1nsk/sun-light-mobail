@@ -76,6 +76,7 @@ export function getMarket (marketId) {
 }
 
 export function createSecret (userData) {
+  console.log('secret')
   return axios.post(baseHost + '/create_secret', userData)
 }
 
